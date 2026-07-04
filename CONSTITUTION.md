@@ -12,9 +12,10 @@ Amend this file deliberately and explicitly (see §6). Do not let it erode silen
 
 ## 2. JavaScript
 
-- The theme MUST ship with **no JavaScript**, with exactly one exception: a **theme switcher**, equivalent in scope to terminus's own implementation.
+- The theme MUST ship with **no JavaScript**, with exactly one exception: a **theme switcher**, equivalent in scope to terminus's own `js/theme-switcher.js` at the pinned snapshot (see §3) — and *only* that script, not terminus's JS footprint as a whole.
 - The theme switcher must degrade gracefully: with JS disabled, the site must still render correctly and remain fully usable, defaulting to the system `prefers-colour-scheme`.
 - No analytics scripts, no third-party embeds that require JS, no JS-dependent interactivity anywhere else in the theme. Any request that implies adding JS outside the theme switcher is a constitutional conflict — flag it, don't implement it.
+- At the pinned terminus snapshot, terminus itself ships three further JS features beyond the theme switcher: a responsive-nav popover auto-closer, a copy-to-clipboard button on code blocks, and client-side KaTeX rendering (see `docs/terminus-compat-contract.md` §7 for the full inventory and resolution). None of these three are covered by the theme-switcher exception. Each must be reimplemented without JS or dropped — never carried forward as JS on the assumption that "terminus does it too."
 
 ## 3. Terminus compatibility
 
@@ -71,3 +72,4 @@ Amend this file deliberately and explicitly (see §6). Do not let it erode silen
 **Changelog**
 
 - `2026-JUL-04-001` — Initial constitution: WCAG AA, no-JS-except-theme-switcher, and the terminus compatibility pinning strategy established. Fonts and design tokens frameworks established; specific typeface pairings and presentation styles deferred to prototyping.
+- `2026-JUL-04-002` — Clarified §2 (JavaScript): the theme-switcher exception scopes narrowly to terminus's `js/theme-switcher.js`, not to terminus's JS footprint generally. Reason: the terminus compatibility audit (pinned snapshot `aa8d8b67f9ab69ae48e1405f96e152d41f03e0ed`) found terminus ships three additional JS features (popover auto-close, copy-to-clipboard, KaTeX rendering) beyond the theme switcher, which the original "equivalent in scope to terminus's own implementation" wording could be misread as endorsing. No change to the substantive rule (still zero JS except the switcher) — wording only.

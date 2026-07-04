@@ -4,3 +4,7 @@
 *.scss.map
 public/
 static/processed_images/
+
+# Read-only upstream reference clone, pinned per docs/terminus-compat-contract.md.
+# Not vendored — re-clone at the pinned commit if this directory is missing.
+themes/terminus/
