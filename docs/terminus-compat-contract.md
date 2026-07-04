@@ -170,23 +170,44 @@ pinned snapshot, terminus ships **four** conditionally-loaded scripts:
 **Resolution (decided 2026-07-04):** reimplement without JS wherever
 feasible; drop whatever can't be done without JS. Concretely, per feature:
 
-- **Responsive nav popover auto-close** — reimplement CSS-only (e.g.
-  `:target`/checkbox-hack or native `popover`/`:has()` where supported)
-  instead of `js/auto-close-popover-on-resize.js`.
+- **Responsive nav popover auto-close** — **resolved and spiked**
+  (`prototypes/spikes/nav-collapse-spike.html`): the collapse itself uses
+  the native `popover`/`popovertarget` mechanism (same as terminus's own
+  `partials/menu.html`), verified in-browser to open/close/light-dismiss
+  with zero JS at an 860px breakpoint, including with 8 realistic-length
+  nav items. `close_responsive_menu_on_resize`'s specific behaviour
+  (auto-closing an *already-open* panel on window resize) has no CSS-only
+  equivalent and is simply dropped — a resized viewport that crosses the
+  860px breakpoint while the panel is open will pick up the new layout on
+  next interaction, which is an acceptable gap, not a regression, since nothing
+  currently open silently breaks.
 - **Copy-to-clipboard button on code blocks** — no clipboard write is
   possible without JS; drop the button. `copy_button` becomes a no-op /
   unsupported key rather than a silently-dead one — record this explicitly
   wherever Tapestry's own config-key documentation lists `copy_button`.
   as it will make its way into the reference contract.
-- **KaTeX math rendering** — investigate build-time rendering (e.g. Zola
-  external command / preprocessing step producing static MathML or SVG)
-  before implementation begins; if no viable build-time path exists, drop
-  client-side KaTeX and document the gap rather than shipping the JS.
+- **KaTeX math rendering** — **resolved and spiked**: build-time rendering
+  is feasible. KaTeX's official Node.js SSR API, `katex.renderToString()`,
+  was installed and run directly (not merely researched) against both
+  inline and display-mode LaTeX; the output is confirmed to contain zero
+  `<script>` tags, zero inline event handlers, and zero `javascript:` URIs
+  — pure HTML + MathML using the `.katex`/`.katex-mathml`/`.katex-html`
+  classes, which render correctly with `katex.min.css` and the KaTeX web
+  fonts alone (both already shipped as static assets in terminus at the
+  pinned snapshot — only `js/katex.min.js` itself is dropped). The
+  remaining work is a build-time preprocessing script (Node + the `katex`
+  package) that scans `content/**/*.md` for `$...$`/`$$...$$` delimiters
+  and substitutes pre-rendered HTML before `zola build` runs — analogous
+  to the existing Sass compile step, not a runtime dependency. No
+  constitutional amendment was needed.
 
-This is a decision, not yet an implementation — no code has been written
-for any of the three replacements. Revisit this section once the actual
-templates/CSS/build step land, and update it if the concrete approach
-changes.
+Nav-collapse and KaTeX are now spiked and verified, not just decided in
+principle — see the two spike files under `prototypes/spikes/` for the
+working proof. Copy-to-clipboard remains a decision only (there's nothing
+to spike: clipboard write is definitionally unavailable without JS).
+Revisit this section once the actual templates/CSS/build step land, and
+update it if the concrete implementation approach changes from what the
+spikes demonstrated.
 
 ## 8. Config-driven CSS entry points
 

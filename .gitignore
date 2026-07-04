@@ -8,3 +8,14 @@ static/processed_images/
 # Read-only upstream reference clone, pinned per docs/terminus-compat-contract.md.
 # Not vendored — re-clone at the pinned commit if this directory is missing.
 themes/terminus/
+
+# Ignore local Claude configuration overrides
+.claude/settings.local.json
+.claude/CLAUDE.local.md
+
+# DO NOT ignore these (ensure they are tracked if they exist):
+# !.claude/settings.json
+# !.claude/launch.json
+# !.claude/CLAUDE.md
+
+.env
