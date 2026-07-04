@@ -1,0 +1,24 @@
+// Google Fonts themselves are loaded per-variant via <link> in base.html
+// (CONSTITUTION.md §4) — this file only wires the resulting font-family
+// custom properties onto the actual heading/body/code elements.
+
+body {
+  font-family: var(--font-family-body);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-family-heading);
+  color: var(--colour-text-heading);
+}
+
+code,
+kbd,
+pre,
+pre code {
+  font-family: var(--font-family-code);
+}

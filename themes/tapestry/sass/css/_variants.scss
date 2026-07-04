@@ -1,0 +1,319 @@
+// Design tokens for the "scholarly" presentation style group.
+// Frozen values per docs/design-tokens-scholarly.md — one map entry per variant.
+//
+// Selector contract (see themes/tapestry/templates/base.html and
+// static/js/theme-switcher.js):
+//   - body[data-variant="<name>"]                       -> light-mode baseline
+//   - @media (prefers-color-scheme: dark) body[data-variant="<name>"] -> no-JS dark default
+//   - html[data-color-mode="dark"] body[data-variant="<name>"]        -> explicit JS override
+//   - html[data-color-mode="light"] body[data-variant="<name>"]       -> explicit JS override
+
+$variants: (
+  'classic-ivy': (
+    'font-heading': ('Playfair Display', Georgia, 'Times New Roman', serif),
+    'font-body': ('Source Serif 4', Georgia, Cambria, serif),
+    'font-code': ('IBM Plex Mono', 'SFMono-Regular', Consolas, monospace),
+    'font-size-h1': 2.75rem, 'font-size-h2': 1.85rem, 'font-size-h3': 1.35rem,
+    'font-size-body': 1.125rem, 'font-size-small': 0.875rem,
+    'line-height-heading': 1.15, 'line-height-body': 1.7,
+    'radius-sm': 2px, 'radius-md': 4px,
+    'shadow-sm': (0 1px 2px rgba(20, 33, 44, 0.08)), 'shadow-md': (0 4px 16px rgba(20, 33, 44, 0.12)),
+    'light': (
+      'bg-primary': #faf6ec, 'bg-secondary': #f1ead7, 'text-primary': #1c2b39,
+      'text-heading': #14212c, 'text-muted': #5b5142, 'accent-primary': #7a2231,
+      'accent-secondary': #a8823f, 'border': #ded2b3, 'code-bg': #f1ead7,
+    ),
+    'dark': (
+      'bg-primary': #14191f, 'bg-secondary': #1c232b, 'text-primary': #ece4d3,
+      'text-heading': #f5efe0, 'text-muted': #b3a890, 'accent-primary': #e0a5ad,
+      'accent-secondary': #d1ab6c, 'border': #33404d, 'code-bg': #1c232b,
+    ),
+  ),
+  'nordic-minimalist': (
+    'font-heading': ('Space Grotesk', 'Segoe UI', Helvetica, Arial, sans-serif),
+    'font-body': ('Source Serif 4', Georgia, Cambria, serif),
+    'font-code': ('JetBrains Mono', 'SFMono-Regular', Consolas, monospace),
+    'font-size-h1': 2.6rem, 'font-size-h2': 1.7rem, 'font-size-h3': 1.25rem,
+    'font-size-body': 1.0625rem, 'font-size-small': 0.85rem,
+    'line-height-heading': 1.1, 'line-height-body': 1.65,
+    'radius-sm': 0px, 'radius-md': 2px,
+    'shadow-sm': none, 'shadow-md': none,
+    'light': (
+      'bg-primary': #f7f8f7, 'bg-secondary': #ecefec, 'text-primary': #20242b,
+      'text-heading': #14171b, 'text-muted': #5c6470, 'accent-primary': #2f5f8f,
+      'accent-secondary': #4b6b4b, 'border': #d5dad5, 'code-bg': #ecefec,
+    ),
+    'dark': (
+      'bg-primary': #14171b, 'bg-secondary': #1c2026, 'text-primary': #e7e9ea,
+      'text-heading': #f4f5f5, 'text-muted': #9aa2ab, 'accent-primary': #8fb4de,
+      'accent-secondary': #9dc09d, 'border': #2c333c, 'code-bg': #1c2026,
+    ),
+  ),
+  'dark-academia': (
+    'font-heading': ('Cormorant Garamond', Garamond, Georgia, serif),
+    'font-body': ('EB Garamond', Garamond, Georgia, serif),
+    'font-code': ('Fira Code', 'SFMono-Regular', Consolas, monospace),
+    'font-size-h1': 3rem, 'font-size-h2': 1.9rem, 'font-size-h3': 1.4rem,
+    'font-size-body': 1.15rem, 'font-size-small': 0.85rem,
+    'line-height-heading': 1.1, 'line-height-body': 1.75,
+    'radius-sm': 2px, 'radius-md': 3px,
+    'shadow-sm': (0 1px 3px rgba(0, 0, 0, 0.25)), 'shadow-md': (0 6px 20px rgba(0, 0, 0, 0.35)),
+    'light': (
+      'bg-primary': #efe6d8, 'bg-secondary': #e5d9c5, 'text-primary': #2a1f1a,
+      'text-heading': #201712, 'text-muted': #6b5c4c, 'accent-primary': #6e2c33,
+      'accent-secondary': #33502f, 'border': #cdbc9f, 'code-bg': #e5d9c5,
+    ),
+    'dark': (
+      'bg-primary': #1b1512, 'bg-secondary': #241c17, 'text-primary': #ece1cf,
+      'text-heading': #f4ead9, 'text-muted': #a8977e, 'accent-primary': #c98089,
+      'accent-secondary': #86ab82, 'border': #3c322a, 'code-bg': #241c17,
+    ),
+  ),
+  'scientific-journal': (
+    'font-heading': (Spectral, Georgia, 'Times New Roman', serif),
+    'font-body': ('PT Serif', Georgia, 'Times New Roman', serif),
+    'font-code': ('Source Code Pro', 'SFMono-Regular', Consolas, monospace),
+    'font-size-h1': 2.5rem, 'font-size-h2': 1.6rem, 'font-size-h3': 1.2rem,
+    'font-size-body': 1.0625rem, 'font-size-small': 0.8rem,
+    'line-height-heading': 1.2, 'line-height-body': 1.65,
+    'radius-sm': 3px, 'radius-md': 5px,
+    'shadow-sm': (0 1px 2px rgba(13, 17, 23, 0.08)), 'shadow-md': (0 6px 18px rgba(13, 17, 23, 0.1)),
+    'light': (
+      'bg-primary': #ffffff, 'bg-secondary': #f2f4f7, 'text-primary': #1a1a1a,
+      'text-heading': #0d1117, 'text-muted': #57606a, 'accent-primary': #1449a6,
+      'accent-secondary': #0b6d64, 'border': #d8dee4, 'code-bg': #f2f4f7,
+    ),
+    'dark': (
+      'bg-primary': #0d1117, 'bg-secondary': #161b22, 'text-primary': #e6edf3,
+      'text-heading': #f4f8fb, 'text-muted': #8b949e, 'accent-primary': #79b1ff,
+      'accent-secondary': #57d9c4, 'border': #30363d, 'code-bg': #161b22,
+    ),
+  ),
+  'contemporary-research-lab': (
+    'font-heading': (Fraunces, Georgia, 'Iowan Old Style', serif),
+    'font-body': (Inter, 'Segoe UI', Helvetica, Arial, sans-serif),
+    'font-code': ('Space Mono', 'SFMono-Regular', Consolas, monospace),
+    'font-size-h1': 2.9rem, 'font-size-h2': 1.75rem, 'font-size-h3': 1.25rem,
+    'font-size-body': 1.0625rem, 'font-size-small': 0.85rem,
+    'line-height-heading': 1.05, 'line-height-body': 1.65,
+    'radius-sm': 6px, 'radius-md': 12px,
+    'shadow-sm': (0 2px 8px rgba(43, 31, 46, 0.08)), 'shadow-md': (0 10px 30px rgba(43, 31, 46, 0.14)),
+    'light': (
+      'bg-primary': #fbfaf8, 'bg-secondary': #f1ede8, 'text-primary': #2b1f2e,
+      'text-heading': #1e1521, 'text-muted': #6d6070, 'accent-primary': #a8481f,
+      'accent-secondary': #1f5c50, 'border': #e2dad2, 'code-bg': #f1ede8,
+    ),
+    'dark': (
+      'bg-primary': #1a1420, 'bg-secondary': #241c2c, 'text-primary': #f1ece9,
+      'text-heading': #faf7f5, 'text-muted': #b6a9b9, 'accent-primary': #e8916b,
+      'accent-secondary': #6cb5a4, 'border': #382d40, 'code-bg': #241c2c,
+    ),
+  ),
+);
+
+// Space + spacing scale (shared across every scholarly variant, per
+// docs/design-tokens-scholarly.md — identical values in every variant table).
+:root {
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2.5rem;
+  --space-xl: 4rem;
+
+  // Shared mechanism breakpoints, resolved by the technical spikes
+  // (prototypes/spikes/), applied uniformly across every group/variant.
+  --breakpoint-grid: 1024px;
+  --breakpoint-nav: 860px;
+
+  // Alert semantic colours (light mode default) — accessible against a
+  // near-white/parchment background shared by every scholarly variant's light
+  // mode. Kept mode-scoped (not per-variant) since the semantic hues
+  // (danger=red, tip=green...) don't need to vary by variant, only by mode,
+  // to keep >=4.5:1 contrast against that mode's typical background lightness.
+  --alert-note-border: #57606a;
+  --alert-note-bg: #57606a;
+  --alert-note-code: #6e7781;
+  --alert-tip-border: #1a7f37;
+  --alert-tip-bg: #1a7f37;
+  --alert-tip-code: #2da44e;
+  --alert-info-border: #0969da;
+  --alert-info-bg: #0969da;
+  --alert-info-code: #218bff;
+  --alert-important-border: var(--alert-info-border);
+  --alert-important-bg: var(--alert-info-bg);
+  --alert-important-code: var(--alert-info-code);
+  --alert-warning-border: #9a6700;
+  --alert-warning-bg: #9a6700;
+  --alert-warning-code: #bf8700;
+  --alert-danger-border: #b91c1c;
+  --alert-danger-bg: #b91c1c;
+  --alert-danger-code: #d1242f;
+  --alert-caution-border: var(--alert-danger-border);
+  --alert-caution-bg: var(--alert-danger-bg);
+  --alert-caution-code: var(--alert-danger-code);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --alert-note-border: #9198a1;
+    --alert-note-bg: #9198a1;
+    --alert-note-code: #7d8590;
+    --alert-tip-border: #7ee2b8;
+    --alert-tip-bg: #7ee2b8;
+    --alert-tip-code: #57ab5a;
+    --alert-info-border: #79c0ff;
+    --alert-info-bg: #79c0ff;
+    --alert-info-code: #4493f8;
+    --alert-important-border: var(--alert-info-border);
+    --alert-important-bg: var(--alert-info-bg);
+    --alert-important-code: var(--alert-info-code);
+    --alert-warning-border: #d29922;
+    --alert-warning-bg: #d29922;
+    --alert-warning-code: #bb8009;
+    --alert-danger-border: #ff7b72;
+    --alert-danger-bg: #ff7b72;
+    --alert-danger-code: #ff8182;
+    --alert-caution-border: var(--alert-danger-border);
+    --alert-caution-bg: var(--alert-danger-bg);
+    --alert-caution-code: var(--alert-danger-code);
+  }
+}
+
+html[data-color-mode='dark'] {
+  --alert-note-border: #9198a1;
+  --alert-note-bg: #9198a1;
+  --alert-note-code: #7d8590;
+  --alert-tip-border: #7ee2b8;
+  --alert-tip-bg: #7ee2b8;
+  --alert-tip-code: #57ab5a;
+  --alert-info-border: #79c0ff;
+  --alert-info-bg: #79c0ff;
+  --alert-info-code: #4493f8;
+  --alert-important-border: var(--alert-info-border);
+  --alert-important-bg: var(--alert-info-bg);
+  --alert-important-code: var(--alert-info-code);
+  --alert-warning-border: #d29922;
+  --alert-warning-bg: #d29922;
+  --alert-warning-code: #bb8009;
+  --alert-danger-border: #ff7b72;
+  --alert-danger-bg: #ff7b72;
+  --alert-danger-code: #ff8182;
+  --alert-caution-border: var(--alert-danger-border);
+  --alert-caution-bg: var(--alert-danger-bg);
+  --alert-caution-code: var(--alert-danger-code);
+}
+
+html[data-color-mode='light'] {
+  --alert-note-border: #57606a;
+  --alert-note-bg: #57606a;
+  --alert-note-code: #6e7781;
+  --alert-tip-border: #1a7f37;
+  --alert-tip-bg: #1a7f37;
+  --alert-tip-code: #2da44e;
+  --alert-info-border: #0969da;
+  --alert-info-bg: #0969da;
+  --alert-info-code: #218bff;
+  --alert-important-border: var(--alert-info-border);
+  --alert-important-bg: var(--alert-info-bg);
+  --alert-important-code: var(--alert-info-code);
+  --alert-warning-border: #9a6700;
+  --alert-warning-bg: #9a6700;
+  --alert-warning-code: #bf8700;
+  --alert-danger-border: #b91c1c;
+  --alert-danger-bg: #b91c1c;
+  --alert-danger-code: #d1242f;
+  --alert-caution-border: var(--alert-danger-border);
+  --alert-caution-bg: var(--alert-danger-bg);
+  --alert-caution-code: var(--alert-danger-code);
+}
+
+@function _font-stack($list) {
+  $out: ();
+  @each $f in $list {
+    @if type-of($f) == 'string' and str-index($f, ' ') {
+      $out: append($out, quote($f), comma);
+    } @else {
+      $out: append($out, $f, comma);
+    }
+  }
+  @return $out;
+}
+
+@each $name, $tokens in $variants {
+  body[data-variant='#{$name}'] {
+    --font-family-heading: #{_font-stack(map-get($tokens, 'font-heading'))};
+    --font-family-body: #{_font-stack(map-get($tokens, 'font-body'))};
+    --font-family-code: #{_font-stack(map-get($tokens, 'font-code'))};
+    --font-size-h1: #{map-get($tokens, 'font-size-h1')};
+    --font-size-h2: #{map-get($tokens, 'font-size-h2')};
+    --font-size-h3: #{map-get($tokens, 'font-size-h3')};
+    --font-size-body: #{map-get($tokens, 'font-size-body')};
+    --font-size-small: #{map-get($tokens, 'font-size-small')};
+    --line-height-heading: #{map-get($tokens, 'line-height-heading')};
+    --line-height-body: #{map-get($tokens, 'line-height-body')};
+    --radius-sm: #{map-get($tokens, 'radius-sm')};
+    --radius-md: #{map-get($tokens, 'radius-md')};
+    --shadow-sm: #{map-get($tokens, 'shadow-sm')};
+    --shadow-md: #{map-get($tokens, 'shadow-md')};
+
+    $light: map-get($tokens, 'light');
+    --colour-bg-primary: #{map-get($light, 'bg-primary')};
+    --colour-bg-secondary: #{map-get($light, 'bg-secondary')};
+    --colour-text-primary: #{map-get($light, 'text-primary')};
+    --colour-text-heading: #{map-get($light, 'text-heading')};
+    --colour-text-muted: #{map-get($light, 'text-muted')};
+    --colour-accent-primary: #{map-get($light, 'accent-primary')};
+    --colour-accent-secondary: #{map-get($light, 'accent-secondary')};
+    --colour-border: #{map-get($light, 'border')};
+    --colour-code-bg: #{map-get($light, 'code-bg')};
+
+    // Compatibility aliases consumed by the structural CSS ported from terminus.
+    --accent-color: var(--colour-accent-primary);
+    --background-color: var(--colour-bg-primary);
+    --text-color: var(--colour-text-primary);
+    --footnote-color: var(--colour-text-muted);
+    --radius: var(--radius-md);
+    --font-size: var(--font-size-body);
+    --line-height: var(--line-height-body);
+    --serif-font: var(--font-family-body);
+
+    @media (prefers-color-scheme: dark) {
+      $dark: map-get($tokens, 'dark');
+      --colour-bg-primary: #{map-get($dark, 'bg-primary')};
+      --colour-bg-secondary: #{map-get($dark, 'bg-secondary')};
+      --colour-text-primary: #{map-get($dark, 'text-primary')};
+      --colour-text-heading: #{map-get($dark, 'text-heading')};
+      --colour-text-muted: #{map-get($dark, 'text-muted')};
+      --colour-accent-primary: #{map-get($dark, 'accent-primary')};
+      --colour-accent-secondary: #{map-get($dark, 'accent-secondary')};
+      --colour-border: #{map-get($dark, 'border')};
+      --colour-code-bg: #{map-get($dark, 'code-bg')};
+    }
+  }
+
+  html[data-color-mode='dark'] body[data-variant='#{$name}'] {
+    $dark: map-get($tokens, 'dark');
+    --colour-bg-primary: #{map-get($dark, 'bg-primary')};
+    --colour-bg-secondary: #{map-get($dark, 'bg-secondary')};
+    --colour-text-primary: #{map-get($dark, 'text-primary')};
+    --colour-text-heading: #{map-get($dark, 'text-heading')};
+    --colour-text-muted: #{map-get($dark, 'text-muted')};
+    --colour-accent-primary: #{map-get($dark, 'accent-primary')};
+    --colour-accent-secondary: #{map-get($dark, 'accent-secondary')};
+    --colour-border: #{map-get($dark, 'border')};
+    --colour-code-bg: #{map-get($dark, 'code-bg')};
+  }
+
+  html[data-color-mode='light'] body[data-variant='#{$name}'] {
+    $light: map-get($tokens, 'light');
+    --colour-bg-primary: #{map-get($light, 'bg-primary')};
+    --colour-bg-secondary: #{map-get($light, 'bg-secondary')};
+    --colour-text-primary: #{map-get($light, 'text-primary')};
+    --colour-text-heading: #{map-get($light, 'text-heading')};
+    --colour-text-muted: #{map-get($light, 'text-muted')};
+    --colour-accent-primary: #{map-get($light, 'accent-primary')};
+    --colour-accent-secondary: #{map-get($light, 'accent-secondary')};
+    --colour-border: #{map-get($light, 'border')};
+    --colour-code-bg: #{map-get($light, 'code-bg')};
+  }
+}

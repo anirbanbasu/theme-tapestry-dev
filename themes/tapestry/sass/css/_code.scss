@@ -1,0 +1,71 @@
+// Note: terminus's `copy_button`/`.copy-button` styling is intentionally
+// omitted — the button is dropped entirely per CONSTITUTION.md §2 and
+// docs/terminus-compat-contract.md §7 (no JS-free clipboard write exists).
+
+$header-padding-vertical: 6px;
+
+:root {
+  --code-comment: color-mix(in srgb, var(--text-color) 53%, transparent);
+}
+
+pre.giallo:not(:has(code[data-lang='plain'])) {
+  display: block;
+  position: relative;
+  padding: 0;
+  overflow-y: hidden;
+  direction: ltr;
+
+  code[data-lang] {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding-bottom: 10px;
+    overflow-x: auto;
+    overscroll-behavior-x: none;
+
+    &::before {
+      content: attr(data-lang);
+      position: sticky;
+      inset-inline-start: 0;
+      width: 100%;
+      padding: $header-padding-vertical 10px;
+      border-bottom: 1px solid var(--colour-border);
+      margin-bottom: 10px;
+      color: var(--code-comment);
+      font-size: calc(var(--font-size-body) * 0.8);
+      text-transform: uppercase;
+      line-height: 21px;
+    }
+
+    &[data-name]::after {
+      content: attr(data-name);
+      position: absolute;
+      inset-inline-end: 0;
+      overflow: hidden;
+      max-width: 60%;
+      padding: $header-padding-vertical 10px;
+      color: var(--code-comment);
+      font-size: calc(var(--font-size-body) * 0.8);
+      line-height: 21px;
+      text-overflow: ellipsis;
+    }
+
+    .giallo-l {
+      min-height: var(--line-height-body);
+      padding-inline: 10px;
+
+      span[style*='background-color'] {
+        background-color: unset !important;
+      }
+    }
+
+    .giallo-ln {
+      display: inline-block;
+      min-width: 2ch;
+      margin-inline-end: 20px;
+      color: var(--code-comment);
+      text-align: end;
+      user-select: none;
+    }
+  }
+}

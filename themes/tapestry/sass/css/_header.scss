@@ -1,0 +1,124 @@
+.header {
+  max-width: 1200px;
+  margin-inline: auto;
+  padding: var(--space-md) var(--space-lg) 0;
+
+  @media (max-width: 684px) {
+    padding: var(--space-sm) var(--space-md) 0;
+  }
+}
+
+// Single full-width row: logo (left) / nav (centre, flex:1 — see _menu.scss)
+// / theme toggle (right), spread across the full 1200px content width.
+// `align-items: center` vertically centres the toggle button against the
+// logo regardless of the logo's rendered height.
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  width: 100%;
+  padding-bottom: var(--space-sm);
+  border-bottom: 1px solid var(--colour-border);
+}
+
+.header-logo-container {
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+
+  a {
+    display: flex;
+    align-items: center;
+    color: var(--colour-text-heading);
+    text-decoration: none;
+  }
+}
+
+// Default Tapestry brand mark: inlined SVG using `currentColor`
+// (docs/brand-logo.md, CONSTITUTION.md §9) — inherits --colour-text-heading
+// from the surrounding link. Minimum clear space / minimum size per
+// docs/brand-logo.md §5. Height doubled from the original 2rem to make the
+// mark clearly legible in the wide (1200px) header row; scales down via
+// `clamp()` on narrow viewports so it never crowds the nav/toggle at 320px.
+.logo-svg {
+  display: block;
+  height: clamp(2rem, 5vw, 4rem);
+  width: auto;
+  color: var(--colour-text-heading);
+}
+
+// Fallback path when `config.extra.header_logo` overrides the default mark
+// with a raster/vector image file (terminus compat, docs/terminus-compat-contract.md §3).
+.logo-img {
+  display: inline;
+  height: clamp(2rem, 5vw, 4rem);
+  margin: 0;
+}
+
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  padding: 0;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--colour-border);
+  background: var(--colour-bg-secondary);
+  color: var(--colour-text-heading);
+  flex: 0 0 auto;
+}
+
+// Two inlined Font Awesome Free SVGs (sun + moon; see partials/icon-sun.svg.html
+// and partials/icon-moon.svg.html, attribution in docs/third-party-licenses.md),
+// swapped by CSS depending on colour mode rather than JS — the icon shown is
+// the mode you'd switch TO (sun while in dark mode, moon while in light mode).
+// No-JS default follows `prefers-color-scheme`, same graceful-degradation
+// pattern as the colour tokens themselves (_variants.scss).
+.theme-toggle-icon {
+  display: none;
+  width: 1.1rem;
+  height: 1.1rem;
+  fill: currentColor;
+}
+
+.theme-toggle-icon-moon {
+  display: block;
+}
+
+@media (prefers-color-scheme: dark) {
+  .theme-toggle-icon-sun {
+    display: block;
+  }
+
+  .theme-toggle-icon-moon {
+    display: none;
+  }
+}
+
+html[data-color-mode='dark'] {
+  .theme-toggle-icon-sun {
+    display: block;
+  }
+
+  .theme-toggle-icon-moon {
+    display: none;
+  }
+}
+
+html[data-color-mode='light'] {
+  .theme-toggle-icon-sun {
+    display: none;
+  }
+
+  .theme-toggle-icon-moon {
+    display: block;
+  }
+}
+
+@media print {
+  .header {
+    display: none;
+  }
+}

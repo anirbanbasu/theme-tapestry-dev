@@ -1,0 +1,75 @@
+# The URL the site will be built for
+base_url = "https://anirbanbasu.github.io/tapestry"
+
+# The site title and description; used in feeds by default.
+title = "Tapestry"
+description = "Demo website for the Tapestry theme for Zola"
+
+# The theme to use.
+theme = "tapestry"
+
+# Whether to automatically compile all Sass files in the sass directory
+compile_sass = true
+
+# When set to "true", a feed is automatically generated.
+generate_feeds = true
+
+# The default author for pages
+author = "Anirban Basu"
+
+taxonomies = [
+    { name = "tags", feed = true },
+    { name = "categories", feed = true, paginate_by = 5 },
+]
+
+# Whether to build a search index to be used later on by a JavaScript library
+build_search_index = true
+
+[markdown]
+render_emoji = true
+external_links_class = "external"
+bottom_footnotes = true
+lazy_async_image = true
+github_alerts = true
+
+[markdown.highlighting]
+style = "inline"
+extra_themes = ["syntaxes/monokai-classic.json"]
+theme = "monokai-classic"
+
+[extra]
+# Presentation style group + variant (see CONSTITUTION.md §7).
+# Unset or invalid values fall back to scholarly/contemporary-research-lab.
+presentation_style = "scholarly"
+presentation_variant = "contemporary-research-lab"
+
+favicon = "images/logo/logo-01-woven-monogram-square.svg"
+fediverse_creator = ""
+feed_icon = true
+layout = "center"
+show_default_author = false
+
+main_menu = [
+    { name = "blog", url = "blog", trailing_slash = true },
+    { name = "archive", url = "archive", trailing_slash = true },
+    { name = "tags", url = "tags", trailing_slash = true },
+    { name = "github", url = "https://github.com/anirbanbasu/tapestry", new_tab = true },
+]
+
+socials = [
+    { name = "email", url = "mailto:hello@example.com" },
+    { name = "github", url = "https://github.com/anirbanbasu" },
+]
+
+copyright = "© $YEAR $AUTHOR :: Powered by [Zola](https://www.getzola.org) :: [Tapestry](https://github.com/anirbanbasu/tapestry) theme, derived from [terminus](https://github.com/ebkalderon/terminus)"
+
+[extra.content_security_policy]
+enable = true
+allowed_domains = [
+    { directive = "base-uri", domains = ["'self'"] },
+    { directive = "form-action", domains = ["'self'"] },
+]
+
+[extra.responsive_images]
+widths = [640, 784, 1280, 1920, 2560]
+fallback_width = 1280
