@@ -64,8 +64,8 @@ non-negotiable regardless of what this contract says.
 | Key | Type | Default | Notes |
 |---|---|---|---|
 | `close_responsive_menu_on_resize` | bool | — | **Requires JS** (`js/auto-close-popover-on-resize.js`). See §7 conflict note. |
-| `color_scheme` | string | `"terminus"` | One of: `terminus`, `tokyo-night`, `solarized-dark`, `nord`, `one-dark`, `gruvbox-dark`, `oled-abyss`, `solar-flare`, `catppuccin-latte`, `catppuccin-frappe`, `catppuccin-macchiato`, `catppuccin-mocha`, `synthwave-84`. Applied as `data-theme` attribute on `<body>`. |
-| `color_scheme_switcher` | bool | `false` | **Requires JS** (`js/theme-switcher.js`) — this is the sanctioned theme-switcher exception under CONSTITUTION.md §2. |
+| `color_scheme` | string | `"terminus"` | One of: `terminus`, `tokyo-night`, `solarized-dark`, `nord`, `one-dark`, `gruvbox-dark`, `oled-abyss`, `solar-flare`, `catppuccin-latte`, `catppuccin-frappe`, `catppuccin-macchiato`, `catppuccin-mocha`, `synthwave-84`. Applied as `data-theme` attribute on `<body>`. **Deliberately not adopted as-is** — see the deviation note below. |
+| `color_scheme_switcher` | bool | `false` | **Requires JS** (`js/theme-switcher.js`) — the switcher mechanism itself is the sanctioned theme-switcher exception under CONSTITUTION.md §2, but its *scope* is not carried forward; see below. |
 | `stylesheets` | array of paths | `[]` | Concatenated across config/section/page level; each additive. |
 | `copy_button` | bool | — | **Requires JS** (`js/copy-code-to-clipboard.js`). Overridable per-page/section via `extra.copy_button` (see §5). See §7 conflict note. |
 | `copyright` | string (Markdown) | site default string | Footer text. `$YEAR` and `$AUTHOR` placeholders; `::`-delimited segments become separate responsive `<span>`s. |
@@ -197,3 +197,41 @@ changes.
   `_theme-selector.scss`, `_themes.scss`) are imported from it.
 - `_themes.scss` defines the CSS custom properties for all 13 named colour
   schemes listed in §3, keyed off `[data-theme="..."]` on `<body>`.
+
+## 9. Colour scheme scope deviation (deliberate, not adopted)
+
+Terminus's `color_scheme` / `color_scheme_switcher` pair lets a site visitor
+cycle at runtime, via `js/theme-switcher.js`, through **13 independently
+named colour schemes** (`terminus`, `tokyo-night`, `solarized-dark`, `nord`,
+`one-dark`, `gruvbox-dark`, `oled-abyss`, `solar-flare`, four Catppuccin
+variants, `synthwave-84`) — a flat picker, not a light/dark toggle.
+
+Tapestry does not carry this forward. Per CONSTITUTION.md §2, Tapestry's
+theme switcher toggles **light ⇄ dark only**. Palette identity — which
+hues, not just which mode — is owned entirely by the selected presentation
+style group and variant (CONSTITUTION.md §7, §8), each of which ships its
+own frozen light-mode and dark-mode token set. There is no user-facing
+control to pick a colour scheme independently of the site's configured
+`presentation_style`/`presentation_variant`; the switcher only flips between
+that variant's light tokens and its dark tokens.
+
+This is a deliberate scope reduction, not an oversight: terminus's 13-scheme
+picker is a single-preset-family theme's way of offering visual variety;
+Tapestry gets its visual variety from the group+variant model instead (up to
+5 groups × as many variants as each ships), so a second, orthogonal
+scheme-picker axis would be redundant complexity rather than a feature gap.
+
+### Migration behaviour (terminus → Tapestry)
+
+Per CONSTITUTION.md §7: a site migrating from terminus that sets
+`theme = "tapestry"` but has not yet added `extra.presentation_style` /
+`extra.presentation_variant` gets Tapestry's own unconditional default —
+group **`scholarly`**, variant **`contemporary-research-lab`** — regardless
+of whatever `extra.color_scheme` value that site still has configured from
+its terminus days. That leftover key (and `color_scheme_switcher`) is inert
+under Tapestry: it is not read by any Tapestry template or config schema,
+and — this is the important part — it is **not** used to infer or map an
+"equivalent" Tapestry style/variant. There is no `nord` → some-Tapestry-style
+translation table, deliberately; the two colour models are structurally
+different (flat named schemes vs. group+variant with independent light/dark
+tokens) and inventing a mapping would just be guessing at visual intent.
