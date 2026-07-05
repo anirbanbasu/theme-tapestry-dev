@@ -33,7 +33,7 @@ I was told to explain something complex, beyond using my exceptional barking ski
 
 The [Collatz conjecture](https://en.wikipedia.org/wiki/Collatz_conjecture) is a famous unsolved problem in mathematics. It is named after the German mathematician Lothar Collatz, who first proposed it in 1937. It states something along the following lines.
 
-> Start with any positive integer $n$. Then each term is obtained from the previous term as follows: if the previous term is even, the next term is one half of the previous term. If the previous term is odd, the next term is 3 times the previous term plus 1.
+> Start with any positive integer $n$. Then each term is obtained from the previous term as follows: if the previous term is even, the next term is one half of the previous term. If the previous term is odd, the next term is 3 times the previous term plus 1. No matter what value of $n$ you start with, the conjecture is that you will always eventually reach 1.
 
 Despite its simple definition, the conjecture has proven to be very difficult to prove or disprove, and it remains an open question in mathematics. Following is a simple function implementation in the Python language that prints the numbers of the Collatz sequence given an initial positive integer `n`.
 
