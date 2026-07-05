@@ -1,8 +1,8 @@
 +++
-title = "Math Typesetting"
-description = "Learn how to render beautiful mathematical formulas on your site with KaTeX."
-date = 2025-12-23
-authors = ["Eyal Kalderon"]
+title = "Mathematical Typesetting"
+description = "Render beautiful mathematical formulae on your site with KaTeX."
+date = 2026-07-05
+authors = ["Anirban Basu"]
 
 [taxonomies]
 tags = ["showcase", "markdown", "katex"]

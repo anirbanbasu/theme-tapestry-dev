@@ -12,26 +12,29 @@ title = "Front Page"
 
 ## Dr. B. Dachshund &#x1F43E;
 
-Critical Sniffing, Burrowing and Barking Laboratory
+_Critical Sniffing, Burrowing and Barking Laboratory_
 
 This isn't my usual research field but I am here to give you a demo of the `tapestry` theme, a Zola theme for academic and industry researcher profile websites. It has been derived from and mostly backward-compatible with the [terminus](https://github.com/ebkalderon/terminus) theme.
   </div>
 </div>
 
 {% light_mode_only() %}
-{{ alert(type="danger", icon="tip", title="My profile picture glows in the dark!", text="Don't believe me? Try switching to the dark mode!") }}
+{{ alert(type="danger", title="My profile picture glows in the dark!", text="Don't believe me? Try switching to the dark mode!") }}
 {% end %}
 
 {% dark_mode_only() %}
-{{ alert(type="info", icon="tip", title="I look scary in the dark?", text="Don't like my glowing profile picture? Try switching to the light mode!") }}
+{{ alert(type="info", title="I look scary in the dark?", text="Don't like my glowing profile picture? Try switching to the light mode!") }}
 {% end %}
 
 
-### A _woof woof_ of sorts in Python
+### A _woof woof hello world_ of sorts in Python
 
 I was told to explain something complex, beyond using my exceptional barking skills, and also write it out in code. So, here it is.
 
-The [Collatz conjecture](https://en.wikipedia.org/wiki/Collatz_conjecture) is a famous unsolved problem in mathematics. It is named after the German mathematician Lothar Collatz, who first proposed it in 1937. It concerns a sequence defined as follows: start with any positive integer $n$. Then each term is obtained from the previous term as follows: if the previous term is even, the next term is one half of the previous term. If the previous term is odd, the next term is 3 times the previous term plus 1. Despite its simple definition, the conjecture has proven to be very difficult to prove or disprove, and it remains an open question in mathematics. Following is a simple function implementation in the Python language that prints the numbers of the Collatz sequence given an initial positive integer `n`.
+The [Collatz conjecture](https://en.wikipedia.org/wiki/Collatz_conjecture) is a famous unsolved problem in mathematics. It is named after the German mathematician Lothar Collatz, who first proposed it in 1937. It states something along the following lines:
+> start with any positive integer $n$. Then each term is obtained from the previous term as follows: if the previous term is even, the next term is one half of the previous term. If the previous term is odd, the next term is 3 times the previous term plus 1.
+
+Despite its simple definition, the conjecture has proven to be very difficult to prove or disprove, and it remains an open question in mathematics. Following is a simple function implementation in the Python language that prints the numbers of the Collatz sequence given an initial positive integer `n`.
 
 ```python
 def collatz(n):

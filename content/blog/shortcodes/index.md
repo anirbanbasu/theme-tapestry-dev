@@ -1,7 +1,7 @@
 +++
 title = "Shortcodes"
-date = 2025-06-07
-authors = ["Eyal Kalderon", "John Smith"]
+date = 2026-07-05
+authors = ["Anirban Basu", "Bhombol Dachshund"]
 
 [taxonomies]
 tags = ["showcase", "shortcodes"]
