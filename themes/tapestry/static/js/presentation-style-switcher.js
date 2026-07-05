@@ -15,6 +15,16 @@
  * Fonts URL mapping so it can lazily inject the correct stylesheet the first
  * time a visitor switches to a variant that wasn't already loaded.
  *
+ * Palette display: templates/shortcodes/presentation_palette.html renders a
+ * static, build-time snapshot of the style/variant name and its light/dark
+ * swatch colours. This script carries its own copy of the same token table
+ * (mirroring _variants.scss and that shortcode's light/dark maps) so it can
+ * rewrite that snapshot's text and colours live too, via the
+ * `presentation-palette*`/`data-palette-*` hooks that shortcode renders.
+ * This is a deliberate three-way duplication (SCSS, Tera shortcode, here) —
+ * see the design discussion recorded wherever this feature was requested;
+ * kept in sync by hand.
+ *
  * No-JS / switcher-disabled degradation: if this script doesn't run (JS
  * disabled, or `presentation_style_switcher` is false so the control and
  * this script tag aren't even rendered), the site simply stays on its
@@ -37,6 +47,34 @@
     "contemporary-research-lab": "https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600;900&family=Inter:wght@400;500&family=Space+Mono:wght@400;700&display=swap"
   };
 
+  // Mirrors themes/tapestry/sass/css/_variants.scss's $variants map and
+  // templates/shortcodes/presentation_palette.html's light/dark maps.
+  // Structure: PALETTE[style][variant][mode][token] -> hex.
+  var PALETTE = {
+    scholarly: {
+      "classic-ivy": {
+        light: { bg_primary: "#faf6ec", text_heading: "#14212c", accent_primary: "#7a2231", accent_secondary: "#a8823f" },
+        dark: { bg_primary: "#14191f", text_heading: "#f5efe0", accent_primary: "#e0a5ad", accent_secondary: "#d1ab6c" }
+      },
+      "nordic-minimalist": {
+        light: { bg_primary: "#f7f8f7", text_heading: "#14171b", accent_primary: "#2f5f8f", accent_secondary: "#4b6b4b" },
+        dark: { bg_primary: "#14171b", text_heading: "#f4f5f5", accent_primary: "#8fb4de", accent_secondary: "#9dc09d" }
+      },
+      "dark-academia": {
+        light: { bg_primary: "#efe6d8", text_heading: "#201712", accent_primary: "#6e2c33", accent_secondary: "#33502f" },
+        dark: { bg_primary: "#1b1512", text_heading: "#f4ead9", accent_primary: "#c98089", accent_secondary: "#86ab82" }
+      },
+      "scientific-journal": {
+        light: { bg_primary: "#ffffff", text_heading: "#0d1117", accent_primary: "#1449a6", accent_secondary: "#0b6d64" },
+        dark: { bg_primary: "#0d1117", text_heading: "#f4f8fb", accent_primary: "#79b1ff", accent_secondary: "#57d9c4" }
+      },
+      "contemporary-research-lab": {
+        light: { bg_primary: "#fbfaf8", text_heading: "#1e1521", accent_primary: "#a8481f", accent_secondary: "#1f5c50" },
+        dark: { bg_primary: "#1a1420", text_heading: "#faf7f5", accent_primary: "#e8916b", accent_secondary: "#6cb5a4" }
+      }
+    }
+  };
+
   var loadedFonts = {};
 
   function ensureFontLoaded(variant) {
@@ -57,11 +95,54 @@
     loadedFonts[variant] = true;
   }
 
+  function updatePaletteDisplay(style, variant) {
+    var tokens = PALETTE[style] && PALETTE[style][variant];
+    if (!tokens) {
+      return;
+    }
+
+    var panels = document.querySelectorAll(".presentation-palette");
+    for (var p = 0; p < panels.length; p++) {
+      panels[p].setAttribute("data-palette-style", style);
+      panels[p].setAttribute("data-palette-variant", variant);
+    }
+
+    var names = document.querySelectorAll(".presentation-palette-style-name");
+    for (var s = 0; s < names.length; s++) {
+      names[s].textContent = style;
+    }
+
+    var variantNames = document.querySelectorAll(".presentation-palette-variant-name");
+    for (var v = 0; v < variantNames.length; v++) {
+      variantNames[v].textContent = variant;
+    }
+
+    var swatches = document.querySelectorAll(".presentation-palette-swatch");
+    for (var i = 0; i < swatches.length; i++) {
+      var swatch = swatches[i];
+      var mode = swatch.getAttribute("data-palette-mode");
+      var token = swatch.getAttribute("data-palette-token");
+      var hex = tokens[mode] && tokens[mode][token];
+      if (!hex) {
+        continue;
+      }
+      var colorBox = swatch.querySelector(".presentation-palette-swatch-color");
+      var hexLabel = swatch.querySelector(".presentation-palette-swatch-hex");
+      if (colorBox) {
+        colorBox.style.background = hex;
+      }
+      if (hexLabel) {
+        hexLabel.textContent = hex;
+      }
+    }
+  }
+
   function applyChoice(style, variant, persist) {
     document.body.setAttribute("data-style", style);
     document.body.setAttribute("data-variant", variant);
     ensureFontLoaded(variant);
     updateCurrentOption(variant);
+    updatePaletteDisplay(style, variant);
     if (persist) {
       try {
         window.localStorage.setItem(STORAGE_KEY, JSON.stringify({ style: style, variant: variant }));
