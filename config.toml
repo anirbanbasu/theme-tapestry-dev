@@ -77,6 +77,13 @@ enable = true
 allowed_domains = [
     { directive = "base-uri", domains = ["'self'"] },
     { directive = "form-action", domains = ["'self'"] },
+    # Google Fonts (CONSTITUTION.md §4): base.html unconditionally links a
+    # fonts.googleapis.com stylesheet per presentation variant, which in turn
+    # declares @font-face rules pointing at fonts.gstatic.com. Without these,
+    # default-src 'self' silently blocks both requests and every variant's
+    # heading/body/code typefaces fall back to their fallback stack.
+    { directive = "style-src", domains = ["'self'", "https://fonts.googleapis.com"] },
+    { directive = "font-src", domains = ["'self'", "https://fonts.gstatic.com"] },
 ]
 
 [extra.responsive_images]
