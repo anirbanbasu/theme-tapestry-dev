@@ -33,9 +33,15 @@ lazy_async_image = true
 github_alerts = true
 
 [markdown.highlighting]
-style = "inline"
-extra_themes = ["syntaxes/monokai-classic.json"]
-theme = "monokai-classic"
+style = "class"
+# Placeholder only — `class` style requires some built-in theme to be
+# configured, but every ".z-*" token colour is actually hand-authored per
+# presentation variant in themes/tapestry/sass/css/_code.scss, overriding
+# this theme's own values entirely. See that file for why (Zola's
+# light_theme/dark_theme keys don't reliably respect the configured theme
+# name in this Zola version, and no single theme suits all 5 variants x 2
+# modes anyway).
+theme = "monokai"
 
 [extra]
 # Presentation style group + variant (see CONSTITUTION.md §7).

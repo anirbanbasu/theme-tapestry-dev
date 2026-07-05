@@ -15,11 +15,23 @@
         {%- set allowed_domains = allowed_domains | concat(with=img_src) -%}
     {%- endif -%}
 
-    {#- Allow inline CSS if Zola syntax highlighting uses inline styles -#}
-    {%- if config.markdown.highlighting.style and config.markdown.highlighting.style == "inline" -%}
-        {%- set style_src = load_data(literal=`{"directive": "style-src-attr", "domains": ["'unsafe-inline'"]}`, format="json") -%}
-        {%- set allowed_domains = allowed_domains | concat(with=style_src) -%}
-    {%- endif -%}
+    {#- Allow inline `style="..."` attributes unconditionally. Originally this -#}
+    {#- was gated on `markdown.highlighting.style == "inline"` (terminus's own -#}
+    {#- assumption that inline styles are only ever needed for Zola's syntax- -#}
+    {#- highlighting colours) — but Tapestry's own content also legitimately -#}
+    {#- uses inline styles for one-off presentational layout (e.g. the -#}
+    {#- responsive two-column header pattern and colour-swatch demos in -#}
+    {#- content/_index.md, and the presentation_palette shortcode's swatches), -#}
+    {#- independent of whichever `markdown.highlighting.style` is configured. -#}
+    {#- Switching highlighting to `"class"` (see docs/terminus-compat-contract.md -#}
+    {#- §7) silently broke all of those unrelated inline styles by no longer -#}
+    {#- matching this condition — allowing `style-src-attr` unconditionally -#}
+    {#- avoids that coupling. Inline styles are a much lower injection risk -#}
+    {#- than inline scripts (CONSTITUTION.md §2 governs the latter), so this -#}
+    {#- is a reasonable standing allowance rather than a narrow, easily- -#}
+    {#- broken special case. -#}
+    {%- set style_src = load_data(literal=`{"directive": "style-src-attr", "domains": ["'unsafe-inline'"]}`, format="json") -%}
+    {%- set allowed_domains = allowed_domains | concat(with=style_src) -%}
 
     {%- set extra_domains = config.extra.content_security_policy.allowed_domains -%}
     {%- set allowed_domains = allowed_domains | concat(with=extra_domains) -%}

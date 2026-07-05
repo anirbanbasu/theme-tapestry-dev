@@ -22,11 +22,17 @@ $variants: (
       'bg-primary': #faf6ec, 'bg-secondary': #f1ead7, 'text-primary': #1c2b39,
       'text-heading': #14212c, 'text-muted': #5b5142, 'accent-primary': #7a2231,
       'accent-secondary': #a8823f, 'border': #ded2b3, 'code-bg': #f1ead7,
+      'syntax-comment': #5b5142, 'syntax-keyword': #7a2231, 'syntax-storage': #7a2231,
+      'syntax-string': #836531, 'syntax-variable': #1c2b39, 'syntax-constant': #836531,
+      'syntax-entity': #7a2231, 'syntax-support': #836531, 'syntax-punctuation': #5b5142,
     ),
     'dark': (
       'bg-primary': #14191f, 'bg-secondary': #1c232b, 'text-primary': #ece4d3,
       'text-heading': #f5efe0, 'text-muted': #b3a890, 'accent-primary': #e0a5ad,
       'accent-secondary': #d1ab6c, 'border': #33404d, 'code-bg': #1c232b,
+      'syntax-comment': #b3a890, 'syntax-keyword': #e0a5ad, 'syntax-storage': #e0a5ad,
+      'syntax-string': #d1ab6c, 'syntax-variable': #ece4d3, 'syntax-constant': #d1ab6c,
+      'syntax-entity': #e0a5ad, 'syntax-support': #d1ab6c, 'syntax-punctuation': #b3a890,
     ),
   ),
   'nordic-minimalist': (
@@ -42,11 +48,17 @@ $variants: (
       'bg-primary': #f7f8f7, 'bg-secondary': #ecefec, 'text-primary': #20242b,
       'text-heading': #14171b, 'text-muted': #5c6470, 'accent-primary': #2f5f8f,
       'accent-secondary': #4b6b4b, 'border': #d5dad5, 'code-bg': #ecefec,
+      'syntax-comment': #5c6470, 'syntax-keyword': #2f5f8f, 'syntax-storage': #2f5f8f,
+      'syntax-string': #4b6b4b, 'syntax-variable': #20242b, 'syntax-constant': #4b6b4b,
+      'syntax-entity': #2f5f8f, 'syntax-support': #4b6b4b, 'syntax-punctuation': #5c6470,
     ),
     'dark': (
       'bg-primary': #14171b, 'bg-secondary': #1c2026, 'text-primary': #e7e9ea,
       'text-heading': #f4f5f5, 'text-muted': #9aa2ab, 'accent-primary': #8fb4de,
       'accent-secondary': #9dc09d, 'border': #2c333c, 'code-bg': #1c2026,
+      'syntax-comment': #9aa2ab, 'syntax-keyword': #8fb4de, 'syntax-storage': #8fb4de,
+      'syntax-string': #9dc09d, 'syntax-variable': #e7e9ea, 'syntax-constant': #9dc09d,
+      'syntax-entity': #8fb4de, 'syntax-support': #9dc09d, 'syntax-punctuation': #9aa2ab,
     ),
   ),
   'dark-academia': (
@@ -62,11 +74,17 @@ $variants: (
       'bg-primary': #efe6d8, 'bg-secondary': #e5d9c5, 'text-primary': #2a1f1a,
       'text-heading': #201712, 'text-muted': #6b5c4c, 'accent-primary': #6e2c33,
       'accent-secondary': #33502f, 'border': #cdbc9f, 'code-bg': #e5d9c5,
+      'syntax-comment': #6b5c4c, 'syntax-keyword': #6e2c33, 'syntax-storage': #6e2c33,
+      'syntax-string': #33502f, 'syntax-variable': #2a1f1a, 'syntax-constant': #33502f,
+      'syntax-entity': #6e2c33, 'syntax-support': #33502f, 'syntax-punctuation': #6b5c4c,
     ),
     'dark': (
       'bg-primary': #1b1512, 'bg-secondary': #241c17, 'text-primary': #ece1cf,
       'text-heading': #f4ead9, 'text-muted': #a8977e, 'accent-primary': #c98089,
       'accent-secondary': #86ab82, 'border': #3c322a, 'code-bg': #241c17,
+      'syntax-comment': #a8977e, 'syntax-keyword': #c98089, 'syntax-storage': #c98089,
+      'syntax-string': #86ab82, 'syntax-variable': #ece1cf, 'syntax-constant': #86ab82,
+      'syntax-entity': #c98089, 'syntax-support': #86ab82, 'syntax-punctuation': #a8977e,
     ),
   ),
   'scientific-journal': (
@@ -82,11 +100,17 @@ $variants: (
       'bg-primary': #ffffff, 'bg-secondary': #f2f4f7, 'text-primary': #1a1a1a,
       'text-heading': #0d1117, 'text-muted': #57606a, 'accent-primary': #1449a6,
       'accent-secondary': #0b6d64, 'border': #d8dee4, 'code-bg': #f2f4f7,
+      'syntax-comment': #57606a, 'syntax-keyword': #1449a6, 'syntax-storage': #1449a6,
+      'syntax-string': #0b6d64, 'syntax-variable': #1a1a1a, 'syntax-constant': #0b6d64,
+      'syntax-entity': #1449a6, 'syntax-support': #0b6d64, 'syntax-punctuation': #57606a,
     ),
     'dark': (
       'bg-primary': #0d1117, 'bg-secondary': #161b22, 'text-primary': #e6edf3,
       'text-heading': #f4f8fb, 'text-muted': #8b949e, 'accent-primary': #79b1ff,
       'accent-secondary': #57d9c4, 'border': #30363d, 'code-bg': #161b22,
+      'syntax-comment': #8b949e, 'syntax-keyword': #79b1ff, 'syntax-storage': #79b1ff,
+      'syntax-string': #57d9c4, 'syntax-variable': #e6edf3, 'syntax-constant': #57d9c4,
+      'syntax-entity': #79b1ff, 'syntax-support': #57d9c4, 'syntax-punctuation': #8b949e,
     ),
   ),
   'contemporary-research-lab': (
@@ -102,11 +126,17 @@ $variants: (
       'bg-primary': #fbfaf8, 'bg-secondary': #f1ede8, 'text-primary': #2b1f2e,
       'text-heading': #1e1521, 'text-muted': #6d6070, 'accent-primary': #a8481f,
       'accent-secondary': #1f5c50, 'border': #e2dad2, 'code-bg': #f1ede8,
+      'syntax-comment': #6d6070, 'syntax-keyword': #a8481f, 'syntax-storage': #a8481f,
+      'syntax-string': #1f5c50, 'syntax-variable': #2b1f2e, 'syntax-constant': #1f5c50,
+      'syntax-entity': #a8481f, 'syntax-support': #1f5c50, 'syntax-punctuation': #6d6070,
     ),
     'dark': (
       'bg-primary': #1a1420, 'bg-secondary': #241c2c, 'text-primary': #f1ece9,
       'text-heading': #faf7f5, 'text-muted': #b6a9b9, 'accent-primary': #e8916b,
       'accent-secondary': #6cb5a4, 'border': #382d40, 'code-bg': #241c2c,
+      'syntax-comment': #b6a9b9, 'syntax-keyword': #e8916b, 'syntax-storage': #e8916b,
+      'syntax-string': #6cb5a4, 'syntax-variable': #f1ece9, 'syntax-constant': #6cb5a4,
+      'syntax-entity': #e8916b, 'syntax-support': #6cb5a4, 'syntax-punctuation': #b6a9b9,
     ),
   ),
 );
@@ -227,6 +257,25 @@ html[data-color-mode='light'] {
   --alert-caution-code: var(--alert-danger-code);
 }
 
+// Emits the hand-picked, WCAG-AA-verified `.z-*` syntax-highlighting token
+// colours for a given light/dark sub-map (see themes/tapestry/sass/css/_code.scss
+// for the rules that consume these, and docs/terminus-compat-contract.md §7 /
+// CONSTITUTION.md §1 for why these replaced the single baked-in Monokai theme:
+// Zola's `markdown.highlighting` inline/class-theme mechanisms can't adapt
+// per variant or light/dark mode, so token colours are authored here instead,
+// contrast-checked against each variant's own `code-bg`).
+@mixin _syntax-vars($m) {
+  --syntax-comment: #{map-get($m, 'syntax-comment')};
+  --syntax-keyword: #{map-get($m, 'syntax-keyword')};
+  --syntax-storage: #{map-get($m, 'syntax-storage')};
+  --syntax-string: #{map-get($m, 'syntax-string')};
+  --syntax-variable: #{map-get($m, 'syntax-variable')};
+  --syntax-constant: #{map-get($m, 'syntax-constant')};
+  --syntax-entity: #{map-get($m, 'syntax-entity')};
+  --syntax-support: #{map-get($m, 'syntax-support')};
+  --syntax-punctuation: #{map-get($m, 'syntax-punctuation')};
+}
+
 @function _font-stack($list) {
   $out: ();
   @each $f in $list {
@@ -266,6 +315,7 @@ html[data-color-mode='light'] {
     --colour-accent-secondary: #{map-get($light, 'accent-secondary')};
     --colour-border: #{map-get($light, 'border')};
     --colour-code-bg: #{map-get($light, 'code-bg')};
+    @include _syntax-vars($light);
 
     // Compatibility aliases consumed by the structural CSS ported from terminus.
     --accent-color: var(--colour-accent-primary);
@@ -288,6 +338,7 @@ html[data-color-mode='light'] {
       --colour-accent-secondary: #{map-get($dark, 'accent-secondary')};
       --colour-border: #{map-get($dark, 'border')};
       --colour-code-bg: #{map-get($dark, 'code-bg')};
+      @include _syntax-vars($dark);
     }
   }
 
@@ -302,6 +353,7 @@ html[data-color-mode='light'] {
     --colour-accent-secondary: #{map-get($dark, 'accent-secondary')};
     --colour-border: #{map-get($dark, 'border')};
     --colour-code-bg: #{map-get($dark, 'code-bg')};
+    @include _syntax-vars($dark);
   }
 
   html[data-color-mode='light'] body[data-variant='#{$name}'] {
@@ -315,5 +367,6 @@ html[data-color-mode='light'] {
     --colour-accent-secondary: #{map-get($light, 'accent-secondary')};
     --colour-border: #{map-get($light, 'border')};
     --colour-code-bg: #{map-get($light, 'code-bg')};
+    @include _syntax-vars($light);
   }
 }

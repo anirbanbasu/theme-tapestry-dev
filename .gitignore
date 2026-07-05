@@ -5,6 +5,12 @@
 public/
 static/processed_images/
 
+# Zola auto-writes these into static/ whenever markdown.highlighting.style
+# is "class" (regardless of the configured theme/light_theme/dark_theme) —
+# unused dead weight here since our own token colours are hand-authored in
+# themes/tapestry/sass/css/_code.scss instead of these generated files.
+static/giallo*.css
+
 # Read-only upstream reference clone, pinned per docs/terminus-compat-contract.md.
 # Not vendored — re-clone at the pinned commit if this directory is missing.
 themes/terminus/
