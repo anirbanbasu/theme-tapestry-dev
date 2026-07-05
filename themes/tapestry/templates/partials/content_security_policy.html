@@ -9,11 +9,15 @@
         {%- set allowed_domains = allowed_domains | concat(with=connect_src) | concat(with=script_src_elem) -%}
     {%- endif -%}
 
-    {#- Allow `data:` URL scheme if emoji-based favicon is used -#}
-    {%- if config.extra.favicon_emoji -%}
-        {%- set img_src = load_data(literal=`{"directive": "img-src", "domains":["'self'", "data:"]}`, format="json") -%}
-        {%- set allowed_domains = allowed_domains | concat(with=img_src) -%}
-    {%- endif -%}
+    {#- Allow `data:` URL scheme for `img-src` unconditionally: besides the -#}
+    {#- optional emoji-based favicon, the theme's own CSS relies on inline -#}
+    {#- `data:image/svg+xml` icons (the external-link marker in _main.scss and -#}
+    {#- the alert-type icons in _alerts.scss, both loaded as CSS mask images, -#}
+    {#- which are governed by `img-src` just like `<img>`/favicon sources). -#}
+    {#- Gating this on `favicon_emoji` left those icons silently invisible -#}
+    {#- (and their layout box empty) on any site not using an emoji favicon. -#}
+    {%- set img_src = load_data(literal=`{"directive": "img-src", "domains":["'self'", "data:"]}`, format="json") -%}
+    {%- set allowed_domains = allowed_domains | concat(with=img_src) -%}
 
     {#- Allow inline `style="..."` attributes unconditionally. Originally this -#}
     {#- was gated on `markdown.highlighting.style == "inline"` (terminus's own -#}

@@ -13,6 +13,6 @@
     <div class="alert-icon alert-icon-{{ icon }}"></div>
     <div class="alert-content" role="presentation">
         <strong id="{{ label_id }}" class="alert-title" aria-hidden="true">{{ title | safe }}</strong>
-        {{ text | markdown | safe }}
+        {{ text | markdown | safe -}}
     </div>
 </section>

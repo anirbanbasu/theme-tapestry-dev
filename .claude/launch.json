@@ -16,7 +16,7 @@
     {
       "name": "tapestry-serve-bare",
       "runtimeExecutable": "zola",
-      "runtimeArgs": ["serve"],
+      "runtimeArgs": ["serve", "-u", "localhost"],
       "port": 1111
     }
   ]

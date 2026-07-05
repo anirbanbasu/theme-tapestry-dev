@@ -214,3 +214,52 @@ actually configured for.
 ```jinja
 {{/* presentation_palette() */}}
 ```
+
+## Light Mode Only / Dark Mode Only Shortcodes
+
+Show content only while the site is in light mode, or only while it's in dark
+mode, using the `light_mode_only` and `dark_mode_only` shortcodes. Neither
+takes any parameters — just wrap the content you want to restrict as the
+shortcode's body.
+
+Visibility is done with pure CSS (no extra JavaScript beyond the theme
+switcher this theme already ships): if JavaScript is disabled, each shortcode
+falls back to your system's `prefers-color-scheme` instead of showing both, or
+neither.
+
+{% light_mode_only() %}
+You're seeing this because the site is currently in **light** mode.
+{% end %}
+
+{% dark_mode_only() %}
+You're seeing this because the site is currently in **dark** mode.
+{% end %}
+
+### Usage
+
+```jinja
+{%/* light_mode_only() */%}
+
+Only shown while the site is in light mode.
+
+{%/* end */%}
+```
+
+```jinja
+{%/* dark_mode_only() */%}
+
+Only shown while the site is in dark mode.
+
+{%/* end */%}
+```
+
+The body supports Markdown, and other shortcodes may be nested inside it, for
+example:
+
+```jinja
+{%/* light_mode_only() */%}
+
+{{/* alert(type="tip", text="This tip is only shown in light mode.") */}}
+
+{%/* end */%}
+```
