@@ -26,3 +26,7 @@ themes/terminus/
 
 .env
 config.toml.bak
+
+# Prototypes that are no longer tracked through Git.
+prototypes/spikes/
+prototypes/style-tiles/
