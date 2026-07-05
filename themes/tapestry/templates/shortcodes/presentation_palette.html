@@ -1,0 +1,78 @@
+{#- Renders the active presentation style/variant name plus a light+dark -#}
+{#- colour-palette swatch grid, read from config.extra.presentation_style / -#}
+{#- config.extra.presentation_variant — so it always reflects whichever -#}
+{#- group/variant the site is actually configured for, per the same -#}
+{#- fallback rules as templates/base.html (CONSTITUTION.md §7). -#}
+
+{#- Palette hex values are mirrored from the frozen tokens in -#}
+{#- themes/tapestry/sass/css/_variants.scss ($variants Sass map) and -#}
+{#- docs/design-tokens-scholarly.md. Only the "scholarly" group is -#}
+{#- implemented so far; extend this map when other groups land. -#}
+
+{%- set requested_style = config.extra.presentation_style | default(value="scholarly") -%}
+{%- set valid_styles = ["scholarly"] -%}
+{%- if requested_style in valid_styles -%}
+    {%- set resolved_style = requested_style -%}
+{%- else -%}
+    {%- set resolved_style = "scholarly" -%}
+{%- endif -%}
+
+{%- set valid_scholarly_variants = ["classic-ivy", "nordic-minimalist", "dark-academia", "scientific-journal", "contemporary-research-lab"] -%}
+{%- set requested_variant = config.extra.presentation_variant | default(value="contemporary-research-lab") -%}
+{%- if resolved_style == "scholarly" and requested_variant in valid_scholarly_variants -%}
+    {%- set resolved_variant = requested_variant -%}
+{%- else -%}
+    {%- set resolved_variant = "contemporary-research-lab" -%}
+{%- endif -%}
+
+{#- Tera's `set` tag has no object-literal syntax, so each variant's palette -#}
+{#- is constructed via `load_data(literal=..., format="json")` — the same -#}
+{#- technique already used in partials/content_security_policy.html. -#}
+{%- if resolved_variant == "classic-ivy" -%}
+    {%- set light = load_data(literal=`{"bg_primary": "#faf6ec", "text_heading": "#14212c", "accent_primary": "#7a2231", "accent_secondary": "#a8823f"}`, format="json") -%}
+    {%- set dark = load_data(literal=`{"bg_primary": "#14191f", "text_heading": "#f5efe0", "accent_primary": "#e0a5ad", "accent_secondary": "#d1ab6c"}`, format="json") -%}
+{%- elif resolved_variant == "nordic-minimalist" -%}
+    {%- set light = load_data(literal=`{"bg_primary": "#f7f8f7", "text_heading": "#14171b", "accent_primary": "#2f5f8f", "accent_secondary": "#4b6b4b"}`, format="json") -%}
+    {%- set dark = load_data(literal=`{"bg_primary": "#14171b", "text_heading": "#f4f5f5", "accent_primary": "#8fb4de", "accent_secondary": "#9dc09d"}`, format="json") -%}
+{%- elif resolved_variant == "dark-academia" -%}
+    {%- set light = load_data(literal=`{"bg_primary": "#efe6d8", "text_heading": "#201712", "accent_primary": "#6e2c33", "accent_secondary": "#33502f"}`, format="json") -%}
+    {%- set dark = load_data(literal=`{"bg_primary": "#1b1512", "text_heading": "#f4ead9", "accent_primary": "#c98089", "accent_secondary": "#86ab82"}`, format="json") -%}
+{%- elif resolved_variant == "scientific-journal" -%}
+    {%- set light = load_data(literal=`{"bg_primary": "#ffffff", "text_heading": "#0d1117", "accent_primary": "#1449a6", "accent_secondary": "#0b6d64"}`, format="json") -%}
+    {%- set dark = load_data(literal=`{"bg_primary": "#0d1117", "text_heading": "#f4f8fb", "accent_primary": "#79b1ff", "accent_secondary": "#57d9c4"}`, format="json") -%}
+{%- else -%}
+    {%- set light = load_data(literal=`{"bg_primary": "#fbfaf8", "text_heading": "#1e1521", "accent_primary": "#a8481f", "accent_secondary": "#1f5c50"}`, format="json") -%}
+    {%- set dark = load_data(literal=`{"bg_primary": "#1a1420", "text_heading": "#faf7f5", "accent_primary": "#e8916b", "accent_secondary": "#6cb5a4"}`, format="json") -%}
+{%- endif -%}
+
+{%- macro swatch(name, hex, border) -%}
+<div style="width:88px;">
+  <div style="height:48px;border-radius:6px;border:1px solid {{ border }};background:{{ hex }};"></div>
+  <small style="display:block;font-size:0.7rem;">{{ name }}<br>{{ hex }}</small>
+</div>
+{%- endmacro -%}
+
+<div style="margin:2rem 0;">
+    <h3>Presentation Style &amp; Colour Palette</h3>
+    <p><strong>Style:</strong> <code>{{ resolved_style }}</code> &middot; <strong>Variant:</strong> <code>{{ resolved_variant }}</code></p>
+    <div style="display:flex; flex-wrap:wrap; gap:2rem; margin:1rem 0;">
+      <div style="flex:1 1 240px;">
+        <p style="font-weight:600; margin-bottom:0.5rem;">Light mode</p>
+        <div style="display:flex; flex-wrap:wrap; gap:0.5rem;">
+          {{ self::swatch(name="bg-primary", hex=light.bg_primary, border="rgba(0,0,0,0.15)") }}
+          {{ self::swatch(name="text-heading", hex=light.text_heading, border="rgba(0,0,0,0.15)") }}
+          {{ self::swatch(name="accent-primary", hex=light.accent_primary, border="rgba(0,0,0,0.15)") }}
+          {{ self::swatch(name="accent-secondary", hex=light.accent_secondary, border="rgba(0,0,0,0.15)") }}
+        </div>
+      </div>
+      <div style="flex:1 1 240px;">
+        <p style="font-weight:600; margin-bottom:0.5rem;">Dark mode</p>
+        <div style="display:flex; flex-wrap:wrap; gap:0.5rem;">
+          {{ self::swatch(name="bg-primary", hex=dark.bg_primary, border="rgba(255,255,255,0.15)") }}
+          {{ self::swatch(name="text-heading", hex=dark.text_heading, border="rgba(255,255,255,0.15)") }}
+          {{ self::swatch(name="accent-primary", hex=dark.accent_primary, border="rgba(255,255,255,0.15)") }}
+          {{ self::swatch(name="accent-secondary", hex=dark.accent_secondary, border="rgba(255,255,255,0.15)") }}
+        </div>
+      </div>
+    </div>
+</div>

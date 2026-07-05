@@ -196,3 +196,21 @@ Markdown will of course be rendered.
 
 {%/* end */%}
 ```
+
+## Presentation Palette Shortcode
+
+Display the site's currently active presentation style and variant, along
+with a light/dark colour-palette swatch grid, using the `presentation_palette`
+shortcode. It takes no parameters — it reads `extra.presentation_style` and
+`extra.presentation_variant` directly from your site's `config.toml`, with the
+same fallback rules the theme itself uses (see CONSTITUTION.md §7), so the
+name and swatches shown always match whichever group/variant your site is
+actually configured for.
+
+{{ presentation_palette() }}
+
+### Usage
+
+```jinja
+{{/* presentation_palette() */}}
+```
