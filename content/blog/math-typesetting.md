@@ -11,8 +11,8 @@ tags = ["showcase", "markdown", "katex"]
 katex = true
 +++
 
-Tapestry supports [$\KaTeX$](https://katex.org/) math rendering, pre-rendered
-at build time so no client-side JavaScript is required.
+Tapestry supports [$\KaTeX$](https://katex.org/), a fast, easy-to-use
+JavaScript library for TeX math rendering on the Web.
 
 {{ alert(type="info", title="TODO", text="Will elaborate more later...") }}
 

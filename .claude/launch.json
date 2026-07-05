@@ -12,6 +12,12 @@
       "runtimeExecutable": "npm",
       "runtimeArgs": ["run", "serve"],
       "port": 1111
+    },
+    {
+      "name": "tapestry-serve-bare",
+      "runtimeExecutable": "zola",
+      "runtimeArgs": ["serve"],
+      "port": 1111
     }
   ]
 }

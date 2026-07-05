@@ -157,18 +157,20 @@ a comment system.
 
 ## 7. JavaScript inventory — constitutional conflict flag
 
-CONSTITUTION.md §2 permits **exactly one** JS file: a theme switcher. At the
-pinned snapshot, terminus ships **four** conditionally-loaded scripts:
+CONSTITUTION.md §2 permits **exactly two** JS files: a theme switcher and
+client-side KaTeX rendering. At the pinned snapshot, terminus ships **four**
+conditionally-loaded scripts:
 
 | Script | Loaded when | Scope |
 |---|---|---|
-| `js/theme-switcher.js` | `extra.color_scheme_switcher = true` | Runtime colour-scheme switching with `localStorage` persistence — this is the sanctioned exception. |
+| `js/theme-switcher.js` | `extra.color_scheme_switcher = true` | Runtime colour-scheme switching with `localStorage` persistence — this is a sanctioned exception (narrowed to light/dark only, see §9). |
 | `js/auto-close-popover-on-resize.js` | `extra.close_responsive_menu_on_resize = true` | Closes the responsive nav popover on window resize. |
 | `js/copy-code-to-clipboard.js` | `extra.copy_button = true` (or per-page/section override) | Adds a "copy to clipboard" button to fenced code blocks. |
-| `js/katex.min.js` | `extra.katex = true` (or per-page/section override) | Client-side KaTeX math rendering. |
+| `js/katex.min.js` | `extra.katex = true` (or per-page/section override) | Client-side KaTeX math rendering — this is the **second** sanctioned exception (CONSTITUTION.md §2, amended 2026-07-05), adopted as-is. |
 
-**Resolution (decided 2026-07-04):** reimplement without JS wherever
-feasible; drop whatever can't be done without JS. Concretely, per feature:
+**Resolution (decided 2026-07-04, KaTeX revised 2026-07-05):** reimplement
+without JS wherever feasible; drop whatever can't be done without JS;
+KaTeX is the one deliberate exception to that rule. Concretely, per feature:
 
 - **Responsive nav popover auto-close** — **resolved and spiked**
   (`prototypes/spikes/nav-collapse-spike.html`): the collapse itself uses
@@ -186,28 +188,27 @@ feasible; drop whatever can't be done without JS. Concretely, per feature:
   unsupported key rather than a silently-dead one — record this explicitly
   wherever Tapestry's own config-key documentation lists `copy_button`.
   as it will make its way into the reference contract.
-- **KaTeX math rendering** — **resolved and spiked**: build-time rendering
-  is feasible. KaTeX's official Node.js SSR API, `katex.renderToString()`,
-  was installed and run directly (not merely researched) against both
-  inline and display-mode LaTeX; the output is confirmed to contain zero
-  `<script>` tags, zero inline event handlers, and zero `javascript:` URIs
-  — pure HTML + MathML using the `.katex`/`.katex-mathml`/`.katex-html`
-  classes, which render correctly with `katex.min.css` and the KaTeX web
-  fonts alone (both already shipped as static assets in terminus at the
-  pinned snapshot — only `js/katex.min.js` itself is dropped). The
-  remaining work is a build-time preprocessing script (Node + the `katex`
-  package) that scans `content/**/*.md` for `$...$`/`$$...$$` delimiters
-  and substitutes pre-rendered HTML before `zola build` runs — analogous
-  to the existing Sass compile step, not a runtime dependency. No
-  constitutional amendment was needed.
+- **KaTeX math rendering** — **adopted as-is from terminus (revised
+  2026-07-05).** A build-time pre-rendering approach (Node +
+  `katex.renderToString()`, scanning `content/**/*.md` and substituting
+  rendered HTML before `zola build`) was implemented first and worked
+  correctly, but only through a separate `npm run build`/`npm run serve`
+  entry point — bare `zola build`/`zola serve` (the obvious first command,
+  and all terminus itself needs) left KaTeX-enabled pages showing raw
+  unrendered `$...$` source, silently breaking terminus-compatibility's own
+  goal. Rather than keep patching that discoverability gap, CONSTITUTION.md
+  §2 was explicitly amended to add KaTeX as a second sanctioned JS
+  exception: `themes/tapestry/static/js/katex.min.js` is now vendored
+  verbatim from terminus, loaded identically to terminus's own `extra.katex`
+  gate, with no build-time step required. The build-time pipeline
+  (`scripts/render-katex.js`, `package.json`, `docs/katex-build-pipeline.md`)
+  was removed as superseded.
 
-Nav-collapse and KaTeX are now spiked and verified, not just decided in
-principle — see the two spike files under `prototypes/spikes/` for the
-working proof. Copy-to-clipboard remains a decision only (there's nothing
-to spike: clipboard write is definitionally unavailable without JS).
-Revisit this section once the actual templates/CSS/build step land, and
-update it if the concrete implementation approach changes from what the
-spikes demonstrated.
+Nav-collapse is spiked and verified — see
+`prototypes/spikes/nav-collapse-spike.html` for the working proof.
+Copy-to-clipboard remains a decision only (there's nothing to spike:
+clipboard write is definitionally unavailable without JS). KaTeX no longer
+needs a spike, since it is now adopted unmodified from terminus.
 
 ## 8. Config-driven CSS entry points
 

@@ -66,16 +66,20 @@
     {#- copy-to-clipboard button is simply not rendered (`copy_button` becomes a -#}
     {#- silent no-op key). -#}
 
-    {#- The theme switcher is the one sanctioned JS file (CONSTITUTION.md §2) and -#}
-    {#- always loads — it is no longer gated behind a config key, since terminus's -#}
-    {#- `color_scheme_switcher` key is inert/unused under Tapestry. -#}
+    {#- The theme switcher is the first of two sanctioned JS files -#}
+    {#- (CONSTITUTION.md §2) and always loads — it is no longer gated behind a -#}
+    {#- config key, since terminus's `color_scheme_switcher` key is -#}
+    {#- inert/unused under Tapestry. -#}
     <script src="{{ get_url(path="js/theme-switcher.js", cachebust=true) }}" defer></script>
 
     {%- if config_macros::get(setting="katex", default_global_value=false) == "true" %}
-    {#- KaTeX rendering happens at build time (pre-rendered HTML/MathML baked -#}
-    {#- into the page content); only the stylesheet and webfonts are needed at -#}
-    {#- runtime. `js/katex.min.js` is deliberately not linked. -#}
+    {#- Client-side KaTeX rendering is the second sanctioned JS file -#}
+    {#- (CONSTITUTION.md §2, amended 2026-07-05) — adopted as-is from terminus, -#}
+    {#- loaded identically to terminus's own `extra.katex` gate. See -#}
+    {#- docs/terminus-compat-contract.md §7 for why this is a JS exception -#}
+    {#- rather than the build-time pre-rendering approach tried first. -#}
     <link rel="stylesheet" href="{{ get_url(path="css/katex.min.css", cachebust=true) }}">
+    <script src="{{ get_url(path="js/katex.min.js", cachebust=true) }}" defer></script>
     {%- endif %}
 
     {# Canonical and alternate links -#}

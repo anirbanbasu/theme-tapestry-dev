@@ -43,6 +43,8 @@ theme = "monokai-classic"
 presentation_style = "scholarly"
 presentation_variant = "contemporary-research-lab"
 
+katex = true
+
 favicon = "images/logo/logo-01-woven-monogram-square.svg"
 fediverse_creator = ""
 feed_icon = true
