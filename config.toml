@@ -62,7 +62,7 @@ main_menu = [
     { name = "blog", url = "blog", trailing_slash = true },
     { name = "archive", url = "archive", trailing_slash = true },
     { name = "tags", url = "tags", trailing_slash = true },
-    { name = "github", url = "https://github.com/anirbanbasu/tapestry", new_tab = true },
+    { name = "repo github", url = "https://github.com/anirbanbasu/tapestry", new_tab = true },
 ]
 
 socials = [

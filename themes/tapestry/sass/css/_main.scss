@@ -216,7 +216,8 @@ ol {
 }
 
 @mixin preformatted {
-  font-feature-settings: normal;
+  font-variant-ligatures: none;
+  font-feature-settings: "liga" 0, "calt" 0;
   background: var(--colour-code-bg);
   border: 1px solid var(--colour-border);
   padding: 1px 6px;

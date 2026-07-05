@@ -23,6 +23,22 @@ carries its own license/attribution terms.
   §3). CC BY 4.0 permits colour/size modification; the underlying path
   geometry is otherwise unmodified from the source files.
 
+## Openclipart — front-page paw print icon
+
+- **File:** `content/paw.svg` (used unmodified as a CSS `mask` source, tinted
+  via `background-color: var(--colour-text-heading)`, next to the "Dr. B.
+  Dachshund" heading in `content/_index.md`).
+- **Source:** https://openclipart.org/detail/142447/paw-print-by-kattekrab
+  (also mirrored at https://freesvg.org/paw-print), created by kattekrab,
+  2011-06-05.
+- **License:** Public domain dedication
+  (https://creativecommons.org/licenses/publicdomain/), per the file's own
+  embedded RDF metadata. This is a public-domain/CC0-style dedication, not
+  CC BY — no attribution is legally required.
+- **Attribution:** not required, but recorded here for provenance, consistent
+  with how every other vendored asset in this file is tracked regardless of
+  whether its license mandates a credit line.
+
 ## Font Awesome Free — presentation style/variant switcher gear icon
 
 - **File:** `themes/tapestry/templates/partials/icon-gear.svg.html` (inlined
