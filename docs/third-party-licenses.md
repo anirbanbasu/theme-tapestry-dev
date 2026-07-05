@@ -22,3 +22,15 @@ carries its own license/attribution terms.
   colour tokens, consistent with how Tapestry's own logo works (docs/brand-logo.md
   §3). CC BY 4.0 permits colour/size modification; the underlying path
   geometry is otherwise unmodified from the source files.
+
+## Font Awesome Free — presentation style/variant switcher gear icon
+
+- **File:** `themes/tapestry/templates/partials/icon-gear.svg.html` (inlined
+  verbatim path data from Font Awesome Free 6.7.2, `solid/gear.svg`).
+- **Source:** https://fontawesome.com
+- **License:** https://fontawesome.com/license/free (Icons: CC BY 4.0), same
+  terms and same `currentColor` modification rationale as the sun/moon icons
+  above.
+- **Attribution (required by CC BY 4.0):** Icons by
+  [Font Awesome](https://fontawesome.com), licensed under
+  [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).

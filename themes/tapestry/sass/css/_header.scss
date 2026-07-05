@@ -56,6 +56,13 @@
   margin: 0;
 }
 
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  flex: 0 0 auto;
+}
+
 .theme-toggle {
   display: flex;
   align-items: center;
@@ -68,6 +75,91 @@
   background: var(--colour-bg-secondary);
   color: var(--colour-text-heading);
   flex: 0 0 auto;
+}
+
+// Presentation style/variant switcher (CONSTITUTION.md §2, amendment
+// 2026-JUL-05-002) — opt-in via `extra.presentation_style_switcher`. Gear
+// button styled identically to .theme-toggle; dropdown reuses the exact
+// popover pattern verified in prototypes/spikes/nav-collapse-spike.html and
+// already applied to .main-menu-items (_menu.scss) — same "no unconditional
+// display" rule applies here for the same reason.
+.style-switcher {
+  position: relative;
+}
+
+.style-switcher-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  padding: 0;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--colour-border);
+  background: var(--colour-bg-secondary);
+  color: var(--colour-text-heading);
+  flex: 0 0 auto;
+  anchor-name: --style-switcher-button;
+}
+
+.style-switcher-icon {
+  width: 1.1rem;
+  height: 1.1rem;
+  fill: currentColor;
+}
+
+.style-switcher-menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  &:popover-open {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    position-anchor: --style-switcher-button;
+    position-area: block-end span-inline-end;
+    margin-top: var(--space-xs);
+    padding: var(--space-xs);
+    background: var(--colour-bg-secondary);
+    border: 1px solid var(--colour-border);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+    min-width: 12rem;
+
+    li {
+      border-bottom: 1px solid var(--colour-border);
+
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+  }
+}
+
+.style-switcher-option {
+  display: block;
+  width: 100%;
+  font: inherit;
+  font-family: var(--font-family-code);
+  font-size: var(--font-size-small);
+  text-align: start;
+  background: none;
+  border: none;
+  padding: 0.6em 0.5em;
+  color: var(--colour-text-primary);
+  cursor: pointer;
+
+  &:hover,
+  &:focus-visible {
+    background: color-mix(in srgb, var(--colour-accent-primary) 12%, transparent);
+    color: var(--colour-accent-primary);
+  }
+
+  &[aria-current='true'] {
+    color: var(--colour-accent-primary);
+    font-weight: 600;
+  }
 }
 
 // Two inlined Font Awesome Free SVGs (sun + moon; see partials/icon-sun.svg.html

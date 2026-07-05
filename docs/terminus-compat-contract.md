@@ -157,9 +157,11 @@ a comment system.
 
 ## 7. JavaScript inventory — constitutional conflict flag
 
-CONSTITUTION.md §2 permits **exactly two** JS files: a theme switcher and
-client-side KaTeX rendering. At the pinned snapshot, terminus ships **four**
-conditionally-loaded scripts:
+CONSTITUTION.md §2 permits **exactly three** JS files: a theme switcher,
+client-side KaTeX rendering, and a presentation style/variant switcher (the
+last has no terminus equivalent — it's a Tapestry-original feature, gated by
+`extra.presentation_style_switcher`, default `false`). At the pinned
+snapshot, terminus ships **four** conditionally-loaded scripts:
 
 | Script | Loaded when | Scope |
 |---|---|---|

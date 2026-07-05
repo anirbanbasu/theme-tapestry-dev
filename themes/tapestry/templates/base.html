@@ -66,7 +66,7 @@
     {#- copy-to-clipboard button is simply not rendered (`copy_button` becomes a -#}
     {#- silent no-op key). -#}
 
-    {#- The theme switcher is the first of two sanctioned JS files -#}
+    {#- The theme switcher is the first of three sanctioned JS files -#}
     {#- (CONSTITUTION.md §2) and always loads — it is no longer gated behind a -#}
     {#- config key, since terminus's `color_scheme_switcher` key is -#}
     {#- inert/unused under Tapestry. -#}
@@ -80,6 +80,15 @@
     {#- rather than the build-time pre-rendering approach tried first. -#}
     <link rel="stylesheet" href="{{ get_url(path="css/katex.min.css", cachebust=true) }}">
     <script src="{{ get_url(path="js/katex.min.js", cachebust=true) }}" defer></script>
+    {%- endif %}
+
+    {%- if config.extra.presentation_style_switcher %}
+    {#- The presentation style/variant switcher is the third sanctioned JS -#}
+    {#- file (CONSTITUTION.md §2, amendment 2026-JUL-05-002) — opt-in via -#}
+    {#- `extra.presentation_style_switcher` (default false). Renders the -#}
+    {#- gear-icon disclosure menu in partials/style-switcher.html and lazily -#}
+    {#- loads whichever variant's Google Fonts weren't already linked above. -#}
+    <script src="{{ get_url(path="js/presentation-style-switcher.js", cachebust=true) }}" defer></script>
     {%- endif %}
 
     {# Canonical and alternate links -#}

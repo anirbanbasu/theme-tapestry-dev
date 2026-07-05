@@ -19,3 +19,4 @@ themes/terminus/
 # !.claude/CLAUDE.md
 
 .env
+config.toml.bak

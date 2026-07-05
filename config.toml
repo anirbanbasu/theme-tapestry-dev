@@ -42,6 +42,7 @@ theme = "monokai-classic"
 # Unset or invalid values fall back to scholarly/contemporary-research-lab.
 presentation_style = "scholarly"
 presentation_variant = "contemporary-research-lab"
+presentation_style_switcher = true
 
 katex = true
 

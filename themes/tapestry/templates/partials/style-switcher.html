@@ -1,0 +1,27 @@
+{#- Presentation style/variant switcher (CONSTITUTION.md §2, amendment -#}
+{#- 2026-JUL-05-002) — opt-in via `config.extra.presentation_style_switcher`. -#}
+{#- Renders a gear button (native popover/popovertarget disclosure, same -#}
+{#- zero-extra-JS mechanism as partials/menu.html) listing every implemented -#}
+{#- `<style>/<variant>` combination. Selecting one is handled entirely by -#}
+{#- static/js/presentation-style-switcher.js — this partial only renders the -#}
+{#- button/list/data-* attributes it operates on. -#}
+
+{#- Only "scholarly" is implemented so far (see templates/base.html for the -#}
+{#- same resolution list, duplicated here since Tera has no cross-template -#}
+{#- constant/shared-value mechanism short of a bigger macro refactor). -#}
+{%- set scholarly_variants = ["classic-ivy", "nordic-minimalist", "dark-academia", "scientific-journal", "contemporary-research-lab"] -%}
+
+<div class="style-switcher">
+    <button type="button" class="style-switcher-toggle" popovertarget="style-switcher-menu" aria-haspopup="true" aria-label="Choose presentation style and variant">
+        {% filter indent -%}{%- filter indent -%}
+        {% include "partials/icon-gear.svg.html" %}
+        {%- endfilter -%}{%- endfilter %}
+    </button>
+    <ul id="style-switcher-menu" class="style-switcher-menu" aria-label="Presentation style and variant" popover>
+        {%- for variant in scholarly_variants %}
+        <li>
+            <button type="button" class="style-switcher-option" data-style="scholarly" data-variant="{{ variant }}">scholarly/{{ variant }}</button>
+        </li>
+        {%- endfor %}
+    </ul>
+</div>

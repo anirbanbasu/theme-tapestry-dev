@@ -29,6 +29,13 @@ repo = "https://github.com/ebkalderon/terminus"
 presentation_style = "scholarly"
 presentation_variant = "contemporary-research-lab"
 
+# Opt-in presentation style/variant switcher (CONSTITUTION.md §2, amendment
+# 2026-JUL-05-002): a disclosure menu next to the theme switcher listing
+# every implemented `<style>/<variant>` combination, letting a visitor
+# preview a different look live without a page reload. Requires JS (one of
+# the three sanctioned exceptions) — default off; a site opts in explicitly.
+presentation_style_switcher = false
+
 # Add global stylesheets to support user-defined customisation.
 #
 # Global styles added through stylesheets here may be overridden on individual pages or sections
@@ -69,8 +76,9 @@ feed_icon = true
 # docs/brand-logo.md) instead of falling back to text.
 # header_logo = "images/logo/logo.svg"
 
-# Enable KaTeX support for all posts. Rendering happens at build time (no
-# JS is shipped for this) — see docs/terminus-compat-contract.md §7.
+# Enable KaTeX support for all posts. Rendered client-side via
+# js/katex.min.js (one of the three sanctioned JS exceptions) — see
+# docs/terminus-compat-contract.md §7.
 katex = false
 
 # Valid options are "center", "left", or "full-width".
