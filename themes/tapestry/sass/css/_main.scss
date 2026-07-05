@@ -160,6 +160,15 @@ input {
   background: transparent;
   color: var(--text-color);
   appearance: none;
+
+  &[type='checkbox'] {
+    vertical-align: middle;
+    box-shadow: inset 0 0 0 3px var(--background-color);
+
+    &:checked {
+      background: var(--accent-color);
+    }
+  }
 }
 
 img,

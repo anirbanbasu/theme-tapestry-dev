@@ -24,10 +24,22 @@ main.grid {
 
   // Single-post article view (page.html renders `<article class="post content">`;
   // post-list excerpts render `<article class="post">` without `.content`, so
-  // this selector only ever matches the single-article template, per
-  // docs/design-tokens-scholarly.md's "Article body: columns 1-8" region).
-  > article.post.content {
+  // this selector only ever matches the single-article template). The
+  // `.has-sidebar` modifier is added by page.html only when a sidebar
+  // actually has content to show (auto TOC and/or page.extra.sidebar) — see
+  // partials/sidebar.html. Without it, the article keeps the default
+  // full-12-column span from `> *` above instead of reserving an empty
+  // columns 9-12 gap, per docs/design-tokens-scholarly.md.
+  > article.post.content.has-sidebar {
     grid-column: 1 / span 8;
+
+    @media (max-width: 1023.98px) {
+      grid-column: 1 / span 12;
+    }
+  }
+
+  > aside.sidebar {
+    grid-column: 9 / span 4;
 
     @media (max-width: 1023.98px) {
       grid-column: 1 / span 12;

@@ -137,6 +137,7 @@ a comment system.
 | `[extra] copy_button` | Per-page override of the global `copy_button` setting (see §3, §7). |
 | `[extra] katex` | Per-page override of the global `katex` setting (see §3, §7). |
 | `[extra] stylesheets` | Additive with config/section-level stylesheets. |
+| `[extra] sidebar` | **Tapestry-original, no terminus equivalent.** Controls the single-article template's columns 9–12 sidebar (CONSTITUTION.md §5). Unset (default): renders an automatic "on this page" heading TOC if the page has ≥2 headings, else no sidebar. A string value is a path (relative to the project root) to a colocated Markdown snippet loaded via `load_data(format="plain") \| markdown` and rendered above the auto-TOC. `false` forces no sidebar regardless of headings/custom content, and the article reclaims the full 12 columns. See `themes/tapestry/templates/partials/sidebar.html`. |
 
 ### Section-level
 

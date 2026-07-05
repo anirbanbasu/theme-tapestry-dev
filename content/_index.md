@@ -1,23 +1,27 @@
 +++
 title = "Front Page"
+
+[extra]
+section_path = "_index.md"
+max_posts = 0
 +++
 
 <div style="display:flex; flex-wrap:wrap; gap:1.5rem; align-items:center; margin:1.5rem 0;">
   <div style="flex:0 0 auto;">
   {% light_mode_only() %}
     <div class="colour-mode-only colour-mode-only-light" style="width:160px;height:160px;border-radius:50%;background:var(--colour-bg-primary);display:flex;align-items:center;justify-content:center;">
-      <div role="img" aria-label="Dr. B. Dachshund" style="width:160px;height:160px;border-radius:50%;background-color:var(--colour-accent-primary);-webkit-mask:url(profile.svg) center/contain no-repeat;mask:url(profile.svg) center/contain no-repeat;"></div>
+      <div role="img" aria-label="Dr. B. Dachshund" style="width:160px;height:160px;border-radius:50%;background-color:var(--colour-accent-primary);-webkit-mask:url(/images/profile.svg) center/contain no-repeat;mask:url(/images/profile.svg) center/contain no-repeat;"></div>
     </div>
   {% end %}
   {% dark_mode_only() %}
     <div class="colour-mode-only colour-mode-only-dark" style="width:160px;height:160px;border-radius:50%;background:var(--colour-accent-primary);display:flex;align-items:center;justify-content:center;">
-      <div role="img" aria-label="Dr. B. Dachshund" style="width:160px;height:160px;border-radius:50%;background-color:var(--colour-bg-primary);-webkit-mask:url(profile.svg) center/contain no-repeat;mask:url(profile.svg) center/contain no-repeat;"></div>
+      <div role="img" aria-label="Dr. B. Dachshund" style="width:160px;height:160px;border-radius:50%;background-color:var(--colour-bg-primary);-webkit-mask:url(/images/profile.svg) center/contain no-repeat;mask:url(/images/profile.svg) center/contain no-repeat;"></div>
     </div>
   {% end %}
   </div>
   <div style="flex:1 1 320px; min-width:0;">
 
-## Dr. B. Dachshund <span role="img" aria-label="paw prints" style="display:inline-block;width:0.85em;height:0.85em;vertical-align:-0.05em;background-color:var(--colour-text-heading);-webkit-mask:url(paw.svg) center/contain no-repeat;mask:url(paw.svg) center/contain no-repeat;"></span>
+## Dr. B. Dachshund <span role="img" aria-label="paw prints" style="display:inline-block;width:0.85em;height:0.85em;vertical-align:-0.05em;background-color:var(--colour-text-heading);-webkit-mask:url(/images/paw.svg) center/contain no-repeat;mask:url(/images/paw.svg) center/contain no-repeat;"></span>
 
 _Critical Sniffing, Burrowing and Barking Laboratory_
 
