@@ -1,6 +1,195 @@
-// Google Fonts themselves are loaded per-variant via <link> in base.html
-// (CONSTITUTION.md §4) — this file only wires the resulting font-family
-// custom properties onto the actual heading/body/code elements.
+// For most variants, Google Fonts are loaded via <link> in base.html
+// (CONSTITUTION.md §4) and this file wires the resulting font-family
+// custom properties onto heading/body/code elements.
+// For the contemporary-research-lab variant, this file also provides
+// the @font-face source declarations directly (self-hosted WOFF2 files),
+// replacing the CDN dependency for that variant.
+
+// Metric-adjusted @font-face fallbacks for CLS reduction.
+// Each declaration wraps a system font with overridden vertical metrics and
+// a size-adjust multiplier to approximate the corresponding Google Font,
+// minimising layout shift when the web font swaps in.
+//
+// Values are calibrated approximations based on published font metrics
+// (ascender/descender tables, UPM). They can be refined with tooling
+// such as fontaine or the @capsizecss/metrics package if a closer
+// match is needed after real-world measurement.
+//
+// Code (monospace) fonts are omitted: monospace fallbacks (SFMono, Consolas)
+// have fixed advance widths that produce negligible layout shift on swap.
+
+// contemporary-research-lab — body: Inter → Arial / Helvetica Neue
+@font-face {
+  font-family: 'Inter Fallback';
+  src: local('Arial'), local('Helvetica Neue');
+  size-adjust: 107%;
+  ascent-override: 90%;
+  descent-override: 22%;
+  line-gap-override: 0%;
+}
+
+// contemporary-research-lab — heading: Fraunces → Georgia
+@font-face {
+  font-family: 'Fraunces Fallback';
+  src: local('Georgia');
+  size-adjust: 96%;
+  ascent-override: 88%;
+  descent-override: 22%;
+  line-gap-override: 0%;
+}
+
+// classic-ivy — heading: Playfair Display → Georgia
+@font-face {
+  font-family: 'Playfair Display Fallback';
+  src: local('Georgia');
+  size-adjust: 93%;
+  ascent-override: 93%;
+  descent-override: 25%;
+  line-gap-override: 0%;
+}
+
+// classic-ivy + nordic-minimalist — body: Source Serif 4 → Georgia
+@font-face {
+  font-family: 'Source Serif 4 Fallback';
+  src: local('Georgia');
+  size-adjust: 98%;
+  ascent-override: 91%;
+  descent-override: 23%;
+  line-gap-override: 0%;
+}
+
+// nordic-minimalist — heading: Space Grotesk → Arial / Helvetica Neue
+@font-face {
+  font-family: 'Space Grotesk Fallback';
+  src: local('Arial'), local('Helvetica Neue');
+  size-adjust: 101%;
+  ascent-override: 91%;
+  descent-override: 21%;
+  line-gap-override: 0%;
+}
+
+// dark-academia — heading: Cormorant Garamond → Garamond / Georgia
+@font-face {
+  font-family: 'Cormorant Garamond Fallback';
+  src: local('Garamond'), local('Georgia');
+  size-adjust: 97%;
+  ascent-override: 88%;
+  descent-override: 21%;
+  line-gap-override: 0%;
+}
+
+// dark-academia — body: EB Garamond → Garamond / Georgia
+@font-face {
+  font-family: 'EB Garamond Fallback';
+  src: local('Garamond'), local('Georgia');
+  size-adjust: 106%;
+  ascent-override: 88%;
+  descent-override: 20%;
+  line-gap-override: 0%;
+}
+
+// scientific-journal — heading: Spectral → Georgia
+@font-face {
+  font-family: 'Spectral Fallback';
+  src: local('Georgia');
+  size-adjust: 97%;
+  ascent-override: 90%;
+  descent-override: 23%;
+  line-gap-override: 0%;
+}
+
+// scientific-journal — body: PT Serif → Georgia
+@font-face {
+  font-family: 'PT Serif Fallback';
+  src: local('Georgia');
+  size-adjust: 99%;
+  ascent-override: 90%;
+  descent-override: 23%;
+  line-gap-override: 0%;
+}
+
+// Self-hosted fonts for the contemporary-research-lab variant.
+// Latin + latin-ext subsets only. Fraunces and Inter are variable fonts;
+// a single file covers the full weight range used by this variant.
+// All three typefaces are licensed under SIL OFL 1.1.
+//
+// Note: several codepoints (U+0131, U+0152-0153, U+0304, U+0308, U+0329,
+// U+2020) appear in both the latin-ext and latin unicode-range values.
+// This overlap is intentional — it is copied verbatim from the Google Fonts
+// API response and ensures those codepoints are covered regardless of which
+// subset the browser loads first. Do not deduplicate the ranges.
+
+// Fraunces — heading font (weights 600, 900)
+@font-face {
+  font-family: 'Fraunces';
+  font-style: normal;
+  font-weight: 600 900;
+  font-display: swap;
+  src: url('/fonts/contemporary-research-lab/Fraunces-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Fraunces';
+  font-style: normal;
+  font-weight: 600 900;
+  font-display: swap;
+  src: url('/fonts/contemporary-research-lab/Fraunces-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+// Inter — body font (weights 400, 500)
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400 500;
+  font-display: swap;
+  src: url('/fonts/contemporary-research-lab/Inter-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400 500;
+  font-display: swap;
+  src: url('/fonts/contemporary-research-lab/Inter-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+// Space Mono — code font (weight 400 regular)
+@font-face {
+  font-family: 'Space Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/contemporary-research-lab/SpaceMono-Regular-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Space Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/contemporary-research-lab/SpaceMono-Regular-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+// Space Mono — code font (weight 700 bold)
+@font-face {
+  font-family: 'Space Mono';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/contemporary-research-lab/SpaceMono-Bold-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Space Mono';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/contemporary-research-lab/SpaceMono-Bold-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
 
 body {
   font-family: var(--font-family-body);

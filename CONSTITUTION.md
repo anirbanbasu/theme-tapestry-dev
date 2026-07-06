@@ -36,14 +36,17 @@ Amend this file deliberately and explicitly (see §10). Do not let it erode sile
 
 ## 4. Fonts
 
-- The theme uses **Google Fonts** as the web font provider.
-- Multiple presentation styles (to be defined later) may each pair different typefaces for headings, body, and code. Each presentation style must have a fully specified, tested typeface pairing.
+- All web fonts MUST be **self-hosted** as WOFF2 files under `themes/tapestry/static/fonts/<variant-name>/` and committed to the repository. No fonts may be loaded at runtime from an external CDN — Google Fonts (or any other font service) is used only as the upstream source from which files are downloaded and vendored, never as a live delivery mechanism.
+- Multiple presentation styles may each pair different typefaces for headings, body, and code. Each presentation style must have a fully specified, tested typeface pairing, with the WOFF2 files committed under the corresponding variant subdirectory.
 - For each presentation style:
-  - Heading typeface: <name, weights required, e.g. "Merriweather 400, 700">.
+  - Heading typeface: <name, weights required, e.g. "Fraunces 600, 900">.
   - Body typeface: <name, weights required, e.g. "Inter 400, 500">.
-  - Code typeface (if used): <monospace, weights required, e.g. "IBM Plex Mono 400">.
-  - Fallback stack for each: system font fallbacks, e.g. "Merriweather, Georgia, serif".
-- Fonts are loaded via Google Fonts CDN. Font subsetting and variable fonts are permitted if they reduce payload without compromising glyph coverage for supported languages.
+  - Code typeface (if used): <monospace, weights required, e.g. "Space Mono 400, 700">.
+  - Fallback stack for each: metric-adjusted system font fallbacks (see `_fonts.scss`) plus generic family, e.g. `Fraunces, 'Fraunces Fallback', Georgia, serif`.
+- Only **latin and latin-ext subsets** are vendored by default. Additional subsets (cyrillic, greek, vietnamese, etc.) may be added per-variant if the site's content requires them, but are not required.
+- Variable fonts (covering a continuous weight range in a single file) are preferred over separate per-weight static files where the upstream font supports them.
+- All `@font-face` declarations MUST use `font-display: swap`.
+- `<link rel="preload">` hints MUST be added in `base.html` for each variant's primary body and heading font (latin subset), using `get_url()` without `cachebust=true` — the preload `href` and the `@font-face src` path must stay byte-identical or the browser will fetch the file twice.
 - The font choice must pass WCAG AA readability at the smallest body text size used in the site (typically 14–16px).
 
 ## 5. Layout grid system

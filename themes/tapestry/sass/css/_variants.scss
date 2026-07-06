@@ -10,8 +10,8 @@
 
 $variants: (
   'classic-ivy': (
-    'font-heading': ('Playfair Display', Georgia, 'Times New Roman', serif),
-    'font-body': ('Source Serif 4', Georgia, Cambria, serif),
+    'font-heading': ('Playfair Display', 'Playfair Display Fallback', Georgia, 'Times New Roman', serif),
+    'font-body': ('Source Serif 4', 'Source Serif 4 Fallback', Georgia, Cambria, serif),
     'font-code': ('IBM Plex Mono', 'SFMono-Regular', Consolas, monospace),
     'font-size-h1': 2.75rem, 'font-size-h2': 1.85rem, 'font-size-h3': 1.35rem,
     'font-size-body': 1.125rem, 'font-size-small': 0.875rem,
@@ -36,8 +36,8 @@ $variants: (
     ),
   ),
   'nordic-minimalist': (
-    'font-heading': ('Space Grotesk', 'Segoe UI', Helvetica, Arial, sans-serif),
-    'font-body': ('Source Serif 4', Georgia, Cambria, serif),
+    'font-heading': ('Space Grotesk', 'Space Grotesk Fallback', 'Segoe UI', Helvetica, Arial, sans-serif),
+    'font-body': ('Source Serif 4', 'Source Serif 4 Fallback', Georgia, Cambria, serif),
     'font-code': ('JetBrains Mono', 'SFMono-Regular', Consolas, monospace),
     'font-size-h1': 2.6rem, 'font-size-h2': 1.7rem, 'font-size-h3': 1.25rem,
     'font-size-body': 1.0625rem, 'font-size-small': 0.85rem,
@@ -62,8 +62,8 @@ $variants: (
     ),
   ),
   'dark-academia': (
-    'font-heading': ('Cormorant Garamond', Garamond, Georgia, serif),
-    'font-body': ('EB Garamond', Garamond, Georgia, serif),
+    'font-heading': ('Cormorant Garamond', 'Cormorant Garamond Fallback', Garamond, Georgia, serif),
+    'font-body': ('EB Garamond', 'EB Garamond Fallback', Garamond, Georgia, serif),
     'font-code': ('Fira Code', 'SFMono-Regular', Consolas, monospace),
     'font-size-h1': 3rem, 'font-size-h2': 1.9rem, 'font-size-h3': 1.4rem,
     'font-size-body': 1.15rem, 'font-size-small': 0.85rem,
@@ -88,8 +88,8 @@ $variants: (
     ),
   ),
   'scientific-journal': (
-    'font-heading': (Spectral, Georgia, 'Times New Roman', serif),
-    'font-body': ('PT Serif', Georgia, 'Times New Roman', serif),
+    'font-heading': (Spectral, 'Spectral Fallback', Georgia, 'Times New Roman', serif),
+    'font-body': ('PT Serif', 'PT Serif Fallback', Georgia, 'Times New Roman', serif),
     'font-code': ('Source Code Pro', 'SFMono-Regular', Consolas, monospace),
     'font-size-h1': 2.5rem, 'font-size-h2': 1.6rem, 'font-size-h3': 1.2rem,
     'font-size-body': 1.0625rem, 'font-size-small': 0.8rem,
@@ -114,8 +114,8 @@ $variants: (
     ),
   ),
   'contemporary-research-lab': (
-    'font-heading': (Fraunces, Georgia, 'Iowan Old Style', serif),
-    'font-body': (Inter, 'Segoe UI', Helvetica, Arial, sans-serif),
+    'font-heading': (Fraunces, 'Fraunces Fallback', Georgia, 'Iowan Old Style', serif),
+    'font-body': (Inter, 'Inter Fallback', 'Segoe UI', Helvetica, Arial, sans-serif),
     'font-code': ('Space Mono', 'SFMono-Regular', Consolas, monospace),
     'font-size-h1': 2.9rem, 'font-size-h2': 1.75rem, 'font-size-h3': 1.25rem,
     'font-size-body': 1.0625rem, 'font-size-small': 0.85rem,

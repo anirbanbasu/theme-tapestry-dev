@@ -30,11 +30,23 @@
     {%- elif active_variant_ == "scientific-journal" -%}
         {%- set google_fonts_url_ = "https://fonts.googleapis.com/css2?family=Spectral:wght@600;700&family=PT+Serif:wght@400;700&family=Source+Code+Pro:wght@400;500&display=swap" -%}
     {%- else -%}
+        {#- contemporary-research-lab falls here; value intentionally unused — -#}
+        {#- font loading for that variant is handled by the preload block below. -#}
         {%- set google_fonts_url_ = "https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,900&family=Inter:wght@400;500&family=Space+Mono:wght@400;700&display=swap" -%}
     {%- endif %}
+    {%- if active_variant_ == "contemporary-research-lab" %}
+    {#- Self-hosted fonts: preload the two primary faces (body + heading). -#}
+    {#- crossorigin is required even for same-origin font preloads. -#}
+    {#- No cachebust=true: paths must stay byte-identical to the src: URLs in -#}
+    {#- _fonts.scss @font-face blocks; a fingerprint mismatch doubles requests. -#}
+    {#- Space Mono (code font) is intentionally omitted — it loads on demand. -#}
+    <link rel="preload" href="{{ get_url(path="fonts/contemporary-research-lab/Inter-latin.woff2") }}" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="{{ get_url(path="fonts/contemporary-research-lab/Fraunces-latin.woff2") }}" as="font" type="font/woff2" crossorigin>
+    {%- else %}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="{{ google_fonts_url_ | safe }}">
+    {%- endif %}
     <link rel="stylesheet" href="{{ get_url(path="css/style.css", cachebust=true) }}">
     {%- for stylesheet in config.extra.stylesheets | default(value=[]) | concat(with=section.extra.stylesheets | default(value=[])) | concat(with=page.extra.stylesheets | default(value=[])) %}
     <link rel="stylesheet" href="{{ get_url(path=stylesheet, cachebust=true) }}">
