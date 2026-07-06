@@ -11,7 +11,7 @@
 $variants: (
   'classic-ivy': (
     'font-heading': ('Playfair Display', 'Playfair Display Fallback', Georgia, 'Times New Roman', serif),
-    'font-body': ('Source Serif 4', 'Source Serif 4 Fallback', Georgia, Cambria, serif),
+    'font-body': ('Source Serif 4 Classic Ivy', 'Source Serif 4 Fallback', Georgia, Cambria, serif),
     'font-code': ('IBM Plex Mono', 'SFMono-Regular', Consolas, monospace),
     'font-size-h1': 2.75rem, 'font-size-h2': 1.85rem, 'font-size-h3': 1.35rem,
     'font-size-body': 1.125rem, 'font-size-small': 0.875rem,
@@ -37,7 +37,7 @@ $variants: (
   ),
   'nordic-minimalist': (
     'font-heading': ('Space Grotesk', 'Space Grotesk Fallback', 'Segoe UI', Helvetica, Arial, sans-serif),
-    'font-body': ('Source Serif 4', 'Source Serif 4 Fallback', Georgia, Cambria, serif),
+    'font-body': ('Source Serif 4 Nordic Minimalist', 'Source Serif 4 Fallback', Georgia, Cambria, serif),
     'font-code': ('JetBrains Mono', 'SFMono-Regular', Consolas, monospace),
     'font-size-h1': 2.6rem, 'font-size-h2': 1.7rem, 'font-size-h3': 1.25rem,
     'font-size-body': 1.0625rem, 'font-size-small': 0.85rem,
