@@ -36,19 +36,6 @@
 
   var STORAGE_KEY = "tapestry-presentation-style";
 
-  // Google Fonts URLs for variants that still rely on CDN font delivery.
-  // Mirrors templates/base.html's per-variant <link> selection — kept in sync
-  // by hand. contemporary-research-lab is intentionally absent: its fonts are
-  // self-hosted via @font-face in the main stylesheet (no CDN stylesheet
-  // needed). Remove each entry here once that variant's WOFF2 files are
-  // vendored under themes/tapestry/static/fonts/ (CONSTITUTION.md §4).
-  var FONT_URLS = {
-    "classic-ivy": "https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Serif+4:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap",
-    "nordic-minimalist": "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Source+Serif+4:wght@400;600&family=JetBrains+Mono:wght@400;500&display=swap",
-    "dark-academia": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=EB+Garamond:wght@400;500&family=Fira+Code:wght@400;500&display=swap",
-    "scientific-journal": "https://fonts.googleapis.com/css2?family=Spectral:wght@600;700&family=PT+Serif:wght@400;700&family=Source+Code+Pro:wght@400;500&display=swap"
-  };
-
   // Mirrors themes/tapestry/sass/css/_variants.scss's $variants map and
   // templates/shortcodes/presentation_palette.html's light/dark maps.
   // Structure: PALETTE[style][variant][mode][token] -> hex.
@@ -76,26 +63,6 @@
       }
     }
   };
-
-  var loadedFonts = {};
-
-  function ensureFontLoaded(variant) {
-    var url = FONT_URLS[variant];
-    if (!url || loadedFonts[variant]) {
-      return;
-    }
-    // Also treat as "loaded" if base.html already linked this exact URL
-    // server-side (the build-time-configured variant).
-    if (document.querySelector('link[href="' + url + '"]')) {
-      loadedFonts[variant] = true;
-      return;
-    }
-    var link = document.createElement("link");
-    link.rel = "stylesheet";
-    link.href = url;
-    document.head.appendChild(link);
-    loadedFonts[variant] = true;
-  }
 
   function updatePaletteDisplay(style, variant) {
     var tokens = PALETTE[style] && PALETTE[style][variant];
@@ -142,7 +109,6 @@
   function applyChoice(style, variant, persist) {
     document.body.setAttribute("data-style", style);
     document.body.setAttribute("data-variant", variant);
-    ensureFontLoaded(variant);
     updateCurrentOption(variant);
     updatePaletteDisplay(style, variant);
     if (persist) {
@@ -169,7 +135,7 @@
         return null;
       }
       var parsed = JSON.parse(raw);
-      if (parsed && parsed.style && parsed.variant && FONT_URLS[parsed.variant]) {
+      if (parsed && parsed.style && parsed.variant && PALETTE[parsed.style] && PALETTE[parsed.style][parsed.variant]) {
         return parsed;
       }
     } catch (e) {
