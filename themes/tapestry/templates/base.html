@@ -90,7 +90,14 @@
     {#- loaded identically to terminus's own `extra.katex` gate. See -#}
     {#- docs/terminus-compat-contract.md §7 for why this is a JS exception -#}
     {#- rather than the build-time pre-rendering approach tried first. -#}
-    <link rel="stylesheet" href="{{ get_url(path="css/katex.min.css", cachebust=true) }}">
+    {#- Preload the two KaTeX fonts that appear in virtually every math expression -#}
+    {#- (upright body + italic). Reduces the critical request chain depth from 3 -#}
+    {#- hops (HTML→katex-swap.css→font) to 2 (HTML→font in parallel with CSS). -#}
+    {#- No cachebust=true: path must stay byte-identical to the src: URL in -#}
+    {#- katex-swap.css @font-face blocks to avoid the browser fetching twice. -#}
+    <link rel="preload" href="{{ get_url(path="fonts/katex/KaTeX_Main-Regular.woff2") }}" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="{{ get_url(path="fonts/katex/KaTeX_Math-Italic.woff2") }}" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="{{ get_url(path="css/katex-swap.css", cachebust=true) }}">
     <script src="{{ get_url(path="js/katex.min.js", cachebust=true) }}" defer></script>
     {%- endif %}
 
