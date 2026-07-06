@@ -50,7 +50,9 @@ presentation_style = "scholarly"
 presentation_variant = "contemporary-research-lab"
 presentation_style_switcher = true
 
-katex = true
+# KaTeX is disabled globally; enable per-page via `[extra] katex = true` in
+# front matter (only pages that actually contain math need it).
+katex = false
 
 favicon = "images/logo/logo-01-woven-monogram-square.svg"
 fediverse_creator = ""
@@ -71,7 +73,7 @@ socials = [
     { name = "github", url = "https://github.com/anirbanbasu" },
 ]
 
-copyright = "© $YEAR $AUTHOR :: Powered by [Zola](https://www.getzola.org) :: [Tapestry](https://github.com/anirbanbasu/tapestry) theme, derived from [terminus](https://github.com/ebkalderon/terminus)"
+copyright = "© $YEAR $AUTHOR :: Powered by [Zola](https://www.getzola.org) :: [Tapestry](https://github.com/anirbanbasu/tapestry) theme"
 
 [extra.content_security_policy]
 enable = true
