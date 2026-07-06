@@ -1,5 +1,5 @@
 # The URL the site will be built for
-base_url = "https://anirbanbasu.github.io/tapestry"
+base_url = "https://ghp-tapestry.anirbanbasu.com/"
 
 # The site title and description; used in feeds by default.
 title = "Tapestry"
