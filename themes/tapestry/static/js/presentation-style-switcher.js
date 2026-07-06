@@ -9,11 +9,11 @@
  * keyed off those attributes (_variants.scss), so flipping them is enough
  * to repaint colours, fonts, spacing, etc. live.
  *
- * Font loading: templates/base.html only <link>s the Google Fonts stylesheet
- * for the *build-time-configured* variant, to avoid loading all 5 variants'
- * fonts on every page load. This script mirrors that same variant -> Google
- * Fonts URL mapping so it can lazily inject the correct stylesheet the first
- * time a visitor switches to a variant that wasn't already loaded.
+ * Font loading: all scholarly variant fonts are self-hosted as WOFF2 files
+ * under themes/tapestry/static/fonts/scholarly/<variant>/ and declared via
+ * @font-face in the main stylesheet (CONSTITUTION.md §4). No CDN stylesheet
+ * injection is needed — when a visitor switches variant the browser already
+ * has every font available from the @font-face declarations in style.css.
  *
  * Palette display: templates/shortcodes/presentation_palette.html renders a
  * static, build-time snapshot of the style/variant name and its light/dark
@@ -36,15 +36,17 @@
 
   var STORAGE_KEY = "tapestry-presentation-style";
 
-  // Mirrors the Google Fonts URLs in templates/base.html's per-variant
-  // <link> selection — kept in sync by hand (same duplication tradeoff
-  // already accepted for the palette shortcode's token values).
+  // Google Fonts URLs for variants that still rely on CDN font delivery.
+  // Mirrors templates/base.html's per-variant <link> selection — kept in sync
+  // by hand. contemporary-research-lab is intentionally absent: its fonts are
+  // self-hosted via @font-face in the main stylesheet (no CDN stylesheet
+  // needed). Remove each entry here once that variant's WOFF2 files are
+  // vendored under themes/tapestry/static/fonts/ (CONSTITUTION.md §4).
   var FONT_URLS = {
     "classic-ivy": "https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Serif+4:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap",
     "nordic-minimalist": "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Source+Serif+4:wght@400;600&family=JetBrains+Mono:wght@400;500&display=swap",
     "dark-academia": "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=EB+Garamond:wght@400;500&family=Fira+Code:wght@400;500&display=swap",
-    "scientific-journal": "https://fonts.googleapis.com/css2?family=Spectral:wght@600;700&family=PT+Serif:wght@400;700&family=Source+Code+Pro:wght@400;500&display=swap",
-    "contemporary-research-lab": "https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600;900&family=Inter:wght@400;500&family=Space+Mono:wght@400;700&display=swap"
+    "scientific-journal": "https://fonts.googleapis.com/css2?family=Spectral:wght@600;700&family=PT+Serif:wght@400;700&family=Source+Code+Pro:wght@400;500&display=swap"
   };
 
   // Mirrors themes/tapestry/sass/css/_variants.scss's $variants map and

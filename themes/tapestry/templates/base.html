@@ -11,8 +11,11 @@
     {% include "partials/content_security_policy.html" %}
     <title>{%- block title -%}{{ config.title }}{%- endblock -%}</title>
 
-    {#- Google Fonts (CONSTITUTION.md §4): each scholarly variant pairs its own -#}
-    {#- heading/body/code typefaces, loaded only for the active variant. -#}
+    {#- Self-hosted fonts (CONSTITUTION.md §4): all scholarly variants. Preload -#}
+    {#- the heading + body fonts (latin subset) for the active variant only. -#}
+    {#- crossorigin is required even for same-origin font preloads. -#}
+    {#- No cachebust=true: paths must be byte-identical to the src: URLs in -#}
+    {#- _fonts.scss @font-face blocks; a fingerprint mismatch doubles requests. -#}
     {%- set requested_style_ = config.extra.presentation_style | default(value="scholarly") -%}
     {%- set requested_variant_ = config.extra.presentation_variant | default(value="contemporary-research-lab") -%}
     {%- set valid_variants_ = ["classic-ivy", "nordic-minimalist", "dark-academia", "scientific-journal", "contemporary-research-lab"] -%}
@@ -21,31 +24,27 @@
     {%- else -%}
         {%- set active_variant_ = "contemporary-research-lab" -%}
     {%- endif -%}
-    {%- if active_variant_ == "classic-ivy" -%}
-        {%- set google_fonts_url_ = "https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400;500&display=swap" -%}
-    {%- elif active_variant_ == "nordic-minimalist" -%}
-        {%- set google_fonts_url_ = "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=JetBrains+Mono:wght@400;500&display=swap" -%}
-    {%- elif active_variant_ == "dark-academia" -%}
-        {%- set google_fonts_url_ = "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=EB+Garamond:wght@400;500&family=Fira+Code:wght@400;500&display=swap" -%}
-    {%- elif active_variant_ == "scientific-journal" -%}
-        {%- set google_fonts_url_ = "https://fonts.googleapis.com/css2?family=Spectral:wght@600;700&family=PT+Serif:wght@400;700&family=Source+Code+Pro:wght@400;500&display=swap" -%}
-    {%- else -%}
-        {#- contemporary-research-lab falls here; value intentionally unused — -#}
-        {#- font loading for that variant is handled by the preload block below. -#}
-        {%- set google_fonts_url_ = "https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,900&family=Inter:wght@400;500&family=Space+Mono:wght@400;700&display=swap" -%}
-    {%- endif %}
-    {%- if active_variant_ == "contemporary-research-lab" %}
-    {#- Self-hosted fonts: preload the two primary faces (body + heading). -#}
-    {#- crossorigin is required even for same-origin font preloads. -#}
-    {#- No cachebust=true: paths must stay byte-identical to the src: URLs in -#}
-    {#- _fonts.scss @font-face blocks; a fingerprint mismatch doubles requests. -#}
-    {#- Space Mono (code font) is intentionally omitted — it loads on demand. -#}
-    <link rel="preload" href="{{ get_url(path="fonts/contemporary-research-lab/Inter-latin.woff2") }}" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="{{ get_url(path="fonts/contemporary-research-lab/Fraunces-latin.woff2") }}" as="font" type="font/woff2" crossorigin>
+    {%- if active_variant_ == "classic-ivy" %}
+    <link rel="preload" href="{{ get_url(path="fonts/scholarly/classic-ivy/PlayfairDisplay-latin.woff2") }}" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="{{ get_url(path="fonts/scholarly/classic-ivy/SourceSerif4-latin.woff2") }}" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="{{ get_url(path="fonts/scholarly/classic-ivy/IBMPlexMono-Regular-latin.woff2") }}" as="font" type="font/woff2" crossorigin>
+    {%- elif active_variant_ == "nordic-minimalist" %}
+    <link rel="preload" href="{{ get_url(path="fonts/scholarly/nordic-minimalist/SpaceGrotesk-latin.woff2") }}" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="{{ get_url(path="fonts/scholarly/nordic-minimalist/SourceSerif4-latin.woff2") }}" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="{{ get_url(path="fonts/scholarly/nordic-minimalist/JetBrainsMono-latin.woff2") }}" as="font" type="font/woff2" crossorigin>
+    {%- elif active_variant_ == "dark-academia" %}
+    <link rel="preload" href="{{ get_url(path="fonts/scholarly/dark-academia/CormorantGaramond-latin.woff2") }}" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="{{ get_url(path="fonts/scholarly/dark-academia/EBGaramond-latin.woff2") }}" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="{{ get_url(path="fonts/scholarly/dark-academia/FiraCode-latin.woff2") }}" as="font" type="font/woff2" crossorigin>
+    {%- elif active_variant_ == "scientific-journal" %}
+    <link rel="preload" href="{{ get_url(path="fonts/scholarly/scientific-journal/Spectral-SemiBold-latin.woff2") }}" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="{{ get_url(path="fonts/scholarly/scientific-journal/PTSerif-Regular-latin.woff2") }}" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="{{ get_url(path="fonts/scholarly/scientific-journal/SourceCodePro-latin.woff2") }}" as="font" type="font/woff2" crossorigin>
     {%- else %}
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="{{ google_fonts_url_ | safe }}">
+    {#- contemporary-research-lab (default) -#}
+    <link rel="preload" href="{{ get_url(path="fonts/scholarly/contemporary-research-lab/Inter-latin.woff2") }}" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="{{ get_url(path="fonts/scholarly/contemporary-research-lab/Fraunces-latin.woff2") }}" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="{{ get_url(path="fonts/scholarly/contemporary-research-lab/SpaceMono-Regular-latin.woff2") }}" as="font" type="font/woff2" crossorigin>
     {%- endif %}
     <link rel="stylesheet" href="{{ get_url(path="css/style.css", cachebust=true) }}">
     {%- for stylesheet in config.extra.stylesheets | default(value=[]) | concat(with=section.extra.stylesheets | default(value=[])) | concat(with=page.extra.stylesheets | default(value=[])) %}
