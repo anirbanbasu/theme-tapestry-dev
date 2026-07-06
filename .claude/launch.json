@@ -4,19 +4,23 @@
     {
       "name": "static-preview",
       "runtimeExecutable": "python3",
-      "runtimeArgs": ["-m", "http.server", "8743", "--directory", "prototypes"],
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "8743",
+        "--directory",
+        "prototypes"
+      ],
       "port": 8743
-    },
-    {
-      "name": "tapestry-serve",
-      "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "serve"],
-      "port": 1111
     },
     {
       "name": "tapestry-serve-bare",
       "runtimeExecutable": "zola",
-      "runtimeArgs": ["serve", "-u", "localhost"],
+      "runtimeArgs": [
+        "serve",
+        "-u",
+        "localhost"
+      ],
       "port": 1111
     }
   ]
