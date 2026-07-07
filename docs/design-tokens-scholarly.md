@@ -310,7 +310,7 @@ A modern, editorial-leaning take: a quirky soft-serif display face for headings 
 
 | Role | Typeface | Weights | Fallback stack |
 |---|---|---|---|
-| Heading | Fraunces | 144/600/900 | Georgia, "Iowan Old Style", serif |
+| Heading | Fraunces | 600/900 | Georgia, "Iowan Old Style", serif |
 | Body | Inter | 400/500 | "Segoe UI", Helvetica, Arial, sans-serif |
 | Code | Space Mono | 400/700 | "SFMono-Regular", Consolas, monospace |
 

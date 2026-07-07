@@ -276,11 +276,16 @@ html[data-color-mode='light'] {
   --syntax-punctuation: #{map-get($m, 'syntax-punctuation')};
 }
 
+// `quote()` alone doesn't survive `#{}` interpolation below: Dart Sass's
+// interpolation always emits a string's unquoted characters, discarding the
+// internal "quoted" flag `quote()` sets. Concatenating literal `"` characters
+// into the string's own content (not just flagging it as quoted) is the only
+// way the quote marks make it into the compiled CSS.
 @function _font-stack($list) {
   $out: ();
   @each $f in $list {
     @if type-of($f) == 'string' and str-index($f, ' ') {
-      $out: append($out, quote($f), comma);
+      $out: append($out, unquote('"' + $f + '"'), comma);
     } @else {
       $out: append($out, $f, comma);
     }

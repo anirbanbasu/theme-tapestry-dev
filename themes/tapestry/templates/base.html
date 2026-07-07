@@ -124,8 +124,11 @@
     {#- The presentation style/variant switcher is the third sanctioned JS -#}
     {#- file (CONSTITUTION.md §2, amendment 2026-JUL-05-002) — opt-in via -#}
     {#- `extra.presentation_style_switcher` (default false). Renders the -#}
-    {#- gear-icon disclosure menu in partials/style-switcher.html and lazily -#}
-    {#- loads whichever variant's Google Fonts weren't already linked above. -#}
+    {#- gear-icon disclosure menu in partials/style-switcher.html. Every -#}
+    {#- variant's self-hosted fonts (CONSTITUTION.md §4) are already -#}
+    {#- unconditionally compiled into style.css, so the switcher only ever -#}
+    {#- flips `data-style`/`data-variant` attributes — it makes no network -#}
+    {#- requests and does not load fonts. -#}
     <script src="{{ get_url(path="js/presentation-style-switcher.js", cachebust=true) }}" defer></script>
     {%- endif %}
 
