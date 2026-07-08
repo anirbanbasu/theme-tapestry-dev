@@ -43,18 +43,14 @@ I have four, rather short, legs and one nose. I am usually sniffing, digging, _n
 
 There are many things I do in a day, but the following is a typical day in my life.
 
-- Wake up around 6AM (sometimes earlier), stretch, yawn, and climb on the humans in an attempt to wake them up.
-- Sniff around the house and then go back to sleep for a while.
-- Wake up again when the humans actually wake up and go outside for a stroll.
-  - Sniff around different things along the way, but city life is not as interesting as the countryside, where I go from time to time.
-  - Growl or bark at other dogs and unknown people, if they are not friendly or if they are too close to me.
-- Go back home, have breakfast, and then go back to sleep for a while. If it is sunny, I prefer napping under the sunlight that comes through the window.
-- Wake up again and demand some snacks when the humans are having their meals. I am very good at asking for something and I usually get it.
-- Go back to a more peaceful afternoon nap.
-- Wake up again and go outside for another stroll, if the humans are not too busy. If they are, I bark at them until they take me out.
-- Get back home, try to play with the humans, but they are usually too busy. Otherwise, try to get their attention by barking at them or by jumping on them. If they are still too busy, I go back to sleep.
-- Wake up again, roam around while dinner is being prepared, and then have dinner. I usually get some snacks after that too.
-- Go back to sleep for a while, and then wake up again to play with the humans.
+- Wake up around before 6AM, stretch and yawn. Go outside for a stroll with my humans.
+  - Sniff around different things along the way. City life is less interesting than the countryside, where I go from time to time.
+  - Growl or bark at other dogs, unknown people, and other creatures if they are not friendly or if they come too close to me.
+- Go home, have breakfast, and then take a nap for a while. If it is sunny, I prefer napping under the sunlight that comes through the window.
+- Wake up again and expect some snacks when the humans are having their meals. Go back to a more peaceful afternoon nap.
+- Wake up again and go outside for another stroll with my humans.
+- Get back home, play with my humans. Roam around while dinner is being prepared, and then have dinner.
+- Go back to rest for a while, and then wake up again to play with the humans.
 - Finally, go to sleep for the night, but I usually wake up a few times during the night to check if everything is fine and to make sure that the humans are still there and breathing.
 
 (I omitted some of the details, but you get the idea.)
@@ -67,4 +63,4 @@ Here is a [short video of me](https://www.instagram.com/p/DFfOyeayqoD/), taken b
 
 ## The Dr. part of my name on the main page
 
-I am self-taught! Neither do I have a PhD degree, nor a medical degree although I am very convinced that I should be awarded a PhD degree _honoris causa_ for my exceptional sniffing, burrowing, and barking skills.
+I am self-taught! Neither do I have a PhD degree, nor a medical degree although I am very convinced that I should be awarded a PhD degree _honoris causa_ for my exceptional sniffing, burrowing, and barking achievements.
