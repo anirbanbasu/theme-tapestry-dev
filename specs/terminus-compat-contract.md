@@ -204,7 +204,7 @@ KaTeX is the one deliberate exception to that rule. Concretely, per feature:
   exception: `themes/tapestry/static/js/katex.min.js` is now vendored
   verbatim from terminus, loaded identically to terminus's own `extra.katex`
   gate, with no build-time step required. The build-time pipeline
-  (`scripts/render-katex.js`, `package.json`, `docs/katex-build-pipeline.md`)
+  (`scripts/render-katex.js`, `package.json`, `specs/katex-build-pipeline.md`)
   was removed as superseded.
 
 Nav-collapse is spiked and verified — see

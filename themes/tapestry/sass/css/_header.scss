@@ -36,9 +36,9 @@
 }
 
 // Default Tapestry brand mark: inlined SVG using `currentColor`
-// (docs/brand-logo.md, CONSTITUTION.md §9) — inherits --colour-text-heading
+// (specs/brand-logo.md, CONSTITUTION.md §9) — inherits --colour-text-heading
 // from the surrounding link. Minimum clear space / minimum size per
-// docs/brand-logo.md §5. Height doubled from the original 2rem to make the
+// specs/brand-logo.md §5. Height doubled from the original 2rem to make the
 // mark clearly legible in the wide (1200px) header row; scales down via
 // `clamp()` on narrow viewports so it never crowds the nav/toggle at 320px.
 .logo-svg {
@@ -49,7 +49,7 @@
 }
 
 // Fallback path when `config.extra.header_logo` overrides the default mark
-// with a raster/vector image file (terminus compat, docs/terminus-compat-contract.md §3).
+// with a raster/vector image file (terminus compat, specs/terminus-compat-contract.md §3).
 .logo-img {
   display: inline;
   height: clamp(2rem, 5vw, 4rem);
@@ -163,7 +163,7 @@
 }
 
 // Two inlined Font Awesome Free SVGs (sun + moon; see partials/icon-sun.svg.html
-// and partials/icon-moon.svg.html, attribution in docs/third-party-licenses.md),
+// and partials/icon-moon.svg.html, attribution in specs/third-party-licenses.md),
 // swapped by CSS depending on colour mode rather than JS — the icon shown is
 // the mode you'd switch TO (sun while in dark mode, moon while in light mode).
 // No-JS default follows `prefers-color-scheme`, same graceful-degradation

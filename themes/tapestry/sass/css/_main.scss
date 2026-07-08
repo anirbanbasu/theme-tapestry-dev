@@ -1,7 +1,7 @@
 // Adapted from themes/terminus/sass/css/_main.scss: terminus hardcodes a
 // single monospace font and relative type-scale multipliers; Tapestry's
 // scholarly variants each specify serif/sans body+heading fonts and a frozen
-// absolute type scale (docs/design-tokens-scholarly.md), wired via the
+// absolute type scale (specs/design-tokens-scholarly.md), wired via the
 // --font-family-*/--font-size-*/--colour-*/--space-* custom properties from
 // _variants.scss.
 
@@ -345,7 +345,7 @@ details {
   border: 1px solid var(--colour-border);
   border-radius: var(--radius);
 
-  > summary {
+  >summary {
     padding: 5px 10px;
     color: var(--accent-color);
     cursor: pointer;
@@ -365,7 +365,7 @@ details {
     }
   }
 
-  &[open] > summary::before {
+  &[open]>summary::before {
     transform: translateY(0.15rem);
   }
 

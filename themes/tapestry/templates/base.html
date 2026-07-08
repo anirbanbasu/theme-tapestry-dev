@@ -26,43 +26,47 @@
     {%- set active_variant_ = "contemporary-research-lab" -%}
     {%- endif -%}
     {%- if active_variant_ == "classic-ivy" %}
-    <link rel="preload" href="{{ get_url(path="fonts/scholarly/classic-ivy/PlayfairDisplay-latin.woff2") }}" as="font"
+    <link rel="preload" href="{{ get_url(path='fonts/scholarly/classic-ivy/PlayfairDisplay-latin.woff2') }}" as="font"
         type="font/woff2" crossorigin>
-    <link rel="preload" href="{{ get_url(path="fonts/scholarly/classic-ivy/SourceSerif4-latin.woff2") }}" as="font"
+    <link rel="preload" href="{{ get_url(path='fonts/scholarly/classic-ivy/SourceSerif4-latin.woff2') }}" as="font"
         type="font/woff2" crossorigin>
-    <link rel="preload" href="{{ get_url(path="fonts/scholarly/classic-ivy/IBMPlexMono-Regular-latin.woff2") }}"
+    <link rel="preload" href="{{ get_url(path='fonts/scholarly/classic-ivy/IBMPlexMono-Regular-latin.woff2') }}"
         as="font" type="font/woff2" crossorigin>
     {%- elif active_variant_ == "nordic-minimalist" %}
-    <link rel="preload" href="{{ get_url(path="fonts/scholarly/nordic-minimalist/SpaceGrotesk-latin.woff2") }}"
+    <link rel="preload" href="{{ get_url(path='fonts/scholarly/nordic-minimalist/SpaceGrotesk-latin.woff2') }}"
         as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="{{ get_url(path="fonts/scholarly/nordic-minimalist/SourceSerif4-latin.woff2") }}"
+    <link rel="preload" href="{{ get_url(path='fonts/scholarly/nordic-minimalist/SourceSerif4-latin.woff2') }}"
         as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="{{ get_url(path="fonts/scholarly/nordic-minimalist/JetBrainsMono-latin.woff2") }}"
+    <link rel="preload" href="{{ get_url(path='fonts/scholarly/nordic-minimalist/JetBrainsMono-latin.woff2') }}"
         as="font" type="font/woff2" crossorigin>
     {%- elif active_variant_ == "dark-academia" %}
-    <link rel="preload" href="{{ get_url(path="fonts/scholarly/dark-academia/CormorantGaramond-latin.woff2") }}"
+    <link rel="preload" href="{{ get_url(path='fonts/scholarly/dark-academia/CormorantGaramond-latin.woff2') }}"
         as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="{{ get_url(path="fonts/scholarly/dark-academia/EBGaramond-latin.woff2") }}" as="font"
+    <link rel="preload" href="{{ get_url(path='fonts/scholarly/dark-academia/EBGaramond-latin.woff2') }}" as="font"
         type="font/woff2" crossorigin>
-    <link rel="preload" href="{{ get_url(path="fonts/scholarly/dark-academia/FiraCode-latin.woff2") }}" as="font"
+    <link rel="preload" href="{{ get_url(path='fonts/scholarly/dark-academia/FiraCode-latin.woff2') }}" as="font"
         type="font/woff2" crossorigin>
     {%- elif active_variant_ == "scientific-journal" %}
-    <link rel="preload" href="{{ get_url(path="fonts/scholarly/scientific-journal/Spectral-SemiBold-latin.woff2") }}"
+    <link rel="preload" href="{{ get_url(path='fonts/scholarly/scientific-journal/Spectral-SemiBold-latin.woff2') }}"
         as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="{{ get_url(path="fonts/scholarly/scientific-journal/PTSerif-Regular-latin.woff2") }}"
+    <link rel="preload" href="{{ get_url(path='fonts/scholarly/scientific-journal/PTSerif-Regular-latin.woff2') }}"
         as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="{{ get_url(path="fonts/scholarly/scientific-journal/SourceCodePro-latin.woff2") }}"
+    <link rel="preload" href="{{ get_url(path='fonts/scholarly/scientific-journal/SourceCodePro-latin.woff2') }}"
         as="font" type="font/woff2" crossorigin>
     {%- else %}
     {#- contemporary-research-lab (default) -#}
-    <link rel="preload" href="{{ get_url(path="fonts/scholarly/contemporary-research-lab/Inter-latin.woff2") }}"
+    <link rel="preload" href="{{ get_url(path='fonts/scholarly/contemporary-research-lab/Inter-latin.woff2') }}"
         as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="{{ get_url(path="fonts/scholarly/contemporary-research-lab/Fraunces-latin.woff2") }}"
+    <link rel="preload" href="{{ get_url(path='fonts/scholarly/contemporary-research-lab/Fraunces-latin.woff2') }}"
         as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="{{ get_url(path="fonts/scholarly/contemporary-research-lab/SpaceMono-Regular-latin.woff2") }}" as="font" type="font/woff2"
-        crossorigin>
+    <link rel="preload"
+        href="{{ get_url(path='fonts/scholarly/contemporary-research-lab/SpaceMono-Regular-latin.woff2') }}" as="font"
+        type="font/woff2" crossorigin>
+    <link rel="preload"
+        href="{{ get_url(path='fonts/scholarly/contemporary-research-lab/SpaceMono-Regular-latin.woff2') }}" as="font"
+        type="font/woff2" crossorigin>
     {%- endif %}
-    <link rel="stylesheet" href="{{ get_url(path="css/style.css", cachebust=true) }}">
+    <link rel="stylesheet" href="{{ get_url(path='css/style.css', cachebust=true) }}">
     {%- for stylesheet in config.extra.stylesheets | default(value=[]) | concat(with=section.extra.stylesheets |
     default(value=[])) | concat(with=page.extra.stylesheets | default(value=[])) %}
     <link rel="stylesheet" href="{{ get_url(path=stylesheet, cachebust=true) }}">
@@ -89,7 +93,7 @@
 
     {#- Note: `js/auto-close-popover-on-resize.js` and `js/copy-code-to-clipboard.js` -#}
     {#- are deliberately dropped per CONSTITUTION.md §2 and -#}
-    {#- docs/terminus-compat-contract.md §7 — no JS is shipped for either. The nav -#}
+    {#- specs/terminus-compat-contract.md §7 — no JS is shipped for either. The nav -#}
     {#- collapse itself remains fully functional via the native `popover`/ -#}
     {#- `popovertarget` attributes in partials/menu.html (no JS involved); the -#}
     {#- copy-to-clipboard button is simply not rendered (`copy_button` becomes a -#}
@@ -99,25 +103,25 @@
     {#- (CONSTITUTION.md §2) and always loads — it is no longer gated behind a -#}
     {#- config key, since terminus's `color_scheme_switcher` key is -#}
     {#- inert/unused under Tapestry. -#}
-    <script src="{{ get_url(path="js/theme-switcher.js", cachebust=true) }}" defer></script>
+    <script src="{{ get_url(path='js/theme-switcher.js', cachebust=true) }}" defer></script>
 
     {%- if config_macros::get(setting="katex", default_global_value=false) == "true" %}
     {#- Client-side KaTeX rendering is the second sanctioned JS file -#}
     {#- (CONSTITUTION.md §2, amended 2026-07-05) — adopted as-is from terminus, -#}
     {#- loaded identically to terminus's own `extra.katex` gate. See -#}
-    {#- docs/terminus-compat-contract.md §7 for why this is a JS exception -#}
+    {#- specs/terminus-compat-contract.md §7 for why this is a JS exception -#}
     {#- rather than the build-time pre-rendering approach tried first. -#}
     {#- Preload the two KaTeX fonts that appear in virtually every math expression -#}
     {#- (upright body + italic). Reduces the critical request chain depth from 3 -#}
     {#- hops (HTML→katex-swap.css→font) to 2 (HTML→font in parallel with CSS). -#}
     {#- No cachebust=true: path must stay byte-identical to the src: URL in -#}
     {#- katex-swap.css @font-face blocks to avoid the browser fetching twice. -#}
-    <link rel="preload" href="{{ get_url(path="fonts/katex/KaTeX_Main-Regular.woff2") }}" as="font" type="font/woff2"
+    <link rel="preload" href="{{ get_url(path='fonts/katex/KaTeX_Main-Regular.woff2') }}" as="font" type="font/woff2"
         crossorigin>
-    <link rel="preload" href="{{ get_url(path="fonts/katex/KaTeX_Math-Italic.woff2") }}" as="font" type="font/woff2"
+    <link rel="preload" href="{{ get_url(path='fonts/katex/KaTeX_Math-Italic.woff2') }}" as="font" type="font/woff2"
         crossorigin>
-    <link rel="stylesheet" href="{{ get_url(path="css/katex-swap.css", cachebust=true) }}">
-    <script src="{{ get_url(path="js/katex.min.js", cachebust=true) }}" defer></script>
+    <link rel="stylesheet" href="{{ get_url(path='css/katex-swap.css', cachebust=true) }}">
+    <script src="{{ get_url(path='js/katex.min.js', cachebust=true) }}" defer></script>
     {%- endif %}
 
     {%- if config.extra.presentation_style_switcher %}
@@ -129,7 +133,7 @@
     {#- unconditionally compiled into style.css, so the switcher only ever -#}
     {#- flips `data-style`/`data-variant` attributes — it makes no network -#}
     {#- requests and does not load fonts. -#}
-    <script src="{{ get_url(path="js/presentation-style-switcher.js", cachebust=true) }}" defer></script>
+    <script src="{{ get_url(path='js/presentation-style-switcher.js', cachebust=true) }}" defer></script>
     {%- endif %}
 
     {# Canonical and alternate links -#}
@@ -162,7 +166,7 @@
     {%- endblock %}
     {#- Concrete theme-color value intentionally left neutral: real colour tokens -#}
     {#- per presentation style/variant are being defined in a parallel SCSS task -#}
-    {#- (see docs/design-tokens-scholarly.md). `color-scheme` is `light dark` -#}
+    {#- (see specs/design-tokens-scholarly.md). `color-scheme` is `light dark` -#}
     {#- since every Tapestry variant ships both modes (CONSTITUTION.md §8). -#}
     <meta name="color-scheme" content="light dark">
 

@@ -17,7 +17,7 @@ main.grid {
   margin-inline: auto;
   padding-inline: var(--space-md);
 
-  > * {
+  >* {
     grid-column: 1 / span 12;
     min-width: 0;
   }
@@ -29,8 +29,8 @@ main.grid {
   // actually has content to show (auto TOC and/or page.extra.sidebar) — see
   // partials/sidebar.html. Without it, the article keeps the default
   // full-12-column span from `> *` above instead of reserving an empty
-  // columns 9-12 gap, per docs/design-tokens-scholarly.md.
-  > article.post.content.has-sidebar {
+  // columns 9-12 gap, per specs/design-tokens-scholarly.md.
+  >article.post.content.has-sidebar {
     grid-column: 1 / span 8;
 
     @media (max-width: 1023.98px) {
@@ -38,7 +38,7 @@ main.grid {
     }
   }
 
-  > aside.sidebar {
+  >aside.sidebar {
     grid-column: 9 / span 4;
 
     @media (max-width: 1023.98px) {

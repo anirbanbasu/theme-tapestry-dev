@@ -6,7 +6,7 @@
 
 {#- Palette hex values are mirrored from the frozen tokens in -#}
 {#- themes/tapestry/sass/css/_variants.scss ($variants Sass map) and -#}
-{#- docs/design-tokens-scholarly.md. Only the "scholarly" group is -#}
+{#- specs/design-tokens-scholarly.md. Only the "scholarly" group is -#}
 {#- implemented so far; extend this map when other groups land. -#}
 
 {%- set requested_style = config.extra.presentation_style | default(value="scholarly") -%}
@@ -76,7 +76,8 @@
 <div style="margin:2rem 0;" class="presentation-palette" data-palette-style="{{ resolved_style }}"
     data-palette-variant="{{ resolved_variant }}">
     <p><strong>Style:</strong> <code class="presentation-palette-style-name">{{ resolved_style }}</code> &middot;
-        <strong>Variant:</strong> <code class="presentation-palette-variant-name">{{ resolved_variant }}</code></p>
+        <strong>Variant:</strong> <code class="presentation-palette-variant-name">{{ resolved_variant }}</code>
+    </p>
     <div style="display:flex; flex-wrap:wrap; gap:2rem; margin:1rem 0;">
         <div style="flex:1 1 240px;">
             <p style="font-weight:600; margin-bottom:0.5rem;">Light mode</p>

@@ -1,6 +1,6 @@
 // Note: terminus's `copy_button`/`.copy-button` styling is intentionally
 // omitted — the button is dropped entirely per CONSTITUTION.md §2 and
-// docs/terminus-compat-contract.md §7 (no JS-free clipboard write exists).
+// specs/terminus-compat-contract.md §7 (no JS-free clipboard write exists).
 
 // Syntax highlighting: `markdown.highlighting.style = "class"` (config.toml)
 // makes Zola emit `.z-*` token classes instead of baked-in inline colours.
@@ -23,15 +23,41 @@ $header-padding-vertical: 6px;
   background-color: var(--colour-code-bg);
 }
 
-.z-comment { color: var(--syntax-comment); }
-.z-keyword { color: var(--syntax-keyword); }
-.z-storage { color: var(--syntax-storage); }
-.z-string { color: var(--syntax-string); }
-.z-variable { color: var(--syntax-variable); }
-.z-constant { color: var(--syntax-constant); }
-.z-entity { color: var(--syntax-entity); }
-.z-support { color: var(--syntax-support); }
-.z-punctuation { color: var(--syntax-punctuation); }
+.z-comment {
+  color: var(--syntax-comment);
+}
+
+.z-keyword {
+  color: var(--syntax-keyword);
+}
+
+.z-storage {
+  color: var(--syntax-storage);
+}
+
+.z-string {
+  color: var(--syntax-string);
+}
+
+.z-variable {
+  color: var(--syntax-variable);
+}
+
+.z-constant {
+  color: var(--syntax-constant);
+}
+
+.z-entity {
+  color: var(--syntax-entity);
+}
+
+.z-support {
+  color: var(--syntax-support);
+}
+
+.z-punctuation {
+  color: var(--syntax-punctuation);
+}
 
 pre.giallo:not(:has(code[data-lang='plain'])) {
   display: block;

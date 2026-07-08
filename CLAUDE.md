@@ -36,7 +36,7 @@ See @CONSTITUTION.md for non-negotiable design and compatibility standards. Read
 - Templates: Tera, under `themes/tapestry/templates/`.
 - Styles: mirror terminus's build pipeline (Sass/SCSS) unless @CONSTITUTION.md says otherwise. Compiled CSS is a build artifact — never hand-edit it.
 - Content fixtures used for testing/diffing: `content/`. Do not delete or restructure without checking impact on the live site.
-- Config: `config.toml`. New keys should be additive. Never repurpose an existing terminus key with different meaning without recording the change in the compatibility contract (`docs/terminus-compat-contract.md`).
+- Config: `config.toml`. New keys should be additive. Never repurpose an existing terminus key with different meaning without recording the change in the compatibility contract (`specs/terminus-compat-contract.md`).
 
 ## What to always do
 
