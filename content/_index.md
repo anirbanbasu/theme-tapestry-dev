@@ -4,6 +4,7 @@ title = "Front Page"
 [extra]
 section_path = "_index.md"
 max_posts = 0
+katex = true
 +++
 
 <div style="display:flex; flex-wrap:wrap; gap:1.5rem; align-items:center; margin:1.5rem 0;">
@@ -37,7 +38,7 @@ The [Collatz conjecture](https://en.wikipedia.org/wiki/Collatz_conjecture) is a 
 
 > Start with any positive integer $n$. Then each term is obtained from the previous term as follows: if the previous term is even, the next term is one half of the previous term. If the previous term is odd, the next term is 3 times the previous term plus 1. No matter what value of $n$ you start with, the conjecture is that you will always eventually reach 1.
 
-Despite its simple definition, the conjecture has proven to be very difficult to prove or disprove, and it remains an open question in mathematics. Following is a simple function implementation in the Python language that prints the numbers of the Collatz sequence given an initial positive integer `n`.
+Despite its simple definition, the conjecture has proven to be very difficult to prove or disprove, and it remains an open question in mathematics. Following is a simple function implementation in the Python language that prints the numbers of the Collatz sequence given an initial positive integer $n$.
 
 ```python
 def collatz(n):
