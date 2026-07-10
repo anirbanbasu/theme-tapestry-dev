@@ -48,5 +48,17 @@
                 </ul>
             </details>
         </li>
+        <li>
+            <details name="style-switcher-group" class="style-switcher-group{% if resolved_style == "natural" %} style-switcher-group-current{% endif %}" data-style="natural"{% if resolved_style == "natural" %} open{% endif %}>
+                <summary>Natural</summary>
+                <ul>
+                    <li><button type="button" class="style-switcher-option" data-style="natural" data-variant="celestial-observatory">Celestial Observatory</button></li>
+                    <li><button type="button" class="style-switcher-option" data-style="natural" data-variant="periodic-table-chemistry">Periodic Table Chemistry</button></li>
+                    <li><button type="button" class="style-switcher-option" data-style="natural" data-variant="field-notebook">Field Notebook</button></li>
+                    <li><button type="button" class="style-switcher-option" data-style="natural" data-variant="chalkboard-proof">Chalkboard Proof</button></li>
+                    <li><button type="button" class="style-switcher-option" data-style="natural" data-variant="quantum-circuit">Quantum Circuit</button></li>
+                </ul>
+            </details>
+        </li>
     </ul>
 </div>
