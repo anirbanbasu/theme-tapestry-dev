@@ -5,12 +5,12 @@
  * sanctioned JS exception, opt-in via `extra.presentation_style_switcher`
  * (default false). It lets a visitor override the site's configured
  * `data-style`/`data-variant` attributes on <body> at runtime, without a
- * page reload — every scholarly variant's CSS custom properties are already
+ * page reload — every scholarly + creative + natural variant's CSS custom properties are already
  * keyed off those attributes (_variants.scss), so flipping them is enough
  * to repaint colours, fonts, spacing, etc. live.
  *
- * Font loading: all scholarly variant fonts are self-hosted as WOFF2 files
- * under themes/tapestry/static/fonts/scholarly/<variant>/ and declared via
+ * Font loading: all scholarly + creative + natural variant fonts are self-hosted as WOFF2 files
+ * under themes/tapestry/static/fonts/<style>/<variant>/ and declared via
  * @font-face in the main stylesheet (CONSTITUTION.md §4). No CDN stylesheet
  * injection is needed — when a visitor switches variant the browser already
  * has every font available from the @font-face declarations in style.css.
@@ -82,6 +82,28 @@
       "collage-mixed-media": {
         light: { bg_primary: "#faf3e7", text_heading: "#201607", accent_primary: "#7d6118", accent_secondary: "#6b3f57" },
         dark: { bg_primary: "#201812", text_heading: "#fbf5e9", accent_primary: "#d9b24c", accent_secondary: "#c98fb0" }
+      }
+    },
+    natural: {
+      "celestial-observatory": {
+        light: { bg_primary: "#f7f3e8", text_heading: "#10162b", accent_primary: "#7d621b", accent_secondary: "#2c4a7c" },
+        dark: { bg_primary: "#0a0e1c", text_heading: "#ffffff", accent_primary: "#d9b968", accent_secondary: "#7fa8e0" }
+      },
+      "periodic-table-chemistry": {
+        light: { bg_primary: "#f5f7f8", text_heading: "#0c161e", accent_primary: "#1a5ba8", accent_secondary: "#157a4f" },
+        dark: { bg_primary: "#0c1319", text_heading: "#ffffff", accent_primary: "#6fa8e8", accent_secondary: "#4fd68f" }
+      },
+      "field-notebook": {
+        light: { bg_primary: "#f3ecd9", text_heading: "#241a10", accent_primary: "#3f5c3a", accent_secondary: "#7a4a24" },
+        dark: { bg_primary: "#1c2318", text_heading: "#f7f0dc", accent_primary: "#8fbf80", accent_secondary: "#d19a5f" }
+      },
+      "chalkboard-proof": {
+        light: { bg_primary: "#f7f5ef", text_heading: "#16160f", accent_primary: "#2f5c46", accent_secondary: "#8a6d16" },
+        dark: { bg_primary: "#1b2e22", text_heading: "#ffffff", accent_primary: "#e8d67a", accent_secondary: "#9fd8e0" }
+      },
+      "quantum-circuit": {
+        light: { bg_primary: "#f5f3fb", text_heading: "#150f28", accent_primary: "#0a7a86", accent_secondary: "#a3157e" },
+        dark: { bg_primary: "#120c24", text_heading: "#ffffff", accent_primary: "#4de8f0", accent_secondary: "#ef6fd8" }
       }
     }
   };
