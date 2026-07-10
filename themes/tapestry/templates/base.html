@@ -11,7 +11,7 @@
     {% include "partials/content_security_policy.html" %}
     <title>{%- block title -%}{{ config.title }}{%- endblock -%}</title>
 
-    {#- Self-hosted fonts (CONSTITUTION.md §4): all scholarly + creative -#}
+    {#- Self-hosted fonts (CONSTITUTION.md §4): all scholarly + creative + natural -#}
     {#- variants. Preload heading, body, and code fonts (latin subset) for -#}
     {#- the active variant only. crossorigin is required even for same-origin -#}
     {#- font preloads. No cachebust=true: paths must be byte-identical to the -#}
@@ -22,6 +22,8 @@
     "contemporary-research-lab"] -%}
     {%- set valid_creative_variants_ = ["bauhaus-studio", "editorial-zine", "watercolor-atelier", "neon-studio",
     "collage-mixed-media"] -%}
+    {%- set valid_natural_variants_ = ["celestial-observatory", "periodic-table-chemistry", "field-notebook",
+    "chalkboard-proof", "quantum-circuit"] -%}
     {%- if requested_style_ == "creative" -%}
     {%- set active_style_ = "creative" -%}
     {%- set requested_variant_ = config.extra.presentation_variant | default(value="editorial-zine") -%}
@@ -29,6 +31,14 @@
     {%- set active_variant_ = requested_variant_ -%}
     {%- else -%}
     {%- set active_variant_ = "editorial-zine" -%}
+    {%- endif -%}
+    {%- elif requested_style_ == "natural" -%}
+    {%- set active_style_ = "natural" -%}
+    {%- set requested_variant_ = config.extra.presentation_variant | default(value="periodic-table-chemistry") -%}
+    {%- if requested_variant_ in valid_natural_variants_ -%}
+    {%- set active_variant_ = requested_variant_ -%}
+    {%- else -%}
+    {%- set active_variant_ = "periodic-table-chemistry" -%}
     {%- endif -%}
     {%- else -%}
     {%- set active_style_ = "scholarly" -%}
@@ -75,6 +85,45 @@
     <link rel="preload" href="{{ get_url(path='fonts/creative/editorial-zine/PublicSans-latin.woff2') }}" as="font"
         type="font/woff2" crossorigin>
     <link rel="preload" href="{{ get_url(path='fonts/creative/editorial-zine/CourierPrime-Regular-latin.woff2') }}"
+        as="font" type="font/woff2" crossorigin>
+    {%- endif %}
+    {%- elif active_style_ == "natural" %}
+    {%- if active_variant_ == "celestial-observatory" %}
+    <link rel="preload" href="{{ get_url(path='fonts/natural/celestial-observatory/Cardo-Regular-latin.woff2') }}"
+        as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="{{ get_url(path='fonts/natural/celestial-observatory/CrimsonPro-latin.woff2') }}"
+        as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="{{ get_url(path='fonts/natural/celestial-observatory/JetBrainsMono-latin.woff2') }}"
+        as="font" type="font/woff2" crossorigin>
+    {%- elif active_variant_ == "field-notebook" %}
+    <link rel="preload" href="{{ get_url(path='fonts/natural/field-notebook/Lora-latin.woff2') }}" as="font"
+        type="font/woff2" crossorigin>
+    <link rel="preload" href="{{ get_url(path='fonts/natural/field-notebook/Vollkorn-latin.woff2') }}" as="font"
+        type="font/woff2" crossorigin>
+    <link rel="preload" href="{{ get_url(path='fonts/natural/field-notebook/IBMPlexMono-Regular-latin.woff2') }}"
+        as="font" type="font/woff2" crossorigin>
+    {%- elif active_variant_ == "chalkboard-proof" %}
+    <link rel="preload" href="{{ get_url(path='fonts/natural/chalkboard-proof/Newsreader-latin.woff2') }}" as="font"
+        type="font/woff2" crossorigin>
+    <link rel="preload" href="{{ get_url(path='fonts/natural/chalkboard-proof/Literata-latin.woff2') }}" as="font"
+        type="font/woff2" crossorigin>
+    <link rel="preload" href="{{ get_url(path='fonts/natural/chalkboard-proof/FiraCode-latin.woff2') }}" as="font"
+        type="font/woff2" crossorigin>
+    {%- elif active_variant_ == "quantum-circuit" %}
+    <link rel="preload" href="{{ get_url(path='fonts/natural/quantum-circuit/Chivo-latin.woff2') }}" as="font"
+        type="font/woff2" crossorigin>
+    <link rel="preload" href="{{ get_url(path='fonts/natural/quantum-circuit/PlusJakartaSans-latin.woff2') }}"
+        as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="{{ get_url(path='fonts/natural/quantum-circuit/JetBrainsMono-latin.woff2') }}"
+        as="font" type="font/woff2" crossorigin>
+    {%- else %}
+    {#- periodic-table-chemistry (natural group default) -#}
+    <link rel="preload" href="{{ get_url(path='fonts/natural/periodic-table-chemistry/RobotoSlab-latin.woff2') }}"
+        as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="{{ get_url(path='fonts/natural/periodic-table-chemistry/NotoSans-latin.woff2') }}"
+        as="font" type="font/woff2" crossorigin>
+    <link rel="preload"
+        href="{{ get_url(path='fonts/natural/periodic-table-chemistry/IBMPlexMono-Regular-latin.woff2') }}"
         as="font" type="font/woff2" crossorigin>
     {%- endif %}
     {%- else %}
@@ -313,18 +362,21 @@
 </head>
 
 {#- Presentation style/variant fallback logic (CONSTITUTION.md §7): -#}
-{#- "scholarly" (5 variants) and "creative" (5 variants) are implemented so -#}
-{#- far. An unrecognised `presentation_style` falls back to "scholarly" -#}
-{#- (Tapestry's theme-wide default, including on sites migrating from -#}
-{#- terminus). An unrecognised `presentation_variant`, once a style has been -#}
-{#- resolved, falls back to that style's own default variant: -#}
-{#- "contemporary-research-lab" for scholarly, "editorial-zine" for creative -#}
-{#- (specs/design-tokens-creative.md). -#}
-{%- set valid_styles = ["scholarly", "creative"] -%}
+{#- "scholarly" (5 variants), "creative" (5 variants), and "natural" -#}
+{#- (5 variants) are implemented so far. An unrecognised `presentation_style` -#}
+{#- falls back to "scholarly" (Tapestry's theme-wide default, including on -#}
+{#- sites migrating from terminus). An unrecognised `presentation_variant`, -#}
+{#- once a style has been resolved, falls back to that style's own default -#}
+{#- variant: "contemporary-research-lab" for scholarly, "editorial-zine" for -#}
+{#- creative, "periodic-table-chemistry" for natural -#}
+{#- (specs/design-tokens-natural.md). -#}
+{%- set valid_styles = ["scholarly", "creative", "natural"] -%}
 {%- set valid_scholarly_variants = ["classic-ivy", "nordic-minimalist", "dark-academia", "scientific-journal",
 "contemporary-research-lab"] -%}
 {%- set valid_creative_variants = ["bauhaus-studio", "editorial-zine", "watercolor-atelier", "neon-studio",
 "collage-mixed-media"] -%}
+{%- set valid_natural_variants = ["celestial-observatory", "periodic-table-chemistry", "field-notebook",
+"chalkboard-proof", "quantum-circuit"] -%}
 {%- set requested_style = config.extra.presentation_style | default(value="scholarly") -%}
 {%- if requested_style in valid_styles -%}
 {%- set resolved_style = requested_style -%}
@@ -337,6 +389,13 @@
 {%- set resolved_variant = requested_variant -%}
 {%- else -%}
 {%- set resolved_variant = "editorial-zine" -%}
+{%- endif -%}
+{%- elif resolved_style == "natural" -%}
+{%- set requested_variant = config.extra.presentation_variant | default(value="periodic-table-chemistry") -%}
+{%- if requested_variant in valid_natural_variants -%}
+{%- set resolved_variant = requested_variant -%}
+{%- else -%}
+{%- set resolved_variant = "periodic-table-chemistry" -%}
 {%- endif -%}
 {%- else -%}
 {%- set requested_variant = config.extra.presentation_variant | default(value="contemporary-research-lab") -%}
