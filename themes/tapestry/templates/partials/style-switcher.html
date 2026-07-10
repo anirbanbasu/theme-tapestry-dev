@@ -1,17 +1,21 @@
 {#- Presentation style/variant switcher (CONSTITUTION.md §2, amendment -#}
-{#- 2026-JUL-05-002) — opt-in via `config.extra.presentation_style_switcher`. -#}
+{#- 2026-JUL-10-001) — opt-in via `config.extra.presentation_style_switcher`. -#}
 {#- Renders a gear button (native popover/popovertarget disclosure, same -#}
-{#- zero-extra-JS mechanism as partials/menu.html) listing every implemented -#}
-{#- `<style>/<variant>` combination. Selecting one is handled entirely by -#}
+{#- zero-extra-JS mechanism as partials/menu.html) containing a two-level -#}
+{#- grouped accordion: one <details name="style-switcher-group"> per style -#}
+{#- group, each revealing that group's variants. The shared `name` makes the -#}
+{#- groups natively mutually exclusive — no JS involved in that mechanic. -#}
+{#- See specs/presentation-style-switcher.md for the full interaction spec. -#}
+{#- Selecting a variant is handled entirely by -#}
 {#- static/js/presentation-style-switcher.js — this partial only renders the -#}
-{#- button/list/data-* attributes it operates on. -#}
+{#- button/list/data-*/open/current-class markup it operates on. -#}
 
-{#- "scholarly" and "creative" are implemented so far (see templates/base.html -#}
-{#- for the same resolution lists, duplicated here since Tera has no -#}
-{#- cross-template constant/shared-value mechanism short of a bigger macro -#}
-{#- refactor). -#}
-{%- set scholarly_variants = ["classic-ivy", "nordic-minimalist", "dark-academia", "scientific-journal", "contemporary-research-lab"] -%}
-{%- set creative_variants = ["bauhaus-studio", "editorial-zine", "watercolor-atelier", "neon-studio", "collage-mixed-media"] -%}
+{#- `resolved_style`/`resolved_variant` are already computed in base.html -#}
+{#- (CONSTITUTION.md §7 fallback logic) before this partial is included, and -#}
+{#- Tera's `include` inherits the calling template's context — used here to -#}
+{#- auto-expand the visitor's current style group and mark it/its active -#}
+{#- variant as current at build time, so the no-JS default is already -#}
+{#- correct before presentation-style-switcher.js ever runs. -#}
 
 <div class="style-switcher">
     <button type="button" class="style-switcher-toggle" popovertarget="style-switcher-menu" aria-haspopup="true" aria-label="Choose presentation style and variant">
@@ -20,15 +24,29 @@
         {%- endfilter -%}{%- endfilter %}
     </button>
     <ul id="style-switcher-menu" class="style-switcher-menu" aria-label="Presentation style and variant" popover>
-        {%- for variant in scholarly_variants %}
         <li>
-            <button type="button" class="style-switcher-option" data-style="scholarly" data-variant="{{ variant }}">scholarly/{{ variant }}</button>
+            <details name="style-switcher-group" class="style-switcher-group{% if resolved_style == "scholarly" %} style-switcher-group-current{% endif %}" data-style="scholarly"{% if resolved_style == "scholarly" %} open{% endif %}>
+                <summary>Scholarly</summary>
+                <ul>
+                    <li><button type="button" class="style-switcher-option" data-style="scholarly" data-variant="classic-ivy">Classic Ivy</button></li>
+                    <li><button type="button" class="style-switcher-option" data-style="scholarly" data-variant="nordic-minimalist">Nordic Minimalist</button></li>
+                    <li><button type="button" class="style-switcher-option" data-style="scholarly" data-variant="dark-academia">Dark Academia</button></li>
+                    <li><button type="button" class="style-switcher-option" data-style="scholarly" data-variant="scientific-journal">Scientific Journal</button></li>
+                    <li><button type="button" class="style-switcher-option" data-style="scholarly" data-variant="contemporary-research-lab">Contemporary Research Lab</button></li>
+                </ul>
+            </details>
         </li>
-        {%- endfor %}
-        {%- for variant in creative_variants %}
         <li>
-            <button type="button" class="style-switcher-option" data-style="creative" data-variant="{{ variant }}">creative/{{ variant }}</button>
+            <details name="style-switcher-group" class="style-switcher-group{% if resolved_style == "creative" %} style-switcher-group-current{% endif %}" data-style="creative"{% if resolved_style == "creative" %} open{% endif %}>
+                <summary>Creative</summary>
+                <ul>
+                    <li><button type="button" class="style-switcher-option" data-style="creative" data-variant="bauhaus-studio">Bauhaus Studio</button></li>
+                    <li><button type="button" class="style-switcher-option" data-style="creative" data-variant="editorial-zine">Editorial Zine</button></li>
+                    <li><button type="button" class="style-switcher-option" data-style="creative" data-variant="watercolor-atelier">Watercolor Atelier</button></li>
+                    <li><button type="button" class="style-switcher-option" data-style="creative" data-variant="neon-studio">Neon Studio</button></li>
+                    <li><button type="button" class="style-switcher-option" data-style="creative" data-variant="collage-mixed-media">Collage Mixed Media</button></li>
+                </ul>
+            </details>
         </li>
-        {%- endfor %}
     </ul>
 </div>

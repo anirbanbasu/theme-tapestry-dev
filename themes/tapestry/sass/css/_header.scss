@@ -162,6 +162,44 @@
   }
 }
 
+// Grouped accordion (specs/presentation-style-switcher.md, CONSTITUTION.md §2
+// amendment 2026-JUL-10-001): one <details name="style-switcher-group"> per
+// style group, wrapping a nested <ul> of that group's variants. The `name`
+// attribute alone gives the exclusive-accordion behaviour (native HTML, no
+// JS) — this block is purely visual: resetting the nested list's default
+// markers/indentation, styling the group's <summary> like a menu item, and
+// bolding whichever group matches the visitor's current style, open or not.
+.style-switcher-group {
+  & > ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    padding-inline-start: var(--space-sm);
+  }
+
+  & > summary {
+    display: block;
+    width: 100%;
+    font: inherit;
+    font-family: var(--font-family-code);
+    font-size: var(--font-size-small);
+    padding: 0.6em 0.5em;
+    color: var(--colour-text-primary);
+    cursor: pointer;
+
+    &:hover,
+    &:focus-visible {
+      background: color-mix(in srgb, var(--colour-accent-primary) 12%, transparent);
+      color: var(--colour-accent-primary);
+    }
+  }
+
+  &.style-switcher-group-current > summary {
+    color: var(--colour-accent-primary);
+    font-weight: 700;
+  }
+}
+
 // Two inlined Font Awesome Free SVGs (sun + moon; see partials/icon-sun.svg.html
 // and partials/icon-moon.svg.html, attribution in specs/third-party-licenses.md),
 // swapped by CSS depending on colour mode rather than JS — the icon shown is

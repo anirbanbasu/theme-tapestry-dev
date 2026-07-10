@@ -128,10 +128,21 @@
     }
   }
 
+  function updateActiveGroup(style) {
+    var groups = document.querySelectorAll(".style-switcher-group");
+    for (var i = 0; i < groups.length; i++) {
+      var group = groups[i];
+      var isCurrent = group.getAttribute("data-style") === style;
+      group.classList.toggle("style-switcher-group-current", isCurrent);
+      group.open = isCurrent;
+    }
+  }
+
   function applyChoice(style, variant, persist) {
     document.body.setAttribute("data-style", style);
     document.body.setAttribute("data-variant", variant);
     updateCurrentOption(variant);
+    updateActiveGroup(style);
     updatePaletteDisplay(style, variant);
     if (persist) {
       try {
@@ -173,6 +184,7 @@
     }
 
     updateCurrentOption(document.body.getAttribute("data-variant"));
+    updateActiveGroup(document.body.getAttribute("data-style"));
 
     var stored = getStoredChoice();
     if (stored) {
