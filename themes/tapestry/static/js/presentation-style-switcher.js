@@ -61,6 +61,28 @@
         light: { bg_primary: "#fbfaf8", text_heading: "#1e1521", accent_primary: "#a8481f", accent_secondary: "#1f5c50" },
         dark: { bg_primary: "#1a1420", text_heading: "#faf7f5", accent_primary: "#e8916b", accent_secondary: "#6cb5a4" }
       }
+    },
+    creative: {
+      "bauhaus-studio": {
+        light: { bg_primary: "#ffffff", text_heading: "#000000", accent_primary: "#c81d25", accent_secondary: "#1b3a8a" },
+        dark: { bg_primary: "#121212", text_heading: "#ffffff", accent_primary: "#ff6b6b", accent_secondary: "#6ea8fe" }
+      },
+      "editorial-zine": {
+        light: { bg_primary: "#fdfdfb", text_heading: "#000000", accent_primary: "#c2006e", accent_secondary: "#3f7d20" },
+        dark: { bg_primary: "#121212", text_heading: "#ffffff", accent_primary: "#ff5fa8", accent_secondary: "#9ee36b" }
+      },
+      "watercolor-atelier": {
+        light: { bg_primary: "#fbf3f0", text_heading: "#2c1f28", accent_primary: "#a3475a", accent_secondary: "#3f6355" },
+        dark: { bg_primary: "#241a20", text_heading: "#f9f0f3", accent_primary: "#e39aad", accent_secondary: "#8bbfa8" }
+      },
+      "neon-studio": {
+        light: { bg_primary: "#f5f2fb", text_heading: "#17102a", accent_primary: "#b0158a", accent_secondary: "#0a7a86" },
+        dark: { bg_primary: "#150f24", text_heading: "#ffffff", accent_primary: "#ff6fd8", accent_secondary: "#4de8f0" }
+      },
+      "collage-mixed-media": {
+        light: { bg_primary: "#faf3e7", text_heading: "#201607", accent_primary: "#7d6118", accent_secondary: "#6b3f57" },
+        dark: { bg_primary: "#201812", text_heading: "#fbf5e9", accent_primary: "#d9b24c", accent_secondary: "#c98fb0" }
+      }
     }
   };
 

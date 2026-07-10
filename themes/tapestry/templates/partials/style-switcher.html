@@ -6,10 +6,12 @@
 {#- static/js/presentation-style-switcher.js — this partial only renders the -#}
 {#- button/list/data-* attributes it operates on. -#}
 
-{#- Only "scholarly" is implemented so far (see templates/base.html for the -#}
-{#- same resolution list, duplicated here since Tera has no cross-template -#}
-{#- constant/shared-value mechanism short of a bigger macro refactor). -#}
+{#- "scholarly" and "creative" are implemented so far (see templates/base.html -#}
+{#- for the same resolution lists, duplicated here since Tera has no -#}
+{#- cross-template constant/shared-value mechanism short of a bigger macro -#}
+{#- refactor). -#}
 {%- set scholarly_variants = ["classic-ivy", "nordic-minimalist", "dark-academia", "scientific-journal", "contemporary-research-lab"] -%}
+{%- set creative_variants = ["bauhaus-studio", "editorial-zine", "watercolor-atelier", "neon-studio", "collage-mixed-media"] -%}
 
 <div class="style-switcher">
     <button type="button" class="style-switcher-toggle" popovertarget="style-switcher-menu" aria-haspopup="true" aria-label="Choose presentation style and variant">
@@ -21,6 +23,11 @@
         {%- for variant in scholarly_variants %}
         <li>
             <button type="button" class="style-switcher-option" data-style="scholarly" data-variant="{{ variant }}">scholarly/{{ variant }}</button>
+        </li>
+        {%- endfor %}
+        {%- for variant in creative_variants %}
+        <li>
+            <button type="button" class="style-switcher-option" data-style="creative" data-variant="{{ variant }}">creative/{{ variant }}</button>
         </li>
         {%- endfor %}
     </ul>
