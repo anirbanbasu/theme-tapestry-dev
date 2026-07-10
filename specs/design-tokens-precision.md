@@ -1,60 +1,60 @@
-# Design tokens — Earth-Human-Sciences
+# Design tokens — Precision
 
-Frozen design-token reference for the **earth-human-sciences** presentation style group, per [CONSTITUTION.md](../CONSTITUTION.md) §8. One section per variant below.
+Frozen design-token reference for the **precision** presentation style group, per [CONSTITUTION.md](../CONSTITUTION.md) §8. One section per variant below.
 
 **Status of this document:** fonts, colour palettes (light + dark, contrast-verified), spacing scale, type scale, border radius, and shadows are frozen and ready for implementation — these were fully specified and numerically verified during prototyping (see each variant's prototype file for the contrast-ratio workings). **Grid sub-desktop breakpoints and the navigation-collapse breakpoint/treatment are now resolved**, via the shared technical spikes at `prototypes/spikes/responsive-grid-spike.html` and `prototypes/spikes/nav-collapse-spike.html` (both verified in-browser at multiple viewport widths, including 320px). These are shared, group-agnostic mechanism values applied uniformly across every group/variant — only each variant's own colour/spacing/font tokens (above) vary per style. **The article/sidebar column split below is content-driven**, per the CONSTITUTION.md §5 amendment of 2026-07-05: the sidebar (and the article's narrower 1–8 span) only appear when the page actually has an automatic TOC or custom `page.extra.sidebar` content to show — see `themes/tapestry/templates/partials/sidebar.html`.
 
-**Default variant for this group:** *not yet designated.* CONSTITUTION.md §7 requires each group to name one variant as its default (used when `extra.presentation_variant` is unset or invalid); that choice has not been made yet for `earth-human-sciences`.
+**Default variant for this group:** *not yet designated.* CONSTITUTION.md §7 requires each group to name one variant as its default (used when `extra.presentation_variant` is unset or invalid); that choice has not been made yet for `precision`.
 
 ## Variants
 
-- [Cartographers Atlas](#cartographers-atlas)
-- [Ledger Index](#ledger-index)
-- [Social Network Diagram](#social-network-diagram)
-- [Agora Classical Philosophy](#agora-classical-philosophy)
-- [Strata Geology](#strata-geology)
+- [Blueprint Drafting](#blueprint-drafting)
+- [Surgical Precision](#surgical-precision)
+- [Aerospace Materials Lab](#aerospace-materials-lab)
+- [Biomedical Diagnostics](#biomedical-diagnostics)
+- [Swiss Precision Instrument](#swiss-precision-instrument)
 
 ---
 
-### Cartographers Atlas
+### Blueprint Drafting
 
-*Prototype source: `prototypes/style-tiles/earth-human-sciences-01-cartographers-atlas.html` · Example persona: Prof. Ingrid Vance*
+*Prototype source: `prototypes/style-tiles/precision-01-blueprint-drafting.html` · Example persona: Prof. Elena Kowalski*
 
-Aged-map parchment with a faint concentric contour-line texture, a compass-rose glyph marking each post, coordinate-style monospace metadata. Terrain green and ocean blue as the two accents, in a cool cartographic blue-grey palette deliberately distinct from the group's warmer earth-toned variants. Suits human geography, cartography, and spatial-analysis researchers.
+A technical-drawing aesthetic built on an authentic inversion: light mode is the "positive print" (vellum white, blueprint-blue ink), dark mode is the classic blueprint "negative" (navy ground, white/cyan lines) — both are literally how blueprints were reproduced historically. Fine graph-grid background, dimension-line rules, all-caps drafting-stencil headings. Suits structural, civil, and mechanical engineering researchers.
 
 **Fonts**
 
 | Role | Typeface | Weights | Fallback stack |
 |---|---|---|---|
-| Heading | Domine | 400/700 | Georgia, "Times New Roman", serif |
-| Body | Noto Serif | 400/500 | Georgia, serif |
+| Heading | Big Shoulders Display | 600/800 | "Arial Narrow", Arial, sans-serif |
+| Body | IBM Plex Sans | 400/500 | "Segoe UI", Helvetica, Arial, sans-serif |
 | Code | IBM Plex Mono | 400/500 | "SFMono-Regular", Consolas, monospace |
 
 **Colour palette** (all values verified ≥4.5:1 against their paired background at normal text size, except where noted as decorative/large-text-only in the prototype)
 
 | Token | Light | Dark |
 |---|---|---|
-| `--colour-bg-primary` | `#e8edf0` | `#101823` |
-| `--colour-bg-secondary` | `#dbe3e8` | `#182430` |
-| `--colour-text-primary` | `#1c2833` | `#e6edf0` |
-| `--colour-text-heading` | `#12191f` | `#f5f8fa` |
-| `--colour-text-muted` | `#556873` | `#9aabb8` |
-| `--colour-accent-primary` | `#245c3f` | `#6fc99a` |
-| `--colour-accent-secondary` | `#1f4e73` | `#6fa8d9` |
-| `--colour-border` | `#c9d5db` | `#233242` |
-| `--colour-code-bg` | `#dbe3e8` | `#182430` |
+| `--colour-bg-primary` | `#f5f7fa` | `#0b2e4a` |
+| `--colour-bg-secondary` | `#e7edf3` | `#123a5c` |
+| `--colour-text-primary` | `#1a3a5c` | `#eaf3fb` |
+| `--colour-text-heading` | `#12293f` | `#ffffff` |
+| `--colour-text-muted` | `#5c7690` | `#9dbdd6` |
+| `--colour-accent-primary` | `#0f5fa8` | `#6fc3e8` |
+| `--colour-accent-secondary` | `#b8302a` | `#e0846b` |
+| `--colour-border` | `#cddbe7` | `#1d4d70` |
+| `--colour-code-bg` | `#e7edf3` | `#123a5c` |
 
 **Type scale**
 
 | Token | Value |
 |---|---|
-| `--font-size-h1` | `2.7rem` |
+| `--font-size-h1` | `2.9rem` |
 | `--font-size-h2` | `1.6rem` |
-| `--font-size-h3` | `1.2rem` |
+| `--font-size-h3` | `1.15rem` |
 | `--font-size-body` | `1.0625rem` |
-| `--font-size-small` | `0.82rem` |
-| `--line-height-heading` | `1.2` |
-| `--line-height-body` | `1.7` |
+| `--font-size-small` | `0.8rem` |
+| `--line-height-heading` | `1.05` |
+| `--line-height-body` | `1.6` |
 
 **Spacing scale**
 
@@ -70,10 +70,10 @@ Aged-map parchment with a faint concentric contour-line texture, a compass-rose 
 
 | Token | Value |
 |---|---|
-| `--radius-sm` | `2px` |
-| `--radius-md` | `4px` |
-| `--shadow-sm` | `0 2px 8px rgba(46, 42, 28, 0.14)` |
-| `--shadow-md` | `0 8px 22px rgba(46, 42, 28, 0.18)` |
+| `--radius-sm` | `0px` |
+| `--radius-md` | `2px` |
+| `--shadow-sm` | `none` |
+| `--shadow-md` | `none` |
 
 **Grid breakpoints & column spans (§5)** — desktop spans confirmed in the prototype; sub-desktop breakpoint resolved by `prototypes/spikes/responsive-grid-spike.html` (verified at 320px–1200px, no horizontal overflow at any width).
 
@@ -87,44 +87,44 @@ Aged-map parchment with a faint concentric contour-line texture, a compass-rose 
 
 ---
 
-### Ledger Index
+### Surgical Precision
 
-*Prototype source: `prototypes/style-tiles/earth-human-sciences-02-ledger-index.html` · Example persona: Dr. Marcus Feldstein*
+*Prototype source: `prototypes/style-tiles/precision-02-surgical-precision.html` · Example persona: Dr. Marcus Webb*
 
-Accounting-ledger ruled paper, tabular monospace figures throughout metadata, a crisp bond-paper white in light mode with a saturated gold and emerald palette recalling banknotes and ledger covers, deliberately brighter/whiter than the group's other warm-cream variants, a small ticker-style indicator for headline numbers. Suits economics, financial-markets, and quantitative-policy researchers.
+A clinical-instrumentation aesthetic: sterile steel-white ground, a crosshair/reticle motif marking each section (echoing surgical targeting overlays), a "vitals readout" sidebar in monospace. Teal reads as clinical/scrub, crimson is reserved for genuinely critical emphasis. Suits surgical robotics, biomedical devices, and clinical-engineering researchers.
 
 **Fonts**
 
 | Role | Typeface | Weights | Fallback stack |
 |---|---|---|---|
-| Heading | Bitter | 600/700 | Georgia, "Times New Roman", serif |
-| Body | IBM Plex Sans | 400/500 | "Segoe UI", Helvetica, Arial, sans-serif |
-| Code | IBM Plex Mono | 400/500 | "SFMono-Regular", Consolas, monospace |
+| Heading | Barlow Condensed | 600/700 | "Arial Narrow", Arial, sans-serif |
+| Body | Roboto | 400/500 | "Segoe UI", Helvetica, Arial, sans-serif |
+| Code | Roboto Mono | 400/500 | "SFMono-Regular", Consolas, monospace |
 
 **Colour palette** (all values verified ≥4.5:1 against their paired background at normal text size, except where noted as decorative/large-text-only in the prototype)
 
 | Token | Light | Dark |
 |---|---|---|
-| `--colour-bg-primary` | `#f8f7f4` | `#0d1510` |
-| `--colour-bg-secondary` | `#ece8de` | `#162019` |
-| `--colour-text-primary` | `#16211a` | `#eee7d6` |
-| `--colour-text-heading` | `#0c140f` | `#f7f4e6` |
-| `--colour-text-muted` | `#5c6a5f` | `#a3ab9a` |
-| `--colour-accent-primary` | `#8a6817` | `#d9ab52` |
-| `--colour-accent-secondary` | `#164d33` | `#6fbf94` |
-| `--colour-border` | `#ddd6c4` | `#233428` |
-| `--colour-code-bg` | `#ece8de` | `#162019` |
+| `--colour-bg-primary` | `#f7f9fa` | `#12171a` |
+| `--colour-bg-secondary` | `#eef2f3` | `#1b2226` |
+| `--colour-text-primary` | `#1c2226` | `#eef2f3` |
+| `--colour-text-heading` | `#101416` | `#ffffff` |
+| `--colour-text-muted` | `#5a6a70` | `#9fb0b5` |
+| `--colour-accent-primary` | `#0d6e6e` | `#4fc9c4` |
+| `--colour-accent-secondary` | `#b3123a` | `#ef6f8e` |
+| `--colour-border` | `#dbe3e5` | `#2a343a` |
+| `--colour-code-bg` | `#eef2f3` | `#1b2226` |
 
 **Type scale**
 
 | Token | Value |
 |---|---|
-| `--font-size-h1` | `2.6rem` |
+| `--font-size-h1` | `2.7rem` |
 | `--font-size-h2` | `1.55rem` |
 | `--font-size-h3` | `1.15rem` |
 | `--font-size-body` | `1.0625rem` |
 | `--font-size-small` | `0.8rem` |
-| `--line-height-heading` | `1.2` |
+| `--line-height-heading` | `1.1` |
 | `--line-height-body` | `1.6` |
 
 **Spacing scale**
@@ -143,8 +143,8 @@ Accounting-ledger ruled paper, tabular monospace figures throughout metadata, a 
 |---|---|
 | `--radius-sm` | `2px` |
 | `--radius-md` | `4px` |
-| `--shadow-sm` | `0 2px 6px rgba(15, 26, 19, 0.12)` |
-| `--shadow-md` | `0 8px 20px rgba(15, 26, 19, 0.16)` |
+| `--shadow-sm` | `0 1px 3px rgba(13, 20, 22, 0.08)` |
+| `--shadow-md` | `0 6px 18px rgba(13, 20, 22, 0.1)` |
 
 **Grid breakpoints & column spans (§5)** — desktop spans confirmed in the prototype; sub-desktop breakpoint resolved by `prototypes/spikes/responsive-grid-spike.html` (verified at 320px–1200px, no horizontal overflow at any width).
 
@@ -158,40 +158,111 @@ Accounting-ledger ruled paper, tabular monospace figures throughout metadata, a 
 
 ---
 
-### Social Network Diagram
+### Aerospace Materials Lab
 
-*Prototype source: `prototypes/style-tiles/earth-human-sciences-03-social-network-diagram.html` · Example persona: Dr. Aaliyah Johnson*
+*Prototype source: `prototypes/style-tiles/precision-03-aerospace-materials-lab.html` · Example persona: Dr. Priya Ramanathan*
 
-A node-and-edge network graph rendered faintly behind the page, pill-shaped tags standing in for graph nodes, a small "○—○" glyph marking section headings. Warm coral and analytical teal as the two "tie" colours. Suits sociology, social-network analysis, and organisational-behaviour researchers.
+Titanium-and-carbon industrial palette, a diagonal hazard-stripe rule (drawn from aircraft ground-equipment markings) beneath the masthead, small rivet-dot accents. Amber reads as an instrument-panel warning tone, steel blue as structural calm. Suits aerospace, mechanical, and materials-science researchers.
 
 **Fonts**
 
 | Role | Typeface | Weights | Fallback stack |
 |---|---|---|---|
-| Heading | Outfit | 600/700 | "Segoe UI", Helvetica, Arial, sans-serif |
-| Body | Hanken Grotesk | 400/500 | "Segoe UI", Helvetica, Arial, sans-serif |
-| Code | JetBrains Mono | 400/500 | "SFMono-Regular", Consolas, monospace |
+| Heading | Rajdhani | 600/700 | "Segoe UI", Arial, sans-serif |
+| Body | Overpass | 400/500 | "Segoe UI", Helvetica, Arial, sans-serif |
+| Code | Red Hat Mono | 400/500 | "SFMono-Regular", Consolas, monospace |
 
 **Colour palette** (all values verified ≥4.5:1 against their paired background at normal text size, except where noted as decorative/large-text-only in the prototype)
 
 | Token | Light | Dark |
 |---|---|---|
-| `--colour-bg-primary` | `#faf6f2` | `#1c1815` |
-| `--colour-bg-secondary` | `#f0e7dd` | `#241f1a` |
-| `--colour-text-primary` | `#2a2420` | `#f2ece4` |
-| `--colour-text-heading` | `#181410` | `#fbf7f2` |
-| `--colour-text-muted` | `#6b5f54` | `#b8ac9e` |
-| `--colour-accent-primary` | `#b8472e` | `#e88a6c` |
-| `--colour-accent-secondary` | `#1f6b6b` | `#5fc9c4` |
-| `--colour-border` | `#e2d4c6` | `#362e26` |
-| `--colour-code-bg` | `#f0e7dd` | `#241f1a` |
+| `--colour-bg-primary` | `#ece9e4` | `#17140f` |
+| `--colour-bg-secondary` | `#ded9d0` | `#201c15` |
+| `--colour-text-primary` | `#201f1d` | `#f2ede4` |
+| `--colour-text-heading` | `#141311` | `#fbf7ee` |
+| `--colour-text-muted` | `#6b6459` | `#b3a894` |
+| `--colour-accent-primary` | `#96490a` | `#e8a33d` |
+| `--colour-accent-secondary` | `#2b4c6f` | `#7fa8c9` |
+| `--colour-border` | `#cec7ba` | `#35301f` |
+| `--colour-code-bg` | `#ded9d0` | `#201c15` |
+
+**Type scale**
+
+| Token | Value |
+|---|---|
+| `--font-size-h1` | `2.7rem` |
+| `--font-size-h2` | `1.6rem` |
+| `--font-size-h3` | `1.2rem` |
+| `--font-size-body` | `1.0625rem` |
+| `--font-size-small` | `0.8rem` |
+| `--line-height-heading` | `1.1` |
+| `--line-height-body` | `1.6` |
+
+**Spacing scale**
+
+| Token | Value |
+|---|---|
+| `--space-xs` | `0.5rem` |
+| `--space-sm` | `1rem` |
+| `--space-md` | `1.5rem` |
+| `--space-lg` | `2.5rem` |
+| `--space-xl` | `4rem` |
+
+**Border radius & shadows**
+
+| Token | Value |
+|---|---|
+| `--radius-sm` | `2px` |
+| `--radius-md` | `3px` |
+| `--shadow-sm` | `0 2px 6px rgba(0,0,0,0.25)` |
+| `--shadow-md` | `0 8px 22px rgba(0,0,0,0.3)` |
+
+**Grid breakpoints & column spans (§5)** — desktop spans confirmed in the prototype; sub-desktop breakpoint resolved by `prototypes/spikes/responsive-grid-spike.html` (verified at 320px–1200px, no horizontal overflow at any width).
+
+| Region | Desktop (≥ prototype width) | Narrower breakpoints |
+|---|---|---|
+| Article body | columns 1–8 (`grid-column: 1 / span 8`) when a sidebar renders; full width (columns 1–12) when it doesn't — the reservation is never left empty | below `1024px`: columns 1–12 (stacks full-width, in source order) |
+| Sidebar | columns 9–12 (`grid-column: 9 / span 4`); content-driven, not unconditional — renders only for an automatic "on this page" heading TOC (pages with ≥2 headings) and/or custom content via `page.extra.sidebar` (path to a colocated Markdown snippet); omitted entirely when neither applies, or when `page.extra.sidebar = false` | below `1024px`: columns 1–12 (stacks full-width, below the article) |
+| Nav / header, footer, post-list | full width, columns 1–12 | unchanged — already full-width at every breakpoint |
+
+**Navigation collapse breakpoint & treatment (§6)** — resolved by `prototypes/spikes/nav-collapse-spike.html`: collapses below `860px` into a native `popover`/`popovertarget` disclosure (matching terminus's own mechanism at the pinned snapshot, zero JS), verified with 8 realistic-length nav items (none of the 25 style tiles tested more than 4 short items). Expanded treatment: nav items inline, no toggle button. Collapsed treatment: a "☰ Menu" toggle button styled with the variant's own `--colour-accent-primary`/`--colour-text-heading` tokens, opening a floating panel using `--colour-bg-secondary`/`--colour-border` for its background/border.
+
+---
+
+### Biomedical Diagnostics
+
+*Prototype source: `prototypes/style-tiles/precision-04-biomedical-diagnostics.html` · Example persona: Dr. Tomás Álvarez*
+
+A clinical-imaging aesthetic: mint-white ground with a faint dot-grid texture (evoking a microscopy field or petri-dish scatter), rounded cards, molecular-dot bullet markers on section headings. Suits computational pathology, diagnostic imaging, and cellular/molecular-precision researchers.
+
+**Fonts**
+
+| Role | Typeface | Weights | Fallback stack |
+|---|---|---|---|
+| Heading | Sora | 600/700 | "Segoe UI", Helvetica, Arial, sans-serif |
+| Body | Work Sans | 400/500 | "Segoe UI", Helvetica, Arial, sans-serif |
+| Code | IBM Plex Mono | 400/500 | "SFMono-Regular", Consolas, monospace |
+
+**Colour palette** (all values verified ≥4.5:1 against their paired background at normal text size, except where noted as decorative/large-text-only in the prototype)
+
+| Token | Light | Dark |
+|---|---|---|
+| `--colour-bg-primary` | `#f2f9f7` | `#0c1917` |
+| `--colour-bg-secondary` | `#e3f1ed` | `#12211e` |
+| `--colour-text-primary` | `#17242a` | `#e6f5f1` |
+| `--colour-text-heading` | `#0e1a1f` | `#f5fffb` |
+| `--colour-text-muted` | `#52716d` | `#9bc4bb` |
+| `--colour-accent-primary` | `#0d7d6e` | `#5fd6c0` |
+| `--colour-accent-secondary` | `#c1473a` | `#ef8672` |
+| `--colour-border` | `#cfe6df` | `#1c332e` |
+| `--colour-code-bg` | `#e3f1ed` | `#12211e` |
 
 **Type scale**
 
 | Token | Value |
 |---|---|
 | `--font-size-h1` | `2.6rem` |
-| `--font-size-h2` | `1.5rem` |
+| `--font-size-h2` | `1.55rem` |
 | `--font-size-h3` | `1.15rem` |
 | `--font-size-body` | `1.0625rem` |
 | `--font-size-small` | `0.8rem` |
@@ -213,9 +284,9 @@ A node-and-edge network graph rendered faintly behind the page, pill-shaped tags
 | Token | Value |
 |---|---|
 | `--radius-sm` | `6px` |
-| `--radius-md` | `14px` |
-| `--shadow-sm` | `0 2px 8px rgba(42, 36, 32, 0.1)` |
-| `--shadow-md` | `0 10px 24px rgba(42, 36, 32, 0.14)` |
+| `--radius-md` | `12px` |
+| `--shadow-sm` | `0 2px 8px rgba(12, 25, 23, 0.08)` |
+| `--shadow-md` | `0 10px 26px rgba(12, 25, 23, 0.12)` |
 
 **Grid breakpoints & column spans (§5)** — desktop spans confirmed in the prototype; sub-desktop breakpoint resolved by `prototypes/spikes/responsive-grid-spike.html` (verified at 320px–1200px, no horizontal overflow at any width).
 
@@ -229,114 +300,43 @@ A node-and-edge network graph rendered faintly behind the page, pill-shaped tags
 
 ---
 
-### Agora Classical Philosophy
+### Swiss Precision Instrument
 
-*Prototype source: `prototypes/style-tiles/earth-human-sciences-04-agora-classical-philosophy.html` · Example persona: Prof. Dimitrios Kallistos*
+*Prototype source: `prototypes/style-tiles/precision-05-swiss-precision-instrument.html` · Example persona: Dr. Heidi Brunner*
 
-Marble-and-column restraint: an inscriptional display face for headings, centred double-rule blockquotes styled like carved dialogue, small-caps epigraphy-style metadata. Terracotta and aged-bronze verdigris as the two accents. Suits philosophy, classics, and history-of-ideas researchers.
-
-**Fonts**
-
-| Role | Typeface | Weights | Fallback stack |
-|---|---|---|---|
-| Heading | Marcellus | 400 (single weight) | Georgia, "Times New Roman", serif |
-| Body | PT Serif | 400/700 | Georgia, "Times New Roman", serif |
-| Code | IBM Plex Mono | 400/500 | "SFMono-Regular", Consolas, monospace |
-
-**Colour palette** (all values verified ≥4.5:1 against their paired background at normal text size, except where noted as decorative/large-text-only in the prototype)
-
-| Token | Light | Dark |
-|---|---|---|
-| `--colour-bg-primary` | `#f2efe9` | `#1c1c1a` |
-| `--colour-bg-secondary` | `#e6e0d4` | `#262624` |
-| `--colour-text-primary` | `#2b2a28` | `#ede9e0` |
-| `--colour-text-heading` | `#171614` | `#faf7f0` |
-| `--colour-text-muted` | `#6b6862` | `#b3ada0` |
-| `--colour-accent-primary` | `#a8432b` | `#d97a5f` |
-| `--colour-accent-secondary` | `#3f6b5c` | `#7fada0` |
-| `--colour-border` | `#d6cfbf` | `#37372f` |
-| `--colour-code-bg` | `#e6e0d4` | `#262624` |
-
-**Type scale**
-
-| Token | Value |
-|---|---|
-| `--font-size-h1` | `2.7rem` |
-| `--font-size-h2` | `1.6rem` |
-| `--font-size-h3` | `1.2rem` |
-| `--font-size-body` | `1.0625rem` |
-| `--font-size-small` | `0.8rem` |
-| `--line-height-heading` | `1.25` |
-| `--line-height-body` | `1.7` |
-
-**Spacing scale**
-
-| Token | Value |
-|---|---|
-| `--space-xs` | `0.5rem` |
-| `--space-sm` | `1rem` |
-| `--space-md` | `1.5rem` |
-| `--space-lg` | `2.5rem` |
-| `--space-xl` | `4rem` |
-
-**Border radius & shadows**
-
-| Token | Value |
-|---|---|
-| `--radius-sm` | `2px` |
-| `--radius-md` | `4px` |
-| `--shadow-sm` | `0 2px 8px rgba(23, 22, 20, 0.12)` |
-| `--shadow-md` | `0 8px 20px rgba(23, 22, 20, 0.16)` |
-
-**Grid breakpoints & column spans (§5)** — desktop spans confirmed in the prototype; sub-desktop breakpoint resolved by `prototypes/spikes/responsive-grid-spike.html` (verified at 320px–1200px, no horizontal overflow at any width).
-
-| Region | Desktop (≥ prototype width) | Narrower breakpoints |
-|---|---|---|
-| Article body | columns 1–8 (`grid-column: 1 / span 8`) when a sidebar renders; full width (columns 1–12) when it doesn't — the reservation is never left empty | below `1024px`: columns 1–12 (stacks full-width, in source order) |
-| Sidebar | columns 9–12 (`grid-column: 9 / span 4`); content-driven, not unconditional — renders only for an automatic "on this page" heading TOC (pages with ≥2 headings) and/or custom content via `page.extra.sidebar` (path to a colocated Markdown snippet); omitted entirely when neither applies, or when `page.extra.sidebar = false` | below `1024px`: columns 1–12 (stacks full-width, below the article) |
-| Nav / header, footer, post-list | full width, columns 1–12 | unchanged — already full-width at every breakpoint |
-
-**Navigation collapse breakpoint & treatment (§6)** — resolved by `prototypes/spikes/nav-collapse-spike.html`: collapses below `860px` into a native `popover`/`popovertarget` disclosure (matching terminus's own mechanism at the pinned snapshot, zero JS), verified with 8 realistic-length nav items (none of the 25 style tiles tested more than 4 short items). Expanded treatment: nav items inline, no toggle button. Collapsed treatment: a "☰ Menu" toggle button styled with the variant's own `--colour-accent-primary`/`--colour-text-heading` tokens, opening a floating panel using `--colour-bg-secondary`/`--colour-border` for its background/border.
-
----
-
-### Strata Geology
-
-*Prototype source: `prototypes/style-tiles/earth-human-sciences-05-strata-geology.html` · Example persona: Dr. Freya Lindqvist*
-
-A layered sediment-core rule marks each post like a stratigraphic column, era-style labelling for metadata, a rust-and-neutral-slate earth-tone palette on a warm stone-grey ground — deliberately greyer and less yellow than the group's other cream-paper variants, and the slate here is desaturated (near-neutral grey) rather than blue, unlike the Cartographer's Atlas variant. Suits geology, sedimentology, and earth-systems-science researchers.
+International Typographic Style, taken seriously: one typeface for everything (weight, size, and letter-spacing are the only variables — the way Helvetica was used in the 1960s Swiss design tradition), pure grayscale, and exactly one accent colour, deployed sparingly like a chronograph's seconds hand. A dial-graduation rule stands in for a decorative flourish. Suits precision instrumentation, metrology, and any researcher who wants zero visual noise.
 
 **Fonts**
 
 | Role | Typeface | Weights | Fallback stack |
 |---|---|---|---|
-| Heading | Zilla Slab | 600/700 | Georgia, "Times New Roman", serif |
-| Body | Public Sans | 400/500 | "Segoe UI", Helvetica, Arial, sans-serif |
-| Code | IBM Plex Mono | 400/500 | "SFMono-Regular", Consolas, monospace |
+| Heading | Inter | 400/500/700/800 | "Helvetica Neue", Helvetica, Arial, sans-serif |
+| Body | IBM Plex Mono | 400/500 | "Helvetica Neue", Helvetica, Arial, sans-serif |
+| Code |  | 400 (single weight) | "SFMono-Regular", Consolas, monospace |
 
 **Colour palette** (all values verified ≥4.5:1 against their paired background at normal text size, except where noted as decorative/large-text-only in the prototype)
 
 | Token | Light | Dark |
 |---|---|---|
-| `--colour-bg-primary` | `#e6e0d5` | `#1f160f` |
-| `--colour-bg-secondary` | `#d9d0be` | `#2a2015` |
-| `--colour-text-primary` | `#2e2015` | `#ece2cf` |
-| `--colour-text-heading` | `#1c130b` | `#f7efdf` |
-| `--colour-text-muted` | `#6b5f4e` | `#b3a68f` |
-| `--colour-accent-primary` | `#9c4318` | `#d98a56` |
-| `--colour-accent-secondary` | `#57616b` | `#9aa3ab` |
-| `--colour-border` | `#cfc4ac` | `#3d301f` |
-| `--colour-code-bg` | `#d9d0be` | `#2a2015` |
+| `--colour-bg-primary` | `#ffffff` | `#101010` |
+| `--colour-bg-secondary` | `#f2f2f2` | `#1a1a1a` |
+| `--colour-text-primary` | `#121212` | `#f2f2f2` |
+| `--colour-text-heading` | `#000000` | `#ffffff` |
+| `--colour-text-muted` | `#6e6e6e` | `#9c9c9c` |
+| `--colour-accent-primary` | `#c8102e` | `#ff3b52` |
+| `--colour-accent-secondary` | `—` | `—` |
+| `--colour-border` | `#dedede` | `#2c2c2c` |
+| `--colour-code-bg` | `#f2f2f2` | `#1a1a1a` |
 
 **Type scale**
 
 | Token | Value |
 |---|---|
-| `--font-size-h1` | `2.7rem` |
-| `--font-size-h2` | `1.6rem` |
-| `--font-size-h3` | `1.2rem` |
+| `--font-size-h1` | `2.4rem` |
+| `--font-size-h2` | `1.4rem` |
+| `--font-size-h3` | `1.05rem` |
 | `--font-size-body` | `1.0625rem` |
-| `--font-size-small` | `0.8rem` |
+| `--font-size-small` | `0.78rem` |
 | `--line-height-heading` | `1.15` |
 | `--line-height-body` | `1.65` |
 
@@ -354,10 +354,10 @@ A layered sediment-core rule marks each post like a stratigraphic column, era-st
 
 | Token | Value |
 |---|---|
-| `--radius-sm` | `2px` |
-| `--radius-md` | `4px` |
-| `--shadow-sm` | `0 2px 8px rgba(46, 36, 24, 0.14)` |
-| `--shadow-md` | `0 8px 22px rgba(46, 36, 24, 0.18)` |
+| `--radius-sm` | `0px` |
+| `--radius-md` | `0px` |
+| `--shadow-sm` | `none` |
+| `--shadow-md` | `none` |
 
 **Grid breakpoints & column spans (§5)** — desktop spans confirmed in the prototype; sub-desktop breakpoint resolved by `prototypes/spikes/responsive-grid-spike.html` (verified at 320px–1200px, no horizontal overflow at any width).
 

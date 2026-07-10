@@ -1,10 +1,10 @@
-# Design tokens — Natural-Sciences
+# Design tokens — Natural
 
-Frozen design-token reference for the **natural-sciences** presentation style group, per [CONSTITUTION.md](../CONSTITUTION.md) §8. One section per variant below.
+Frozen design-token reference for the **natural** presentation style group, per [CONSTITUTION.md](../CONSTITUTION.md) §8. One section per variant below.
 
 **Status of this document:** fonts, colour palettes (light + dark, contrast-verified), spacing scale, type scale, border radius, and shadows are frozen and ready for implementation — these were fully specified and numerically verified during prototyping (see each variant's prototype file for the contrast-ratio workings). **Grid sub-desktop breakpoints and the navigation-collapse breakpoint/treatment are now resolved**, via the shared technical spikes at `prototypes/spikes/responsive-grid-spike.html` and `prototypes/spikes/nav-collapse-spike.html` (both verified in-browser at multiple viewport widths, including 320px). These are shared, group-agnostic mechanism values applied uniformly across every group/variant — only each variant's own colour/spacing/font tokens (above) vary per style. **The article/sidebar column split below is content-driven**, per the CONSTITUTION.md §5 amendment of 2026-07-05: the sidebar (and the article's narrower 1–8 span) only appear when the page actually has an automatic TOC or custom `page.extra.sidebar` content to show — see `themes/tapestry/templates/partials/sidebar.html`.
 
-**Default variant for this group:** *not yet designated.* CONSTITUTION.md §7 requires each group to name one variant as its default (used when `extra.presentation_variant` is unset or invalid); that choice has not been made yet for `natural-sciences`.
+**Default variant for this group:** *not yet designated.* CONSTITUTION.md §7 requires each group to name one variant as its default (used when `extra.presentation_variant` is unset or invalid); that choice has not been made yet for `natural`.
 
 ## Variants
 
@@ -18,7 +18,7 @@ Frozen design-token reference for the **natural-sciences** presentation style gr
 
 ### Celestial Observatory
 
-*Prototype source: `prototypes/style-tiles/natural-sciences-01-celestial-observatory.html` · Example persona: Dr. Yusuf Al-Rashid*
+*Prototype source: `prototypes/style-tiles/natural-01-celestial-observatory.html` · Example persona: Dr. Yusuf Al-Rashid*
 
 Antique star-atlas engraving in light mode (aged parchment, gold ink, navy type), true night-sky in dark mode (deep space navy-black with a faint scattered starfield). Centred blockquotes framed by gold rules, star-glyph tag markers. Suits astronomy, astrophysics, and observational-cosmology researchers.
 
@@ -89,7 +89,7 @@ Antique star-atlas engraving in light mode (aged parchment, gold ink, navy type)
 
 ### Periodic Table Chemistry
 
-*Prototype source: `prototypes/style-tiles/natural-sciences-02-periodic-table-chemistry.html` · Example persona: Dr. Wei Lin Zhao*
+*Prototype source: `prototypes/style-tiles/natural-02-periodic-table-chemistry.html` · Example persona: Dr. Wei Lin Zhao*
 
 Element-tile tags shaped like periodic-table cells (symbol + atomic number), a dashed "bond-line" rule under headings, clean lab-notebook palette split between a "metal" cobalt and a "nonmetal" emerald. Suits physical, inorganic, and analytical chemistry researchers.
 
@@ -160,7 +160,7 @@ Element-tile tags shaped like periodic-table cells (symbol + atomic number), a d
 
 ### Field Notebook
 
-*Prototype source: `prototypes/style-tiles/natural-sciences-03-field-notebook.html` · Example persona: Dr. Beatrix Sorensen*
+*Prototype source: `prototypes/style-tiles/natural-03-field-notebook.html` · Example persona: Dr. Beatrix Sorensen*
 
 Aged-paper cream ground, warm ink-brown text, a hand-stamped "date" tag rotated slightly off-axis, italic serif navigation reminiscent of handwritten field-journal captions. Suits field ecology, evolutionary biology, and natural-history researchers.
 
@@ -231,7 +231,7 @@ Aged-paper cream ground, warm ink-brown text, a hand-stamped "date" tag rotated 
 
 ### Chalkboard Proof
 
-*Prototype source: `prototypes/style-tiles/natural-sciences-04-chalkboard-proof.html` · Example persona: Prof. Étienne Moreau*
+*Prototype source: `prototypes/style-tiles/natural-04-chalkboard-proof.html` · Example persona: Prof. Étienne Moreau*
 
 International-Style chalkboard, taken literally: dark mode is a true chalkboard green-black with chalk-yellow and chalk-blue "handwriting" colours; light mode inverts to paper-and-graphite. A "∎" (Q.E.D.) box closes every blockquote, theorem-style numbering marks section headings, dashed rules stand in for chalk-drawn lines. Suits pure mathematics, number theory, and theoretical-physics researchers.
 
@@ -302,7 +302,7 @@ International-Style chalkboard, taken literally: dark mode is a true chalkboard 
 
 ### Quantum Circuit
 
-*Prototype source: `prototypes/style-tiles/natural-sciences-05-quantum-circuit.html` · Example persona: Dr. Aiko Tanaka*
+*Prototype source: `prototypes/style-tiles/natural-05-quantum-circuit.html` · Example persona: Dr. Aiko Tanaka*
 
 A precise, diagrammatic take on quantum computing — cyan/magenta as the two basis states, a faint horizontal "circuit wire" ruling across the page, Dirac bra-ket brackets wrapping tag pills, a two-colour gradient rule under the title standing in for a superposition state. Suits quantum information, quantum computing, and theoretical-physics researchers.
 
