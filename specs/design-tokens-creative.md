@@ -2,7 +2,7 @@
 
 Frozen design-token reference for the **creative** presentation style group, per [CONSTITUTION.md](../CONSTITUTION.md) §8. One section per variant below.
 
-**Status of this document:** fonts, colour palettes (light + dark, contrast-verified), spacing scale, type scale, border radius, and shadows are frozen and ready for implementation — these were fully specified and numerically verified during prototyping (see each variant's prototype file for the contrast-ratio workings). **Grid sub-desktop breakpoints and the navigation-collapse breakpoint/treatment are now resolved**, via the shared technical spikes at `prototypes/spikes/responsive-grid-spike.html` and `prototypes/spikes/nav-collapse-spike.html` (both verified in-browser at multiple viewport widths, including 320px). These are shared, group-agnostic mechanism values applied uniformly across every group/variant — only each variant's own colour/spacing/font tokens (above) vary per style.
+**Status of this document:** fonts, colour palettes (light + dark, contrast-verified), spacing scale, type scale, border radius, and shadows are frozen and ready for implementation — these were fully specified and numerically verified during prototyping (see each variant's prototype file for the contrast-ratio workings). **Grid sub-desktop breakpoints and the navigation-collapse breakpoint/treatment are now resolved**, via the shared technical spikes at `prototypes/spikes/responsive-grid-spike.html` and `prototypes/spikes/nav-collapse-spike.html` (both verified in-browser at multiple viewport widths, including 320px). These are shared, group-agnostic mechanism values applied uniformly across every group/variant — only each variant's own colour/spacing/font tokens (above) vary per style. **The article/sidebar column split below is content-driven**, per the CONSTITUTION.md §5 amendment of 2026-07-05: the sidebar (and the article's narrower 1–8 span) only appear when the page actually has an automatic TOC or custom `page.extra.sidebar` content to show — see `themes/tapestry/templates/partials/sidebar.html`.
 
 **Default variant for this group:** *not yet designated.* CONSTITUTION.md §7 requires each group to name one variant as its default (used when `extra.presentation_variant` is unset or invalid); that choice has not been made yet for `creative`.
 
@@ -79,8 +79,8 @@ Bold geometric grotesk headings, primary-colour accents (crimson red, deep blue)
 
 | Region | Desktop (≥ prototype width) | Narrower breakpoints |
 |---|---|---|
-| Article body | columns 1–8 (`grid-column: 1 / span 8`) | below `1024px`: columns 1–12 (stacks full-width, in source order) |
-| Sidebar | columns 9–12 (`grid-column: 9 / span 4`) | below `1024px`: columns 1–12 (stacks full-width, below the article) |
+| Article body | columns 1–8 (`grid-column: 1 / span 8`) when a sidebar renders; full width (columns 1–12) when it doesn't — the reservation is never left empty | below `1024px`: columns 1–12 (stacks full-width, in source order) |
+| Sidebar | columns 9–12 (`grid-column: 9 / span 4`); content-driven, not unconditional — renders only for an automatic "on this page" heading TOC (pages with ≥2 headings) and/or custom content via `page.extra.sidebar` (path to a colocated Markdown snippet); omitted entirely when neither applies, or when `page.extra.sidebar = false` | below `1024px`: columns 1–12 (stacks full-width, below the article) |
 | Nav / header, footer, post-list | full width, columns 1–12 | unchanged — already full-width at every breakpoint |
 
 **Navigation collapse breakpoint & treatment (§6)** — resolved by `prototypes/spikes/nav-collapse-spike.html`: collapses below `860px` into a native `popover`/`popovertarget` disclosure (matching terminus's own mechanism at the pinned snapshot, zero JS), verified with 8 realistic-length nav items (none of the 25 style tiles tested more than 4 short items). Expanded treatment: nav items inline, no toggle button. Collapsed treatment: a "☰ Menu" toggle button styled with the variant's own `--colour-accent-primary`/`--colour-text-heading` tokens, opening a floating panel using `--colour-bg-secondary`/`--colour-border` for its background/border.
@@ -150,8 +150,8 @@ Punk/zine energy: heavyweight condensed display headlines set at a slight tilt, 
 
 | Region | Desktop (≥ prototype width) | Narrower breakpoints |
 |---|---|---|
-| Article body | columns 1–8 (`grid-column: 1 / span 8`) | below `1024px`: columns 1–12 (stacks full-width, in source order) |
-| Sidebar | columns 9–12 (`grid-column: 9 / span 4`) | below `1024px`: columns 1–12 (stacks full-width, below the article) |
+| Article body | columns 1–8 (`grid-column: 1 / span 8`) when a sidebar renders; full width (columns 1–12) when it doesn't — the reservation is never left empty | below `1024px`: columns 1–12 (stacks full-width, in source order) |
+| Sidebar | columns 9–12 (`grid-column: 9 / span 4`); content-driven, not unconditional — renders only for an automatic "on this page" heading TOC (pages with ≥2 headings) and/or custom content via `page.extra.sidebar` (path to a colocated Markdown snippet); omitted entirely when neither applies, or when `page.extra.sidebar = false` | below `1024px`: columns 1–12 (stacks full-width, below the article) |
 | Nav / header, footer, post-list | full width, columns 1–12 | unchanged — already full-width at every breakpoint |
 
 **Navigation collapse breakpoint & treatment (§6)** — resolved by `prototypes/spikes/nav-collapse-spike.html`: collapses below `860px` into a native `popover`/`popovertarget` disclosure (matching terminus's own mechanism at the pinned snapshot, zero JS), verified with 8 realistic-length nav items (none of the 25 style tiles tested more than 4 short items). Expanded treatment: nav items inline, no toggle button. Collapsed treatment: a "☰ Menu" toggle button styled with the variant's own `--colour-accent-primary`/`--colour-text-heading` tokens, opening a floating panel using `--colour-bg-secondary`/`--colour-border` for its background/border.
@@ -221,8 +221,8 @@ Soft, painterly, and warm: blush-and-cream palette, blurred colour "wash" blobs 
 
 | Region | Desktop (≥ prototype width) | Narrower breakpoints |
 |---|---|---|
-| Article body | columns 1–8 (`grid-column: 1 / span 8`) | below `1024px`: columns 1–12 (stacks full-width, in source order) |
-| Sidebar | columns 9–12 (`grid-column: 9 / span 4`) | below `1024px`: columns 1–12 (stacks full-width, below the article) |
+| Article body | columns 1–8 (`grid-column: 1 / span 8`) when a sidebar renders; full width (columns 1–12) when it doesn't — the reservation is never left empty | below `1024px`: columns 1–12 (stacks full-width, in source order) |
+| Sidebar | columns 9–12 (`grid-column: 9 / span 4`); content-driven, not unconditional — renders only for an automatic "on this page" heading TOC (pages with ≥2 headings) and/or custom content via `page.extra.sidebar` (path to a colocated Markdown snippet); omitted entirely when neither applies, or when `page.extra.sidebar = false` | below `1024px`: columns 1–12 (stacks full-width, below the article) |
 | Nav / header, footer, post-list | full width, columns 1–12 | unchanged — already full-width at every breakpoint |
 
 **Navigation collapse breakpoint & treatment (§6)** — resolved by `prototypes/spikes/nav-collapse-spike.html`: collapses below `860px` into a native `popover`/`popovertarget` disclosure (matching terminus's own mechanism at the pinned snapshot, zero JS), verified with 8 realistic-length nav items (none of the 25 style tiles tested more than 4 short items). Expanded treatment: nav items inline, no toggle button. Collapsed treatment: a "☰ Menu" toggle button styled with the variant's own `--colour-accent-primary`/`--colour-text-heading` tokens, opening a floating panel using `--colour-bg-secondary`/`--colour-border` for its background/border.
@@ -292,8 +292,8 @@ Futuristic and high-energy: geometric display face, gradient magenta-to-cyan hea
 
 | Region | Desktop (≥ prototype width) | Narrower breakpoints |
 |---|---|---|
-| Article body | columns 1–8 (`grid-column: 1 / span 8`) | below `1024px`: columns 1–12 (stacks full-width, in source order) |
-| Sidebar | columns 9–12 (`grid-column: 9 / span 4`) | below `1024px`: columns 1–12 (stacks full-width, below the article) |
+| Article body | columns 1–8 (`grid-column: 1 / span 8`) when a sidebar renders; full width (columns 1–12) when it doesn't — the reservation is never left empty | below `1024px`: columns 1–12 (stacks full-width, in source order) |
+| Sidebar | columns 9–12 (`grid-column: 9 / span 4`); content-driven, not unconditional — renders only for an automatic "on this page" heading TOC (pages with ≥2 headings) and/or custom content via `page.extra.sidebar` (path to a colocated Markdown snippet); omitted entirely when neither applies, or when `page.extra.sidebar = false` | below `1024px`: columns 1–12 (stacks full-width, below the article) |
 | Nav / header, footer, post-list | full width, columns 1–12 | unchanged — already full-width at every breakpoint |
 
 **Navigation collapse breakpoint & treatment (§6)** — resolved by `prototypes/spikes/nav-collapse-spike.html`: collapses below `860px` into a native `popover`/`popovertarget` disclosure (matching terminus's own mechanism at the pinned snapshot, zero JS), verified with 8 realistic-length nav items (none of the 25 style tiles tested more than 4 short items). Expanded treatment: nav items inline, no toggle button. Collapsed treatment: a "☰ Menu" toggle button styled with the variant's own `--colour-accent-primary`/`--colour-text-heading` tokens, opening a floating panel using `--colour-bg-secondary`/`--colour-border` for its background/border.
@@ -363,8 +363,8 @@ Warm, tactile, and approachable: rounded friendly headings, mustard-and-plum acc
 
 | Region | Desktop (≥ prototype width) | Narrower breakpoints |
 |---|---|---|
-| Article body | columns 1–8 (`grid-column: 1 / span 8`) | below `1024px`: columns 1–12 (stacks full-width, in source order) |
-| Sidebar | columns 9–12 (`grid-column: 9 / span 4`) | below `1024px`: columns 1–12 (stacks full-width, below the article) |
+| Article body | columns 1–8 (`grid-column: 1 / span 8`) when a sidebar renders; full width (columns 1–12) when it doesn't — the reservation is never left empty | below `1024px`: columns 1–12 (stacks full-width, in source order) |
+| Sidebar | columns 9–12 (`grid-column: 9 / span 4`); content-driven, not unconditional — renders only for an automatic "on this page" heading TOC (pages with ≥2 headings) and/or custom content via `page.extra.sidebar` (path to a colocated Markdown snippet); omitted entirely when neither applies, or when `page.extra.sidebar = false` | below `1024px`: columns 1–12 (stacks full-width, below the article) |
 | Nav / header, footer, post-list | full width, columns 1–12 | unchanged — already full-width at every breakpoint |
 
 **Navigation collapse breakpoint & treatment (§6)** — resolved by `prototypes/spikes/nav-collapse-spike.html`: collapses below `860px` into a native `popover`/`popovertarget` disclosure (matching terminus's own mechanism at the pinned snapshot, zero JS), verified with 8 realistic-length nav items (none of the 25 style tiles tested more than 4 short items). Expanded treatment: nav items inline, no toggle button. Collapsed treatment: a "☰ Menu" toggle button styled with the variant's own `--colour-accent-primary`/`--colour-text-heading` tokens, opening a floating panel using `--colour-bg-secondary`/`--colour-border` for its background/border.
