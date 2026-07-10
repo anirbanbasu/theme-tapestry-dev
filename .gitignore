@@ -19,6 +19,12 @@ themes/terminus/
 .claude/settings.local.json
 .claude/CLAUDE.local.md
 
+# Claude plugin related
+.remember
+docs/superpowers/
+.superpowers/
+.worktrees/
+
 # DO NOT ignore these (ensure they are tracked if they exist):
 # !.claude/settings.json
 # !.claude/launch.json
