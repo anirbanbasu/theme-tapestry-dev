@@ -22,7 +22,13 @@ See @CONSTITUTION.md for non-negotiable design and compatibility standards. Read
 
 1. Build the current terminus-based site and the in-progress Tapestry version against the **same** `content/` fixtures.
 2. Diff rendered HTML for pages that exercise shortcodes/config keys listed in the compatibility contract (see @CONSTITUTION.md, §3).
-3. Before opening a PR that touches `themes/tapestry/**`, `content/warp-and-weft/**`, `tests/**`, or `config.toml`, run the automated suite locally: `cd tests/visual-a11y && npm test` (requires a `zola build --base-url http://127.0.0.1:1111` first — see `tests/visual-a11y/playwright.config.ts`'s `webServer`). This runs the axe-core accessibility sweep, the screenshot regression diff, and the keyboard-only interaction checks documented in `specs/visual-a11y-test-suite.md`. The same suite runs in CI (`.github/workflows/visual-a11y-tests.yaml`) on every such PR.
+3. Before opening a PR that touches `themes/tapestry/**`, `content/warp-and-weft/**`, `tests/**`, or `config.toml`, run the automated suite locally:
+   1. From the repo root: `zola build --base-url http://127.0.0.1:1111` (the fixed base URL matches `tests/visual-a11y/playwright.config.ts`'s `webServer`, which serves `public/` on `127.0.0.1:1111`).
+   2. `cd tests/visual-a11y && npm ci` — first run only, or whenever `package-lock.json` changes; `node_modules/` is gitignored, so a fresh checkout has no `playwright` binary yet and bare `npm test` fails with `playwright: command not found`.
+   3. `npx playwright install --with-deps chromium` — first run only, or after upgrading the `@playwright/test` version; downloads the browser binary Playwright drives.
+   4. `npm test` — runs the axe-core accessibility sweep, the screenshot regression diff, and the keyboard-only interaction checks documented in `specs/visual-a11y-test-suite.md`.
+
+   The same suite runs in CI (`.github/workflows/visual-a11y-tests.yaml`) on every such PR, which performs the equivalent of all four steps above per job.
 4. Use the Playwright MCP server for ad-hoc, exploratory screenshot checks outside the fixed `warp-and-weft` test set (e.g. spot-checking real `content/` pages) — the automated suite is the gate; the MCP server remains useful for one-off visual investigation it doesn't cover.
 5. A manual keyboard-only pass is still required before merge (CONSTITUTION.md §1) — tracked as a checklist item in `.github/pull_request_template.md`, since a genuinely manual step can't be a CI gate.
 
