@@ -35,23 +35,39 @@ test.describe("nav collapse: keyboard operability", () => {
     await page.goto("/warp-and-weft/everything/");
     await page.locator("body").click({ position: { x: 1, y: 1 } });
 
+    const signature = () =>
+      document.activeElement === null
+        ? "null"
+        : `${document.activeElement.tagName}|${
+            document.activeElement.getAttribute("href") ?? document.activeElement.id ?? ""
+          }|${(document.activeElement.textContent ?? "").trim().slice(0, 30)}`;
+
+    const start = await page.evaluate(signature);
+
     const N = 15;
-    const tags: string[] = [];
+    const forward: string[] = [];
     for (let i = 0; i < N; i++) {
       await page.keyboard.press("Tab");
-      tags.push(
-        await page.evaluate(() => document.activeElement?.outerHTML.slice(0, 60) ?? "")
-      );
+      forward.push(await page.evaluate(signature));
     }
+    const backward: string[] = [];
     for (let i = 0; i < N; i++) {
       await page.keyboard.press("Shift+Tab");
+      backward.push(await page.evaluate(signature));
     }
-    const backToStart = await page.evaluate(
-      () => document.activeElement === document.body || document.activeElement?.tagName === "A"
-    );
-    expect(backToStart).toBe(true);
+
+    // Reverse traversal must land back exactly where forward traversal
+    // started — a trap that cycles among a subset of elements would still
+    // often end on *some* focusable element, so "ended up somewhere
+    // plausible" isn't proof; landing on the precise starting element is.
+    expect(backward[N - 1]).toBe(start);
+    // And each backward step must revisit the same element the
+    // corresponding forward step did, in reverse order — this is what
+    // actually distinguishes "no trap" from "trapped in a smaller loop that
+    // happens to end on an anchor."
+    expect(backward.slice(0, N - 1)).toEqual(forward.slice(0, N - 1).reverse());
     // Distinct focus stops along the way — proof the loop didn't trap on one element.
-    expect(new Set(tags).size).toBeGreaterThan(1);
+    expect(new Set(forward).size).toBeGreaterThan(1);
   });
 });
 

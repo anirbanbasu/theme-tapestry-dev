@@ -12,6 +12,13 @@ export default defineConfig({
   use: {
     baseURL: "http://127.0.0.1:1111",
     trace: "on-first-retry",
+    // Pinned explicitly (rather than left to Playwright's own default) because
+    // keyboard.spec.ts's theme-toggle test asserts the server-rendered initial
+    // aria-pressed="false"/aria-label="Switch to dark mode" state, which only
+    // holds if the browser's prefers-color-scheme resolves to light — theme-
+    // switcher.js's init() would otherwise flip that state before the test's
+    // first assertion runs.
+    colorScheme: "light",
   },
 
   expect: {
