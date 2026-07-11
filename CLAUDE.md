@@ -22,8 +22,9 @@ See @CONSTITUTION.md for non-negotiable design and compatibility standards. Read
 
 1. Build the current terminus-based site and the in-progress Tapestry version against the **same** `content/` fixtures.
 2. Diff rendered HTML for pages that exercise shortcodes/config keys listed in the compatibility contract (see @CONSTITUTION.md, §3).
-3. Use the Playwright MCP server to screenshot both outputs at common viewport widths, and in both light and dark mode, before calling a visual change "done."
-4. Run an accessibility check (e.g. axe via Playwright, plus a manual keyboard-only pass) against WCAG AA whenever templates or CSS change.
+3. Before opening a PR that touches `themes/tapestry/**`, `content/warp-and-weft/**`, `tests/**`, or `config.toml`, run the automated suite locally: `cd tests/visual-a11y && npm test` (requires a `zola build --base-url http://127.0.0.1:1111` first — see `tests/visual-a11y/playwright.config.ts`'s `webServer`). This runs the axe-core accessibility sweep, the screenshot regression diff, and the keyboard-only interaction checks documented in `docs/superpowers/specs/2026-07-11-visual-a11y-test-suite-design.md`. The same suite runs in CI (`.github/workflows/visual-a11y-tests.yaml`) on every such PR.
+4. Use the Playwright MCP server for ad-hoc, exploratory screenshot checks outside the fixed `warp-and-weft` test set (e.g. spot-checking real `content/` pages) — the automated suite is the gate; the MCP server remains useful for one-off visual investigation it doesn't cover.
+5. A manual keyboard-only pass is still required before merge (CONSTITUTION.md §1) — tracked as a checklist item in `.github/pull_request_template.md`, since a genuinely manual step can't be a CI gate.
 
 ## Design prototyping workflow
 
