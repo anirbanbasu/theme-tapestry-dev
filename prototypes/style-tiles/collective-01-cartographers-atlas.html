@@ -1,0 +1,737 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Collective — Option 1: Cartographer's Atlas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Domine:wght@400;700&family=Noto+Serif:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --font-heading: "Domine", Georgia, "Times New Roman", serif;
+      --font-body: "Noto Serif", Georgia, serif;
+      --font-code: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+
+      --font-size-h1: 2.7rem;
+      --font-size-h2: 1.6rem;
+      --font-size-h3: 1.2rem;
+      --font-size-body: 1.0625rem;
+      --font-size-small: 0.82rem;
+      --line-height-heading: 1.2;
+      --line-height-body: 1.7;
+
+      --space-xs: 0.5rem;
+      --space-sm: 1rem;
+      --space-md: 1.5rem;
+      --space-lg: 2.5rem;
+      --space-xl: 4rem;
+      --radius-sm: 2px;
+      --radius-md: 4px;
+      --shadow-sm: 0 2px 8px rgba(46, 42, 28, 0.14);
+      --shadow-md: 0 8px 22px rgba(46, 42, 28, 0.18);
+    }
+
+    .theme-light {
+      --colour-bg-primary: #e8edf0;
+      --colour-bg-secondary: #dbe3e8;
+      --colour-text-primary: #1c2833;
+      --colour-text-heading: #12191f;
+      --colour-text-muted: #556873;
+      --colour-accent-primary: #245c3f;
+      /* terrain green — 6.65:1 */
+      --colour-accent-secondary: #1f4e73;
+      /* ocean blue — 7.43:1 */
+      --colour-border: #c9d5db;
+      --colour-code-bg: #dbe3e8;
+    }
+
+    .theme-dark {
+      --colour-bg-primary: #101823;
+      --colour-bg-secondary: #182430;
+      --colour-text-primary: #e6edf0;
+      --colour-text-heading: #f5f8fa;
+      --colour-text-muted: #9aabb8;
+      --colour-accent-primary: #6fc99a;
+      /* terrain green-light — 8.92:1 */
+      --colour-accent-secondary: #6fa8d9;
+      /* ocean blue-light — 7.03:1 */
+      --colour-border: #233242;
+      --colour-code-bg: #182430;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--font-body);
+    }
+
+    .tile-label {
+      font-family: var(--font-code);
+      font-size: var(--font-size-small);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: var(--space-sm) var(--space-md);
+      background: #101823;
+      color: #6fa8d9;
+    }
+
+    .spec-sheet {
+      font-family: system-ui, sans-serif;
+      padding: var(--space-lg) var(--space-md);
+      background: #fff;
+      border-bottom: 4px solid #1c2833;
+    }
+
+    .spec-sheet h1 {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 2.1rem;
+      margin: 0 0 var(--space-xs);
+    }
+
+    .spec-sheet p {
+      max-width: 64ch;
+      color: #333;
+    }
+
+    .swatches {
+      display: flex;
+      gap: var(--space-sm);
+      flex-wrap: wrap;
+      margin-top: var(--space-md);
+    }
+
+    .swatch {
+      width: 150px;
+    }
+
+    .swatch-block {
+      height: 56px;
+      border: 1px solid rgba(0, 0, 0, 0.12);
+    }
+
+    .swatch small {
+      display: block;
+      font-family: var(--font-code);
+      font-size: 0.7rem;
+      margin-top: 4px;
+    }
+
+    .site {
+      padding: var(--space-lg) 0;
+      position: relative;
+    }
+
+    .theme-light.site {
+      background: var(--colour-bg-primary);
+      color: var(--colour-text-primary);
+      background-image: repeating-radial-gradient(circle at 15% 20%, transparent 0, transparent 26px, rgba(36, 92, 63, 0.07) 27px, transparent 28px);
+    }
+
+    .theme-dark.site {
+      background: var(--colour-bg-primary);
+      color: var(--colour-text-primary);
+      background-image: repeating-radial-gradient(circle at 15% 20%, transparent 0, transparent 26px, rgba(111, 168, 217, 0.07) 27px, transparent 28px);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: var(--space-md);
+      max-width: 1200px;
+      margin-inline: auto;
+      padding-inline: var(--space-md);
+      position: relative;
+      z-index: 1;
+    }
+
+    .grid-ruler {
+      margin-bottom: var(--space-md);
+    }
+
+    .grid-ruler .cell {
+      background: var(--colour-bg-secondary);
+      border: 1px dashed var(--colour-border);
+      font-family: var(--font-code);
+      font-size: 0.65rem;
+      text-align: center;
+      padding: var(--space-xs) 0;
+      color: var(--colour-text-muted);
+    }
+
+    .site-header {
+      border-bottom: 1px solid var(--colour-accent-primary);
+      padding-block: var(--space-md);
+      margin-bottom: var(--space-lg);
+      position: relative;
+      z-index: 1;
+    }
+
+    .header-inner {
+      grid-column: 1 / span 12;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .tapestry-logo {
+      height: 36px;
+      width: auto;
+      color: var(--colour-text-heading);
+      flex-shrink: 0;
+    }
+
+    nav[aria-label="Main Menu"] ul {
+      list-style: none;
+      display: flex;
+      gap: var(--space-md);
+      margin: 0;
+      padding: 0;
+    }
+
+    nav[aria-label="Main Menu"] a {
+      font-family: var(--font-code);
+      font-size: var(--font-size-small);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--colour-text-primary);
+      text-decoration: none;
+    }
+
+    nav[aria-label="Main Menu"] a:hover,
+    nav[aria-label="Main Menu"] a:focus-visible {
+      color: var(--colour-accent-secondary);
+    }
+
+    article.post {
+      grid-column: 1 / span 8;
+    }
+
+    aside.sidebar {
+      grid-column: 9 / span 4;
+    }
+
+    .compass {
+      font-size: 1.4rem;
+      color: var(--colour-accent-secondary);
+      margin-bottom: var(--space-xs);
+    }
+
+    h1 {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: var(--font-size-h1);
+      line-height: var(--line-height-heading);
+      color: var(--colour-text-heading);
+      margin: 0 0 var(--space-sm);
+    }
+
+    h2 {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: var(--font-size-h2);
+      color: var(--colour-text-heading);
+      margin-top: var(--space-lg);
+      border-bottom: 1px solid var(--colour-border);
+      padding-bottom: var(--space-xs);
+    }
+
+    h3 {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: var(--font-size-h3);
+      color: var(--colour-text-heading);
+    }
+
+    .post-meta {
+      font-family: var(--font-code);
+      font-size: var(--font-size-small);
+      color: var(--colour-text-muted);
+      margin-bottom: var(--space-md);
+    }
+
+    p {
+      font-size: var(--font-size-body);
+      line-height: var(--line-height-body);
+    }
+
+    a {
+      color: var(--colour-accent-secondary);
+    }
+
+    blockquote {
+      margin: var(--space-lg) 0;
+      padding: var(--space-md) var(--space-lg);
+      border-left: 3px solid var(--colour-accent-primary);
+      font-style: italic;
+      font-size: 1.05rem;
+      color: var(--colour-text-heading);
+      background: var(--colour-bg-secondary);
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    }
+
+    blockquote footer {
+      margin-top: var(--space-sm);
+      font-family: var(--font-code);
+      font-style: normal;
+      font-size: var(--font-size-small);
+      color: var(--colour-text-muted);
+    }
+
+    blockquote footer::before {
+      content: "— ";
+    }
+
+    code {
+      font-family: var(--font-code);
+      background: var(--colour-code-bg);
+      padding: 0.15em 0.4em;
+      border-radius: var(--radius-sm);
+      font-size: 0.85em;
+    }
+
+    pre {
+      font-family: var(--font-code);
+      background: var(--colour-code-bg);
+      border: 1px solid var(--colour-border);
+      border-radius: var(--radius-md);
+      padding: var(--space-md);
+      overflow-x: auto;
+      box-shadow: var(--shadow-sm);
+    }
+
+    pre code {
+      background: none;
+      padding: 0;
+    }
+
+    .tags {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-xs);
+      padding: 0;
+      margin: var(--space-md) 0;
+    }
+
+    .tags a {
+      font-family: var(--font-code);
+      font-size: var(--font-size-small);
+      text-decoration: none;
+      border: 1px solid var(--colour-accent-primary);
+      padding: 0.2em 0.7em;
+      color: var(--colour-accent-primary);
+    }
+
+    .sidebar h4 {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin-top: 0;
+    }
+
+    .sidebar .card {
+      background: var(--colour-bg-secondary);
+      border: 1px solid var(--colour-border);
+      border-radius: var(--radius-md);
+      padding: var(--space-md);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .post-list {
+      grid-column: 1 / span 12;
+      margin-top: var(--space-xl);
+      border-top: 1px solid var(--colour-accent-primary);
+      padding-top: var(--space-lg);
+    }
+
+    .post-list-item {
+      padding-block: var(--space-md);
+      border-bottom: 1px solid var(--colour-border);
+    }
+
+    .post-list-item h3 a {
+      color: var(--colour-text-heading);
+      text-decoration: none;
+    }
+
+    .post-list-item .excerpt-meta {
+      font-family: var(--font-code);
+      font-size: var(--font-size-small);
+      color: var(--colour-text-muted);
+    }
+
+    .site-footer {
+      grid-column: 1 / span 12;
+      margin-top: var(--space-xl);
+      padding-top: var(--space-lg);
+      border-top: 1px solid var(--colour-accent-primary);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: var(--space-md);
+      font-family: var(--font-code);
+      font-size: var(--font-size-small);
+      color: var(--colour-text-muted);
+    }
+
+    .socials {
+      list-style: none;
+      display: flex;
+      gap: var(--space-sm);
+      padding: 0;
+      margin: 0;
+      align-items: center;
+    }
+
+    .socials a {
+      color: var(--colour-accent-secondary);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 34px;
+      border: 1px solid var(--colour-border);
+      border-radius: 50%;
+    }
+
+    .social-icon {
+      width: 17px;
+      height: 17px;
+    }
+  </style>
+</head>
+
+<body>
+  <svg style="display:none" aria-hidden="true">
+    <symbol id="icon-email" viewBox="0 0 24 24">
+      <rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="2" />
+      <path d="M3 7l9 6 9-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+        stroke-linejoin="round" />
+    </symbol>
+    <symbol id="icon-orcid" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2" /><text x="12" y="16.5"
+        text-anchor="middle" font-size="9" font-family="Arial, sans-serif" font-weight="700"
+        fill="currentColor">iD</text>
+    </symbol>
+    <symbol id="icon-google-scholar" viewBox="0 0 24 24">
+      <path d="M2 8l10-5 10 5-10 5-10-5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+      <path d="M6 10.5V16c0 1.5 2.5 3 6 3s6-1.5 6-3v-5.5" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" />
+    </symbol>
+  </svg>
+
+  <div class="spec-sheet">
+    <h1>Collective — Option 1 · "Cartographer's Atlas"</h1>
+    <p>Aged-map parchment with a faint concentric contour-line texture, a compass-rose glyph marking each post,
+      coordinate-style monospace metadata. Terrain green and ocean blue as the two accents, in a cool cartographic
+      blue-grey palette deliberately distinct from the group's warmer earth-toned variants. Suits human geography,
+      cartography, and spatial-analysis researchers.</p>
+    <p><strong>Headings</strong> Domine 400/700, fallback Georgia, "Times New Roman", serif · <strong>Body</strong> Noto
+      Serif 400/500, fallback Georgia, serif · <strong>Code</strong> IBM Plex Mono 400/500, fallback SFMono-Regular,
+      Consolas, monospace.</p>
+    <div class="swatches">
+      <div class="swatch">
+        <div class="swatch-block" style="background:#e8edf0"></div><small>bg-primary L #e8edf0</small>
+      </div>
+      <div class="swatch">
+        <div class="swatch-block" style="background:#1c2833"></div><small>text L #1c2833 (12.7:1)</small>
+      </div>
+      <div class="swatch">
+        <div class="swatch-block" style="background:#245c3f"></div><small>accent-1 L #245c3f (6.7:1)</small>
+      </div>
+      <div class="swatch">
+        <div class="swatch-block" style="background:#1f4e73"></div><small>accent-2 L #1f4e73 (7.4:1)</small>
+      </div>
+      <div class="swatch">
+        <div class="swatch-block" style="background:#101823"></div><small>bg-primary D #101823</small>
+      </div>
+      <div class="swatch">
+        <div class="swatch-block" style="background:#e6edf0"></div><small>text D #e6edf0 (15.1:1)</small>
+      </div>
+      <div class="swatch">
+        <div class="swatch-block" style="background:#6fc99a"></div><small>accent-1 D #6fc99a (8.9:1)</small>
+      </div>
+      <div class="swatch">
+        <div class="swatch-block" style="background:#6fa8d9"></div><small>accent-2 D #6fa8d9 (7.0:1)</small>
+      </div>
+    </div>
+  </div>
+
+  <div class="tile-label">Light mode</div>
+  <div class="theme-light site">
+    <div class="grid grid-ruler">
+      <div class="cell" style="grid-column: span 1;">1</div>
+      <div class="cell" style="grid-column: span 1;">2</div>
+      <div class="cell" style="grid-column: span 1;">3</div>
+      <div class="cell" style="grid-column: span 1;">4</div>
+      <div class="cell" style="grid-column: span 1;">5</div>
+      <div class="cell" style="grid-column: span 1;">6</div>
+      <div class="cell" style="grid-column: span 1;">7</div>
+      <div class="cell" style="grid-column: span 1;">8</div>
+      <div class="cell" style="grid-column: span 1;">9</div>
+      <div class="cell" style="grid-column: span 1;">10</div>
+      <div class="cell" style="grid-column: span 1;">11</div>
+      <div class="cell" style="grid-column: span 1;">12</div>
+    </div>
+    <header class="site-header">
+      <div class="grid">
+        <div class="header-inner">
+          <a class="brand" href="#" aria-label="Prof. Ingrid Vance"><svg class="tapestry-logo" viewBox="0 0 260 64"
+              role="img" aria-label="Tapestry" xmlns="http://www.w3.org/2000/svg">
+              <g transform="translate(7.275, -3.000)">
+                <g stroke="currentColor" stroke-width="6" stroke-linecap="round">
+                  <line x1="12" y1="16" x2="52" y2="16" />
+                  <line x1="32" y1="16" x2="32" y2="30" />
+                  <line x1="32" y1="44" x2="32" y2="54" />
+                  <line x1="18" y1="37" x2="46" y2="37" />
+                </g>
+                <g fill="currentColor">
+                  <path
+                    d="M224 -14Q171 -14 129.0 4.5Q87 23 62.5 58.5Q38 94 38 145Q38 196 62.5 230.5Q87 265 130.5 282.5Q174 300 230 300H366V328Q366 363 344.0 385.5Q322 408 274 408Q227 408 204.0 386.5Q181 365 174 331L58 370Q70 408 96.5 439.5Q123 471 167.5 490.5Q212 510 276 510Q374 510 431.0 461.0Q488 412 488 319V134Q488 104 516 104H556V0H472Q435 0 411.0 18.0Q387 36 387 66V67H368Q364 55 350.0 35.5Q336 16 306.0 1.0Q276 -14 224 -14ZM246 88Q299 88 332.5 117.5Q366 147 366 196V206H239Q204 206 184.0 191.0Q164 176 164 149Q164 122 185.0 105.0Q206 88 246 88Z"
+                    transform="matrix(0.03 0 0 -0.03 65.0 42)" />
+                  <path
+                    d="M70 -200V496H194V436H212Q229 465 265.0 487.5Q301 510 368 510Q428 510 479.0 480.5Q530 451 561.0 394.0Q592 337 592 256V240Q592 159 561.0 102.0Q530 45 479.0 15.5Q428 -14 368 -14Q323 -14 292.5 -3.5Q262 7 243.5 23.5Q225 40 214 57H196V-200ZM330 96Q389 96 427.5 133.5Q466 171 466 243V253Q466 325 427.0 362.5Q388 400 330 400Q272 400 233.0 362.5Q194 325 194 253V243Q194 171 233.0 133.5Q272 96 330 96Z"
+                    transform="matrix(0.03 0 0 -0.03 92.34 42)" />
+                  <path
+                    d="M296 -14Q222 -14 165.5 17.5Q109 49 77.5 106.5Q46 164 46 242V254Q46 332 77.0 389.5Q108 447 164.0 478.5Q220 510 294 510Q367 510 421.0 477.5Q475 445 505.0 387.5Q535 330 535 254V211H174Q176 160 212.0 128.0Q248 96 300 96Q353 96 378.0 119.0Q403 142 416 170L519 116Q505 90 478.5 59.5Q452 29 408.0 7.5Q364 -14 296 -14ZM175 305H407Q403 348 372.5 374.0Q342 400 293 400Q242 400 212.0 374.0Q182 348 175 305Z"
+                    transform="matrix(0.03 0 0 -0.03 121.48 42)" />
+                  <path
+                    d="M276 -14Q179 -14 117.0 28.0Q55 70 42 148L158 178Q165 143 181.5 123.0Q198 103 222.5 94.5Q247 86 276 86Q320 86 341.0 101.5Q362 117 362 140Q362 163 342.0 175.5Q322 188 278 196L250 201Q198 211 155.0 228.5Q112 246 86.0 277.0Q60 308 60 357Q60 431 114.0 470.5Q168 510 256 510Q339 510 394.0 473.0Q449 436 466 376L349 340Q341 378 316.5 394.0Q292 410 256 410Q220 410 201.0 397.5Q182 385 182 363Q182 339 202.0 327.5Q222 316 256 310L284 305Q340 295 385.5 278.5Q431 262 457.5 231.5Q484 201 484 149Q484 71 427.5 28.5Q371 -14 276 -14Z"
+                    transform="matrix(0.03 0 0 -0.03 148.79 42)" />
+                  <path
+                    d="M260 0Q211 0 180.5 30.5Q150 61 150 112V392H26V496H150V650H276V496H412V392H276V134Q276 104 304 104H400V0Z"
+                    transform="matrix(0.03 0 0 -0.03 174.51 42)" />
+                  <path
+                    d="M70 0V496H194V440H212Q223 470 248.5 484.0Q274 498 308 498H368V386H306Q258 386 227.0 360.5Q196 335 196 282V0Z"
+                    transform="matrix(0.03 0 0 -0.03 198.19 42)" />
+                  <path
+                    d="M124 -200V-90H394Q422 -90 422 -60V65H404Q396 48 379.0 31.0Q362 14 333.0 3.0Q304 -8 259 -8Q201 -8 157.5 18.5Q114 45 90.0 92.0Q66 139 66 200V496H192V210Q192 154 219.5 126.0Q247 98 298 98Q356 98 388.0 136.5Q420 175 420 244V496H546V-88Q546 -139 516.0 -169.5Q486 -200 436 -200Z"
+                    transform="matrix(0.03 0 0 -0.03 220.07 42)" />
+                </g>
+              </g>
+            </svg></a>
+          <nav aria-label="Main Menu">
+            <ul>
+              <li><a href="#">Research</a></li>
+              <li><a href="#">Publications</a></li>
+              <li><a href="#">Blog</a></li>
+              <li><a href="#">CV</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
+    <main class="grid">
+      <article class="post">
+        <p class="post-meta">51.5N 0.1W :: 2026.03.14 :: 8 min read :: Ingrid Vance</p>
+        <div class="compass">✧</div>
+        <h1>Redrawing the Commuter Shed: A Mobile-Data Approach</h1>
+        <p>Xerum quo qui aut unt expliquam qui dolut labo, aque venitatiusda cum voluptionse latur sitiae dolessi aut
+          parist, using anonymised mobility traces to redraw commuter-shed boundaries that no longer match the
+          census-defined ones.</p>
+        <h2>Method</h2>
+        <p>Quianimin porecus evelectur cum que nis nust voloribus ratem aut omnimi, extending the mobility-clustering
+          approach described in <a href="#">our earlier working paper</a> to a national dataset.</p>
+        <blockquote>
+          The map is not the territory.
+          <footer>Alfred Korzybski</footer>
+        </blockquote>
+        <h3>Clustering</h3>
+        <p>Commuter sheds were delineated from origin-destination flows using <code>delineate_shed()</code>:</p>
+        <pre><code>def delineate_shed(od_matrix, threshold=0.15):
+    graph = build_flow_graph(od_matrix, threshold)
+    return community_detection(graph)</code></pre>
+        <p>Itatur quiatae cullecum rem ent aut odis in re eossequodi nonsequ, with the full boundary dataset released as
+          an open geospatial layer.</p>
+        <ul class="tags">
+          <li><a href="#">human-geography</a></li>
+          <li><a href="#">mobility-data</a></li>
+          <li><a href="#">spatial-analysis</a></li>
+        </ul>
+      </article>
+      <aside class="sidebar">
+        <div class="card">
+          <h4>Group</h4>
+          <p style="font-size: var(--font-size-small); margin:0;">Spatial Analysis Lab. Mobility, commuting geography,
+            and administrative boundary redesign.</p>
+        </div>
+      </aside>
+      <section class="post-list">
+        <h2>Recent Posts</h2>
+        <article class="post-list-item">
+          <h3><a href="#">Reading a Choropleth Map Critically</a></h3>
+          <p class="excerpt-meta">2026.02.15 :: 5 min read</p>
+          <p>Common pitfalls in area-based visualisation, read more →</p>
+        </article>
+        <article class="post-list-item">
+          <h3><a href="#">Why Postcodes Make Bad Geographic Units</a></h3>
+          <p class="excerpt-meta">2026.01.20 :: 6 min read</p>
+          <p>A cautionary note for spatial researchers, read more →</p>
+        </article>
+      </section>
+      <footer class="site-footer">
+        <ul class="socials">
+          <li><a href="#" title="Email" aria-label="Email"><svg class="social-icon" role="img" aria-hidden="true">
+                <use href="#icon-email" />
+              </svg></a></li>
+          <li><a href="#" title="ORCID" aria-label="ORCID"><svg class="social-icon" role="img" aria-hidden="true">
+                <use href="#icon-orcid" />
+              </svg></a></li>
+          <li><a href="#" title="Google Scholar" aria-label="Google Scholar"><svg class="social-icon" role="img"
+                aria-hidden="true">
+                <use href="#icon-google-scholar" />
+              </svg></a></li>
+        </ul>
+        <p>© 2026 Ingrid Vance :: Built with Tapestry :: Theme "Cartographer's Atlas"</p>
+      </footer>
+    </main>
+  </div>
+
+  <div class="tile-label">Dark mode</div>
+  <div class="theme-dark site">
+    <div class="grid grid-ruler">
+      <div class="cell" style="grid-column: span 1;">1</div>
+      <div class="cell" style="grid-column: span 1;">2</div>
+      <div class="cell" style="grid-column: span 1;">3</div>
+      <div class="cell" style="grid-column: span 1;">4</div>
+      <div class="cell" style="grid-column: span 1;">5</div>
+      <div class="cell" style="grid-column: span 1;">6</div>
+      <div class="cell" style="grid-column: span 1;">7</div>
+      <div class="cell" style="grid-column: span 1;">8</div>
+      <div class="cell" style="grid-column: span 1;">9</div>
+      <div class="cell" style="grid-column: span 1;">10</div>
+      <div class="cell" style="grid-column: span 1;">11</div>
+      <div class="cell" style="grid-column: span 1;">12</div>
+    </div>
+    <header class="site-header">
+      <div class="grid">
+        <div class="header-inner">
+          <a class="brand" href="#" aria-label="Prof. Ingrid Vance"><svg class="tapestry-logo" viewBox="0 0 260 64"
+              role="img" aria-label="Tapestry" xmlns="http://www.w3.org/2000/svg">
+              <g transform="translate(7.275, -3.000)">
+                <g stroke="currentColor" stroke-width="6" stroke-linecap="round">
+                  <line x1="12" y1="16" x2="52" y2="16" />
+                  <line x1="32" y1="16" x2="32" y2="30" />
+                  <line x1="32" y1="44" x2="32" y2="54" />
+                  <line x1="18" y1="37" x2="46" y2="37" />
+                </g>
+                <g fill="currentColor">
+                  <path
+                    d="M224 -14Q171 -14 129.0 4.5Q87 23 62.5 58.5Q38 94 38 145Q38 196 62.5 230.5Q87 265 130.5 282.5Q174 300 230 300H366V328Q366 363 344.0 385.5Q322 408 274 408Q227 408 204.0 386.5Q181 365 174 331L58 370Q70 408 96.5 439.5Q123 471 167.5 490.5Q212 510 276 510Q374 510 431.0 461.0Q488 412 488 319V134Q488 104 516 104H556V0H472Q435 0 411.0 18.0Q387 36 387 66V67H368Q364 55 350.0 35.5Q336 16 306.0 1.0Q276 -14 224 -14ZM246 88Q299 88 332.5 117.5Q366 147 366 196V206H239Q204 206 184.0 191.0Q164 176 164 149Q164 122 185.0 105.0Q206 88 246 88Z"
+                    transform="matrix(0.03 0 0 -0.03 65.0 42)" />
+                  <path
+                    d="M70 -200V496H194V436H212Q229 465 265.0 487.5Q301 510 368 510Q428 510 479.0 480.5Q530 451 561.0 394.0Q592 337 592 256V240Q592 159 561.0 102.0Q530 45 479.0 15.5Q428 -14 368 -14Q323 -14 292.5 -3.5Q262 7 243.5 23.5Q225 40 214 57H196V-200ZM330 96Q389 96 427.5 133.5Q466 171 466 243V253Q466 325 427.0 362.5Q388 400 330 400Q272 400 233.0 362.5Q194 325 194 253V243Q194 171 233.0 133.5Q272 96 330 96Z"
+                    transform="matrix(0.03 0 0 -0.03 92.34 42)" />
+                  <path
+                    d="M296 -14Q222 -14 165.5 17.5Q109 49 77.5 106.5Q46 164 46 242V254Q46 332 77.0 389.5Q108 447 164.0 478.5Q220 510 294 510Q367 510 421.0 477.5Q475 445 505.0 387.5Q535 330 535 254V211H174Q176 160 212.0 128.0Q248 96 300 96Q353 96 378.0 119.0Q403 142 416 170L519 116Q505 90 478.5 59.5Q452 29 408.0 7.5Q364 -14 296 -14ZM175 305H407Q403 348 372.5 374.0Q342 400 293 400Q242 400 212.0 374.0Q182 348 175 305Z"
+                    transform="matrix(0.03 0 0 -0.03 121.48 42)" />
+                  <path
+                    d="M276 -14Q179 -14 117.0 28.0Q55 70 42 148L158 178Q165 143 181.5 123.0Q198 103 222.5 94.5Q247 86 276 86Q320 86 341.0 101.5Q362 117 362 140Q362 163 342.0 175.5Q322 188 278 196L250 201Q198 211 155.0 228.5Q112 246 86.0 277.0Q60 308 60 357Q60 431 114.0 470.5Q168 510 256 510Q339 510 394.0 473.0Q449 436 466 376L349 340Q341 378 316.5 394.0Q292 410 256 410Q220 410 201.0 397.5Q182 385 182 363Q182 339 202.0 327.5Q222 316 256 310L284 305Q340 295 385.5 278.5Q431 262 457.5 231.5Q484 201 484 149Q484 71 427.5 28.5Q371 -14 276 -14Z"
+                    transform="matrix(0.03 0 0 -0.03 148.79 42)" />
+                  <path
+                    d="M260 0Q211 0 180.5 30.5Q150 61 150 112V392H26V496H150V650H276V496H412V392H276V134Q276 104 304 104H400V0Z"
+                    transform="matrix(0.03 0 0 -0.03 174.51 42)" />
+                  <path
+                    d="M70 0V496H194V440H212Q223 470 248.5 484.0Q274 498 308 498H368V386H306Q258 386 227.0 360.5Q196 335 196 282V0Z"
+                    transform="matrix(0.03 0 0 -0.03 198.19 42)" />
+                  <path
+                    d="M124 -200V-90H394Q422 -90 422 -60V65H404Q396 48 379.0 31.0Q362 14 333.0 3.0Q304 -8 259 -8Q201 -8 157.5 18.5Q114 45 90.0 92.0Q66 139 66 200V496H192V210Q192 154 219.5 126.0Q247 98 298 98Q356 98 388.0 136.5Q420 175 420 244V496H546V-88Q546 -139 516.0 -169.5Q486 -200 436 -200Z"
+                    transform="matrix(0.03 0 0 -0.03 220.07 42)" />
+                </g>
+              </g>
+            </svg></a>
+          <nav aria-label="Main Menu">
+            <ul>
+              <li><a href="#">Research</a></li>
+              <li><a href="#">Publications</a></li>
+              <li><a href="#">Blog</a></li>
+              <li><a href="#">CV</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
+    <main class="grid">
+      <article class="post">
+        <p class="post-meta">51.5N 0.1W :: 2026.03.14 :: 8 min read :: Ingrid Vance</p>
+        <div class="compass">✧</div>
+        <h1>Redrawing the Commuter Shed: A Mobile-Data Approach</h1>
+        <p>Xerum quo qui aut unt expliquam qui dolut labo, aque venitatiusda cum voluptionse latur sitiae dolessi aut
+          parist, using anonymised mobility traces to redraw commuter-shed boundaries that no longer match the
+          census-defined ones.</p>
+        <h2>Method</h2>
+        <p>Quianimin porecus evelectur cum que nis nust voloribus ratem aut omnimi, extending the mobility-clustering
+          approach described in <a href="#">our earlier working paper</a> to a national dataset.</p>
+        <blockquote>
+          The map is not the territory.
+          <footer>Alfred Korzybski</footer>
+        </blockquote>
+        <h3>Clustering</h3>
+        <p>Commuter sheds were delineated from origin-destination flows using <code>delineate_shed()</code>:</p>
+        <pre><code>def delineate_shed(od_matrix, threshold=0.15):
+    graph = build_flow_graph(od_matrix, threshold)
+    return community_detection(graph)</code></pre>
+        <p>Itatur quiatae cullecum rem ent aut odis in re eossequodi nonsequ, with the full boundary dataset released as
+          an open geospatial layer.</p>
+        <ul class="tags">
+          <li><a href="#">human-geography</a></li>
+          <li><a href="#">mobility-data</a></li>
+          <li><a href="#">spatial-analysis</a></li>
+        </ul>
+      </article>
+      <aside class="sidebar">
+        <div class="card">
+          <h4>Group</h4>
+          <p style="font-size: var(--font-size-small); margin:0;">Spatial Analysis Lab. Mobility, commuting geography,
+            and administrative boundary redesign.</p>
+        </div>
+      </aside>
+      <section class="post-list">
+        <h2>Recent Posts</h2>
+        <article class="post-list-item">
+          <h3><a href="#">Reading a Choropleth Map Critically</a></h3>
+          <p class="excerpt-meta">2026.02.15 :: 5 min read</p>
+          <p>Common pitfalls in area-based visualisation, read more →</p>
+        </article>
+        <article class="post-list-item">
+          <h3><a href="#">Why Postcodes Make Bad Geographic Units</a></h3>
+          <p class="excerpt-meta">2026.01.20 :: 6 min read</p>
+          <p>A cautionary note for spatial researchers, read more →</p>
+        </article>
+      </section>
+      <footer class="site-footer">
+        <ul class="socials">
+          <li><a href="#" title="Email" aria-label="Email"><svg class="social-icon" role="img" aria-hidden="true">
+                <use href="#icon-email" />
+              </svg></a></li>
+          <li><a href="#" title="ORCID" aria-label="ORCID"><svg class="social-icon" role="img" aria-hidden="true">
+                <use href="#icon-orcid" />
+              </svg></a></li>
+          <li><a href="#" title="Google Scholar" aria-label="Google Scholar"><svg class="social-icon" role="img"
+                aria-hidden="true">
+                <use href="#icon-google-scholar" />
+              </svg></a></li>
+        </ul>
+        <p>© 2026 Ingrid Vance :: Built with Tapestry :: Theme "Cartographer's Atlas"</p>
+      </footer>
+    </main>
+  </div>
+</body>
+
+</html>

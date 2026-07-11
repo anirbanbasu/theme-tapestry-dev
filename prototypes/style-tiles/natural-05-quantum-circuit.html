@@ -1,0 +1,757 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Natural — Option 5: Quantum Circuit</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Chivo:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --font-heading: "Chivo", "Helvetica Neue", Arial, sans-serif;
+      --font-body: "Plus Jakarta Sans", "Segoe UI", Helvetica, Arial, sans-serif;
+      --font-code: "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
+
+      --font-size-h1: 2.7rem;
+      --font-size-h2: 1.55rem;
+      --font-size-h3: 1.15rem;
+      --font-size-body: 1.0625rem;
+      --font-size-small: 0.8rem;
+      --line-height-heading: 1.15;
+      --line-height-body: 1.65;
+
+      --space-xs: 0.5rem;
+      --space-sm: 1rem;
+      --space-md: 1.5rem;
+      --space-lg: 2.5rem;
+      --space-xl: 4rem;
+      --radius-sm: 4px;
+      --radius-md: 8px;
+      --shadow-sm: 0 0 10px rgba(163, 21, 126, 0.2);
+      --shadow-md: 0 0 24px rgba(163, 21, 126, 0.25);
+    }
+
+    .theme-light {
+      --colour-bg-primary: #f5f3fb;
+      --colour-bg-secondary: #e9e4f6;
+      --colour-text-primary: #241b3d;
+      --colour-text-heading: #150f28;
+      --colour-text-muted: #6a5f8a;
+      --colour-accent-primary: #0a7a86;
+      /* cyan, darkened — 4.61:1 */
+      --colour-accent-secondary: #a3157e;
+      /* magenta, darkened — 6.44:1 */
+      --colour-border: #d7cdec;
+      --colour-code-bg: #e9e4f6;
+    }
+
+    .theme-dark {
+      --colour-bg-primary: #120c24;
+      --colour-bg-secondary: #1c1438;
+      --colour-text-primary: #ece6fa;
+      --colour-text-heading: #ffffff;
+      --colour-text-muted: #b0a3d6;
+      --colour-accent-primary: #4de8f0;
+      /* cyan-light — 12.79:1 */
+      --colour-accent-secondary: #ef6fd8;
+      /* magenta-light — 7.19:1 */
+      --colour-border: #2e2354;
+      --colour-code-bg: #1c1438;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--font-body);
+    }
+
+    .tile-label {
+      font-family: var(--font-code);
+      font-size: var(--font-size-small);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: var(--space-sm) var(--space-md);
+      background: #150f28;
+      color: #4de8f0;
+    }
+
+    .spec-sheet {
+      font-family: system-ui, sans-serif;
+      padding: var(--space-lg) var(--space-md);
+      background: #fff;
+      border-bottom: 4px solid #241b3d;
+    }
+
+    .spec-sheet h1 {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 2rem;
+      margin: 0 0 var(--space-xs);
+    }
+
+    .spec-sheet p {
+      max-width: 64ch;
+      color: #333;
+    }
+
+    .swatches {
+      display: flex;
+      gap: var(--space-sm);
+      flex-wrap: wrap;
+      margin-top: var(--space-md);
+    }
+
+    .swatch {
+      width: 150px;
+    }
+
+    .swatch-block {
+      height: 56px;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .swatch small {
+      display: block;
+      font-family: var(--font-code);
+      font-size: 0.7rem;
+      margin-top: 4px;
+    }
+
+    .site {
+      padding: var(--space-lg) 0;
+      position: relative;
+    }
+
+    .theme-light.site {
+      background: var(--colour-bg-primary);
+      color: var(--colour-text-primary);
+      background-image: linear-gradient(var(--colour-border) 1px, transparent 1px);
+      background-size: 100% 46px;
+    }
+
+    .theme-dark.site {
+      background: var(--colour-bg-primary);
+      color: var(--colour-text-primary);
+      background-image: linear-gradient(rgba(77, 232, 240, 0.06) 1px, transparent 1px);
+      background-size: 100% 46px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: var(--space-md);
+      max-width: 1200px;
+      margin-inline: auto;
+      padding-inline: var(--space-md);
+      position: relative;
+      z-index: 1;
+    }
+
+    .grid-ruler {
+      margin-bottom: var(--space-md);
+    }
+
+    .grid-ruler .cell {
+      background: var(--colour-bg-secondary);
+      border: 1px dashed var(--colour-border);
+      border-radius: var(--radius-sm);
+      font-family: var(--font-code);
+      font-size: 0.65rem;
+      text-align: center;
+      padding: var(--space-xs) 0;
+      color: var(--colour-text-muted);
+    }
+
+    .site-header {
+      padding-block: var(--space-md);
+      margin-bottom: var(--space-lg);
+      border-bottom: 1px solid var(--colour-border);
+      position: relative;
+      z-index: 1;
+    }
+
+    .header-inner {
+      grid-column: 1 / span 12;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .tapestry-logo {
+      height: 36px;
+      width: auto;
+      color: var(--colour-text-heading);
+      flex-shrink: 0;
+    }
+
+    nav[aria-label="Main Menu"] ul {
+      list-style: none;
+      display: flex;
+      gap: var(--space-md);
+      margin: 0;
+      padding: 0;
+    }
+
+    nav[aria-label="Main Menu"] a {
+      font-family: var(--font-code);
+      font-size: var(--font-size-small);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--colour-text-primary);
+      text-decoration: none;
+    }
+
+    nav[aria-label="Main Menu"] a:hover,
+    nav[aria-label="Main Menu"] a:focus-visible {
+      color: var(--colour-accent-secondary);
+    }
+
+    article.post {
+      grid-column: 1 / span 8;
+    }
+
+    aside.sidebar {
+      grid-column: 9 / span 4;
+    }
+
+    h1 {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: var(--font-size-h1);
+      line-height: var(--line-height-heading);
+      color: var(--colour-text-heading);
+      margin: 0 0 var(--space-xs);
+    }
+
+    h1+.qwire {
+      height: 3px;
+      background: linear-gradient(90deg, var(--colour-accent-primary), var(--colour-accent-secondary));
+      margin-bottom: var(--space-lg);
+      width: 140px;
+    }
+
+    h2 {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: var(--font-size-h2);
+      color: var(--colour-text-heading);
+      margin-top: var(--space-lg);
+    }
+
+    h2::before {
+      content: "⟩ ";
+      color: var(--colour-accent-secondary);
+    }
+
+    h3 {
+      font-family: var(--font-heading);
+      font-weight: 600;
+      font-size: var(--font-size-h3);
+      color: var(--colour-text-heading);
+    }
+
+    .post-meta {
+      font-family: var(--font-code);
+      font-size: var(--font-size-small);
+      color: var(--colour-text-muted);
+      margin-bottom: var(--space-md);
+    }
+
+    p {
+      font-size: var(--font-size-body);
+      line-height: var(--line-height-body);
+    }
+
+    a {
+      color: var(--colour-accent-primary);
+    }
+
+    blockquote {
+      margin: var(--space-lg) 0;
+      padding: var(--space-md) var(--space-lg);
+      border-radius: var(--radius-md);
+      font-size: 1.05rem;
+      color: var(--colour-text-heading);
+      background: var(--colour-bg-secondary);
+      border: 1px solid var(--colour-accent-secondary);
+      box-shadow: var(--shadow-sm);
+    }
+
+    blockquote footer {
+      margin-top: var(--space-sm);
+      font-family: var(--font-code);
+      font-style: normal;
+      font-size: var(--font-size-small);
+      color: var(--colour-text-muted);
+    }
+
+    blockquote footer::before {
+      content: "// ";
+    }
+
+    code {
+      font-family: var(--font-code);
+      background: var(--colour-code-bg);
+      padding: 0.15em 0.4em;
+      border-radius: var(--radius-sm);
+      font-size: 0.85em;
+      color: var(--colour-accent-primary);
+    }
+
+    pre {
+      font-family: var(--font-code);
+      background: var(--colour-code-bg);
+      border: 1px solid var(--colour-accent-primary);
+      border-radius: var(--radius-md);
+      padding: var(--space-md);
+      overflow-x: auto;
+      box-shadow: var(--shadow-sm);
+    }
+
+    pre code {
+      background: none;
+      padding: 0;
+      color: inherit;
+    }
+
+    .tags {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-xs);
+      padding: 0;
+      margin: var(--space-md) 0;
+    }
+
+    .tags a {
+      font-family: var(--font-code);
+      font-size: var(--font-size-small);
+      text-decoration: none;
+      border: 1px solid var(--colour-accent-secondary);
+      border-radius: var(--radius-sm);
+      padding: 0.2em 0.7em;
+      color: var(--colour-accent-secondary);
+    }
+
+    .tags a::before {
+      content: "|";
+    }
+
+    .tags a::after {
+      content: "⟩";
+    }
+
+    .sidebar h4 {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 1.05rem;
+      margin-top: 0;
+    }
+
+    .sidebar .card {
+      background: var(--colour-bg-secondary);
+      border: 1px solid var(--colour-accent-primary);
+      border-radius: var(--radius-md);
+      padding: var(--space-md);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .post-list {
+      grid-column: 1 / span 12;
+      margin-top: var(--space-xl);
+      border-top: 1px solid var(--colour-border);
+      padding-top: var(--space-lg);
+    }
+
+    .post-list-item {
+      padding-block: var(--space-md);
+      border-bottom: 1px solid var(--colour-border);
+    }
+
+    .post-list-item h3 a {
+      color: var(--colour-text-heading);
+      text-decoration: none;
+    }
+
+    .post-list-item .excerpt-meta {
+      font-family: var(--font-code);
+      font-size: var(--font-size-small);
+      color: var(--colour-text-muted);
+    }
+
+    .site-footer {
+      grid-column: 1 / span 12;
+      margin-top: var(--space-xl);
+      padding-top: var(--space-lg);
+      border-top: 1px solid var(--colour-border);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: var(--space-md);
+      font-family: var(--font-code);
+      font-size: var(--font-size-small);
+      color: var(--colour-text-muted);
+    }
+
+    .socials {
+      list-style: none;
+      display: flex;
+      gap: var(--space-sm);
+      padding: 0;
+      margin: 0;
+      align-items: center;
+    }
+
+    .socials a {
+      color: var(--colour-accent-secondary);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: 1px solid var(--colour-accent-secondary);
+    }
+
+    .social-icon {
+      width: 17px;
+      height: 17px;
+    }
+  </style>
+</head>
+
+<body>
+  <svg style="display:none" aria-hidden="true">
+    <symbol id="icon-email" viewBox="0 0 24 24">
+      <rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="2" />
+      <path d="M3 7l9 6 9-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+        stroke-linejoin="round" />
+    </symbol>
+    <symbol id="icon-orcid" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2" /><text x="12" y="16.5"
+        text-anchor="middle" font-size="9" font-family="Arial, sans-serif" font-weight="700"
+        fill="currentColor">iD</text>
+    </symbol>
+    <symbol id="icon-github" viewBox="0 0 24 24">
+      <polyline points="9 6 3 12 9 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+        stroke-linejoin="round" />
+      <polyline points="15 6 21 12 15 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+        stroke-linejoin="round" />
+    </symbol>
+  </svg>
+
+  <div class="spec-sheet">
+    <h1>Natural — Option 5 · "Quantum Circuit"</h1>
+    <p>A precise, diagrammatic take on quantum computing — cyan/magenta as the two basis states, a faint horizontal
+      "circuit wire" ruling across the page, Dirac bra-ket brackets wrapping tag pills, a two-colour gradient rule under
+      the title standing in for a superposition state. Suits quantum information, quantum computing, and
+      theoretical-physics researchers.</p>
+    <p><strong>Headings</strong> Chivo 600/700, fallback Helvetica Neue, Arial, sans-serif · <strong>Body</strong> Plus
+      Jakarta Sans 400/500, fallback Segoe UI, Helvetica, Arial, sans-serif · <strong>Code</strong> JetBrains Mono
+      400/500, fallback SFMono-Regular, Consolas, monospace.</p>
+    <div class="swatches">
+      <div class="swatch">
+        <div class="swatch-block" style="background:#f5f3fb"></div><small>bg-primary L #f5f3fb</small>
+      </div>
+      <div class="swatch">
+        <div class="swatch-block" style="background:#241b3d"></div><small>text L #241b3d (14.7:1)</small>
+      </div>
+      <div class="swatch">
+        <div class="swatch-block" style="background:#0a7a86"></div><small>accent-1 L #0a7a86 (4.6:1)</small>
+      </div>
+      <div class="swatch">
+        <div class="swatch-block" style="background:#a3157e"></div><small>accent-2 L #a3157e (6.4:1)</small>
+      </div>
+      <div class="swatch">
+        <div class="swatch-block" style="background:#120c24"></div><small>bg-primary D #120c24</small>
+      </div>
+      <div class="swatch">
+        <div class="swatch-block" style="background:#ece6fa"></div><small>text D #ece6fa (15.6:1)</small>
+      </div>
+      <div class="swatch">
+        <div class="swatch-block" style="background:#4de8f0"></div><small>accent-1 D #4de8f0 (12.8:1)</small>
+      </div>
+      <div class="swatch">
+        <div class="swatch-block" style="background:#ef6fd8"></div><small>accent-2 D #ef6fd8 (7.2:1)</small>
+      </div>
+    </div>
+  </div>
+
+  <div class="tile-label">Light mode</div>
+  <div class="theme-light site">
+    <div class="grid grid-ruler">
+      <div class="cell" style="grid-column: span 1;">1</div>
+      <div class="cell" style="grid-column: span 1;">2</div>
+      <div class="cell" style="grid-column: span 1;">3</div>
+      <div class="cell" style="grid-column: span 1;">4</div>
+      <div class="cell" style="grid-column: span 1;">5</div>
+      <div class="cell" style="grid-column: span 1;">6</div>
+      <div class="cell" style="grid-column: span 1;">7</div>
+      <div class="cell" style="grid-column: span 1;">8</div>
+      <div class="cell" style="grid-column: span 1;">9</div>
+      <div class="cell" style="grid-column: span 1;">10</div>
+      <div class="cell" style="grid-column: span 1;">11</div>
+      <div class="cell" style="grid-column: span 1;">12</div>
+    </div>
+    <header class="site-header">
+      <div class="grid">
+        <div class="header-inner">
+          <a class="brand" href="#" aria-label="Dr. Aiko Tanaka"><svg class="tapestry-logo" viewBox="0 0 260 64"
+              role="img" aria-label="Tapestry" xmlns="http://www.w3.org/2000/svg">
+              <g transform="translate(7.275, -3.000)">
+                <g stroke="currentColor" stroke-width="6" stroke-linecap="round">
+                  <line x1="12" y1="16" x2="52" y2="16" />
+                  <line x1="32" y1="16" x2="32" y2="30" />
+                  <line x1="32" y1="44" x2="32" y2="54" />
+                  <line x1="18" y1="37" x2="46" y2="37" />
+                </g>
+                <g fill="currentColor">
+                  <path
+                    d="M224 -14Q171 -14 129.0 4.5Q87 23 62.5 58.5Q38 94 38 145Q38 196 62.5 230.5Q87 265 130.5 282.5Q174 300 230 300H366V328Q366 363 344.0 385.5Q322 408 274 408Q227 408 204.0 386.5Q181 365 174 331L58 370Q70 408 96.5 439.5Q123 471 167.5 490.5Q212 510 276 510Q374 510 431.0 461.0Q488 412 488 319V134Q488 104 516 104H556V0H472Q435 0 411.0 18.0Q387 36 387 66V67H368Q364 55 350.0 35.5Q336 16 306.0 1.0Q276 -14 224 -14ZM246 88Q299 88 332.5 117.5Q366 147 366 196V206H239Q204 206 184.0 191.0Q164 176 164 149Q164 122 185.0 105.0Q206 88 246 88Z"
+                    transform="matrix(0.03 0 0 -0.03 65.0 42)" />
+                  <path
+                    d="M70 -200V496H194V436H212Q229 465 265.0 487.5Q301 510 368 510Q428 510 479.0 480.5Q530 451 561.0 394.0Q592 337 592 256V240Q592 159 561.0 102.0Q530 45 479.0 15.5Q428 -14 368 -14Q323 -14 292.5 -3.5Q262 7 243.5 23.5Q225 40 214 57H196V-200ZM330 96Q389 96 427.5 133.5Q466 171 466 243V253Q466 325 427.0 362.5Q388 400 330 400Q272 400 233.0 362.5Q194 325 194 253V243Q194 171 233.0 133.5Q272 96 330 96Z"
+                    transform="matrix(0.03 0 0 -0.03 92.34 42)" />
+                  <path
+                    d="M296 -14Q222 -14 165.5 17.5Q109 49 77.5 106.5Q46 164 46 242V254Q46 332 77.0 389.5Q108 447 164.0 478.5Q220 510 294 510Q367 510 421.0 477.5Q475 445 505.0 387.5Q535 330 535 254V211H174Q176 160 212.0 128.0Q248 96 300 96Q353 96 378.0 119.0Q403 142 416 170L519 116Q505 90 478.5 59.5Q452 29 408.0 7.5Q364 -14 296 -14ZM175 305H407Q403 348 372.5 374.0Q342 400 293 400Q242 400 212.0 374.0Q182 348 175 305Z"
+                    transform="matrix(0.03 0 0 -0.03 121.48 42)" />
+                  <path
+                    d="M276 -14Q179 -14 117.0 28.0Q55 70 42 148L158 178Q165 143 181.5 123.0Q198 103 222.5 94.5Q247 86 276 86Q320 86 341.0 101.5Q362 117 362 140Q362 163 342.0 175.5Q322 188 278 196L250 201Q198 211 155.0 228.5Q112 246 86.0 277.0Q60 308 60 357Q60 431 114.0 470.5Q168 510 256 510Q339 510 394.0 473.0Q449 436 466 376L349 340Q341 378 316.5 394.0Q292 410 256 410Q220 410 201.0 397.5Q182 385 182 363Q182 339 202.0 327.5Q222 316 256 310L284 305Q340 295 385.5 278.5Q431 262 457.5 231.5Q484 201 484 149Q484 71 427.5 28.5Q371 -14 276 -14Z"
+                    transform="matrix(0.03 0 0 -0.03 148.79 42)" />
+                  <path
+                    d="M260 0Q211 0 180.5 30.5Q150 61 150 112V392H26V496H150V650H276V496H412V392H276V134Q276 104 304 104H400V0Z"
+                    transform="matrix(0.03 0 0 -0.03 174.51 42)" />
+                  <path
+                    d="M70 0V496H194V440H212Q223 470 248.5 484.0Q274 498 308 498H368V386H306Q258 386 227.0 360.5Q196 335 196 282V0Z"
+                    transform="matrix(0.03 0 0 -0.03 198.19 42)" />
+                  <path
+                    d="M124 -200V-90H394Q422 -90 422 -60V65H404Q396 48 379.0 31.0Q362 14 333.0 3.0Q304 -8 259 -8Q201 -8 157.5 18.5Q114 45 90.0 92.0Q66 139 66 200V496H192V210Q192 154 219.5 126.0Q247 98 298 98Q356 98 388.0 136.5Q420 175 420 244V496H546V-88Q546 -139 516.0 -169.5Q486 -200 436 -200Z"
+                    transform="matrix(0.03 0 0 -0.03 220.07 42)" />
+                </g>
+              </g>
+            </svg></a>
+          <nav aria-label="Main Menu">
+            <ul>
+              <li><a href="#">Research</a></li>
+              <li><a href="#">Publications</a></li>
+              <li><a href="#">Blog</a></li>
+              <li><a href="#">CV</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
+    <main class="grid">
+      <article class="post">
+        <p class="post-meta">Published 2026.03.14 :: 8 min read :: Aiko Tanaka</p>
+        <h1>Error Mitigation for Near-Term Variational Circuits</h1>
+        <div class="qwire"></div>
+        <p>Xerum quo qui aut unt expliquam qui dolut labo, aque venitatiusda cum voluptionse latur sitiae dolessi aut
+          parist, presenting a zero-noise extrapolation scheme that recovers ground-state energy estimates within
+          chemical accuracy on current hardware.</p>
+        <h2>Circuit design</h2>
+        <p>Quianimin porecus evelectur cum que nis nust voloribus ratem aut omnimi, building on the ansatz introduced in
+          <a href="#">our earlier benchmark paper</a> with a shallower gate depth.</p>
+        <blockquote>
+          Nature isn't classical, dammit, and if you want to make a simulation of nature, you'd better make it quantum
+          mechanical.
+          <footer>Richard Feynman</footer>
+        </blockquote>
+        <h3>Extrapolation</h3>
+        <p>The mitigated expectation value is recovered via <code>zero_noise_extrapolate()</code>:</p>
+        <pre><code>def zero_noise_extrapolate(scale_factors, expectations):
+    coeffs = np.polyfit(scale_factors, expectations, deg=1)
+    return np.polyval(coeffs, 0.0)</code></pre>
+        <p>Itatur quiatae cullecum rem ent aut odis in re eossequodi nonsequ, with the full circuit definitions and
+          hardware results released alongside the paper.</p>
+        <ul class="tags">
+          <li><a href="#">quantum-computing</a></li>
+          <li><a href="#">error-mitigation</a></li>
+          <li><a href="#">variational-circuits</a></li>
+        </ul>
+      </article>
+      <aside class="sidebar">
+        <div class="card">
+          <h4>Lab</h4>
+          <p style="font-size: var(--font-size-small); margin:0;">Quantum Information Group. Near-term algorithms, error
+            mitigation, and hardware benchmarking.</p>
+        </div>
+      </aside>
+      <section class="post-list">
+        <h2>Recent Posts</h2>
+        <article class="post-list-item">
+          <h3><a href="#">Reading a Quantum Volume Benchmark</a></h3>
+          <p class="excerpt-meta">2026.02.21 :: 5 min read</p>
+          <p>What the number actually tells you, read more →</p>
+        </article>
+        <article class="post-list-item">
+          <h3><a href="#">Our First Attempt at Hardware Access</a></h3>
+          <p class="excerpt-meta">2026.01.27 :: 4 min read</p>
+          <p>Queue times, calibration drift, and lessons learned, read more →</p>
+        </article>
+      </section>
+      <footer class="site-footer">
+        <ul class="socials">
+          <li><a href="#" title="Email" aria-label="Email"><svg class="social-icon" role="img" aria-hidden="true">
+                <use href="#icon-email" />
+              </svg></a></li>
+          <li><a href="#" title="ORCID" aria-label="ORCID"><svg class="social-icon" role="img" aria-hidden="true">
+                <use href="#icon-orcid" />
+              </svg></a></li>
+          <li><a href="#" title="GitHub" aria-label="GitHub"><svg class="social-icon" role="img" aria-hidden="true">
+                <use href="#icon-github" />
+              </svg></a></li>
+        </ul>
+        <p>© 2026 Aiko Tanaka :: Built with Tapestry :: Theme "Quantum Circuit"</p>
+      </footer>
+    </main>
+  </div>
+
+  <div class="tile-label">Dark mode</div>
+  <div class="theme-dark site">
+    <div class="grid grid-ruler">
+      <div class="cell" style="grid-column: span 1;">1</div>
+      <div class="cell" style="grid-column: span 1;">2</div>
+      <div class="cell" style="grid-column: span 1;">3</div>
+      <div class="cell" style="grid-column: span 1;">4</div>
+      <div class="cell" style="grid-column: span 1;">5</div>
+      <div class="cell" style="grid-column: span 1;">6</div>
+      <div class="cell" style="grid-column: span 1;">7</div>
+      <div class="cell" style="grid-column: span 1;">8</div>
+      <div class="cell" style="grid-column: span 1;">9</div>
+      <div class="cell" style="grid-column: span 1;">10</div>
+      <div class="cell" style="grid-column: span 1;">11</div>
+      <div class="cell" style="grid-column: span 1;">12</div>
+    </div>
+    <header class="site-header">
+      <div class="grid">
+        <div class="header-inner">
+          <a class="brand" href="#" aria-label="Dr. Aiko Tanaka"><svg class="tapestry-logo" viewBox="0 0 260 64"
+              role="img" aria-label="Tapestry" xmlns="http://www.w3.org/2000/svg">
+              <g transform="translate(7.275, -3.000)">
+                <g stroke="currentColor" stroke-width="6" stroke-linecap="round">
+                  <line x1="12" y1="16" x2="52" y2="16" />
+                  <line x1="32" y1="16" x2="32" y2="30" />
+                  <line x1="32" y1="44" x2="32" y2="54" />
+                  <line x1="18" y1="37" x2="46" y2="37" />
+                </g>
+                <g fill="currentColor">
+                  <path
+                    d="M224 -14Q171 -14 129.0 4.5Q87 23 62.5 58.5Q38 94 38 145Q38 196 62.5 230.5Q87 265 130.5 282.5Q174 300 230 300H366V328Q366 363 344.0 385.5Q322 408 274 408Q227 408 204.0 386.5Q181 365 174 331L58 370Q70 408 96.5 439.5Q123 471 167.5 490.5Q212 510 276 510Q374 510 431.0 461.0Q488 412 488 319V134Q488 104 516 104H556V0H472Q435 0 411.0 18.0Q387 36 387 66V67H368Q364 55 350.0 35.5Q336 16 306.0 1.0Q276 -14 224 -14ZM246 88Q299 88 332.5 117.5Q366 147 366 196V206H239Q204 206 184.0 191.0Q164 176 164 149Q164 122 185.0 105.0Q206 88 246 88Z"
+                    transform="matrix(0.03 0 0 -0.03 65.0 42)" />
+                  <path
+                    d="M70 -200V496H194V436H212Q229 465 265.0 487.5Q301 510 368 510Q428 510 479.0 480.5Q530 451 561.0 394.0Q592 337 592 256V240Q592 159 561.0 102.0Q530 45 479.0 15.5Q428 -14 368 -14Q323 -14 292.5 -3.5Q262 7 243.5 23.5Q225 40 214 57H196V-200ZM330 96Q389 96 427.5 133.5Q466 171 466 243V253Q466 325 427.0 362.5Q388 400 330 400Q272 400 233.0 362.5Q194 325 194 253V243Q194 171 233.0 133.5Q272 96 330 96Z"
+                    transform="matrix(0.03 0 0 -0.03 92.34 42)" />
+                  <path
+                    d="M296 -14Q222 -14 165.5 17.5Q109 49 77.5 106.5Q46 164 46 242V254Q46 332 77.0 389.5Q108 447 164.0 478.5Q220 510 294 510Q367 510 421.0 477.5Q475 445 505.0 387.5Q535 330 535 254V211H174Q176 160 212.0 128.0Q248 96 300 96Q353 96 378.0 119.0Q403 142 416 170L519 116Q505 90 478.5 59.5Q452 29 408.0 7.5Q364 -14 296 -14ZM175 305H407Q403 348 372.5 374.0Q342 400 293 400Q242 400 212.0 374.0Q182 348 175 305Z"
+                    transform="matrix(0.03 0 0 -0.03 121.48 42)" />
+                  <path
+                    d="M276 -14Q179 -14 117.0 28.0Q55 70 42 148L158 178Q165 143 181.5 123.0Q198 103 222.5 94.5Q247 86 276 86Q320 86 341.0 101.5Q362 117 362 140Q362 163 342.0 175.5Q322 188 278 196L250 201Q198 211 155.0 228.5Q112 246 86.0 277.0Q60 308 60 357Q60 431 114.0 470.5Q168 510 256 510Q339 510 394.0 473.0Q449 436 466 376L349 340Q341 378 316.5 394.0Q292 410 256 410Q220 410 201.0 397.5Q182 385 182 363Q182 339 202.0 327.5Q222 316 256 310L284 305Q340 295 385.5 278.5Q431 262 457.5 231.5Q484 201 484 149Q484 71 427.5 28.5Q371 -14 276 -14Z"
+                    transform="matrix(0.03 0 0 -0.03 148.79 42)" />
+                  <path
+                    d="M260 0Q211 0 180.5 30.5Q150 61 150 112V392H26V496H150V650H276V496H412V392H276V134Q276 104 304 104H400V0Z"
+                    transform="matrix(0.03 0 0 -0.03 174.51 42)" />
+                  <path
+                    d="M70 0V496H194V440H212Q223 470 248.5 484.0Q274 498 308 498H368V386H306Q258 386 227.0 360.5Q196 335 196 282V0Z"
+                    transform="matrix(0.03 0 0 -0.03 198.19 42)" />
+                  <path
+                    d="M124 -200V-90H394Q422 -90 422 -60V65H404Q396 48 379.0 31.0Q362 14 333.0 3.0Q304 -8 259 -8Q201 -8 157.5 18.5Q114 45 90.0 92.0Q66 139 66 200V496H192V210Q192 154 219.5 126.0Q247 98 298 98Q356 98 388.0 136.5Q420 175 420 244V496H546V-88Q546 -139 516.0 -169.5Q486 -200 436 -200Z"
+                    transform="matrix(0.03 0 0 -0.03 220.07 42)" />
+                </g>
+              </g>
+            </svg></a>
+          <nav aria-label="Main Menu">
+            <ul>
+              <li><a href="#">Research</a></li>
+              <li><a href="#">Publications</a></li>
+              <li><a href="#">Blog</a></li>
+              <li><a href="#">CV</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
+    <main class="grid">
+      <article class="post">
+        <p class="post-meta">Published 2026.03.14 :: 8 min read :: Aiko Tanaka</p>
+        <h1>Error Mitigation for Near-Term Variational Circuits</h1>
+        <div class="qwire"></div>
+        <p>Xerum quo qui aut unt expliquam qui dolut labo, aque venitatiusda cum voluptionse latur sitiae dolessi aut
+          parist, presenting a zero-noise extrapolation scheme that recovers ground-state energy estimates within
+          chemical accuracy on current hardware.</p>
+        <h2>Circuit design</h2>
+        <p>Quianimin porecus evelectur cum que nis nust voloribus ratem aut omnimi, building on the ansatz introduced in
+          <a href="#">our earlier benchmark paper</a> with a shallower gate depth.</p>
+        <blockquote>
+          Nature isn't classical, dammit, and if you want to make a simulation of nature, you'd better make it quantum
+          mechanical.
+          <footer>Richard Feynman</footer>
+        </blockquote>
+        <h3>Extrapolation</h3>
+        <p>The mitigated expectation value is recovered via <code>zero_noise_extrapolate()</code>:</p>
+        <pre><code>def zero_noise_extrapolate(scale_factors, expectations):
+    coeffs = np.polyfit(scale_factors, expectations, deg=1)
+    return np.polyval(coeffs, 0.0)</code></pre>
+        <p>Itatur quiatae cullecum rem ent aut odis in re eossequodi nonsequ, with the full circuit definitions and
+          hardware results released alongside the paper.</p>
+        <ul class="tags">
+          <li><a href="#">quantum-computing</a></li>
+          <li><a href="#">error-mitigation</a></li>
+          <li><a href="#">variational-circuits</a></li>
+        </ul>
+      </article>
+      <aside class="sidebar">
+        <div class="card">
+          <h4>Lab</h4>
+          <p style="font-size: var(--font-size-small); margin:0;">Quantum Information Group. Near-term algorithms, error
+            mitigation, and hardware benchmarking.</p>
+        </div>
+      </aside>
+      <section class="post-list">
+        <h2>Recent Posts</h2>
+        <article class="post-list-item">
+          <h3><a href="#">Reading a Quantum Volume Benchmark</a></h3>
+          <p class="excerpt-meta">2026.02.21 :: 5 min read</p>
+          <p>What the number actually tells you, read more →</p>
+        </article>
+        <article class="post-list-item">
+          <h3><a href="#">Our First Attempt at Hardware Access</a></h3>
+          <p class="excerpt-meta">2026.01.27 :: 4 min read</p>
+          <p>Queue times, calibration drift, and lessons learned, read more →</p>
+        </article>
+      </section>
+      <footer class="site-footer">
+        <ul class="socials">
+          <li><a href="#" title="Email" aria-label="Email"><svg class="social-icon" role="img" aria-hidden="true">
+                <use href="#icon-email" />
+              </svg></a></li>
+          <li><a href="#" title="ORCID" aria-label="ORCID"><svg class="social-icon" role="img" aria-hidden="true">
+                <use href="#icon-orcid" />
+              </svg></a></li>
+          <li><a href="#" title="GitHub" aria-label="GitHub"><svg class="social-icon" role="img" aria-hidden="true">
+                <use href="#icon-github" />
+              </svg></a></li>
+        </ul>
+        <p>© 2026 Aiko Tanaka :: Built with Tapestry :: Theme "Quantum Circuit"</p>
+      </footer>
+    </main>
+  </div>
+</body>
+
+</html>
