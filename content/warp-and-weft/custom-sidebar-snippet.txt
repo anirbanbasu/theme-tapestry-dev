@@ -1,0 +1,2 @@
+**Custom sidebar content.** This snippet is loaded via `page.extra.sidebar`
+and rendered above the automatic table of contents, if any.
