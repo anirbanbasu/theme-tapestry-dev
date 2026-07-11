@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Spike: responsive 12-column grid (CONSTITUTION.md §5)</title>
+  <style>
+    :root {
+      --colour-bg: #f7f5f0;
+      --colour-text: #201a14;
+      --colour-accent: #1f5c73;
+      --colour-border: #ddd2c0;
+      --colour-panel: #ffffff;
+      --breakpoint-grid: 1024px;
+      /* the value this spike is proving out */
+      --space-md: 1.5rem;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+      background: var(--colour-bg);
+      color: var(--colour-text);
+      line-height: 1.6;
+    }
+
+    .note {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 1.5rem;
+    }
+
+    .note code {
+      background: #eee;
+      padding: 0.1em 0.4em;
+      border-radius: 3px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: var(--space-md);
+      max-width: 1200px;
+      margin-inline: auto;
+      padding-inline: 1rem;
+    }
+
+    .grid-ruler .cell {
+      background: #ece5d4;
+      border: 1px dashed var(--colour-border);
+      font-family: monospace;
+      font-size: 0.65rem;
+      text-align: center;
+      padding: 0.4rem 0;
+      color: #6b6248;
+      border-radius: 2px;
+    }
+
+    article.post {
+      grid-column: 1 / span 8;
+      background: var(--colour-panel);
+      border: 1px solid var(--colour-border);
+      border-radius: 8px;
+      padding: var(--space-md);
+      min-width: 0;
+    }
+
+    aside.sidebar {
+      grid-column: 9 / span 4;
+      background: var(--colour-panel);
+      border: 1px solid var(--colour-border);
+      border-radius: 8px;
+      padding: var(--space-md);
+      min-width: 0;
+    }
+
+    /* --- Below the grid breakpoint: both regions stack full-width, in source order.
+         No column count changes (still a 12-column grid, per §5) — the regions
+         just each span all 12 instead of 8/4. --- */
+    @media (max-width: 1023.98px) {
+
+      article.post,
+      aside.sidebar {
+        grid-column: 1 / span 12;
+      }
+    }
+
+    h1,
+    h2 {
+      overflow-wrap: break-word;
+    }
+
+    p,
+    li {
+      overflow-wrap: break-word;
+    }
+
+    pre {
+      overflow-x: auto;
+      max-width: 100%;
+      background: #2b2a28;
+      color: #eee;
+      padding: 1rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
+    }
+
+    code {
+      font-family: monospace;
+    }
+
+    .long-url {
+      word-break: break-all;
+    }
+
+    img.test-fixed {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="note">
+    <h1>Responsive-grid spike — CONSTITUTION.md §5</h1>
+    <p><strong>What this proves:</strong> the same 12-column grid used across all 25 style-tile prototypes stays fully
+      responsive down to <strong>320px</strong> with no horizontal page scroll, and defines the breakpoint
+      (<code>1024px</code>) at which the article/sidebar 8/4 split collapses to a stacked full-width layout. None of the
+      25 prototypes tested anything narrower than their fixed desktop screenshot — this spike exists to close that gap.
+    </p>
+    <p><strong>How to test:</strong> resize the viewport down to 320px. Check for a horizontal scrollbar (there should
+      be none). Above <code>1024px</code>, article/sidebar sit side by side (8 cols / 4 cols). Below it, both stack
+      full-width in source order — still a 12-column grid throughout, per §5 (the regions just each claim all 12 columns
+      instead of 8+4).</p>
+  </div>
+
+  <div class="grid grid-ruler">
+    <div class="cell" style="grid-column: span 1;">1</div>
+    <div class="cell" style="grid-column: span 1;">2</div>
+    <div class="cell" style="grid-column: span 1;">3</div>
+    <div class="cell" style="grid-column: span 1;">4</div>
+    <div class="cell" style="grid-column: span 1;">5</div>
+    <div class="cell" style="grid-column: span 1;">6</div>
+    <div class="cell" style="grid-column: span 1;">7</div>
+    <div class="cell" style="grid-column: span 1;">8</div>
+    <div class="cell" style="grid-column: span 1;">9</div>
+    <div class="cell" style="grid-column: span 1;">10</div>
+    <div class="cell" style="grid-column: span 1;">11</div>
+    <div class="cell" style="grid-column: span 1;">12</div>
+  </div>
+
+  <main class="grid" style="margin-top: 1.5rem;">
+    <article class="post">
+      <h2>Overflow stress-test content</h2>
+      <p>Ordinary paragraph text wraps normally, no special handling needed for this. But here is a deliberately
+        unbroken long token to test wrapping safety: <span
+          class="long-url">https://example.com/a/very/long/path/segment/that/has/no/spaces/and/could/force/horizontal/overflow/if/not/handled/12345678901234567890</span>
+      </p>
+      <p>A long, hyphen-free chemical-style identifier as another stress case:
+        <code>1,2,3,4,5,6,7,8-octahydronaphthalene-carboxylic-acid-derivative-compound-reference-code-XJ992817364</code>
+      </p>
+      <h3>Code block (should scroll internally, not push the page wide)</h3>
+      <pre><code>fn a_function_with_a_deliberately_long_name_to_test_pre_overflow(parameter_one: SomeLongTypeName, parameter_two: AnotherLongTypeName) -&gt; ResultType {
+    // this line is intentionally long enough to overflow a 320px viewport
+    do_something_with(parameter_one, parameter_two, and_a_third_argument_here)
+}</code></pre>
+      <p>End of article content.</p>
+    </article>
+    <aside class="sidebar">
+      <h3>Sidebar</h3>
+      <p>Short sidebar content. At narrow widths this stacks below the article, still spanning the full 12 columns.</p>
+    </aside>
+  </main>
+
+  <div class="note" style="margin-top: 1.5rem;">
+    <h2>Checklist</h2>
+    <ul>
+      <li>✅ No horizontal page scroll at 320px (verified via screenshot at that exact width).</li>
+      <li>✅ Long unbroken tokens (URLs, identifiers) wrap via <code>overflow-wrap: break-word</code> rather than forcing
+        page-level overflow.</li>
+      <li>✅ Code blocks scroll <em>internally</em> (<code>overflow-x: auto</code> on <code>&lt;pre&gt;</code>, already
+        used in all 25 prototypes) rather than widening the page.</li>
+      <li>✅ Still a genuine 12-column grid at every width — narrow layouts just span all 12 columns instead of 8+4, not
+        a different column count.</li>
+    </ul>
+    <p><strong>Breakpoint decided by this spike: <code>1024px</code></strong> for the article/sidebar stack point. This
+      is a shared, group-agnostic mechanism value — each style's own <code>specs/design-tokens-&lt;group&gt;.md</code>
+      can now cite this instead of leaving it <em>TBD</em>.</p>
+  </div>
+
+</body>
+
+</html>

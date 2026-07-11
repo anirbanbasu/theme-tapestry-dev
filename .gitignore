@@ -32,3 +32,5 @@ docs/superpowers/
 
 .env
 config.toml.bak
+lighthouse-reports/
+debug/
