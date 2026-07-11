@@ -1,0 +1,23 @@
+{
+  "name": "tapestry-visual-a11y-tests",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Playwright + axe-core visual-regression and accessibility test suite for the Tapestry Zola theme. Scoped to this directory only — never touches root zola build/serve (CONSTITUTION.md §2, changelog 2026-JUL-05-001).",
+  "type": "module",
+  "scripts": {
+    "test": "playwright test",
+    "test:unit": "playwright test tests/unit",
+    "test:smoke": "playwright test tests/smoke.spec.ts",
+    "test:a11y": "playwright test tests/a11y.spec.ts",
+    "test:visual": "playwright test tests/visual.spec.ts",
+    "test:keyboard": "playwright test tests/keyboard.spec.ts",
+    "test:update-snapshots": "playwright test tests/visual.spec.ts --update-snapshots"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.12.1",
+    "@playwright/test": "^1.61.1",
+    "@types/node": "^26.1.1",
+    "http-server": "^14.1.1",
+    "typescript": "^7.0.2"
+  }
+}
