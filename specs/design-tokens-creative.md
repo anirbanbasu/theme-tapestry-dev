@@ -146,6 +146,15 @@ Punk/zine energy: heavyweight condensed display headlines set at a slight tilt, 
 | `--shadow-sm` | `none` |
 | `--shadow-md` | `none` |
 
+**Decorative background pattern (§8)** — a halftone-dot print texture (`radial-gradient`, 8px tile), reinforcing the zine's photocopy aesthetic.
+
+*Adaptation (implementation planning, 2026-07-11): the prototype applied a single black-based pattern (`rgba(0,0,0,0.05)`) unconditionally to both light and dark mode via a shared `body` rule — on this variant's dark-mode background (`#121212`, near-black) that value would be visually indistinguishable from a flat background. The dark-mode value below substitutes this variant's own dark `--colour-border` (`#f5f5f0`, near-white) at the same 0.05 alpha, keeping the halftone motif visible in both modes while preserving the prototype's exact light-mode value and alpha.*
+
+| Token | Light | Dark |
+|---|---|---|
+| `--pattern-bg-image` | `radial-gradient(circle, rgba(0, 0, 0, 0.05) 1px, transparent 1px)` | `radial-gradient(circle, rgba(245, 245, 240, 0.05) 1px, transparent 1px)` |
+| `--pattern-bg-size` | `8px 8px` | `8px 8px` |
+
 **Grid breakpoints & column spans (§5)** — desktop spans confirmed in the prototype; sub-desktop breakpoint resolved by `prototypes/spikes/responsive-grid-spike.html` (verified at 320px–1200px, no horizontal overflow at any width).
 
 | Region | Desktop (≥ prototype width) | Narrower breakpoints |

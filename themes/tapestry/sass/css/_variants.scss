@@ -173,6 +173,8 @@ $variants: (
     'light': ('bg-primary': #fdfdfb, 'bg-secondary': #efeee9, 'text-primary': #111111,
       'text-heading': #000000, 'text-muted': #555555, 'accent-primary': #c2006e,
       'accent-secondary': #3f7d20, 'border': #111111, 'code-bg': #efeee9,
+      'pattern-bg-image': "radial-gradient(circle, rgba(0, 0, 0, 0.05) 1px, transparent 1px)",
+      'pattern-bg-size': 8px 8px,
       'syntax-comment': #555555, 'syntax-keyword': #c2006e, 'syntax-storage': #c2006e,
       // syntax-only darkened accent-secondary (#3f7d20 is 4.34:1 vs code-bg, below AA)
       'syntax-string': #38701c, 'syntax-variable': #111111, 'syntax-constant': #38701c,
@@ -181,6 +183,8 @@ $variants: (
     'dark': ('bg-primary': #121212, 'bg-secondary': #1d1d1a, 'text-primary': #f5f5f0,
       'text-heading': #ffffff, 'text-muted': #b0b0a8, 'accent-primary': #ff5fa8,
       'accent-secondary': #9ee36b, 'border': #f5f5f0, 'code-bg': #1d1d1a,
+      'pattern-bg-image': "radial-gradient(circle, rgba(245, 245, 240, 0.05) 1px, transparent 1px)",
+      'pattern-bg-size': 8px 8px,
       'syntax-comment': #b0b0a8, 'syntax-keyword': #ff5fa8, 'syntax-storage': #ff5fa8,
       'syntax-string': #9ee36b, 'syntax-variable': #f5f5f0, 'syntax-constant': #9ee36b,
       'syntax-entity': #ff5fa8, 'syntax-support': #9ee36b, 'syntax-punctuation': #b0b0a8,
@@ -284,6 +288,11 @@ $variants: (
     'dark': ('bg-primary': #0a0e1c, 'bg-secondary': #121a30, 'text-primary': #e8e6f0,
       'text-heading': #ffffff, 'text-muted': #9098b8, 'accent-primary': #d9b968,
       'accent-secondary': #7fa8e0, 'border': #232c4a, 'code-bg': #121a30,
+      // Starfield is dark-mode only, per the prototype — a night sky has no
+      // light-mode analogue, so this variant's light submap intentionally
+      // omits pattern-bg-image/-size (falls back to none/auto).
+      'pattern-bg-image': "radial-gradient(1.5px 1.5px at 20px 30px, rgba(255, 255, 255, 0.5), transparent), radial-gradient(1px 1px at 90px 70px, rgba(255, 255, 255, 0.4), transparent), radial-gradient(1.5px 1.5px at 160px 20px, rgba(255, 255, 255, 0.4), transparent), radial-gradient(1px 1px at 220px 90px, rgba(255, 255, 255, 0.35), transparent), radial-gradient(1.5px 1.5px at 60px 130px, rgba(255, 255, 255, 0.4), transparent)",
+      'pattern-bg-size': 260px 160px,
       'syntax-comment': #9098b8, 'syntax-keyword': #d9b968, 'syntax-storage': #d9b968,
       'syntax-string': #7fa8e0, 'syntax-variable': #e8e6f0, 'syntax-constant': #7fa8e0,
       'syntax-entity': #d9b968, 'syntax-support': #7fa8e0, 'syntax-punctuation': #9098b8,
@@ -356,6 +365,10 @@ $variants: (
     'dark': ('bg-primary': #1b2e22, 'bg-secondary': #24392b, 'text-primary': #f0ede3,
       'text-heading': #ffffff, 'text-muted': #b7c2ba, 'accent-primary': #e8d67a,
       'accent-secondary': #9fd8e0, 'border': #325240, 'code-bg': #24392b,
+      // Chalk-dust texture is dark-mode only, per the prototype — this
+      // variant's light submap intentionally omits pattern-bg-image/-size.
+      'pattern-bg-image': "radial-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px)",
+      'pattern-bg-size': 5px 5px,
       'syntax-comment': #b7c2ba, 'syntax-keyword': #e8d67a, 'syntax-storage': #e8d67a,
       'syntax-string': #9fd8e0, 'syntax-variable': #f0ede3, 'syntax-constant': #9fd8e0,
       'syntax-entity': #e8d67a, 'syntax-support': #9fd8e0, 'syntax-punctuation': #b7c2ba,
@@ -372,6 +385,8 @@ $variants: (
     'light': ('bg-primary': #f5f3fb, 'bg-secondary': #e9e4f6, 'text-primary': #241b3d,
       'text-heading': #150f28, 'text-muted': #6a5f8a, 'accent-primary': #0a7a86,
       'accent-secondary': #a3157e, 'border': #d7cdec, 'code-bg': #e9e4f6,
+      'pattern-bg-image': "linear-gradient(var(--colour-border) 1px, transparent 1px)",
+      'pattern-bg-size': 100% 46px,
       // syntax-only darkened accent-primary (#0a7a86 is 4.08:1 vs code-bg, below AA)
       'syntax-comment': #6a5f8a, 'syntax-keyword': #09727d, 'syntax-storage': #09727d,
       'syntax-string': #a3157e, 'syntax-variable': #241b3d, 'syntax-constant': #a3157e,
@@ -380,6 +395,8 @@ $variants: (
     'dark': ('bg-primary': #120c24, 'bg-secondary': #1c1438, 'text-primary': #ece6fa,
       'text-heading': #ffffff, 'text-muted': #b0a3d6, 'accent-primary': #4de8f0,
       'accent-secondary': #ef6fd8, 'border': #2e2354, 'code-bg': #1c1438,
+      'pattern-bg-image': "linear-gradient(rgba(77, 232, 240, 0.06) 1px, transparent 1px)",
+      'pattern-bg-size': 100% 46px,
       'syntax-comment': #b0a3d6, 'syntax-keyword': #4de8f0, 'syntax-storage': #4de8f0,
       'syntax-string': #ef6fd8, 'syntax-variable': #ece6fa, 'syntax-constant': #ef6fd8,
       'syntax-entity': #4de8f0, 'syntax-support': #ef6fd8, 'syntax-punctuation': #b0a3d6,
@@ -402,6 +419,8 @@ $variants: (
     'light': ('bg-primary': #f5f7fa, 'bg-secondary': #e7edf3, 'text-primary': #1a3a5c,
       'text-heading': #12293f, 'text-muted': #5c7690, 'accent-primary': #0f5fa8,
       'accent-secondary': #b8302a, 'border': #cddbe7, 'code-bg': #e7edf3,
+      'pattern-bg-image': "linear-gradient(var(--colour-border) 1px, transparent 1px), linear-gradient(90deg, var(--colour-border) 1px, transparent 1px)",
+      'pattern-bg-size': 24px 24px,
       // syntax-only darkened text-muted (#5c7690 is 4.00:1 vs code-bg, below AA)
       'syntax-comment': #556d85, 'syntax-keyword': #0f5fa8, 'syntax-storage': #0f5fa8,
       'syntax-string': #b8302a, 'syntax-variable': #1a3a5c, 'syntax-constant': #b8302a,
@@ -410,6 +429,8 @@ $variants: (
     'dark': ('bg-primary': #0b2e4a, 'bg-secondary': #123a5c, 'text-primary': #eaf3fb,
       'text-heading': #ffffff, 'text-muted': #9dbdd6, 'accent-primary': #6fc3e8,
       'accent-secondary': #e0846b, 'border': #1d4d70, 'code-bg': #123a5c,
+      'pattern-bg-image': "linear-gradient(rgba(111, 195, 232, 0.12) 1px, transparent 1px), linear-gradient(90deg, rgba(111, 195, 232, 0.12) 1px, transparent 1px)",
+      'pattern-bg-size': 24px 24px,
       // syntax-only lightened accent-secondary (#e0846b is 4.30:1 vs code-bg, below AA)
       'syntax-comment': #9dbdd6, 'syntax-keyword': #6fc3e8, 'syntax-storage': #6fc3e8,
       'syntax-string': #e28b74, 'syntax-variable': #eaf3fb, 'syntax-constant': #e28b74,
@@ -474,6 +495,8 @@ $variants: (
     'light': ('bg-primary': #f2f9f7, 'bg-secondary': #e3f1ed, 'text-primary': #17242a,
       'text-heading': #0e1a1f, 'text-muted': #52716d, 'accent-primary': #0d7d6e,
       'accent-secondary': #c1473a, 'border': #cfe6df, 'code-bg': #e3f1ed,
+      'pattern-bg-image': "radial-gradient(circle, rgba(13, 125, 110, 0.14) 1.5px, transparent 1.5px)",
+      'pattern-bg-size': 22px 22px,
       // syntax-only darkened accent-primary (#0d7d6e is 4.33:1) and
       // accent-secondary (#c1473a is 4.27:1) — both vs code-bg, below AA
       'syntax-comment': #52716d, 'syntax-keyword': #0c786a, 'syntax-storage': #0c786a,
@@ -483,6 +506,8 @@ $variants: (
     'dark': ('bg-primary': #0c1917, 'bg-secondary': #12211e, 'text-primary': #e6f5f1,
       'text-heading': #f5fffb, 'text-muted': #9bc4bb, 'accent-primary': #5fd6c0,
       'accent-secondary': #ef8672, 'border': #1c332e, 'code-bg': #12211e,
+      'pattern-bg-image': "radial-gradient(circle, rgba(95, 214, 192, 0.14) 1.5px, transparent 1.5px)",
+      'pattern-bg-size': 22px 22px,
       'syntax-comment': #9bc4bb, 'syntax-keyword': #5fd6c0, 'syntax-storage': #5fd6c0,
       'syntax-string': #ef8672, 'syntax-variable': #e6f5f1, 'syntax-constant': #ef8672,
       'syntax-entity': #5fd6c0, 'syntax-support': #ef8672, 'syntax-punctuation': #9bc4bb,
@@ -535,6 +560,7 @@ $variants: (
     'light': ('bg-primary': #e8edf0, 'bg-secondary': #dbe3e8, 'text-primary': #1c2833,
       'text-heading': #12191f, 'text-muted': #556873, 'accent-primary': #245c3f,
       'accent-secondary': #1f4e73, 'border': #c9d5db, 'code-bg': #dbe3e8,
+      'pattern-bg-image': "repeating-radial-gradient(circle at 15% 20%, transparent 0, transparent 26px, rgba(36, 92, 63, 0.07) 27px, transparent 28px)",
       // syntax-only darkened text-muted (#556873 is 4.47:1 vs code-bg, below AA)
       'syntax-comment': #536671, 'syntax-keyword': #245c3f, 'syntax-storage': #245c3f,
       'syntax-string': #1f4e73, 'syntax-variable': #1c2833, 'syntax-constant': #1f4e73,
@@ -543,6 +569,7 @@ $variants: (
     'dark': ('bg-primary': #101823, 'bg-secondary': #182430, 'text-primary': #e6edf0,
       'text-heading': #f5f8fa, 'text-muted': #9aabb8, 'accent-primary': #6fc99a,
       'accent-secondary': #6fa8d9, 'border': #233242, 'code-bg': #182430,
+      'pattern-bg-image': "repeating-radial-gradient(circle at 15% 20%, transparent 0, transparent 26px, rgba(111, 168, 217, 0.07) 27px, transparent 28px)",
       'syntax-comment': #9aabb8, 'syntax-keyword': #6fc99a, 'syntax-storage': #6fc99a,
       'syntax-string': #6fa8d9, 'syntax-variable': #e6edf0, 'syntax-constant': #6fa8d9,
       'syntax-entity': #6fc99a, 'syntax-support': #6fa8d9, 'syntax-punctuation': #9aabb8,
@@ -559,6 +586,8 @@ $variants: (
     'light': ('bg-primary': #f8f7f4, 'bg-secondary': #ece8de, 'text-primary': #16211a,
       'text-heading': #0c140f, 'text-muted': #5c6a5f, 'accent-primary': #8a6817,
       'accent-secondary': #164d33, 'border': #ddd6c4, 'code-bg': #ece8de,
+      'pattern-bg-image': "linear-gradient(var(--colour-border) 1px, transparent 1px)",
+      'pattern-bg-size': 100% 30px,
       // syntax-only darkened accent-primary (#8a6817 is 4.21:1 vs code-bg, below AA)
       'syntax-comment': #5c6a5f, 'syntax-keyword': #826216, 'syntax-storage': #826216,
       'syntax-string': #164d33, 'syntax-variable': #16211a, 'syntax-constant': #164d33,
@@ -567,6 +596,8 @@ $variants: (
     'dark': ('bg-primary': #0d1510, 'bg-secondary': #162019, 'text-primary': #eee7d6,
       'text-heading': #f7f4e6, 'text-muted': #a3ab9a, 'accent-primary': #d9ab52,
       'accent-secondary': #6fbf94, 'border': #233428, 'code-bg': #162019,
+      'pattern-bg-image': "linear-gradient(rgba(217, 171, 82, 0.09) 1px, transparent 1px)",
+      'pattern-bg-size': 100% 30px,
       'syntax-comment': #a3ab9a, 'syntax-keyword': #d9ab52, 'syntax-storage': #d9ab52,
       'syntax-string': #6fbf94, 'syntax-variable': #eee7d6, 'syntax-constant': #6fbf94,
       'syntax-entity': #d9ab52, 'syntax-support': #6fbf94, 'syntax-punctuation': #a3ab9a,
@@ -786,6 +817,18 @@ html[data-color-mode='light'] {
   --syntax-punctuation: #{map-get($m, 'syntax-punctuation')};
 }
 
+// Emits the optional decorative background-pattern tokens (CONSTITUTION.md
+// §8) for a given light/dark sub-map. Most variants don't define
+// pattern-bg-image/-size at all — map-get returns null for those, and the
+// `if()` fallback resolves to the no-op none/auto pair so the body element
+// still gets valid values either way.
+@mixin _pattern-vars($m) {
+  $img: map-get($m, 'pattern-bg-image');
+  $size: map-get($m, 'pattern-bg-size');
+  --pattern-bg-image: #{if($img, $img, none)};
+  --pattern-bg-size: #{if($size, $size, auto)};
+}
+
 // `quote()` alone doesn't survive `#{}` interpolation below: Dart Sass's
 // interpolation always emits a string's unquoted characters, discarding the
 // internal "quoted" flag `quote()` sets. Concatenating literal `"` characters
@@ -836,6 +879,7 @@ html[data-color-mode='light'] {
     --colour-border: #{map-get($light, 'border')};
     --colour-code-bg: #{map-get($light, 'code-bg')};
     @include _syntax-vars($light);
+    @include _pattern-vars($light);
 
     // Compatibility aliases consumed by the structural CSS ported from terminus.
     --accent-color: var(--colour-accent-primary);
@@ -859,6 +903,7 @@ html[data-color-mode='light'] {
       --colour-border: #{map-get($dark, 'border')};
       --colour-code-bg: #{map-get($dark, 'code-bg')};
       @include _syntax-vars($dark);
+      @include _pattern-vars($dark);
     }
   }
 
@@ -874,6 +919,7 @@ html[data-color-mode='light'] {
     --colour-border: #{map-get($dark, 'border')};
     --colour-code-bg: #{map-get($dark, 'code-bg')};
     @include _syntax-vars($dark);
+    @include _pattern-vars($dark);
   }
 
   html[data-color-mode='light'] body[data-variant='#{$name}'] {
@@ -888,5 +934,6 @@ html[data-color-mode='light'] {
     --colour-border: #{map-get($light, 'border')};
     --colour-code-bg: #{map-get($light, 'code-bg')};
     @include _syntax-vars($light);
+    @include _pattern-vars($light);
   }
 }

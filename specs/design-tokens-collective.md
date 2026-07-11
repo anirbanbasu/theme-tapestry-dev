@@ -79,6 +79,13 @@ Aged-map parchment with a faint concentric contour-line texture, a compass-rose 
 
 *Correction (implementation planning, 2026-07-11): the shadow rgba above originally read `rgba(46, 42, 28, ...)`, a warm brown that matches neither this variant's `--colour-text-primary` (`#1c2833` → `rgb(28,40,51)`) nor `--colour-text-heading` (`#12191f` → `rgb(18,25,31)`) — inconsistent with this variant's own "cool cartographic blue-grey palette" and with the derivation pattern used everywhere else (every other variant in every group ties its shadow rgb to its own `text-primary`/`text-heading` value). It appears to have been carried over from a warm-toned variant during drafting. Resolved to `rgba(28, 40, 51, ...)`, derived from this variant's own `--colour-text-primary`, consistent with the rest of the group.*
 
+**Decorative background pattern (§8)** — a faint concentric contour-line texture (`repeating-radial-gradient`, offset toward the upper-left), evoking topographic map contours. 0.07 alpha in both modes, well under the §8 0.15 ceiling.
+
+| Token | Light | Dark |
+|---|---|---|
+| `--pattern-bg-image` | `repeating-radial-gradient(circle at 15% 20%, transparent 0, transparent 26px, rgba(36, 92, 63, 0.07) 27px, transparent 28px)` | `repeating-radial-gradient(circle at 15% 20%, transparent 0, transparent 26px, rgba(111, 168, 217, 0.07) 27px, transparent 28px)` |
+| `--pattern-bg-size` | `auto` (the gradient repeats via its own ring geometry) | `auto` |
+
 **Grid breakpoints & column spans (§5)** — desktop spans confirmed in the prototype; sub-desktop breakpoint resolved by `prototypes/spikes/responsive-grid-spike.html` (verified at 320px–1200px, no horizontal overflow at any width).
 
 | Region | Desktop (≥ prototype width) | Narrower breakpoints |
@@ -149,6 +156,13 @@ Accounting-ledger ruled paper, tabular monospace figures throughout metadata, a 
 | `--radius-md` | `4px` |
 | `--shadow-sm` | `0 2px 6px rgba(15, 26, 19, 0.12)` |
 | `--shadow-md` | `0 8px 20px rgba(15, 26, 19, 0.16)` |
+
+**Decorative background pattern (§8)** — ruled-ledger horizontal rule lines (`linear-gradient`, 30px row height) echoing accounting-ledger paper. Light mode reuses `--colour-border` directly (a solid, not an alpha-blended colour — visually equivalent to a printed rule); dark mode uses an explicit 0.09-alpha gold to keep the ledger-gold identity, under the §8 0.15 ceiling.
+
+| Token | Light | Dark |
+|---|---|---|
+| `--pattern-bg-image` | `linear-gradient(var(--colour-border) 1px, transparent 1px)` | `linear-gradient(rgba(217, 171, 82, 0.09) 1px, transparent 1px)` |
+| `--pattern-bg-size` | `100% 30px` | `100% 30px` |
 
 **Grid breakpoints & column spans (§5)** — desktop spans confirmed in the prototype; sub-desktop breakpoint resolved by `prototypes/spikes/responsive-grid-spike.html` (verified at 320px–1200px, no horizontal overflow at any width).
 

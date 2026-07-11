@@ -75,6 +75,13 @@ Antique star-atlas engraving in light mode (aged parchment, gold ink, navy type)
 | `--shadow-sm` | `0 2px 8px rgba(10, 14, 28, 0.2)` |
 | `--shadow-md` | `0 8px 24px rgba(10, 14, 28, 0.28)` |
 
+**Decorative background pattern (§8)** — a sparse starfield (five overlapping `radial-gradient` points across a 260×160px tile). Dark mode only: a night sky has no light-mode analogue, so the light submap omits `--pattern-bg-image`/`--pattern-bg-size` entirely (resolves to `none`/`auto`, per §8's optional-per-variant rule). Exempt from the §8 alpha ceiling as a sparse point decoration — the tile is >99% exposed flat background.
+
+| Token | Light | Dark |
+|---|---|---|
+| `--pattern-bg-image` | *(none — not used in light mode)* | `radial-gradient(1.5px 1.5px at 20px 30px, rgba(255, 255, 255, 0.5), transparent), radial-gradient(1px 1px at 90px 70px, rgba(255, 255, 255, 0.4), transparent), radial-gradient(1.5px 1.5px at 160px 20px, rgba(255, 255, 255, 0.4), transparent), radial-gradient(1px 1px at 220px 90px, rgba(255, 255, 255, 0.35), transparent), radial-gradient(1.5px 1.5px at 60px 130px, rgba(255, 255, 255, 0.4), transparent)` |
+| `--pattern-bg-size` | *(none)* | `260px 160px` |
+
 **Grid breakpoints & column spans (§5)** — desktop spans confirmed in the prototype; sub-desktop breakpoint resolved by `prototypes/spikes/responsive-grid-spike.html` (verified at 320px–1200px, no horizontal overflow at any width).
 
 | Region | Desktop (≥ prototype width) | Narrower breakpoints |
@@ -288,6 +295,13 @@ International-Style chalkboard, taken literally: dark mode is a true chalkboard 
 | `--shadow-sm` | `0 2px 8px rgba(0,0,0,0.2)` |
 | `--shadow-md` | `0 8px 22px rgba(0,0,0,0.26)` |
 
+**Decorative background pattern (§8)** — a fine chalk-dust texture (`radial-gradient`, 5px tile, 0.02 alpha). Dark mode only: chalk dust only reads against a dark chalkboard ground, so the light submap omits `--pattern-bg-image`/`--pattern-bg-size` entirely (resolves to `none`/`auto`, per §8's optional-per-variant rule).
+
+| Token | Light | Dark |
+|---|---|---|
+| `--pattern-bg-image` | *(none — not used in light mode)* | `radial-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px)` |
+| `--pattern-bg-size` | *(none)* | `5px 5px` |
+
 **Grid breakpoints & column spans (§5)** — desktop spans confirmed in the prototype; sub-desktop breakpoint resolved by `prototypes/spikes/responsive-grid-spike.html` (verified at 320px–1200px, no horizontal overflow at any width).
 
 | Region | Desktop (≥ prototype width) | Narrower breakpoints |
@@ -358,6 +372,13 @@ A precise, diagrammatic take on quantum computing — cyan/magenta as the two ba
 | `--radius-md` | `8px` |
 | `--shadow-sm` | `0 0 10px rgba(163, 21, 126, 0.2)` |
 | `--shadow-md` | `0 0 24px rgba(163, 21, 126, 0.25)` |
+
+**Decorative background pattern (§8)** — a horizontal circuit-trace rule pattern (`linear-gradient`, 46px row height), echoing PCB trace rows. Light mode reuses `--colour-border` directly; dark mode uses an explicit 0.06-alpha cyan to keep the circuit-glow identity, under the §8 0.15 ceiling.
+
+| Token | Light | Dark |
+|---|---|---|
+| `--pattern-bg-image` | `linear-gradient(var(--colour-border) 1px, transparent 1px)` | `linear-gradient(rgba(77, 232, 240, 0.06) 1px, transparent 1px)` |
+| `--pattern-bg-size` | `100% 46px` | `100% 46px` |
 
 **Grid breakpoints & column spans (§5)** — desktop spans confirmed in the prototype; sub-desktop breakpoint resolved by `prototypes/spikes/responsive-grid-spike.html` (verified at 320px–1200px, no horizontal overflow at any width).
 
