@@ -1,6 +1,6 @@
 +++
 title = "No Sidebar"
-description = "A page with headings that would normally trigger an automatic table of contents, but forces the sidebar off — the article must reclaim all 12 grid columns (CONSTITUTION.md §5)."
+description = "A page with headings that would normally trigger an automatic table of contents, but forces the sidebar off — the article must reclaim all 12 grid columns."
 date = 2026-07-11
 
 [taxonomies]

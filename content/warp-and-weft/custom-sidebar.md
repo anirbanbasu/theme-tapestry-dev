@@ -1,6 +1,6 @@
 +++
 title = "Custom Sidebar"
-description = "A page pointing extra.sidebar at a colocated Markdown snippet, exercising the custom-sidebar-content state (CONSTITUTION.md §5)."
+description = "A page pointing extra.sidebar at a colocated Markdown snippet, exercising the custom-sidebar-content state."
 date = 2026-07-11
 
 [taxonomies]

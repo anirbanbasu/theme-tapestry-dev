@@ -20,7 +20,7 @@ site's real demo content.
 
 ## Headings
 
-The following `<h1>`–`<h6>` elements represent six levels of section headings.
+The following `<h1>`–`<h6>` elements represent six levels of section headings in Markdown.
 
 # H1
 
@@ -47,11 +47,11 @@ code`. Here is [a link](#headings) and here is an autolink: <https://example.com
 
 ### With attribution and a footnote
 
-> Don't communicate by sharing memory, share memory by communicating.
+> Nature isn't classical, dammit, and if you want to make a simulation of nature, you'd better make it quantum mechanical.
 >
-> — <cite>Rob Pike[^1]</cite>
+> — <cite>Richard Feynman[^1]</cite>
 
-[^1]: Excerpted from Rob Pike's talk during Gopherfest, November 18, 2015.
+[^1]: Excerpt from Richard Feynman's "Simulating physics with computers" in the International Journal of Theoretical Physics, June, 1982. [DOI](https://doi.org/10.1007/BF02650179).
 
 ## GitHub-style alerts (native syntax)
 
@@ -86,28 +86,27 @@ code`. Here is [a link](#headings) and here is an autolink: <https://example.com
 
 {% references() %}
 
-Alderson, E. (2015). Cybersecurity and Social Justice: A Critique of Corporate
-Hegemony in a Digital World. _New York Journal of Technology, 11_ (2), 24-39.
+Zhang, T., Patil, S. G., Jain, N., Shen, S., Zaharia, M., Stoica, I., & Gonzalez, J. E. (2024). _Raft: Adapting language model to domain specific rag_. arXiv preprint arXiv:2403.10131.
 
-Funkhouser, M. (2012). The Social Norms of Indecency: An Analysis of Deviant
-Behavior in Contemporary Society. _Los Angeles Journal of Sociology, 16_ (3),
-41-58.
+Braccini, L., Serafini, A., & Bose, S. (2026). _Mass-Independent Gravitationally Induced Entanglement_. arXiv preprint arXiv:2602.19306.
 
 {% end %}
 
 ## Responsive image shortcode
 
-{{ responsive_image(src="example-hi-res-image.jpg", alt="Responsive hi-res image", caption="A responsive image with a caption.") }}
+{{ responsive_image(src="example-hi-res-image.jpg", alt="Responsive hi-res image", caption="A winter morning moon, about to set, aligned perfectly with Mt. Fuji in Japan.") }}
 
 ## Wide container shortcode
 
 {% wide_container() %}
 
-| Title            | Year | Director             | Genre         | IMDb |
+| Title            | Year | Director             | Genre         | IMDb rating * |
 |------------------|------|-----------------------|---------------|------|
-| Beoning          | 2018 | Lee Chang-dong        | Drama/Mystery | 7.5  |
-| The Master       | 2012 | Paul Thomas Anderson  | Drama/History | 7.1  |
-| The Tree of Life | 2011 | Terrence Malick       | Drama         | 6.8  |
+| Enola Holmes 3   | 2026 | Philip Barantini      | Drama/Mystery | 5.8/10  |
+| The Matrix | 1999 | Lana Wachowski, Lilly Wachowski  | Action/Sci-Fi  | 8.7/10  |
+| The Shawshank Redemption  | 1994 | Frank Darabont  | Drama | 9.3/10  |
+
+_* IMDb ratings as of 2026-07-11._
 
 {% end %}
 
@@ -131,6 +130,8 @@ Name  | Age
 ------|----
 Bob   | 27
 Alice | 23
+Claire | 26
+Dave | 25
 
 ### Inline markdown within tables
 
@@ -190,7 +191,7 @@ This text is preformatted!
 
 ```rust
 fn main() {
-    println!("Hello, world!");
+    println!("Ahoy, matey!");
 }
 ```
 
@@ -201,34 +202,34 @@ use std::collections::HashMap;
 
 fn main() {
     let mut map = HashMap::new();
-    map.insert("key", "value");
+    map.insert("a-key", "a-value");
 }
 ```
 
 ## Other elements — abbr, sub, sup, kbd, details, mark
 
-<abbr title="Graphics Interchange Format">GIF</abbr> is a bitmap image format.
+<abbr title="Graphics Interchange Format">SVG</abbr> is a vector image format.
 
-H<sub>2</sub>O
+O<sub>2</sub>
 
 X<sup>n</sup> + Y<sup>n</sup> = Z<sup>n</sup>
 
 Press <kbd>CTRL</kbd>+<kbd>ALT</kbd>+<kbd>Delete</kbd> to end the session.
 
 <details>
-<summary>Something wicked this way comes</summary>
+<summary>Something unexpected, comes this way!</summary>
 
-**Boo!** Ha ha, scared ya!
+**010 + 011 = 101** yes, in the binary number system! The decimal equivalent of this is 2 + 3 = 5.
 </details>
 
-Most <mark>salamanders</mark> are nocturnal.
+The <mark>Higgs boson</mark> has no spin, which makes it the only fundamental particle observed in nature with no intrinsic angular momentum.
 
 ## KaTeX math
 
-Inline math: $\KaTeX$ renders $e^{i\pi} + 1 = 0$ right in the sentence.
+Inline math: $\KaTeX$ renders $(i\gamma^\mu \partial_\mu - m)\psi = 0$ right in the sentence.
 
-Display math:
+Display math (Schrödinger equation):
 
 $$
-\displaystyle \left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \left( \sum_{k=1}^n b_k^2 \right)
+\displaystyle i\hbar \frac{\partial}{\partial t} \Psi(\mathbf{r}, t) = \left[ -\frac{\hbar^2}{2m} \nabla^2 + V(\mathbf{r}, t) \right] \Psi(\mathbf{r}, t)
 $$
