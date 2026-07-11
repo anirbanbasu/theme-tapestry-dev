@@ -20,6 +20,15 @@ export default defineConfig({
     },
   },
 
+  // Playwright's own default (no --update-snapshots flag) is "missing" —
+  // silently writing a baseline for any snapshot that doesn't exist yet,
+  // which directly violates design spec §5's "baselines are never generated
+  // locally" rule the moment someone runs visual.spec.ts without realizing
+  // it. "none" makes a missing baseline just fail, like any other assertion;
+  // the CLI's explicit `--update-snapshots` flag (used only by the
+  // workflow_dispatch baseline-update job) overrides this config value.
+  updateSnapshots: "none",
+
   // Screenshot paths become screenshots/<page-slug>/<style>-<variant>-<mode>-<width>.png
   // via the explicit filename each toHaveScreenshot() call passes in visual.spec.ts —
   // this template just pins the root directory (design spec §5).
