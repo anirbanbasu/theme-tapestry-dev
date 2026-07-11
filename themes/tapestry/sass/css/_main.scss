@@ -33,6 +33,10 @@ body {
   font-size: var(--font-size);
   line-height: var(--line-height);
   background: var(--background-color);
+  // Optional per-variant decorative pattern (CONSTITUTION.md §8) — resolves
+  // to none/auto for variants that don't define one (_variants.scss).
+  background-image: var(--pattern-bg-image);
+  background-size: var(--pattern-bg-size);
   color: var(--text-color);
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;

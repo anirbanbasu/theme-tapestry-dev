@@ -75,6 +75,13 @@ A technical-drawing aesthetic built on an authentic inversion: light mode is the
 | `--shadow-sm` | `none` |
 | `--shadow-md` | `none` |
 
+**Decorative background pattern (§8)** — a graph-paper grid (two crossed `linear-gradient` layers, 24px cells), matching the blueprint/drafting-table motif. Light mode reuses `--colour-border` directly on both axes; dark mode uses an explicit 0.12-alpha cyan on both axes, under the §8 0.15 ceiling.
+
+| Token | Light | Dark |
+|---|---|---|
+| `--pattern-bg-image` | `linear-gradient(var(--colour-border) 1px, transparent 1px), linear-gradient(90deg, var(--colour-border) 1px, transparent 1px)` | `linear-gradient(rgba(111, 195, 232, 0.12) 1px, transparent 1px), linear-gradient(90deg, rgba(111, 195, 232, 0.12) 1px, transparent 1px)` |
+| `--pattern-bg-size` | `24px 24px` | `24px 24px` |
+
 **Grid breakpoints & column spans (§5)** — desktop spans confirmed in the prototype; sub-desktop breakpoint resolved by `prototypes/spikes/responsive-grid-spike.html` (verified at 320px–1200px, no horizontal overflow at any width).
 
 | Region | Desktop (≥ prototype width) | Narrower breakpoints |
@@ -287,6 +294,13 @@ A clinical-imaging aesthetic: mint-white ground with a faint dot-grid texture (e
 | `--radius-md` | `12px` |
 | `--shadow-sm` | `0 2px 8px rgba(12, 25, 23, 0.08)` |
 | `--shadow-md` | `0 10px 26px rgba(12, 25, 23, 0.12)` |
+
+**Decorative background pattern (§8)** — a fine dot-grid (`radial-gradient`, 22px cells, 1.5px dots), evoking diagnostic-panel/scan-grid overlays. 0.14 alpha in both modes, just under the §8 0.15 ceiling.
+
+| Token | Light | Dark |
+|---|---|---|
+| `--pattern-bg-image` | `radial-gradient(circle, rgba(13, 125, 110, 0.14) 1.5px, transparent 1.5px)` | `radial-gradient(circle, rgba(95, 214, 192, 0.14) 1.5px, transparent 1.5px)` |
+| `--pattern-bg-size` | `22px 22px` | `22px 22px` |
 
 **Grid breakpoints & column spans (§5)** — desktop spans confirmed in the prototype; sub-desktop breakpoint resolved by `prototypes/spikes/responsive-grid-spike.html` (verified at 320px–1200px, no horizontal overflow at any width).
 
