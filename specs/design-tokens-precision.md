@@ -4,7 +4,7 @@ Frozen design-token reference for the **precision** presentation style group, pe
 
 **Status of this document:** fonts, colour palettes (light + dark, contrast-verified), spacing scale, type scale, border radius, and shadows are frozen and ready for implementation — these were fully specified and numerically verified during prototyping (see each variant's prototype file for the contrast-ratio workings). **Grid sub-desktop breakpoints and the navigation-collapse breakpoint/treatment are now resolved**, via the shared technical spikes at `prototypes/spikes/responsive-grid-spike.html` and `prototypes/spikes/nav-collapse-spike.html` (both verified in-browser at multiple viewport widths, including 320px). These are shared, group-agnostic mechanism values applied uniformly across every group/variant — only each variant's own colour/spacing/font tokens (above) vary per style. **The article/sidebar column split below is content-driven**, per the CONSTITUTION.md §5 amendment of 2026-07-05: the sidebar (and the article's narrower 1–8 span) only appear when the page actually has an automatic TOC or custom `page.extra.sidebar` content to show — see `themes/tapestry/templates/partials/sidebar.html`.
 
-**Default variant for this group:** *not yet designated.* CONSTITUTION.md §7 requires each group to name one variant as its default (used when `extra.presentation_variant` is unset or invalid); that choice has not been made yet for `precision`.
+**Default variant for this group:** `swiss-precision-instrument` (CONSTITUTION.md §7). Used when `extra.presentation_style` is `"precision"` and `extra.presentation_variant` is unset or names a variant that doesn't exist within this group. Note this does not change Tapestry's theme-wide default group+variant (`scholarly`/`contemporary-research-lab`, CONSTITUTION.md §7) — it only applies once `precision` has been explicitly selected as the style.
 
 ## Variants
 
@@ -308,11 +308,13 @@ International Typographic Style, taken seriously: one typeface for everything (w
 
 **Fonts**
 
+*Correction (implementation planning, 2026-07-11): the table below originally listed Inter for Heading and IBM Plex Mono for Body with Code left blank — two typefaces, contradicting this variant's own "one typeface for everything" premise. Resolved to a single typeface (IBM Plex Mono) across all three roles, with role-appropriate weight subsets (IBM Plex Mono has no 800 weight upstream, so the heaviest available, 700, is used for headings instead).*
+
 | Role | Typeface | Weights | Fallback stack |
 |---|---|---|---|
-| Heading | Inter | 400/500/700/800 | "Helvetica Neue", Helvetica, Arial, sans-serif |
-| Body | IBM Plex Mono | 400/500 | "Helvetica Neue", Helvetica, Arial, sans-serif |
-| Code |  | 400 (single weight) | "SFMono-Regular", Consolas, monospace |
+| Heading | IBM Plex Mono | 400/500/700 | "SFMono-Regular", Consolas, monospace |
+| Body | IBM Plex Mono | 400/500 | "SFMono-Regular", Consolas, monospace |
+| Code | IBM Plex Mono | 400 (single weight) | "SFMono-Regular", Consolas, monospace |
 
 **Colour palette** (all values verified ≥4.5:1 against their paired background at normal text size, except where noted as decorative/large-text-only in the prototype)
 
@@ -324,9 +326,11 @@ International Typographic Style, taken seriously: one typeface for everything (w
 | `--colour-text-heading` | `#000000` | `#ffffff` |
 | `--colour-text-muted` | `#6e6e6e` | `#9c9c9c` |
 | `--colour-accent-primary` | `#c8102e` | `#ff3b52` |
-| `--colour-accent-secondary` | `—` | `—` |
+| `--colour-accent-secondary` | `#c8102e` *(aliased to accent-primary — see note below)* | `#ff3b52` *(aliased to accent-primary — see note below)* |
 | `--colour-border` | `#dedede` | `#2c2c2c` |
 | `--colour-code-bg` | `#f2f2f2` | `#1a1a1a` |
+
+*Correction (implementation planning, 2026-07-11): the table originally listed `--colour-accent-secondary` as `—`/`—` (no value), reflecting this variant's "exactly one accent colour" premise — but every variant across every group emits this custom property unconditionally, so a real value is required. Resolved by aliasing `--colour-accent-secondary` to `--colour-accent-primary`'s own value in both modes, which keeps the token machinery uniform across all variants while preserving the single-accent visual intent (nothing renders as a visibly distinct second accent hue).*
 
 **Type scale**
 

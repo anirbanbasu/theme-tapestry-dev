@@ -5,11 +5,11 @@
  * sanctioned JS exception, opt-in via `extra.presentation_style_switcher`
  * (default false). It lets a visitor override the site's configured
  * `data-style`/`data-variant` attributes on <body> at runtime, without a
- * page reload — every scholarly + creative + natural variant's CSS custom properties are already
+ * page reload — every scholarly + creative + natural + precision variant's CSS custom properties are already
  * keyed off those attributes (_variants.scss), so flipping them is enough
  * to repaint colours, fonts, spacing, etc. live.
  *
- * Font loading: all scholarly + creative + natural variant fonts are self-hosted as WOFF2 files
+ * Font loading: all scholarly + creative + natural + precision variant fonts are self-hosted as WOFF2 files
  * under themes/tapestry/static/fonts/<style>/<variant>/ and declared via
  * @font-face in the main stylesheet (CONSTITUTION.md §4). No CDN stylesheet
  * injection is needed — when a visitor switches variant the browser already
@@ -104,6 +104,28 @@
       "quantum-circuit": {
         light: { bg_primary: "#f5f3fb", text_heading: "#150f28", accent_primary: "#0a7a86", accent_secondary: "#a3157e" },
         dark: { bg_primary: "#120c24", text_heading: "#ffffff", accent_primary: "#4de8f0", accent_secondary: "#ef6fd8" }
+      }
+    },
+    precision: {
+      "blueprint-drafting": {
+        light: { bg_primary: "#f5f7fa", text_heading: "#12293f", accent_primary: "#0f5fa8", accent_secondary: "#b8302a" },
+        dark: { bg_primary: "#0b2e4a", text_heading: "#ffffff", accent_primary: "#6fc3e8", accent_secondary: "#e0846b" }
+      },
+      "surgical-precision": {
+        light: { bg_primary: "#f7f9fa", text_heading: "#101416", accent_primary: "#0d6e6e", accent_secondary: "#b3123a" },
+        dark: { bg_primary: "#12171a", text_heading: "#ffffff", accent_primary: "#4fc9c4", accent_secondary: "#ef6f8e" }
+      },
+      "aerospace-materials-lab": {
+        light: { bg_primary: "#ece9e4", text_heading: "#141311", accent_primary: "#96490a", accent_secondary: "#2b4c6f" },
+        dark: { bg_primary: "#17140f", text_heading: "#fbf7ee", accent_primary: "#e8a33d", accent_secondary: "#7fa8c9" }
+      },
+      "biomedical-diagnostics": {
+        light: { bg_primary: "#f2f9f7", text_heading: "#0e1a1f", accent_primary: "#0d7d6e", accent_secondary: "#c1473a" },
+        dark: { bg_primary: "#0c1917", text_heading: "#f5fffb", accent_primary: "#5fd6c0", accent_secondary: "#ef8672" }
+      },
+      "swiss-precision-instrument": {
+        light: { bg_primary: "#ffffff", text_heading: "#000000", accent_primary: "#c8102e", accent_secondary: "#c8102e" },
+        dark: { bg_primary: "#101010", text_heading: "#ffffff", accent_primary: "#ff3b52", accent_secondary: "#ff3b52" }
       }
     }
   };

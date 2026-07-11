@@ -24,6 +24,8 @@
     "collage-mixed-media"] -%}
     {%- set valid_natural_variants_ = ["celestial-observatory", "periodic-table-chemistry", "field-notebook",
     "chalkboard-proof", "quantum-circuit"] -%}
+    {%- set valid_precision_variants_ = ["blueprint-drafting", "surgical-precision", "aerospace-materials-lab",
+    "biomedical-diagnostics", "swiss-precision-instrument"] -%}
     {%- if requested_style_ == "creative" -%}
     {%- set active_style_ = "creative" -%}
     {%- set requested_variant_ = config.extra.presentation_variant | default(value="editorial-zine") -%}
@@ -39,6 +41,14 @@
     {%- set active_variant_ = requested_variant_ -%}
     {%- else -%}
     {%- set active_variant_ = "periodic-table-chemistry" -%}
+    {%- endif -%}
+    {%- elif requested_style_ == "precision" -%}
+    {%- set active_style_ = "precision" -%}
+    {%- set requested_variant_ = config.extra.presentation_variant | default(value="swiss-precision-instrument") -%}
+    {%- if requested_variant_ in valid_precision_variants_ -%}
+    {%- set active_variant_ = requested_variant_ -%}
+    {%- else -%}
+    {%- set active_variant_ = "swiss-precision-instrument" -%}
     {%- endif -%}
     {%- else -%}
     {%- set active_style_ = "scholarly" -%}
@@ -124,6 +134,44 @@
         as="font" type="font/woff2" crossorigin>
     <link rel="preload"
         href="{{ get_url(path='fonts/natural/periodic-table-chemistry/IBMPlexMono-Regular-latin.woff2') }}"
+        as="font" type="font/woff2" crossorigin>
+    {%- endif %}
+    {%- elif active_style_ == "precision" %}
+    {%- if active_variant_ == "blueprint-drafting" %}
+    <link rel="preload" href="{{ get_url(path='fonts/precision/blueprint-drafting/BigShouldersDisplay-latin.woff2') }}"
+        as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="{{ get_url(path='fonts/precision/blueprint-drafting/IBMPlexSans-latin.woff2') }}"
+        as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="{{ get_url(path='fonts/precision/blueprint-drafting/IBMPlexMono-Regular-latin.woff2') }}"
+        as="font" type="font/woff2" crossorigin>
+    {%- elif active_variant_ == "surgical-precision" %}
+    <link rel="preload"
+        href="{{ get_url(path='fonts/precision/surgical-precision/BarlowCondensed-SemiBold-latin.woff2') }}"
+        as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="{{ get_url(path='fonts/precision/surgical-precision/Roboto-latin.woff2') }}" as="font"
+        type="font/woff2" crossorigin>
+    <link rel="preload" href="{{ get_url(path='fonts/precision/surgical-precision/RobotoMono-latin.woff2') }}"
+        as="font" type="font/woff2" crossorigin>
+    {%- elif active_variant_ == "aerospace-materials-lab" %}
+    <link rel="preload" href="{{ get_url(path='fonts/precision/aerospace-materials-lab/Rajdhani-SemiBold-latin.woff2') }}"
+        as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="{{ get_url(path='fonts/precision/aerospace-materials-lab/Overpass-latin.woff2') }}"
+        as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="{{ get_url(path='fonts/precision/aerospace-materials-lab/RedHatMono-latin.woff2') }}"
+        as="font" type="font/woff2" crossorigin>
+    {%- elif active_variant_ == "biomedical-diagnostics" %}
+    <link rel="preload" href="{{ get_url(path='fonts/precision/biomedical-diagnostics/Sora-latin.woff2') }}" as="font"
+        type="font/woff2" crossorigin>
+    <link rel="preload" href="{{ get_url(path='fonts/precision/biomedical-diagnostics/WorkSans-latin.woff2') }}"
+        as="font" type="font/woff2" crossorigin>
+    <link rel="preload"
+        href="{{ get_url(path='fonts/precision/biomedical-diagnostics/IBMPlexMono-Regular-latin.woff2') }}" as="font"
+        type="font/woff2" crossorigin>
+    {%- else %}
+    {#- swiss-precision-instrument (precision group default) — one typeface -#}
+    {#- for heading/body/code alike, so only one preload is needed. -#}
+    <link rel="preload"
+        href="{{ get_url(path='fonts/precision/swiss-precision-instrument/IBMPlexMono-Regular-latin.woff2') }}"
         as="font" type="font/woff2" crossorigin>
     {%- endif %}
     {%- else %}
@@ -362,21 +410,24 @@
 </head>
 
 {#- Presentation style/variant fallback logic (CONSTITUTION.md §7): -#}
-{#- "scholarly" (5 variants), "creative" (5 variants), and "natural" -#}
-{#- (5 variants) are implemented so far. An unrecognised `presentation_style` -#}
-{#- falls back to "scholarly" (Tapestry's theme-wide default, including on -#}
-{#- sites migrating from terminus). An unrecognised `presentation_variant`, -#}
-{#- once a style has been resolved, falls back to that style's own default -#}
-{#- variant: "contemporary-research-lab" for scholarly, "editorial-zine" for -#}
-{#- creative, "periodic-table-chemistry" for natural -#}
-{#- (specs/design-tokens-natural.md). -#}
-{%- set valid_styles = ["scholarly", "creative", "natural"] -%}
+{#- "scholarly" (5 variants), "creative" (5 variants), "natural" (5 variants), -#}
+{#- and "precision" (5 variants) are implemented so far. An unrecognised -#}
+{#- `presentation_style` falls back to "scholarly" (Tapestry's theme-wide -#}
+{#- default, including on sites migrating from terminus). An unrecognised -#}
+{#- `presentation_variant`, once a style has been resolved, falls back to -#}
+{#- that style's own default variant: "contemporary-research-lab" for -#}
+{#- scholarly, "editorial-zine" for creative, "periodic-table-chemistry" for -#}
+{#- natural (specs/design-tokens-natural.md), "swiss-precision-instrument" -#}
+{#- for precision (specs/design-tokens-precision.md). -#}
+{%- set valid_styles = ["scholarly", "creative", "natural", "precision"] -%}
 {%- set valid_scholarly_variants = ["classic-ivy", "nordic-minimalist", "dark-academia", "scientific-journal",
 "contemporary-research-lab"] -%}
 {%- set valid_creative_variants = ["bauhaus-studio", "editorial-zine", "watercolor-atelier", "neon-studio",
 "collage-mixed-media"] -%}
 {%- set valid_natural_variants = ["celestial-observatory", "periodic-table-chemistry", "field-notebook",
 "chalkboard-proof", "quantum-circuit"] -%}
+{%- set valid_precision_variants = ["blueprint-drafting", "surgical-precision", "aerospace-materials-lab",
+"biomedical-diagnostics", "swiss-precision-instrument"] -%}
 {%- set requested_style = config.extra.presentation_style | default(value="scholarly") -%}
 {%- if requested_style in valid_styles -%}
 {%- set resolved_style = requested_style -%}
@@ -396,6 +447,13 @@
 {%- set resolved_variant = requested_variant -%}
 {%- else -%}
 {%- set resolved_variant = "periodic-table-chemistry" -%}
+{%- endif -%}
+{%- elif resolved_style == "precision" -%}
+{%- set requested_variant = config.extra.presentation_variant | default(value="swiss-precision-instrument") -%}
+{%- if requested_variant in valid_precision_variants -%}
+{%- set resolved_variant = requested_variant -%}
+{%- else -%}
+{%- set resolved_variant = "swiss-precision-instrument" -%}
 {%- endif -%}
 {%- else -%}
 {%- set requested_variant = config.extra.presentation_variant | default(value="contemporary-research-lab") -%}

@@ -60,5 +60,17 @@
                 </ul>
             </details>
         </li>
+        <li>
+            <details name="style-switcher-group" class="style-switcher-group{% if resolved_style == "precision" %} style-switcher-group-current{% endif %}" data-style="precision"{% if resolved_style == "precision" %} open{% endif %}>
+                <summary>Precision</summary>
+                <ul>
+                    <li><button type="button" class="style-switcher-option" data-style="precision" data-variant="blueprint-drafting">Blueprint Drafting</button></li>
+                    <li><button type="button" class="style-switcher-option" data-style="precision" data-variant="surgical-precision">Surgical Precision</button></li>
+                    <li><button type="button" class="style-switcher-option" data-style="precision" data-variant="aerospace-materials-lab">Aerospace Materials Lab</button></li>
+                    <li><button type="button" class="style-switcher-option" data-style="precision" data-variant="biomedical-diagnostics">Biomedical Diagnostics</button></li>
+                    <li><button type="button" class="style-switcher-option" data-style="precision" data-variant="swiss-precision-instrument">Swiss Precision Instrument</button></li>
+                </ul>
+            </details>
+        </li>
     </ul>
 </div>

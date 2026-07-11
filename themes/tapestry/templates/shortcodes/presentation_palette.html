@@ -7,12 +7,12 @@
 {#- Palette hex values are mirrored from the frozen tokens in -#}
 {#- themes/tapestry/sass/css/_variants.scss ($variants Sass map) and -#}
 {#- specs/design-tokens-scholarly.md / specs/design-tokens-creative.md / -#}
-{#- specs/design-tokens-natural.md. -#}
-{#- "scholarly", "creative", and "natural" are implemented so far; extend -#}
-{#- this map when other groups land. -#}
+{#- specs/design-tokens-natural.md / specs/design-tokens-precision.md. -#}
+{#- "scholarly", "creative", "natural", and "precision" are implemented so -#}
+{#- far; extend this map when other groups land. -#}
 
 {%- set requested_style = config.extra.presentation_style | default(value="scholarly") -%}
-{%- set valid_styles = ["scholarly", "creative", "natural"] -%}
+{%- set valid_styles = ["scholarly", "creative", "natural", "precision"] -%}
 {%- if requested_style in valid_styles -%}
 {%- set resolved_style = requested_style -%}
 {%- else -%}
@@ -25,6 +25,8 @@
 "collage-mixed-media"] -%}
 {%- set valid_natural_variants = ["celestial-observatory", "periodic-table-chemistry", "field-notebook",
 "chalkboard-proof", "quantum-circuit"] -%}
+{%- set valid_precision_variants = ["blueprint-drafting", "surgical-precision", "aerospace-materials-lab",
+"biomedical-diagnostics", "swiss-precision-instrument"] -%}
 {%- if resolved_style == "creative" -%}
 {%- set requested_variant = config.extra.presentation_variant | default(value="editorial-zine") -%}
 {%- if requested_variant in valid_creative_variants -%}
@@ -38,6 +40,13 @@
 {%- set resolved_variant = requested_variant -%}
 {%- else -%}
 {%- set resolved_variant = "periodic-table-chemistry" -%}
+{%- endif -%}
+{%- elif resolved_style == "precision" -%}
+{%- set requested_variant = config.extra.presentation_variant | default(value="swiss-precision-instrument") -%}
+{%- if requested_variant in valid_precision_variants -%}
+{%- set resolved_variant = requested_variant -%}
+{%- else -%}
+{%- set resolved_variant = "swiss-precision-instrument" -%}
 {%- endif -%}
 {%- else -%}
 {%- set requested_variant = config.extra.presentation_variant | default(value="contemporary-research-lab") -%}
@@ -121,6 +130,31 @@
 "accent_secondary": "#a3157e"}`, format="json") -%}
 {%- set dark = load_data(literal=`{"bg_primary": "#120c24", "text_heading": "#ffffff", "accent_primary": "#4de8f0",
 "accent_secondary": "#ef6fd8"}`, format="json") -%}
+{%- elif resolved_variant == "blueprint-drafting" -%}
+{%- set light = load_data(literal=`{"bg_primary": "#f5f7fa", "text_heading": "#12293f", "accent_primary": "#0f5fa8",
+"accent_secondary": "#b8302a"}`, format="json") -%}
+{%- set dark = load_data(literal=`{"bg_primary": "#0b2e4a", "text_heading": "#ffffff", "accent_primary": "#6fc3e8",
+"accent_secondary": "#e0846b"}`, format="json") -%}
+{%- elif resolved_variant == "surgical-precision" -%}
+{%- set light = load_data(literal=`{"bg_primary": "#f7f9fa", "text_heading": "#101416", "accent_primary": "#0d6e6e",
+"accent_secondary": "#b3123a"}`, format="json") -%}
+{%- set dark = load_data(literal=`{"bg_primary": "#12171a", "text_heading": "#ffffff", "accent_primary": "#4fc9c4",
+"accent_secondary": "#ef6f8e"}`, format="json") -%}
+{%- elif resolved_variant == "aerospace-materials-lab" -%}
+{%- set light = load_data(literal=`{"bg_primary": "#ece9e4", "text_heading": "#141311", "accent_primary": "#96490a",
+"accent_secondary": "#2b4c6f"}`, format="json") -%}
+{%- set dark = load_data(literal=`{"bg_primary": "#17140f", "text_heading": "#fbf7ee", "accent_primary": "#e8a33d",
+"accent_secondary": "#7fa8c9"}`, format="json") -%}
+{%- elif resolved_variant == "biomedical-diagnostics" -%}
+{%- set light = load_data(literal=`{"bg_primary": "#f2f9f7", "text_heading": "#0e1a1f", "accent_primary": "#0d7d6e",
+"accent_secondary": "#c1473a"}`, format="json") -%}
+{%- set dark = load_data(literal=`{"bg_primary": "#0c1917", "text_heading": "#f5fffb", "accent_primary": "#5fd6c0",
+"accent_secondary": "#ef8672"}`, format="json") -%}
+{%- elif resolved_variant == "swiss-precision-instrument" -%}
+{%- set light = load_data(literal=`{"bg_primary": "#ffffff", "text_heading": "#000000", "accent_primary": "#c8102e",
+"accent_secondary": "#c8102e"}`, format="json") -%}
+{%- set dark = load_data(literal=`{"bg_primary": "#101010", "text_heading": "#ffffff", "accent_primary": "#ff3b52",
+"accent_secondary": "#ff3b52"}`, format="json") -%}
 {%- else -%}
 {#- editorial-zine (creative group default) -#}
 {%- set light = load_data(literal=`{"bg_primary": "#fdfdfb", "text_heading": "#000000", "accent_primary": "#c2006e",
