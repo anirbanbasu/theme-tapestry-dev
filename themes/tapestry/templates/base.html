@@ -26,6 +26,8 @@
     "chalkboard-proof", "quantum-circuit"] -%}
     {%- set valid_precision_variants_ = ["blueprint-drafting", "surgical-precision", "aerospace-materials-lab",
     "biomedical-diagnostics", "swiss-precision-instrument"] -%}
+    {%- set valid_collective_variants_ = ["cartographers-atlas", "ledger-index", "social-network-diagram",
+    "agora-classical-philosophy", "strata-geology"] -%}
     {%- if requested_style_ == "creative" -%}
     {%- set active_style_ = "creative" -%}
     {%- set requested_variant_ = config.extra.presentation_variant | default(value="editorial-zine") -%}
@@ -49,6 +51,14 @@
     {%- set active_variant_ = requested_variant_ -%}
     {%- else -%}
     {%- set active_variant_ = "swiss-precision-instrument" -%}
+    {%- endif -%}
+    {%- elif requested_style_ == "collective" -%}
+    {%- set active_style_ = "collective" -%}
+    {%- set requested_variant_ = config.extra.presentation_variant | default(value="cartographers-atlas") -%}
+    {%- if requested_variant_ in valid_collective_variants_ -%}
+    {%- set active_variant_ = requested_variant_ -%}
+    {%- else -%}
+    {%- set active_variant_ = "cartographers-atlas" -%}
     {%- endif -%}
     {%- else -%}
     {%- set active_style_ = "scholarly" -%}
@@ -173,6 +183,48 @@
     <link rel="preload"
         href="{{ get_url(path='fonts/precision/swiss-precision-instrument/IBMPlexMono-Regular-latin.woff2') }}"
         as="font" type="font/woff2" crossorigin>
+    {%- endif %}
+    {%- elif active_style_ == "collective" %}
+    {%- if active_variant_ == "ledger-index" %}
+    <link rel="preload" href="{{ get_url(path='fonts/collective/ledger-index/Bitter-latin.woff2') }}" as="font"
+        type="font/woff2" crossorigin>
+    <link rel="preload" href="{{ get_url(path='fonts/collective/ledger-index/IBMPlexSans-latin.woff2') }}" as="font"
+        type="font/woff2" crossorigin>
+    <link rel="preload" href="{{ get_url(path='fonts/collective/ledger-index/IBMPlexMono-Regular-latin.woff2') }}"
+        as="font" type="font/woff2" crossorigin>
+    {%- elif active_variant_ == "social-network-diagram" %}
+    <link rel="preload" href="{{ get_url(path='fonts/collective/social-network-diagram/Outfit-latin.woff2') }}"
+        as="font" type="font/woff2" crossorigin>
+    <link rel="preload"
+        href="{{ get_url(path='fonts/collective/social-network-diagram/HankenGrotesk-latin.woff2') }}" as="font"
+        type="font/woff2" crossorigin>
+    <link rel="preload" href="{{ get_url(path='fonts/collective/social-network-diagram/JetBrainsMono-latin.woff2') }}"
+        as="font" type="font/woff2" crossorigin>
+    {%- elif active_variant_ == "agora-classical-philosophy" %}
+    <link rel="preload" href="{{ get_url(path='fonts/collective/agora-classical-philosophy/Marcellus-latin.woff2') }}"
+        as="font" type="font/woff2" crossorigin>
+    <link rel="preload"
+        href="{{ get_url(path='fonts/collective/agora-classical-philosophy/PTSerif-Regular-latin.woff2') }}"
+        as="font" type="font/woff2" crossorigin>
+    <link rel="preload"
+        href="{{ get_url(path='fonts/collective/agora-classical-philosophy/IBMPlexMono-Regular-latin.woff2') }}"
+        as="font" type="font/woff2" crossorigin>
+    {%- elif active_variant_ == "strata-geology" %}
+    <link rel="preload" href="{{ get_url(path='fonts/collective/strata-geology/ZillaSlab-SemiBold-latin.woff2') }}"
+        as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="{{ get_url(path='fonts/collective/strata-geology/PublicSans-latin.woff2') }}" as="font"
+        type="font/woff2" crossorigin>
+    <link rel="preload" href="{{ get_url(path='fonts/collective/strata-geology/IBMPlexMono-Regular-latin.woff2') }}"
+        as="font" type="font/woff2" crossorigin>
+    {%- else %}
+    {#- cartographers-atlas (collective group default) -#}
+    <link rel="preload" href="{{ get_url(path='fonts/collective/cartographers-atlas/Domine-latin.woff2') }}"
+        as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="{{ get_url(path='fonts/collective/cartographers-atlas/NotoSerif-latin.woff2') }}"
+        as="font" type="font/woff2" crossorigin>
+    <link rel="preload"
+        href="{{ get_url(path='fonts/collective/cartographers-atlas/IBMPlexMono-Regular-latin.woff2') }}" as="font"
+        type="font/woff2" crossorigin>
     {%- endif %}
     {%- else %}
     {%- if active_variant_ == "classic-ivy" %}
@@ -411,15 +463,17 @@
 
 {#- Presentation style/variant fallback logic (CONSTITUTION.md §7): -#}
 {#- "scholarly" (5 variants), "creative" (5 variants), "natural" (5 variants), -#}
-{#- and "precision" (5 variants) are implemented so far. An unrecognised -#}
-{#- `presentation_style` falls back to "scholarly" (Tapestry's theme-wide -#}
-{#- default, including on sites migrating from terminus). An unrecognised -#}
-{#- `presentation_variant`, once a style has been resolved, falls back to -#}
-{#- that style's own default variant: "contemporary-research-lab" for -#}
-{#- scholarly, "editorial-zine" for creative, "periodic-table-chemistry" for -#}
-{#- natural (specs/design-tokens-natural.md), "swiss-precision-instrument" -#}
-{#- for precision (specs/design-tokens-precision.md). -#}
-{%- set valid_styles = ["scholarly", "creative", "natural", "precision"] -%}
+{#- "precision" (5 variants), and "collective" (5 variants) are implemented -#}
+{#- so far. An unrecognised `presentation_style` falls back to "scholarly" -#}
+{#- (Tapestry's theme-wide default, including on sites migrating from -#}
+{#- terminus). An unrecognised `presentation_variant`, once a style has been -#}
+{#- resolved, falls back to that style's own default variant: -#}
+{#- "contemporary-research-lab" for scholarly, "editorial-zine" for creative, -#}
+{#- "periodic-table-chemistry" for natural (specs/design-tokens-natural.md), -#}
+{#- "swiss-precision-instrument" for precision -#}
+{#- (specs/design-tokens-precision.md), "cartographers-atlas" for collective -#}
+{#- (specs/design-tokens-collective.md). -#}
+{%- set valid_styles = ["scholarly", "creative", "natural", "precision", "collective"] -%}
 {%- set valid_scholarly_variants = ["classic-ivy", "nordic-minimalist", "dark-academia", "scientific-journal",
 "contemporary-research-lab"] -%}
 {%- set valid_creative_variants = ["bauhaus-studio", "editorial-zine", "watercolor-atelier", "neon-studio",
@@ -428,6 +482,8 @@
 "chalkboard-proof", "quantum-circuit"] -%}
 {%- set valid_precision_variants = ["blueprint-drafting", "surgical-precision", "aerospace-materials-lab",
 "biomedical-diagnostics", "swiss-precision-instrument"] -%}
+{%- set valid_collective_variants = ["cartographers-atlas", "ledger-index", "social-network-diagram",
+"agora-classical-philosophy", "strata-geology"] -%}
 {%- set requested_style = config.extra.presentation_style | default(value="scholarly") -%}
 {%- if requested_style in valid_styles -%}
 {%- set resolved_style = requested_style -%}
@@ -454,6 +510,13 @@
 {%- set resolved_variant = requested_variant -%}
 {%- else -%}
 {%- set resolved_variant = "swiss-precision-instrument" -%}
+{%- endif -%}
+{%- elif resolved_style == "collective" -%}
+{%- set requested_variant = config.extra.presentation_variant | default(value="cartographers-atlas") -%}
+{%- if requested_variant in valid_collective_variants -%}
+{%- set resolved_variant = requested_variant -%}
+{%- else -%}
+{%- set resolved_variant = "cartographers-atlas" -%}
 {%- endif -%}
 {%- else -%}
 {%- set requested_variant = config.extra.presentation_variant | default(value="contemporary-research-lab") -%}

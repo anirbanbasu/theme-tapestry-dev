@@ -4,7 +4,9 @@ Frozen design-token reference for the **collective** presentation style group, p
 
 **Status of this document:** fonts, colour palettes (light + dark, contrast-verified), spacing scale, type scale, border radius, and shadows are frozen and ready for implementation — these were fully specified and numerically verified during prototyping (see each variant's prototype file for the contrast-ratio workings). **Grid sub-desktop breakpoints and the navigation-collapse breakpoint/treatment are now resolved**, via the shared technical spikes at `prototypes/spikes/responsive-grid-spike.html` and `prototypes/spikes/nav-collapse-spike.html` (both verified in-browser at multiple viewport widths, including 320px). These are shared, group-agnostic mechanism values applied uniformly across every group/variant — only each variant's own colour/spacing/font tokens (above) vary per style. **The article/sidebar column split below is content-driven**, per the CONSTITUTION.md §5 amendment of 2026-07-05: the sidebar (and the article's narrower 1–8 span) only appear when the page actually has an automatic TOC or custom `page.extra.sidebar` content to show — see `themes/tapestry/templates/partials/sidebar.html`.
 
-**Default variant for this group:** *not yet designated.* CONSTITUTION.md §7 requires each group to name one variant as its default (used when `extra.presentation_variant` is unset or invalid); that choice has not been made yet for `collective`.
+**Default variant for this group:** `cartographers-atlas` (CONSTITUTION.md §7). Used when `extra.presentation_style` is `"collective"` and `extra.presentation_variant` is unset or names a variant that doesn't exist within this group. Note this does not change Tapestry's theme-wide default group+variant (`scholarly`/`contemporary-research-lab`, CONSTITUTION.md §7) — it only applies once `collective` has been explicitly selected as the style.
+
+*Correction (implementation planning, 2026-07-11): this line originally read "not yet designated" — CONSTITUTION.md §7 requires every group to name a default variant, and that choice had not been made when this document was drafted. Resolved to `cartographers-atlas` during implementation planning.*
 
 ## Variants
 
@@ -72,8 +74,10 @@ Aged-map parchment with a faint concentric contour-line texture, a compass-rose 
 |---|---|
 | `--radius-sm` | `2px` |
 | `--radius-md` | `4px` |
-| `--shadow-sm` | `0 2px 8px rgba(46, 42, 28, 0.14)` |
-| `--shadow-md` | `0 8px 22px rgba(46, 42, 28, 0.18)` |
+| `--shadow-sm` | `0 2px 8px rgba(28, 40, 51, 0.14)` |
+| `--shadow-md` | `0 8px 22px rgba(28, 40, 51, 0.18)` |
+
+*Correction (implementation planning, 2026-07-11): the shadow rgba above originally read `rgba(46, 42, 28, ...)`, a warm brown that matches neither this variant's `--colour-text-primary` (`#1c2833` → `rgb(28,40,51)`) nor `--colour-text-heading` (`#12191f` → `rgb(18,25,31)`) — inconsistent with this variant's own "cool cartographic blue-grey palette" and with the derivation pattern used everywhere else (every other variant in every group ties its shadow rgb to its own `text-primary`/`text-heading` value). It appears to have been carried over from a warm-toned variant during drafting. Resolved to `rgba(28, 40, 51, ...)`, derived from this variant's own `--colour-text-primary`, consistent with the rest of the group.*
 
 **Grid breakpoints & column spans (§5)** — desktop spans confirmed in the prototype; sub-desktop breakpoint resolved by `prototypes/spikes/responsive-grid-spike.html` (verified at 320px–1200px, no horizontal overflow at any width).
 

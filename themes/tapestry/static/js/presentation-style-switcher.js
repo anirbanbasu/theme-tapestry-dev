@@ -5,11 +5,11 @@
  * sanctioned JS exception, opt-in via `extra.presentation_style_switcher`
  * (default false). It lets a visitor override the site's configured
  * `data-style`/`data-variant` attributes on <body> at runtime, without a
- * page reload — every scholarly + creative + natural + precision variant's CSS custom properties are already
+ * page reload — every scholarly + creative + natural + precision + collective variant's CSS custom properties are already
  * keyed off those attributes (_variants.scss), so flipping them is enough
  * to repaint colours, fonts, spacing, etc. live.
  *
- * Font loading: all scholarly + creative + natural + precision variant fonts are self-hosted as WOFF2 files
+ * Font loading: all scholarly + creative + natural + precision + collective variant fonts are self-hosted as WOFF2 files
  * under themes/tapestry/static/fonts/<style>/<variant>/ and declared via
  * @font-face in the main stylesheet (CONSTITUTION.md §4). No CDN stylesheet
  * injection is needed — when a visitor switches variant the browser already
@@ -126,6 +126,28 @@
       "swiss-precision-instrument": {
         light: { bg_primary: "#ffffff", text_heading: "#000000", accent_primary: "#c8102e", accent_secondary: "#c8102e" },
         dark: { bg_primary: "#101010", text_heading: "#ffffff", accent_primary: "#ff3b52", accent_secondary: "#ff3b52" }
+      }
+    },
+    collective: {
+      "cartographers-atlas": {
+        light: { bg_primary: "#e8edf0", text_heading: "#12191f", accent_primary: "#245c3f", accent_secondary: "#1f4e73" },
+        dark: { bg_primary: "#101823", text_heading: "#f5f8fa", accent_primary: "#6fc99a", accent_secondary: "#6fa8d9" }
+      },
+      "ledger-index": {
+        light: { bg_primary: "#f8f7f4", text_heading: "#0c140f", accent_primary: "#8a6817", accent_secondary: "#164d33" },
+        dark: { bg_primary: "#0d1510", text_heading: "#f7f4e6", accent_primary: "#d9ab52", accent_secondary: "#6fbf94" }
+      },
+      "social-network-diagram": {
+        light: { bg_primary: "#faf6f2", text_heading: "#181410", accent_primary: "#b8472e", accent_secondary: "#1f6b6b" },
+        dark: { bg_primary: "#1c1815", text_heading: "#fbf7f2", accent_primary: "#e88a6c", accent_secondary: "#5fc9c4" }
+      },
+      "agora-classical-philosophy": {
+        light: { bg_primary: "#f2efe9", text_heading: "#171614", accent_primary: "#a8432b", accent_secondary: "#3f6b5c" },
+        dark: { bg_primary: "#1c1c1a", text_heading: "#faf7f0", accent_primary: "#d97a5f", accent_secondary: "#7fada0" }
+      },
+      "strata-geology": {
+        light: { bg_primary: "#e6e0d5", text_heading: "#1c130b", accent_primary: "#9c4318", accent_secondary: "#57616b" },
+        dark: { bg_primary: "#1f160f", text_heading: "#f7efdf", accent_primary: "#d98a56", accent_secondary: "#9aa3ab" }
       }
     }
   };

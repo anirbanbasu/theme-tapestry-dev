@@ -7,12 +7,13 @@
 {#- Palette hex values are mirrored from the frozen tokens in -#}
 {#- themes/tapestry/sass/css/_variants.scss ($variants Sass map) and -#}
 {#- specs/design-tokens-scholarly.md / specs/design-tokens-creative.md / -#}
-{#- specs/design-tokens-natural.md / specs/design-tokens-precision.md. -#}
-{#- "scholarly", "creative", "natural", and "precision" are implemented so -#}
-{#- far; extend this map when other groups land. -#}
+{#- specs/design-tokens-natural.md / specs/design-tokens-precision.md / -#}
+{#- specs/design-tokens-collective.md. -#}
+{#- "scholarly", "creative", "natural", "precision", and "collective" are -#}
+{#- implemented so far; extend this map when other groups land. -#}
 
 {%- set requested_style = config.extra.presentation_style | default(value="scholarly") -%}
-{%- set valid_styles = ["scholarly", "creative", "natural", "precision"] -%}
+{%- set valid_styles = ["scholarly", "creative", "natural", "precision", "collective"] -%}
 {%- if requested_style in valid_styles -%}
 {%- set resolved_style = requested_style -%}
 {%- else -%}
@@ -27,6 +28,8 @@
 "chalkboard-proof", "quantum-circuit"] -%}
 {%- set valid_precision_variants = ["blueprint-drafting", "surgical-precision", "aerospace-materials-lab",
 "biomedical-diagnostics", "swiss-precision-instrument"] -%}
+{%- set valid_collective_variants = ["cartographers-atlas", "ledger-index", "social-network-diagram",
+"agora-classical-philosophy", "strata-geology"] -%}
 {%- if resolved_style == "creative" -%}
 {%- set requested_variant = config.extra.presentation_variant | default(value="editorial-zine") -%}
 {%- if requested_variant in valid_creative_variants -%}
@@ -47,6 +50,13 @@
 {%- set resolved_variant = requested_variant -%}
 {%- else -%}
 {%- set resolved_variant = "swiss-precision-instrument" -%}
+{%- endif -%}
+{%- elif resolved_style == "collective" -%}
+{%- set requested_variant = config.extra.presentation_variant | default(value="cartographers-atlas") -%}
+{%- if requested_variant in valid_collective_variants -%}
+{%- set resolved_variant = requested_variant -%}
+{%- else -%}
+{%- set resolved_variant = "cartographers-atlas" -%}
 {%- endif -%}
 {%- else -%}
 {%- set requested_variant = config.extra.presentation_variant | default(value="contemporary-research-lab") -%}
@@ -155,6 +165,31 @@
 "accent_secondary": "#c8102e"}`, format="json") -%}
 {%- set dark = load_data(literal=`{"bg_primary": "#101010", "text_heading": "#ffffff", "accent_primary": "#ff3b52",
 "accent_secondary": "#ff3b52"}`, format="json") -%}
+{%- elif resolved_variant == "cartographers-atlas" -%}
+{%- set light = load_data(literal=`{"bg_primary": "#e8edf0", "text_heading": "#12191f", "accent_primary": "#245c3f",
+"accent_secondary": "#1f4e73"}`, format="json") -%}
+{%- set dark = load_data(literal=`{"bg_primary": "#101823", "text_heading": "#f5f8fa", "accent_primary": "#6fc99a",
+"accent_secondary": "#6fa8d9"}`, format="json") -%}
+{%- elif resolved_variant == "ledger-index" -%}
+{%- set light = load_data(literal=`{"bg_primary": "#f8f7f4", "text_heading": "#0c140f", "accent_primary": "#8a6817",
+"accent_secondary": "#164d33"}`, format="json") -%}
+{%- set dark = load_data(literal=`{"bg_primary": "#0d1510", "text_heading": "#f7f4e6", "accent_primary": "#d9ab52",
+"accent_secondary": "#6fbf94"}`, format="json") -%}
+{%- elif resolved_variant == "social-network-diagram" -%}
+{%- set light = load_data(literal=`{"bg_primary": "#faf6f2", "text_heading": "#181410", "accent_primary": "#b8472e",
+"accent_secondary": "#1f6b6b"}`, format="json") -%}
+{%- set dark = load_data(literal=`{"bg_primary": "#1c1815", "text_heading": "#fbf7f2", "accent_primary": "#e88a6c",
+"accent_secondary": "#5fc9c4"}`, format="json") -%}
+{%- elif resolved_variant == "agora-classical-philosophy" -%}
+{%- set light = load_data(literal=`{"bg_primary": "#f2efe9", "text_heading": "#171614", "accent_primary": "#a8432b",
+"accent_secondary": "#3f6b5c"}`, format="json") -%}
+{%- set dark = load_data(literal=`{"bg_primary": "#1c1c1a", "text_heading": "#faf7f0", "accent_primary": "#d97a5f",
+"accent_secondary": "#7fada0"}`, format="json") -%}
+{%- elif resolved_variant == "strata-geology" -%}
+{%- set light = load_data(literal=`{"bg_primary": "#e6e0d5", "text_heading": "#1c130b", "accent_primary": "#9c4318",
+"accent_secondary": "#57616b"}`, format="json") -%}
+{%- set dark = load_data(literal=`{"bg_primary": "#1f160f", "text_heading": "#f7efdf", "accent_primary": "#d98a56",
+"accent_secondary": "#9aa3ab"}`, format="json") -%}
 {%- else -%}
 {#- editorial-zine (creative group default) -#}
 {%- set light = load_data(literal=`{"bg_primary": "#fdfdfb", "text_heading": "#000000", "accent_primary": "#c2006e",

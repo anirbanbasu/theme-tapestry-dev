@@ -72,5 +72,17 @@
                 </ul>
             </details>
         </li>
+        <li>
+            <details name="style-switcher-group" class="style-switcher-group{% if resolved_style == "collective" %} style-switcher-group-current{% endif %}" data-style="collective"{% if resolved_style == "collective" %} open{% endif %}>
+                <summary>Collective</summary>
+                <ul>
+                    <li><button type="button" class="style-switcher-option" data-style="collective" data-variant="cartographers-atlas">Cartographers Atlas</button></li>
+                    <li><button type="button" class="style-switcher-option" data-style="collective" data-variant="ledger-index">Ledger Index</button></li>
+                    <li><button type="button" class="style-switcher-option" data-style="collective" data-variant="social-network-diagram">Social Network Diagram</button></li>
+                    <li><button type="button" class="style-switcher-option" data-style="collective" data-variant="agora-classical-philosophy">Agora Classical Philosophy</button></li>
+                    <li><button type="button" class="style-switcher-option" data-style="collective" data-variant="strata-geology">Strata Geology</button></li>
+                </ul>
+            </details>
+        </li>
     </ul>
 </div>
