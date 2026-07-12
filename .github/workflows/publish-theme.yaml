@@ -47,6 +47,6 @@ jobs:
             exit 0
           fi
           git commit -m "Release ${RELEASE_TAG}"
-          git tag "${RELEASE_TAG}"
+          git tag -f "${RELEASE_TAG}"
           git push origin HEAD:master
-          git push origin "${RELEASE_TAG}"
+          git push origin "${RELEASE_TAG}" --force
