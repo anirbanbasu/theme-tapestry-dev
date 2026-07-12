@@ -61,7 +61,7 @@ layout = "center"
 show_default_author = false
 
 main_menu = [
-    { name = "blog", url = "blog", trailing_slash = true },
+    { name = "posts", url = "posts", trailing_slash = true },
     { name = "about", url = "about", trailing_slash = false },
     { name = "archive", url = "archive", trailing_slash = true },
     { name = "tags", url = "tags", trailing_slash = true },

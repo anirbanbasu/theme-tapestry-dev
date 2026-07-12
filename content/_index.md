@@ -26,7 +26,12 @@ katex = true
 
 _Critical Sniffing, Burrowing and Barking Laboratory_
 
-This isn't my usual research field but I am here to give you a demo of the `tapestry` theme, a Zola theme for academic and industry researcher profile websites. It has been derived from and mostly backward-compatible with the [terminus](https://github.com/ebkalderon/terminus) theme.
+This isn't my usual research field but I am here to give you a demo of the `tapestry` theme. It is a Zola theme for researcher profile websites. The tapestry theme is inspired by and derived from the [terminus](https://github.com/ebkalderon/terminus) theme, specifically its `aa8d8b67f9ab69ae48e1405f96e152d41f03e0ed` commit. A number of functionalities and configuration options are extended from those of the terminus theme. The key differences include the following.
+  <ul>
+    <li>A number of presentation styles (e.g., <code>creative</code>), each with a number of variants (e.g., <code>editorial-zine</code>) replace the <code>extra.color_scheme</code> setting of the terminus theme.</li>
+    <li>Each presentation style and its variants are available in both light and dark modes.</li>
+    <li>Additional shortcodes, such as for showing the colour palette.</li>
+  </ul>
   </div>
 </div>
 
