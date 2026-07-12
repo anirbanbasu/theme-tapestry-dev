@@ -48,5 +48,5 @@ jobs:
           fi
           git commit -m "Release ${RELEASE_TAG}"
           git tag "${RELEASE_TAG}"
-          git push origin HEAD:main
+          git push origin HEAD:master
           git push origin "${RELEASE_TAG}"
