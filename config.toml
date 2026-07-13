@@ -50,6 +50,8 @@ presentation_style = "scholarly"
 presentation_variant = "contemporary-research-lab"
 presentation_style_switcher = true
 
+site_id = "theme-demo"
+
 # KaTeX is disabled globally; enable per-page via `[extra] katex = true` in
 # front matter (only pages that actually contain math need it).
 katex = false
