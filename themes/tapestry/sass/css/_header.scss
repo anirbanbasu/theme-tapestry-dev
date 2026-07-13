@@ -13,8 +13,12 @@
 // row below this one, not inline with it. `align-items: center` vertically
 // centres the toggle button against the logo regardless of the logo's
 // rendered height. `container-type: inline-size` makes this row's own
-// resolved width available to .logo-img's `cqi`-based max-width below,
-// independent of .header-logo-container's own `flex: 0 0 auto` sizing.
+// resolved width available to .logo-img's `cqi`-based max-width below.
+// `.header-logo-container` and `a` are both `display: contents` (see
+// below) so the actual logo element (.logo-svg/.logo-img/.logo-text) is a
+// direct flex item of this row; each of the three protects itself from
+// `justify-content: space-between` squeezing via its own `flex-shrink: 0`,
+// the same pattern `.header-controls` already used.
 .header-container {
   display: flex;
   align-items: center;
@@ -26,17 +30,59 @@
   container-type: inline-size;
 }
 
+// `.header-logo-container` and its inner `a` are both flattened out of the
+// render tree via `display: contents` (see the longer explanation on
+// `.logo` immediately below, which needed the same treatment) — the
+// element that actually carries the flex-item role and needs sizing/
+// alignment behaviour is `.logo-svg`/`.logo-img`/`.logo-text` itself, now a
+// direct flex item of `.header-container` (the outer row: logo left,
+// `.header-controls` right). `flex-shrink: 0` here replaces the protection
+// `.header-logo-container`'s old `flex: 0 0 auto` used to provide — without
+// it, `.header-container`'s `justify-content: space-between` could shrink
+// the logo when the row is tight, same as `.header-controls` already
+// protects itself the same way below. `align-items: center` on
+// `.header-container` (already present) takes over vertical centring.
 .header-logo-container {
-  display: flex;
-  align-items: center;
-  flex: 0 0 auto;
+  display: contents;
 
   a {
-    display: flex;
-    align-items: center;
+    display: contents;
     color: var(--colour-text-heading);
     text-decoration: none;
   }
+}
+
+// The single wrapping <span class="logo"> shared by all three logo.html
+// tiers (partials/logo.html) has no visual role of its own — it's a pure
+// grouping element. Giving it `display: contents` removes its own box from
+// the render tree entirely, same as its two ancestors above.
+//
+// This three-level flattening (`.header-logo-container` > `a` > `.logo`,
+// all `display: contents`) is the fix for a 0x0 rendering bug found in
+// verification: a replaced <img> sized only via `max-height`/`max-width`
+// (no `width`/`height` attributes on the file, no `width`/`height` CSS —
+// deliberate, to preserve arbitrary-aspect-ratio scaling; see .logo-img
+// below) has its content-based preferred/min-content size resolve to 0 in
+// Chromium as soon as it sits inside *any* number of nested
+// `display: flex` containers whose own sizing is otherwise
+// indefinite/shrink-to-fit (verified empirically — flattening only one or
+// two of the three levels still left the collapse in place; only removing
+// all three intermediate boxes, so the <img> becomes a direct flex item of
+// `.header-container` itself, which has a genuinely definite `width: 100%`,
+// fixed it). Tried and rejected: `flex-shrink`/`flex-basis`/`min-width`/
+// `width: max-content` overrides at each intermediate level individually —
+// none affect the underlying min-content/max-content computation that
+// resolves to 0 for this specific replaced-element configuration. See
+// docs/superpowers/plans/2026-07-13-header-logo-fallback-and-sizing.md
+// (Task 4's original finding covered only the innermost `.logo` span; this
+// fix extends the same technique up through the other two flex wrappers,
+// which turned out to reproduce the identical collapse). `.logo-svg`
+// (already an inlined, non-replaced <svg> sized independently via its own
+// height/width rule) and `.logo-text` (non-replaced content) are
+// unaffected by this change — neither depended on any of these three
+// wrappers generating their own box.
+.logo {
+  display: contents;
 }
 
 // Default Tapestry brand mark: inlined SVG using `currentColor`
@@ -47,6 +93,7 @@
 // `clamp()` on narrow viewports so it never crowds the nav/toggle at 320px.
 .logo-svg {
   display: block;
+  flex-shrink: 0;
   height: clamp(2rem, 5vw, 4rem);
   width: auto;
   color: var(--colour-text-heading);
@@ -67,6 +114,7 @@
 // every breakpoint down to the 320px grid floor (CONSTITUTION.md §5).
 .logo-img {
   display: inline;
+  flex-shrink: 0;
   max-height: clamp(2rem, 5vw, 4rem);
   max-width: 50cqi;
   margin: 0;
@@ -78,6 +126,7 @@
 // comfortably in the same fixed-height logo slot as `.logo-svg`/`.logo-img`.
 .logo-text {
   display: inline-block;
+  flex-shrink: 0;
   font-size: clamp(1.25rem, 3vw, 2rem);
   font-weight: 700;
   line-height: 1;
