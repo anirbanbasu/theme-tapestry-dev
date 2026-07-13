@@ -73,8 +73,8 @@ non-negotiable regardless of what this contract says.
 | `favicon_emoji` | string (emoji) | — | Rendered as inline SVG data URI. Requires CSP `img-src data:` (handled automatically). |
 | `feed_icon` | bool \| string | — | `true` = default RSS/Atom icon; string = custom icon name from `static/images/social_icons/`. |
 | `fediverse_creator` | string | — | Emits `<meta name="fediverse:creator">`. |
-| `header_title` | string | `config.title` | Overrides header text. |
-| `header_logo` | path | — | Image (including SVG) used instead of header text. |
+| `header_title` | string | `config.title` | Overrides header text. Ignored if `header_logo` is also set. |
+| `header_logo` | path | — | Image (including SVG) used instead of header text. Tapestry-only deviation: if neither `header_logo` nor `header_title` is set, Tapestry falls back to its own brand mark (`specs/brand-logo.md`) instead of `config.title` as plain text — terminus has no such mark and always falls back to text. |
 | `katex` | bool | `false` | **Requires JS** (`js/katex.min.js` + `css/katex.min.css`). Overridable per-page/section via `extra.katex` (see §5). See §7 conflict note. |
 | `layout` | `"center"` \| `"left"` \| `"full-width"` | `"center"` | Affects body class and `responsive_image` `sizes` attribute. |
 | `show_default_author` | bool | `true` | Whether to show `config.author` on pages without `authors = [...]` in front matter. |
