@@ -45,6 +45,29 @@
 .header-logo-container {
   display: contents;
 
+  // KNOWN ISSUE (accepted, not yet fixed): `display: contents` on this
+  // anchor removes it from Chromium's focus/tab order entirely — verified
+  // empirically (real Tab traversal, `.focus()`, and CDP accessibility-tree
+  // inspection) that the home/logo link is currently keyboard-unreachable
+  // on every page (this wrapper is shared by all three logo.html fallback
+  // tiers, not just the `header_logo` case). The link's role/name still
+  // show up correctly in the accessibility tree, but SC 2.1.1 (Keyboard)
+  // and SC 2.4.7 (Focus Visible) are not met — a keyboard-only user cannot
+  // reach or activate this link. This is a WCAG AA regression against
+  // CONSTITUTION.md §1, knowingly accepted for now in exchange for fixing
+  // the more severe 0x0 `.logo-img` rendering bug it was introduced to
+  // solve (see `.logo` below for the full root-cause writeup). Every
+  // CSS-only fix that keeps `<a>` off `display: contents` (tried:
+  // `flex`/`block`/`inline-block`/`grid`/`table` with various
+  // `min-width`/`width: fit-content`/`flex-shrink` overrides, and a
+  // CSS Grid restructuring of `.header-container`) either reintroduced the
+  // 0x0 collapse or only worked by giving the logo slot a fixed envelope
+  // box independent of the actual image's aspect ratio — a different,
+  // real trade-off (oversized click/focus target for narrow logos) that
+  // was not adopted here without explicit sign-off. Tracked externally by
+  // project maintainers; do not silently "fix" this by re-introducing an
+  // untested variant without re-running the empirical Tab-traversal check
+  // this comment describes.
   a {
     display: contents;
     color: var(--colour-text-heading);
