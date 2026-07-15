@@ -15,3 +15,39 @@ serve:
     @echo "Serving the website locally using Zola..."
     @zola serve
     @echo "Website is being served at http://127.0.0.1:1111"
+
+# Generate/update visual regression screenshot baselines locally (no PR automation)
+update-visual-baselines-local:
+    @echo "WARNING: This should not really be run locally except for testing the script because font rendering may differ across machines. Use the GitHub Actions workflow instead."
+    @echo "Building site for visual regression tests..."
+    @zola build --base-url http://127.0.0.1:1111
+    @echo "Installing visual test dependencies..."
+    @cd tests/visual-a11y && npm ci
+    @echo "Installing Playwright Chromium browser and updating visual regression screenshot baselines..."
+    @cd tests/visual-a11y && npx playwright install --with-deps chromium && npx playwright test tests/visual.spec.ts --update-snapshots
+    @echo "Done. Updated screenshots are in tests/visual-a11y/screenshots/."
+    @echo "WARNING: Do not commit the updated screenshots since this is for local testing only."
+
+# Run the visual/a11y CI test flow locally across all style groups
+visual-a11y-tests-local:
+    @echo "Running zola check..."
+    @zola check
+    @echo "Building site for CI-parity visual/a11y tests..."
+    @zola build --base-url http://127.0.0.1:1111
+    @echo "Installing visual test dependencies..."
+    @cd tests/visual-a11y && npm ci
+    @echo "Installing Playwright Chromium browser..."
+    @cd tests/visual-a11y && npx playwright install --with-deps chromium
+    @echo "Running accessibility, visual, and keyboard suites for all style groups..."
+    @bash -c 'set -uo pipefail; \
+        failed=0; \
+        for group in scholarly creative natural precision collective; do \
+            echo "== STYLE_GROUP=$group: a11y =="; \
+            cd tests/visual-a11y; STYLE_GROUP="$group" npx playwright test tests/a11y.spec.ts || failed=1; cd ../..; \
+            echo "== STYLE_GROUP=$group: visual =="; \
+            cd tests/visual-a11y; STYLE_GROUP="$group" npx playwright test tests/visual.spec.ts || failed=1; cd ../..; \
+            echo "== STYLE_GROUP=$group: keyboard =="; \
+            cd tests/visual-a11y; STYLE_GROUP="$group" npx playwright test tests/keyboard.spec.ts || failed=1; cd ../..; \
+        done; \
+        exit $failed'
+    @echo "Done. Local visual/a11y test workflow completed."
