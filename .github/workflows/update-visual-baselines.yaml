@@ -57,6 +57,7 @@ jobs:
             Review the diffed PNGs under `tests/visual-a11y/screenshots/` before
             merging: confirm every changed image reflects an intentional design
             change, not a regression.
+          token: ${{ secrets.GH_PR_TOKEN }}
           branch: update-visual-baselines
           add-paths: tests/visual-a11y/screenshots/**
           delete-branch: true
