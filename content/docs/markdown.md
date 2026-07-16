@@ -5,8 +5,8 @@ date = 2026-07-05
 authors = ["Anirban Basu"]
 
 [taxonomies]
-tags = ["showcase", "markdown"]
-categories = ["hello"]
+tags = ["docs", "authoring", "markdown"]
+categories = ["docs"]
 +++
 
 This article offers a sample of basic Markdown syntax that can be used in Zola

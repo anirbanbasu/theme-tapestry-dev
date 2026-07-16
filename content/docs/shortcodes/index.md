@@ -4,11 +4,12 @@ date = 2026-07-05
 authors = ["Anirban Basu", "Bhombol Dachshund"]
 
 [taxonomies]
-tags = ["showcase", "shortcodes"]
+tags = ["docs", "authoring", "shortcodes"]
+categories = ["docs"]
 
 [extra.social_media_image]
 path = "example-hi-res-image.jpg"
-alt_text = "A high-resolution photo of a partially disassembled mini PC"
+alt_text = "A photograph of a winter moon setting over a snow-capped Mt. Fuji as seen from Tokyo, Japan."
 +++
 
 This theme includes some useful custom shortcodes that you can use to enhance

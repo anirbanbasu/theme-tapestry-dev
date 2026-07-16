@@ -14,8 +14,8 @@ copy_button = true
 +++
 
 This page documents the `[extra]` front-matter keys Tapestry reads on a
-**section's** `_index.md` (e.g. `content/posts/_index.md`,
-`content/docs/_index.md`). Some of these override their
+**section's** `_index.md` (e.g. `content/docs/_index.md`,
+`content/archive/_index.md`). Some of these override their
 [site-level](../site-configuration) equivalents; others are section-specific.
 For Zola's own standard section front matter (`title`, `description`,
 `sort_by`, `paginate_by`, `template`, `redirect_to`, `transparent`, and so
@@ -39,15 +39,16 @@ listing, and archive templates.
 ```markdown
 +++
 [extra]
-section_path = "/blog/_index.md"
+section_path = "docs/_index.md"
 +++
 ```
 
 Used by the front-page (`index.html`) and archive templates to pull posts
 from a different section than the one the template is attached to — e.g.
-your homepage `_index.md` can list posts from `content/posts/` without being
+your homepage `_index.md` can list posts from `content/docs/` without being
 that section itself. On the archive template, this defaults to
-`/blog/_index.md` if unset.
+`/blog/_index.md` if unset — a fallback path used only when your site has no
+such section and doesn't set `section_path` explicitly.
 
 ## `max_posts`
 

@@ -5,7 +5,8 @@ date = 2026-07-05
 authors = ["Anirban Basu"]
 
 [taxonomies]
-tags = ["showcase", "markdown", "katex"]
+tags = ["docs", "authoring", "katex"]
+categories = ["docs"]
 
 [extra]
 katex = true
