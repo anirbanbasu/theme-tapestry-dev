@@ -421,21 +421,28 @@ $variants: (
     'radius-sm': 0px, 'radius-md': 2px,
     'shadow-sm': none, 'shadow-md': none,
     'light': ('bg-primary': #f5f7fa, 'bg-secondary': #e7edf3, 'text-primary': #1a3a5c,
-      'text-heading': #12293f, 'text-muted': #5c7690, 'accent-primary': #0f5fa8,
+      // text-muted darkened from #5c7690 2026-JUL-16: only 4.00:1 against
+      // code-bg (the .sidebar-toc-title/figcaption background it's actually
+      // paired with, per specs/visual-a11y-test-suite.md's precision group
+      // a11y sweep), below the 4.5:1 AA floor. Reuses the value already
+      // vetted for syntax-comment/-punctuation below.
+      'text-heading': #12293f, 'text-muted': #556d85, 'accent-primary': #0f5fa8,
       'accent-secondary': #b8302a, 'border': #cddbe7, 'code-bg': #e7edf3,
       'pattern-bg-image': "linear-gradient(var(--colour-border) 1px, transparent 1px), linear-gradient(90deg, var(--colour-border) 1px, transparent 1px)",
       'pattern-bg-size': 24px 24px,
-      // syntax-only darkened text-muted (#5c7690 is 4.00:1 vs code-bg, below AA)
       'syntax-comment': #556d85, 'syntax-keyword': #0f5fa8, 'syntax-storage': #0f5fa8,
       'syntax-string': #b8302a, 'syntax-variable': #1a3a5c, 'syntax-constant': #b8302a,
       'syntax-entity': #0f5fa8, 'syntax-support': #b8302a, 'syntax-punctuation': #556d85,
     ),
     'dark': ('bg-primary': #0b2e4a, 'bg-secondary': #123a5c, 'text-primary': #eaf3fb,
+      // accent-secondary lightened from #e0846b 2026-JUL-16: only 4.30:1
+      // against code-bg (the .post-tags pill background it's actually paired
+      // with). Reuses the value already vetted for syntax-string/-constant/
+      // -support below.
       'text-heading': #ffffff, 'text-muted': #9dbdd6, 'accent-primary': #6fc3e8,
-      'accent-secondary': #e0846b, 'border': #1d4d70, 'code-bg': #123a5c,
+      'accent-secondary': #e28b74, 'border': #1d4d70, 'code-bg': #123a5c,
       'pattern-bg-image': "linear-gradient(rgba(111, 195, 232, 0.12) 1px, transparent 1px), linear-gradient(90deg, rgba(111, 195, 232, 0.12) 1px, transparent 1px)",
       'pattern-bg-size': 24px 24px,
-      // syntax-only lightened accent-secondary (#e0846b is 4.30:1 vs code-bg, below AA)
       'syntax-comment': #9dbdd6, 'syntax-keyword': #6fc3e8, 'syntax-storage': #6fc3e8,
       'syntax-string': #e28b74, 'syntax-variable': #eaf3fb, 'syntax-constant': #e28b74,
       'syntax-entity': #6fc3e8, 'syntax-support': #e28b74, 'syntax-punctuation': #9dbdd6,
@@ -473,9 +480,12 @@ $variants: (
     'radius-sm': 2px, 'radius-md': 3px,
     'shadow-sm': (0 2px 6px rgba(0, 0, 0, 0.25)), 'shadow-md': (0 8px 22px rgba(0, 0, 0, 0.3)),
     'light': ('bg-primary': #ece9e4, 'bg-secondary': #ded9d0, 'text-primary': #201f1d,
-      'text-heading': #141311, 'text-muted': #6b6459, 'accent-primary': #96490a,
+      // text-muted darkened from #6b6459 2026-JUL-16: only 4.16:1 against
+      // code-bg (the .sidebar-toc-title/figcaption background it's actually
+      // paired with). Reuses the value already vetted for syntax-comment/
+      // -punctuation below.
+      'text-heading': #141311, 'text-muted': #655e54, 'accent-primary': #96490a,
       'accent-secondary': #2b4c6f, 'border': #cec7ba, 'code-bg': #ded9d0,
-      // syntax-only darkened text-muted (#6b6459 is 4.16:1 vs code-bg, below AA)
       'syntax-comment': #655e54, 'syntax-keyword': #96490a, 'syntax-storage': #96490a,
       'syntax-string': #2b4c6f, 'syntax-variable': #201f1d, 'syntax-constant': #2b4c6f,
       'syntax-entity': #96490a, 'syntax-support': #2b4c6f, 'syntax-punctuation': #655e54,
@@ -497,12 +507,16 @@ $variants: (
     'radius-sm': 6px, 'radius-md': 12px,
     'shadow-sm': (0 2px 8px rgba(12, 25, 23, 0.08)), 'shadow-md': (0 10px 26px rgba(12, 25, 23, 0.12)),
     'light': ('bg-primary': #f2f9f7, 'bg-secondary': #e3f1ed, 'text-primary': #17242a,
-      'text-heading': #0e1a1f, 'text-muted': #52716d, 'accent-primary': #0d7d6e,
-      'accent-secondary': #c1473a, 'border': #cfe6df, 'code-bg': #e3f1ed,
+      // accent-primary darkened from #0d7d6e (4.33:1) and accent-secondary
+      // from #c1473a (4.27:1) 2026-JUL-16: both below 4.5:1 against code-bg
+      // (the background inline `code`/`.framed` links/`.post-tags` pills are
+      // actually painted on). Reuses the values already vetted for
+      // syntax-keyword/-storage/-entity and syntax-string/-constant/-support
+      // below.
+      'text-heading': #0e1a1f, 'text-muted': #52716d, 'accent-primary': #0c786a,
+      'accent-secondary': #b94438, 'border': #cfe6df, 'code-bg': #e3f1ed,
       'pattern-bg-image': "radial-gradient(circle, rgba(13, 125, 110, 0.14) 1.5px, transparent 1.5px)",
       'pattern-bg-size': 22px 22px,
-      // syntax-only darkened accent-primary (#0d7d6e is 4.33:1) and
-      // accent-secondary (#c1473a is 4.27:1) — both vs code-bg, below AA
       'syntax-comment': #52716d, 'syntax-keyword': #0c786a, 'syntax-storage': #0c786a,
       'syntax-string': #b94438, 'syntax-variable': #17242a, 'syntax-constant': #b94438,
       'syntax-entity': #0c786a, 'syntax-support': #b94438, 'syntax-punctuation': #52716d,
