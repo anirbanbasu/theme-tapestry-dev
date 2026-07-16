@@ -40,9 +40,11 @@ A traditional university-press look: warm parchment ground, high-contrast ink te
 | `--colour-text-heading` | `#14212c` | `#f5efe0` |
 | `--colour-text-muted` | `#5b5142` | `#b3a890` |
 | `--colour-accent-primary` | `#7a2231` | `#e0a5ad` |
-| `--colour-accent-secondary` | `#a8823f` | `#d1ab6c` |
+| `--colour-accent-secondary` | `#806330` | `#d1ab6c` |
 | `--colour-border` | `#ded2b3` | `#33404d` |
 | `--colour-code-bg` | `#f1ead7` | `#1c232b` |
+
+`--colour-accent-secondary` (light) corrected 2026-07-16 from the original `#a8823f`: that value was only 3.28:1 against `--colour-bg-primary` and 2.94:1 against `--colour-bg-secondary` — the background the `.post-tags` pill (`themes/tapestry/sass/css/_post.scss`, the token's only consumer) actually pairs it with — both below the 4.5:1 AA floor this table claims. `#806330` keeps the same gold/bronze hue, darkened to ≥4.6:1 against both backgrounds.
 
 **Type scale**
 

@@ -19,7 +19,11 @@ $variants: (
     'shadow-sm': (0 1px 2px rgba(20, 33, 44, 0.08)), 'shadow-md': (0 4px 16px rgba(20, 33, 44, 0.12)),
     'light': ('bg-primary': #faf6ec, 'bg-secondary': #f1ead7, 'text-primary': #1c2b39,
       'text-heading': #14212c, 'text-muted': #5b5142, 'accent-primary': #7a2231,
-      'accent-secondary': #a8823f, 'border': #ded2b3, 'code-bg': #f1ead7,
+      // darkened from #a8823f 2026-JUL-16: the shipped value was only
+      // 3.28:1 against bg-primary and 2.94:1 against bg-secondary (the
+      // .post-tags pill background it's actually paired with), both below
+      // the 4.5:1 AA floor the design-tokens doc claimed for this token.
+      'accent-secondary': #806330, 'border': #ded2b3, 'code-bg': #f1ead7,
       'syntax-comment': #5b5142, 'syntax-keyword': #7a2231, 'syntax-storage': #7a2231,
       'syntax-string': #836531, 'syntax-variable': #1c2b39, 'syntax-constant': #836531,
       'syntax-entity': #7a2231, 'syntax-support': #836531, 'syntax-punctuation': #5b5142,
@@ -701,22 +705,34 @@ $variants: (
   // mode. Kept mode-scoped (not per-variant) since the semantic hues
   // (danger=red, tip=green...) don't need to vary by variant, only by mode,
   // to keep >=4.5:1 contrast against that mode's typical background lightness.
-  --alert-note-border: #57606a;
+  //
+  // -border darkened 2026-JUL-16 (kept -bg/-code at the original GitHub hue
+  // so the tinted alert background/code-inline colour is unchanged): the
+  // .alert-title text and .markdown-alert-* ::before pseudo-title reuse
+  // -border as their text colour (see _alerts.scss), and axe's a11y sweep
+  // found the original values fell as low as 3.42:1 against the tint
+  // composited over dark-academia's/classic-ivy's warmer parchment
+  // backgrounds — below the 4.5:1 AA floor for 18px bold text. Darkened
+  // just enough to clear 4.5:1 against every scholarly variant's light-mode
+  // composited alert background, with a small margin (see the fgColor/bgColor
+  // pairs in tests/visual-a11y/test-results/scholarly-a11y/*/error-context.md
+  // for the failing combinations this was checked against).
+  --alert-note-border: #545d67;
   --alert-note-bg: #57606a;
   --alert-note-code: #6e7781;
-  --alert-tip-border: #1a7f37;
+  --alert-tip-border: #166b2e;
   --alert-tip-bg: #1a7f37;
   --alert-tip-code: #2da44e;
-  --alert-info-border: #0969da;
+  --alert-info-border: #0858b7;
   --alert-info-bg: #0969da;
   --alert-info-code: #218bff;
   --alert-important-border: var(--alert-info-border);
   --alert-important-bg: var(--alert-info-bg);
   --alert-important-code: var(--alert-info-code);
-  --alert-warning-border: #9a6700;
+  --alert-warning-border: #7e5400;
   --alert-warning-bg: #9a6700;
   --alert-warning-code: #bf8700;
-  --alert-danger-border: #b91c1c;
+  --alert-danger-border: #b21b1b;
   --alert-danger-bg: #b91c1c;
   --alert-danger-code: #d1242f;
   --alert-caution-border: var(--alert-danger-border);
@@ -775,22 +791,24 @@ html[data-color-mode='dark'] {
 }
 
 html[data-color-mode='light'] {
-  --alert-note-border: #57606a;
+  // Kept in sync with the :root defaults above — see the comment there for
+  // why -border was darkened and -bg/-code were left at the original hue.
+  --alert-note-border: #545d67;
   --alert-note-bg: #57606a;
   --alert-note-code: #6e7781;
-  --alert-tip-border: #1a7f37;
+  --alert-tip-border: #166b2e;
   --alert-tip-bg: #1a7f37;
   --alert-tip-code: #2da44e;
-  --alert-info-border: #0969da;
+  --alert-info-border: #0858b7;
   --alert-info-bg: #0969da;
   --alert-info-code: #218bff;
   --alert-important-border: var(--alert-info-border);
   --alert-important-bg: var(--alert-info-bg);
   --alert-important-code: var(--alert-info-code);
-  --alert-warning-border: #9a6700;
+  --alert-warning-border: #7e5400;
   --alert-warning-bg: #9a6700;
   --alert-warning-code: #bf8700;
-  --alert-danger-border: #b91c1c;
+  --alert-danger-border: #b21b1b;
   --alert-danger-bg: #b91c1c;
   --alert-danger-code: #d1242f;
   --alert-caution-border: var(--alert-danger-border);
