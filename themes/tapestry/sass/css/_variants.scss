@@ -134,15 +134,16 @@ $variants: (
   // accent-primary/accent-secondary/text-primary/text-muted tokens, same
   // mapping formula as every scholarly variant above (keyword/storage/entity
   // -> accent-primary, string/constant/support -> accent-secondary,
-  // variable -> text-primary, comment/punctuation -> text-muted). Three
-  // slots (marked below) substitute a darkened, syntax-only variant of the
-  // frozen token instead of reusing it verbatim: the frozen value is
-  // verified >=4.5:1 against bg-primary (per specs/design-tokens-creative.md)
-  // but code-bg equals bg-secondary, and for those three combinations the
-  // verbatim token falls just short of 4.5:1 against bg-secondary
-  // specifically. The darkened swap only affects the `--syntax-*` custom
-  // property emitted below — the actual `--colour-accent-secondary`/
-  // `--colour-text-muted` tokens stay exactly as frozen in the spec.
+  // variable -> text-primary, comment/punctuation -> text-muted). This group
+  // previously substituted a darkened, syntax-only copy of the frozen token
+  // in three slots rather than correcting the token itself, on the theory
+  // that the frozen value only fell short against bg-secondary/code-bg, not
+  // bg-primary; that theory didn't hold for non-syntax consumers (.post-tags
+  // pills, .sidebar-toc-title/figcaption) that are also painted on
+  // bg-secondary. As of 2026-JUL-16 those --colour-accent-secondary/
+  // --colour-text-muted tokens have been corrected directly (see each
+  // variant's inline comment below), and the --syntax-* properties now
+  // reuse the corrected value rather than a separate darkened copy.
   'bauhaus-studio': ('font-heading': (Archivo, 'Archivo Fallback', 'Helvetica Neue', Arial, sans-serif),
     'font-body': ('Work Sans', 'Work Sans Fallback', 'Segoe UI', Helvetica, Arial, sans-serif),
     'font-code': ('DM Mono', 'SFMono-Regular', Consolas, monospace),
@@ -175,12 +176,14 @@ $variants: (
     'radius-sm': 0px, 'radius-md': 0px,
     'shadow-sm': none, 'shadow-md': none,
     'light': ('bg-primary': #fdfdfb, 'bg-secondary': #efeee9, 'text-primary': #111111,
+      // accent-secondary darkened from #3f7d20 (4.33:1 vs code-bg) 2026-JUL-16:
+      // below 4.5:1 against the background .post-tags pills actually pair it
+      // with. Reused for syntax-string/-constant/-support too.
       'text-heading': #000000, 'text-muted': #555555, 'accent-primary': #c2006e,
-      'accent-secondary': #3f7d20, 'border': #111111, 'code-bg': #efeee9,
+      'accent-secondary': #38701c, 'border': #111111, 'code-bg': #efeee9,
       'pattern-bg-image': "radial-gradient(circle, rgba(0, 0, 0, 0.05) 1px, transparent 1px)",
       'pattern-bg-size': 8px 8px,
       'syntax-comment': #555555, 'syntax-keyword': #c2006e, 'syntax-storage': #c2006e,
-      // syntax-only darkened accent-secondary (#3f7d20 is 4.34:1 vs code-bg, below AA)
       'syntax-string': #38701c, 'syntax-variable': #111111, 'syntax-constant': #38701c,
       'syntax-entity': #c2006e, 'syntax-support': #38701c, 'syntax-punctuation': #555555,
     ),
@@ -227,10 +230,12 @@ $variants: (
     'radius-sm': 4px, 'radius-md': 10px,
     'shadow-sm': (0 0 12px rgba(176, 21, 138, 0.25)), 'shadow-md': (0 0 28px rgba(176, 21, 138, 0.3)),
     'light': ('bg-primary': #f5f2fb, 'bg-secondary': #ece5f7, 'text-primary': #241b36,
+      // accent-secondary darkened from #0a7a86 (4.13:1 vs code-bg) 2026-JUL-16:
+      // below 4.5:1 against the background .post-tags pills actually pair it
+      // with. Reused for syntax-string/-constant/-support too.
       'text-heading': #17102a, 'text-muted': #675a7d, 'accent-primary': #b0158a,
-      'accent-secondary': #0a7a86, 'border': #d9cdec, 'code-bg': #ece5f7,
+      'accent-secondary': #096d78, 'border': #d9cdec, 'code-bg': #ece5f7,
       'syntax-comment': #675a7d, 'syntax-keyword': #b0158a, 'syntax-storage': #b0158a,
-      // syntax-only darkened accent-secondary (#0a7a86 is 4.13:1 vs code-bg, below AA)
       'syntax-string': #096d78, 'syntax-variable': #241b36, 'syntax-constant': #096d78,
       'syntax-entity': #b0158a, 'syntax-support': #096d78, 'syntax-punctuation': #675a7d,
     ),
@@ -251,9 +256,11 @@ $variants: (
     'radius-sm': 8px, 'radius-md': 16px,
     'shadow-sm': (0 3px 10px rgba(46, 32, 19, 0.12)), 'shadow-md': (0 10px 24px rgba(46, 32, 19, 0.16)),
     'light': ('bg-primary': #faf3e7, 'bg-secondary': #f1e6d2, 'text-primary': #2e2013,
-      'text-heading': #201607, 'text-muted': #786751, 'accent-primary': #7d6118,
+      // text-muted darkened from #786751 (4.40:1 vs code-bg) 2026-JUL-16: below
+      // 4.5:1 against the background .sidebar-toc-title/figcaption actually
+      // pair it with. Reused for syntax-comment/-punctuation too.
+      'text-heading': #201607, 'text-muted': #6c5c48, 'accent-primary': #7d6118,
       'accent-secondary': #6b3f57, 'border': #e2d2b3, 'code-bg': #f1e6d2,
-      // syntax-only darkened text-muted (#786751 is 4.40:1 vs code-bg, below AA)
       'syntax-comment': #6c5c48, 'syntax-keyword': #7d6118, 'syntax-storage': #7d6118,
       'syntax-string': #6b3f57, 'syntax-variable': #2e2013, 'syntax-constant': #6b3f57,
       'syntax-entity': #7d6118, 'syntax-support': #6b3f57, 'syntax-punctuation': #6c5c48,
