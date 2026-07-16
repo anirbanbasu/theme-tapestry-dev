@@ -341,7 +341,7 @@ Warm, tactile, and approachable: rounded friendly headings, mustard-and-plum acc
 | `--colour-border` | `#e2d2b3` | `#3d3024` |
 | `--colour-code-bg` | `#f1e6d2` | `#2b2018` |
 
-`--colour-text-muted` (light) corrected 2026-07-16 from the original `#786751`: that value was only 4.40:1 against `--colour-code-bg` — the background `.sidebar-toc-title`/figcaption (`themes/tapestry/sass/css/_sidebar.scss`) actually pair it with — below the 4.5:1 AA floor this table claims. `#6c5c48` keeps the same warm-brown hue, darkened to ≥4.5:1 against `--colour-code-bg`.
+`--colour-text-muted` (light) corrected 2026-07-16 from the original `#786751`: that value was only 4.40:1 against `--colour-code-bg` — the background `.sidebar-toc-title`/`figcaption` (`themes/tapestry/sass/css/_sidebar.scss`) actually pair it with — below the 4.5:1 AA floor this table claims. `#6c5c48` keeps the same warm-brown hue, darkened to ≥4.5:1 against `--colour-code-bg`.
 
 **Type scale**
 

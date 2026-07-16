@@ -46,7 +46,7 @@ Aged-map parchment with a faint concentric contour-line texture, a compass-rose 
 | `--colour-border` | `#c9d5db` | `#233242` |
 | `--colour-code-bg` | `#dbe3e8` | `#182430` |
 
-`--colour-text-muted` (light) corrected 2026-07-16 from the original `#556873`: that value was only 4.47:1 against `--colour-code-bg` — the background `.sidebar-toc-title`/figcaption (`themes/tapestry/sass/css/_sidebar.scss`) actually pair it with — below the 4.5:1 AA floor this table claims. `#536570` keeps the same slate-blue hue, darkened to ≥4.5:1 against `--colour-code-bg`.
+`--colour-text-muted` (light) corrected 2026-07-16 from the original `#556873`: that value was only 4.47:1 against `--colour-code-bg` — the background `.sidebar-toc-title`/`figcaption` (`themes/tapestry/sass/css/_sidebar.scss`) actually pair it with — below the 4.5:1 AA floor this table claims. `#536570` keeps the same slate-blue hue, darkened to ≥4.5:1 against `--colour-code-bg`.
 
 **Type scale**
 
@@ -281,7 +281,7 @@ Marble-and-column restraint: an inscriptional display face for headings, centred
 | `--colour-border` | `#d6cfbf` | `#37372f` |
 | `--colour-code-bg` | `#e6e0d4` | `#262624` |
 
-`--colour-text-muted` (light) corrected 2026-07-16 from the original `#6b6862`: that value was only 4.22:1 against `--colour-code-bg` — the background `.sidebar-toc-title`/figcaption (`themes/tapestry/sass/css/_sidebar.scss`) actually pair it with — below the 4.5:1 AA floor this table claims. `#65625d` keeps the same warm-grey hue, darkened to ≥4.5:1 against `--colour-code-bg`.
+`--colour-text-muted` (light) corrected 2026-07-16 from the original `#6b6862`: that value was only 4.22:1 against `--colour-code-bg` — the background `.sidebar-toc-title`/`figcaption` (`themes/tapestry/sass/css/_sidebar.scss`) actually pair it with — below the 4.5:1 AA floor this table claims. `#65625d` keeps the same warm-grey hue, darkened to ≥4.5:1 against `--colour-code-bg`.
 
 **Type scale**
 

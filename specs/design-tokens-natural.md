@@ -268,7 +268,7 @@ International-Style chalkboard, taken literally: dark mode is a true chalkboard 
 | `--colour-border` | `#ddd7c3` | `#325240` |
 | `--colour-code-bg` | `#ece8dc` | `#24392b` |
 
-`--colour-text-muted` (light) corrected 2026-07-16 from the original `#6b6b5e` (4.41:1) and `--colour-accent-secondary` (light) from `#8a6d16` (4.01:1): both below the 4.5:1 AA floor this table claims against `--colour-code-bg` — the background `.sidebar-toc-title`/figcaption and `.post-tags` pills (`themes/tapestry/sass/css/_sidebar.scss`, `_post.scss`) actually pair them with. Both corrected values keep their original hue, darkened to ≥4.5:1 against `--colour-code-bg`.
+`--colour-text-muted` (light) corrected 2026-07-16 from the original `#6b6b5e` (4.41:1) and `--colour-accent-secondary` (light) from `#8a6d16` (4.01:1): both below the 4.5:1 AA floor this table claims against `--colour-code-bg` — the background `.sidebar-toc-title`/`figcaption` and `.post-tags` pills (`themes/tapestry/sass/css/_sidebar.scss`, `_post.scss`) actually pair them with. Both corrected values keep their original hue, darkened to ≥4.5:1 against `--colour-code-bg`.
 
 **Type scale**
 
