@@ -40,11 +40,13 @@ Aged-map parchment with a faint concentric contour-line texture, a compass-rose 
 | `--colour-bg-secondary` | `#dbe3e8` | `#182430` |
 | `--colour-text-primary` | `#1c2833` | `#e6edf0` |
 | `--colour-text-heading` | `#12191f` | `#f5f8fa` |
-| `--colour-text-muted` | `#556873` | `#9aabb8` |
+| `--colour-text-muted` | `#536570` | `#9aabb8` |
 | `--colour-accent-primary` | `#245c3f` | `#6fc99a` |
 | `--colour-accent-secondary` | `#1f4e73` | `#6fa8d9` |
 | `--colour-border` | `#c9d5db` | `#233242` |
 | `--colour-code-bg` | `#dbe3e8` | `#182430` |
+
+`--colour-text-muted` (light) corrected 2026-07-16 from the original `#556873`: that value was only 4.47:1 against `--colour-code-bg` — the background `.sidebar-toc-title`/figcaption (`themes/tapestry/sass/css/_sidebar.scss`) actually pair it with — below the 4.5:1 AA floor this table claims. `#536570` keeps the same slate-blue hue, darkened to ≥4.5:1 against `--colour-code-bg`.
 
 **Type scale**
 
@@ -121,10 +123,12 @@ Accounting-ledger ruled paper, tabular monospace figures throughout metadata, a 
 | `--colour-text-primary` | `#16211a` | `#eee7d6` |
 | `--colour-text-heading` | `#0c140f` | `#f7f4e6` |
 | `--colour-text-muted` | `#5c6a5f` | `#a3ab9a` |
-| `--colour-accent-primary` | `#8a6817` | `#d9ab52` |
+| `--colour-accent-primary` | `#836215` | `#d9ab52` |
 | `--colour-accent-secondary` | `#164d33` | `#6fbf94` |
 | `--colour-border` | `#ddd6c4` | `#233428` |
 | `--colour-code-bg` | `#ece8de` | `#162019` |
+
+`--colour-accent-primary` (light) corrected 2026-07-16 from the original `#8a6817`: that value was only 4.21:1 against `--colour-code-bg` — the background inline `code` (`themes/tapestry/sass/css/_main.scss`) actually pairs it with — below the 4.5:1 AA floor this table claims. `#836215` keeps the same gold hue, darkened to ≥4.5:1 against `--colour-code-bg`.
 
 **Type scale**
 
@@ -199,10 +203,12 @@ A node-and-edge network graph rendered faintly behind the page, pill-shaped tags
 | `--colour-text-primary` | `#2a2420` | `#f2ece4` |
 | `--colour-text-heading` | `#181410` | `#fbf7f2` |
 | `--colour-text-muted` | `#6b5f54` | `#b8ac9e` |
-| `--colour-accent-primary` | `#b8472e` | `#e88a6c` |
+| `--colour-accent-primary` | `#b0442c` | `#e88a6c` |
 | `--colour-accent-secondary` | `#1f6b6b` | `#5fc9c4` |
 | `--colour-border` | `#e2d4c6` | `#362e26` |
 | `--colour-code-bg` | `#f0e7dd` | `#241f1a` |
+
+`--colour-accent-primary` (light) corrected 2026-07-16 from the original `#b8472e`: that value was only 4.31:1 against `--colour-code-bg` — the background inline `code` (`themes/tapestry/sass/css/_main.scss`) actually pairs it with — below the 4.5:1 AA floor this table claims. `#b0442c` keeps the same rust hue, darkened to ≥4.5:1 against `--colour-code-bg`.
 
 **Type scale**
 
@@ -269,11 +275,13 @@ Marble-and-column restraint: an inscriptional display face for headings, centred
 | `--colour-bg-secondary` | `#e6e0d4` | `#262624` |
 | `--colour-text-primary` | `#2b2a28` | `#ede9e0` |
 | `--colour-text-heading` | `#171614` | `#faf7f0` |
-| `--colour-text-muted` | `#6b6862` | `#b3ada0` |
+| `--colour-text-muted` | `#65625d` | `#b3ada0` |
 | `--colour-accent-primary` | `#a8432b` | `#d97a5f` |
 | `--colour-accent-secondary` | `#3f6b5c` | `#7fada0` |
 | `--colour-border` | `#d6cfbf` | `#37372f` |
 | `--colour-code-bg` | `#e6e0d4` | `#262624` |
+
+`--colour-text-muted` (light) corrected 2026-07-16 from the original `#6b6862`: that value was only 4.22:1 against `--colour-code-bg` — the background `.sidebar-toc-title`/figcaption (`themes/tapestry/sass/css/_sidebar.scss`) actually pair it with — below the 4.5:1 AA floor this table claims. `#65625d` keeps the same warm-grey hue, darkened to ≥4.5:1 against `--colour-code-bg`.
 
 **Type scale**
 
@@ -340,11 +348,13 @@ A layered sediment-core rule marks each post like a stratigraphic column, era-st
 | `--colour-bg-secondary` | `#d9d0be` | `#2a2015` |
 | `--colour-text-primary` | `#2e2015` | `#ece2cf` |
 | `--colour-text-heading` | `#1c130b` | `#f7efdf` |
-| `--colour-text-muted` | `#6b5f4e` | `#b3a68f` |
-| `--colour-accent-primary` | `#9c4318` | `#d98a56` |
-| `--colour-accent-secondary` | `#57616b` | `#9aa3ab` |
+| `--colour-text-muted` | `#625747` | `#b3a68f` |
+| `--colour-accent-primary` | `#943f16` | `#d98a56` |
+| `--colour-accent-secondary` | `#505962` | `#9aa3ab` |
 | `--colour-border` | `#cfc4ac` | `#3d301f` |
 | `--colour-code-bg` | `#d9d0be` | `#2a2015` |
+
+`--colour-accent-primary` (light) corrected 2026-07-16 from the original `#9c4318` (4.25:1), `--colour-accent-secondary` (light) from `#57616b` (4.12:1), and `--colour-text-muted` (light) from `#6b5f4e` (4.07:1): all below the 4.5:1 AA floor this table claims against `--colour-code-bg` — the background inline `code` and `.post-tags` pills (`themes/tapestry/sass/css/_main.scss`, `_post.scss`) actually pair them with. All three corrected values keep their original hue, darkened to ≥4.5:1 against `--colour-code-bg`.
 
 **Type scale**
 
