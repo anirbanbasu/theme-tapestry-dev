@@ -346,9 +346,9 @@ A precise, diagrammatic take on quantum computing — cyan/magenta as the two ba
 | `--colour-accent-primary` | `#09717c` | `#4de8f0` |
 | `--colour-accent-secondary` | `#a3157e` | `#ef6fd8` |
 | `--colour-border` | `#d7cdec` | `#2e2354` |
+| `--colour-code-bg` | `#e9e4f6` | `#1c1438` |
 
 `--colour-accent-primary` (light) corrected 2026-07-16 from the original `#0a7a86`: that value was only 4.08:1 against `--colour-code-bg` — the background `.post-tags` pills/`.framed` links (`themes/tapestry/sass/css/_post.scss`, `_main.scss`) actually pair it with — below the 4.5:1 AA floor this table claims. `#09717c` keeps the same teal hue, darkened to ≥4.5:1 against `--colour-code-bg`.
-| `--colour-code-bg` | `#e9e4f6` | `#1c1438` |
 
 **Type scale**
 
