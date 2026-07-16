@@ -111,9 +111,11 @@ Punk/zine energy: heavyweight condensed display headlines set at a slight tilt, 
 | `--colour-text-heading` | `#000000` | `#ffffff` |
 | `--colour-text-muted` | `#555555` | `#b0b0a8` |
 | `--colour-accent-primary` | `#c2006e` | `#ff5fa8` |
-| `--colour-accent-secondary` | `#3f7d20` | `#9ee36b` |
+| `--colour-accent-secondary` | `#38701c` | `#9ee36b` |
 | `--colour-border` | `#111111` | `#f5f5f0` |
 | `--colour-code-bg` | `#efeee9` | `#1d1d1a` |
+
+`--colour-accent-secondary` (light) corrected 2026-07-16 from the original `#3f7d20`: that value was only 4.33:1 against `--colour-code-bg` — the background `.post-tags` pills (`themes/tapestry/sass/css/_post.scss`) actually pair it with — below the 4.5:1 AA floor this table claims. `#38701c` keeps the same green hue, darkened to ≥4.5:1 against `--colour-code-bg`.
 
 **Type scale**
 
@@ -262,9 +264,11 @@ Futuristic and high-energy: geometric display face, gradient magenta-to-cyan hea
 | `--colour-text-heading` | `#17102a` | `#ffffff` |
 | `--colour-text-muted` | `#675a7d` | `#b3a3d1` |
 | `--colour-accent-primary` | `#b0158a` | `#ff6fd8` |
-| `--colour-accent-secondary` | `#0a7a86` | `#4de8f0` |
+| `--colour-accent-secondary` | `#096d78` | `#4de8f0` |
 | `--colour-border` | `#d9cdec` | `#362959` |
 | `--colour-code-bg` | `#ece5f7` | `#1e1533` |
+
+`--colour-accent-secondary` (light) corrected 2026-07-16 from the original `#0a7a86`: that value was only 4.13:1 against `--colour-code-bg` — the background `.post-tags` pills (`themes/tapestry/sass/css/_post.scss`) actually pair it with — below the 4.5:1 AA floor this table claims. `#096d78` keeps the same teal hue, darkened to ≥4.5:1 against `--colour-code-bg`.
 
 **Type scale**
 
@@ -331,11 +335,13 @@ Warm, tactile, and approachable: rounded friendly headings, mustard-and-plum acc
 | `--colour-bg-secondary` | `#f1e6d2` | `#2b2018` |
 | `--colour-text-primary` | `#2e2013` | `#f2e9da` |
 | `--colour-text-heading` | `#201607` | `#fbf5e9` |
-| `--colour-text-muted` | `#786751` | `#c2ae90` |
+| `--colour-text-muted` | `#6c5c48` | `#c2ae90` |
 | `--colour-accent-primary` | `#7d6118` | `#d9b24c` |
 | `--colour-accent-secondary` | `#6b3f57` | `#c98fb0` |
 | `--colour-border` | `#e2d2b3` | `#3d3024` |
 | `--colour-code-bg` | `#f1e6d2` | `#2b2018` |
+
+`--colour-text-muted` (light) corrected 2026-07-16 from the original `#786751`: that value was only 4.40:1 against `--colour-code-bg` — the background `.sidebar-toc-title`/`figcaption` (`themes/tapestry/sass/css/_sidebar.scss`) actually pair it with — below the 4.5:1 AA floor this table claims. `#6c5c48` keeps the same warm-brown hue, darkened to ≥4.5:1 against `--colour-code-bg`.
 
 **Type scale**
 

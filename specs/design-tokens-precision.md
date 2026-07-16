@@ -38,11 +38,13 @@ A technical-drawing aesthetic built on an authentic inversion: light mode is the
 | `--colour-bg-secondary` | `#e7edf3` | `#123a5c` |
 | `--colour-text-primary` | `#1a3a5c` | `#eaf3fb` |
 | `--colour-text-heading` | `#12293f` | `#ffffff` |
-| `--colour-text-muted` | `#5c7690` | `#9dbdd6` |
+| `--colour-text-muted` | `#556d85` | `#9dbdd6` |
 | `--colour-accent-primary` | `#0f5fa8` | `#6fc3e8` |
-| `--colour-accent-secondary` | `#b8302a` | `#e0846b` |
+| `--colour-accent-secondary` | `#b8302a` | `#e28b74` |
 | `--colour-border` | `#cddbe7` | `#1d4d70` |
 | `--colour-code-bg` | `#e7edf3` | `#123a5c` |
+
+`--colour-text-muted` (light) corrected 2026-07-16 from the original `#5c7690`: that value was only 4.00:1 against `--colour-code-bg` — the background `.sidebar-toc-title`/`figcaption` (`themes/tapestry/sass/css/_sidebar.scss`) actually pair it with — below the 4.5:1 AA floor this table claims. `--colour-accent-secondary` (dark) corrected from the original `#e0846b`: only 4.30:1 against `--colour-code-bg`, the background the `.post-tags` pill (`themes/tapestry/sass/css/_post.scss`) actually pairs it with. Both corrected values keep their original hue, darkened/lightened to ≥4.5:1 against `--colour-code-bg`.
 
 **Type scale**
 
@@ -187,11 +189,13 @@ Titanium-and-carbon industrial palette, a diagonal hazard-stripe rule (drawn fro
 | `--colour-bg-secondary` | `#ded9d0` | `#201c15` |
 | `--colour-text-primary` | `#201f1d` | `#f2ede4` |
 | `--colour-text-heading` | `#141311` | `#fbf7ee` |
-| `--colour-text-muted` | `#6b6459` | `#b3a894` |
+| `--colour-text-muted` | `#655e54` | `#b3a894` |
 | `--colour-accent-primary` | `#96490a` | `#e8a33d` |
 | `--colour-accent-secondary` | `#2b4c6f` | `#7fa8c9` |
 | `--colour-border` | `#cec7ba` | `#35301f` |
 | `--colour-code-bg` | `#ded9d0` | `#201c15` |
+
+`--colour-text-muted` (light) corrected 2026-07-16 from the original `#6b6459`: that value was only 4.16:1 against `--colour-code-bg` — the background `.sidebar-toc-title`/`figcaption` (`themes/tapestry/sass/css/_sidebar.scss`) actually pair it with — below the 4.5:1 AA floor this table claims. `#655e54` keeps the same warm-grey hue, darkened to ≥4.5:1 against `--colour-code-bg`.
 
 **Type scale**
 
@@ -259,10 +263,12 @@ A clinical-imaging aesthetic: mint-white ground with a faint dot-grid texture (e
 | `--colour-text-primary` | `#17242a` | `#e6f5f1` |
 | `--colour-text-heading` | `#0e1a1f` | `#f5fffb` |
 | `--colour-text-muted` | `#52716d` | `#9bc4bb` |
-| `--colour-accent-primary` | `#0d7d6e` | `#5fd6c0` |
-| `--colour-accent-secondary` | `#c1473a` | `#ef8672` |
+| `--colour-accent-primary` | `#0c786a` | `#5fd6c0` |
+| `--colour-accent-secondary` | `#b94438` | `#ef8672` |
 | `--colour-border` | `#cfe6df` | `#1c332e` |
 | `--colour-code-bg` | `#e3f1ed` | `#12211e` |
+
+`--colour-accent-primary` (light) corrected 2026-07-16 from the original `#0d7d6e` (4.33:1) and `--colour-accent-secondary` (light) from `#c1473a` (4.27:1): both below the 4.5:1 AA floor this table claims against `--colour-code-bg` — the background inline `code` text, `.framed` links, and `.post-tags` pills (`themes/tapestry/sass/css/_main.scss`, `_post.scss`) actually pair them with. Both corrected values keep their original hue, darkened to ≥4.5:1 against `--colour-code-bg`.
 
 **Type scale**
 
