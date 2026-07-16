@@ -3,6 +3,12 @@ on:
   push:
     branches:
       - master
+    paths:
+      - "content/**"
+      - "static/**"
+      - "themes/tapestry/**"
+      - "config.toml"
+      - ".github/workflows/publish.yaml"
 
 permissions:
   contents: read
