@@ -268,11 +268,13 @@ $variants: (
   ),
 
   // ─── natural group (specs/design-tokens-natural.md) ──────────────────────
-  // Same syntax-colour mapping formula as scholarly/creative above. Five
-  // slots (marked below) substitute a darkened, syntax-only variant of the
-  // frozen token — the underlying --colour-accent-secondary/--colour-text-muted/
-  // --colour-accent-primary tokens stay exactly as frozen in the spec; only
-  // the emitted --syntax-* custom property differs.
+  // Same syntax-colour mapping formula as scholarly/creative above. This
+  // group previously substituted a darkened, syntax-only copy of the frozen
+  // token in several slots rather than correcting the token itself; as of
+  // 2026-JUL-16 those underlying --colour-text-muted/--colour-accent-primary/
+  // --colour-accent-secondary tokens have been corrected directly (see each
+  // variant's inline comment below), and the --syntax-* properties now reuse
+  // the corrected value rather than a separate darkened copy.
   'celestial-observatory': ('font-heading': (Cardo, 'Cardo Fallback', Georgia, 'Times New Roman', serif),
     'font-body': ('Crimson Pro', 'Crimson Pro Fallback', Georgia, Cambria, serif),
     'font-code': ('JetBrains Mono Celestial Observatory', 'SFMono-Regular', Consolas, monospace),
@@ -282,12 +284,14 @@ $variants: (
     'radius-sm': 2px, 'radius-md': 4px,
     'shadow-sm': (0 2px 8px rgba(10, 14, 28, 0.2)), 'shadow-md': (0 8px 24px rgba(10, 14, 28, 0.28)),
     'light': ('bg-primary': #f7f3e8, 'bg-secondary': #efe8d4, 'text-primary': #1b2440,
-      'text-heading': #10162b, 'text-muted': #7a7458, 'accent-primary': #7d621b,
+      // text-muted darkened from #7a7458 (3.84:1 vs code-bg, 4.24:1 vs bg-primary)
+      // 2026-JUL-16: below 4.5:1 against the background .copyright/time/figcaption
+      // actually pair it with. Reuses the corrected value for syntax-comment/-punctuation too.
+      'text-heading': #10162b, 'text-muted': #6c674e, 'accent-primary': #7d621b,
       'accent-secondary': #2c4a7c, 'border': #ddd3ae, 'code-bg': #efe8d4,
-      // syntax-only darkened text-muted (#7a7458 is 3.84:1 vs code-bg, below AA)
-      'syntax-comment': #6f6950, 'syntax-keyword': #7d621b, 'syntax-storage': #7d621b,
+      'syntax-comment': #6c674e, 'syntax-keyword': #7d621b, 'syntax-storage': #7d621b,
       'syntax-string': #2c4a7c, 'syntax-variable': #1b2440, 'syntax-constant': #2c4a7c,
-      'syntax-entity': #7d621b, 'syntax-support': #2c4a7c, 'syntax-punctuation': #6f6950,
+      'syntax-entity': #7d621b, 'syntax-support': #2c4a7c, 'syntax-punctuation': #6c674e,
     ),
     'dark': ('bg-primary': #0a0e1c, 'bg-secondary': #121a30, 'text-primary': #e8e6f0,
       'text-heading': #ffffff, 'text-muted': #9098b8, 'accent-primary': #d9b968,
@@ -334,12 +338,14 @@ $variants: (
     'radius-sm': 3px, 'radius-md': 6px,
     'shadow-sm': (0 2px 8px rgba(59, 46, 31, 0.12)), 'shadow-md': (0 8px 22px rgba(59, 46, 31, 0.16)),
     'light': ('bg-primary': #f3ecd9, 'bg-secondary': #e8ddc3, 'text-primary': #3b2e1f,
-      'text-heading': #241a10, 'text-muted': #7a6a4e, 'accent-primary': #3f5c3a,
+      // text-muted darkened from #7a6a4e (3.89:1 vs code-bg, 4.45:1 vs bg-primary)
+      // 2026-JUL-16: below 4.5:1 against the background .copyright/time/figcaption
+      // actually pair it with. Reuses the corrected value for syntax-comment/-punctuation too.
+      'text-heading': #241a10, 'text-muted': #6d5f46, 'accent-primary': #3f5c3a,
       'accent-secondary': #7a4a24, 'border': #d8c9a3, 'code-bg': #e8ddc3,
-      // syntax-only darkened text-muted (#7a6a4e is 3.89:1 vs code-bg, below AA)
-      'syntax-comment': #6f6046, 'syntax-keyword': #3f5c3a, 'syntax-storage': #3f5c3a,
+      'syntax-comment': #6d5f46, 'syntax-keyword': #3f5c3a, 'syntax-storage': #3f5c3a,
       'syntax-string': #7a4a24, 'syntax-variable': #3b2e1f, 'syntax-constant': #7a4a24,
-      'syntax-entity': #3f5c3a, 'syntax-support': #7a4a24, 'syntax-punctuation': #6f6046,
+      'syntax-entity': #3f5c3a, 'syntax-support': #7a4a24, 'syntax-punctuation': #6d5f46,
     ),
     'dark': ('bg-primary': #1c2318, 'bg-secondary': #262f1f, 'text-primary': #ece3cc,
       'text-heading': #f7f0dc, 'text-muted': #b3a883, 'accent-primary': #8fbf80,
@@ -358,13 +364,16 @@ $variants: (
     'radius-sm': 2px, 'radius-md': 4px,
     'shadow-sm': (0 2px 8px rgba(0, 0, 0, 0.2)), 'shadow-md': (0 8px 22px rgba(0, 0, 0, 0.26)),
     'light': ('bg-primary': #f7f5ef, 'bg-secondary': #ece8dc, 'text-primary': #2a2a28,
-      'text-heading': #16160f, 'text-muted': #6b6b5e, 'accent-primary': #2f5c46,
-      'accent-secondary': #8a6d16, 'border': #ddd7c3, 'code-bg': #ece8dc,
-      // syntax-only darkened text-muted (#6b6b5e is 4.41:1) and accent-secondary
-      // (#8a6d16 is 4.01:1) — both vs code-bg, below AA
-      'syntax-comment': #69695d, 'syntax-keyword': #2f5c46, 'syntax-storage': #2f5c46,
-      'syntax-string': #806514, 'syntax-variable': #2a2a28, 'syntax-constant': #806514,
-      'syntax-entity': #2f5c46, 'syntax-support': #806514, 'syntax-punctuation': #69695d,
+      // text-muted darkened from #6b6b5e (4.41:1) and accent-secondary from
+      // #8a6d16 (4.01:1) 2026-JUL-16: both below 4.5:1 against --colour-code-bg,
+      // the background .sidebar-toc-title/figcaption and .post-tags pills
+      // actually pair them with. Reused for syntax-comment/-punctuation and
+      // syntax-string/-constant/-support too.
+      'text-heading': #16160f, 'text-muted': #68685c, 'accent-primary': #2f5c46,
+      'accent-secondary': #7e6414, 'border': #ddd7c3, 'code-bg': #ece8dc,
+      'syntax-comment': #68685c, 'syntax-keyword': #2f5c46, 'syntax-storage': #2f5c46,
+      'syntax-string': #7e6414, 'syntax-variable': #2a2a28, 'syntax-constant': #7e6414,
+      'syntax-entity': #2f5c46, 'syntax-support': #7e6414, 'syntax-punctuation': #68685c,
     ),
     'dark': ('bg-primary': #1b2e22, 'bg-secondary': #24392b, 'text-primary': #f0ede3,
       'text-heading': #ffffff, 'text-muted': #b7c2ba, 'accent-primary': #e8d67a,
@@ -387,14 +396,16 @@ $variants: (
     'radius-sm': 4px, 'radius-md': 8px,
     'shadow-sm': (0 0 10px rgba(163, 21, 126, 0.2)), 'shadow-md': (0 0 24px rgba(163, 21, 126, 0.25)),
     'light': ('bg-primary': #f5f3fb, 'bg-secondary': #e9e4f6, 'text-primary': #241b3d,
-      'text-heading': #150f28, 'text-muted': #6a5f8a, 'accent-primary': #0a7a86,
+      // accent-primary darkened from #0a7a86 (4.08:1 vs code-bg) 2026-JUL-16:
+      // below 4.5:1 against the background .post-tags/.framed links actually
+      // pair it with. Reused for syntax-keyword/-storage/-entity too.
+      'text-heading': #150f28, 'text-muted': #6a5f8a, 'accent-primary': #09717c,
       'accent-secondary': #a3157e, 'border': #d7cdec, 'code-bg': #e9e4f6,
       'pattern-bg-image': "linear-gradient(var(--colour-border) 1px, transparent 1px)",
       'pattern-bg-size': 100% 46px,
-      // syntax-only darkened accent-primary (#0a7a86 is 4.08:1 vs code-bg, below AA)
-      'syntax-comment': #6a5f8a, 'syntax-keyword': #09727d, 'syntax-storage': #09727d,
+      'syntax-comment': #6a5f8a, 'syntax-keyword': #09717c, 'syntax-storage': #09717c,
       'syntax-string': #a3157e, 'syntax-variable': #241b3d, 'syntax-constant': #a3157e,
-      'syntax-entity': #09727d, 'syntax-support': #a3157e, 'syntax-punctuation': #6a5f8a,
+      'syntax-entity': #09717c, 'syntax-support': #a3157e, 'syntax-punctuation': #6a5f8a,
     ),
     'dark': ('bg-primary': #120c24, 'bg-secondary': #1c1438, 'text-primary': #ece6fa,
       'text-heading': #ffffff, 'text-muted': #b0a3d6, 'accent-primary': #4de8f0,

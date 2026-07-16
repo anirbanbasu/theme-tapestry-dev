@@ -38,11 +38,13 @@ Antique star-atlas engraving in light mode (aged parchment, gold ink, navy type)
 | `--colour-bg-secondary` | `#efe8d4` | `#121a30` |
 | `--colour-text-primary` | `#1b2440` | `#e8e6f0` |
 | `--colour-text-heading` | `#10162b` | `#ffffff` |
-| `--colour-text-muted` | `#7a7458` | `#9098b8` |
+| `--colour-text-muted` | `#6c674e` | `#9098b8` |
 | `--colour-accent-primary` | `#7d621b` | `#d9b968` |
 | `--colour-accent-secondary` | `#2c4a7c` | `#7fa8e0` |
 | `--colour-border` | `#ddd3ae` | `#232c4a` |
 | `--colour-code-bg` | `#efe8d4` | `#121a30` |
+
+`--colour-text-muted` (light) corrected 2026-07-16 from the original `#7a7458`: that value was only 3.84:1 against `--colour-code-bg` and 4.24:1 against `--colour-bg-primary` — the backgrounds `.copyright`/`time`/`figcaption` (`themes/tapestry/sass/css/_main.scss`, `_post.scss`) actually pair it with — both below the 4.5:1 AA floor this table claims. `#6c674e` keeps the same olive hue, darkened to ≥4.5:1 against both backgrounds.
 
 **Type scale**
 
@@ -187,11 +189,13 @@ Aged-paper cream ground, warm ink-brown text, a hand-stamped "date" tag rotated 
 | `--colour-bg-secondary` | `#e8ddc3` | `#262f1f` |
 | `--colour-text-primary` | `#3b2e1f` | `#ece3cc` |
 | `--colour-text-heading` | `#241a10` | `#f7f0dc` |
-| `--colour-text-muted` | `#7a6a4e` | `#b3a883` |
+| `--colour-text-muted` | `#6d5f46` | `#b3a883` |
 | `--colour-accent-primary` | `#3f5c3a` | `#8fbf80` |
 | `--colour-accent-secondary` | `#7a4a24` | `#d19a5f` |
 | `--colour-border` | `#d8c9a3` | `#384730` |
 | `--colour-code-bg` | `#e8ddc3` | `#262f1f` |
+
+`--colour-text-muted` (light) corrected 2026-07-16 from the original `#7a6a4e`: that value was only 3.89:1 against `--colour-code-bg` and 4.45:1 against `--colour-bg-primary` — the backgrounds `.copyright`/`time`/`figcaption` (`themes/tapestry/sass/css/_main.scss`, `_post.scss`) actually pair it with — both below the 4.5:1 AA floor this table claims. `#6d5f46` keeps the same warm-brown hue, darkened to ≥4.5:1 against both backgrounds.
 
 **Type scale**
 
@@ -258,11 +262,13 @@ International-Style chalkboard, taken literally: dark mode is a true chalkboard 
 | `--colour-bg-secondary` | `#ece8dc` | `#24392b` |
 | `--colour-text-primary` | `#2a2a28` | `#f0ede3` |
 | `--colour-text-heading` | `#16160f` | `#ffffff` |
-| `--colour-text-muted` | `#6b6b5e` | `#b7c2ba` |
+| `--colour-text-muted` | `#68685c` | `#b7c2ba` |
 | `--colour-accent-primary` | `#2f5c46` | `#e8d67a` |
-| `--colour-accent-secondary` | `#8a6d16` | `#9fd8e0` |
+| `--colour-accent-secondary` | `#7e6414` | `#9fd8e0` |
 | `--colour-border` | `#ddd7c3` | `#325240` |
 | `--colour-code-bg` | `#ece8dc` | `#24392b` |
+
+`--colour-text-muted` (light) corrected 2026-07-16 from the original `#6b6b5e` (4.41:1) and `--colour-accent-secondary` (light) from `#8a6d16` (4.01:1): both below the 4.5:1 AA floor this table claims against `--colour-code-bg` — the background `.sidebar-toc-title`/figcaption and `.post-tags` pills (`themes/tapestry/sass/css/_sidebar.scss`, `_post.scss`) actually pair them with. Both corrected values keep their original hue, darkened to ≥4.5:1 against `--colour-code-bg`.
 
 **Type scale**
 
@@ -337,9 +343,11 @@ A precise, diagrammatic take on quantum computing — cyan/magenta as the two ba
 | `--colour-text-primary` | `#241b3d` | `#ece6fa` |
 | `--colour-text-heading` | `#150f28` | `#ffffff` |
 | `--colour-text-muted` | `#6a5f8a` | `#b0a3d6` |
-| `--colour-accent-primary` | `#0a7a86` | `#4de8f0` |
+| `--colour-accent-primary` | `#09717c` | `#4de8f0` |
 | `--colour-accent-secondary` | `#a3157e` | `#ef6fd8` |
 | `--colour-border` | `#d7cdec` | `#2e2354` |
+
+`--colour-accent-primary` (light) corrected 2026-07-16 from the original `#0a7a86`: that value was only 4.08:1 against `--colour-code-bg` — the background `.post-tags` pills/`.framed` links (`themes/tapestry/sass/css/_post.scss`, `_main.scss`) actually pair it with — below the 4.5:1 AA floor this table claims. `#09717c` keeps the same teal hue, darkened to ≥4.5:1 against `--colour-code-bg`.
 | `--colour-code-bg` | `#e9e4f6` | `#1c1438` |
 
 **Type scale**
