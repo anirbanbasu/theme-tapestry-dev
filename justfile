@@ -43,11 +43,11 @@ visual-a11y-tests-local:
         failed=0; \
         for group in scholarly creative natural precision collective; do \
             echo "== STYLE_GROUP=$group: a11y =="; \
-            cd tests/visual-a11y; STYLE_GROUP="$group" npx playwright test tests/a11y.spec.ts || failed=1; cd ../..; \
+            cd tests/visual-a11y; STYLE_GROUP="$group" npx playwright test tests/a11y.spec.ts --output="test-results/$group-a11y" || failed=1; cd ../..; \
             echo "== STYLE_GROUP=$group: visual =="; \
-            cd tests/visual-a11y; STYLE_GROUP="$group" npx playwright test tests/visual.spec.ts || failed=1; cd ../..; \
+            cd tests/visual-a11y; STYLE_GROUP="$group" npx playwright test tests/visual.spec.ts --output="test-results/$group-visual" || failed=1; cd ../..; \
             echo "== STYLE_GROUP=$group: keyboard =="; \
-            cd tests/visual-a11y; STYLE_GROUP="$group" npx playwright test tests/keyboard.spec.ts || failed=1; cd ../..; \
+            cd tests/visual-a11y; STYLE_GROUP="$group" npx playwright test tests/keyboard.spec.ts --output="test-results/$group-keyboard" || failed=1; cd ../..; \
         done; \
         exit $failed'
     @echo "Done. Local visual/a11y test workflow completed."
