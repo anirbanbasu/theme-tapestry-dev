@@ -176,13 +176,29 @@ monorepos scope CI to a subdirectory routinely):
   manually-triggered `workflow_dispatch` GitHub Actions job
   (`.github/workflows/update-visual-baselines.yaml`) runs on `ubuntu-latest`
   with the pinned Playwright version, runs `playwright test
-  --update-snapshots` (which overrides the config default), and opens a PR
+  --update-snapshots=all` (which overrides the config default), and opens a PR
   with the new/changed PNGs for human review before merge. CI is the single
-  source of truth for what a baseline looks like.
-- **Diff tolerance:** `maxDiffPixelRatio` defaults to approximately `0.01`, to
-  absorb anti-aliasing noise while still catching real regressions. Revisit
-  if it proves too loose/tight once the suite is running against real
-  content.
+  source of truth for what a baseline looks like. The explicit `=all` mode
+  matters: bare `--update-snapshots` defaults to Playwright's own `"changed"`
+  preset, which only rewrites a baseline PNG for assertions that actually
+  fail the pixel comparison — a small, localized content change (e.g. a
+  single nav label) can fall under `maxDiffPixelRatio` on a tall full-page
+  screenshot and silently never get written, even though the job "succeeds."
+  `=all` forces every targeted snapshot to be regenerated from the fresh
+  render regardless of whether it would have matched, so `create-pull-request`'s
+  git-diff-based check reliably surfaces real changes — at the cost of also
+  surfacing occasional near-invisible render-jitter diffs on runs with no
+  real content change, which is an expected, reviewable side effect rather
+  than a regression.
+- **Diff tolerance:** `maxDiffPixelRatio` is `0.001`, to absorb anti-aliasing
+  noise while still catching real regressions. Originally `0.01`; lowered by
+  one order of magnitude after that value was found to mask a genuine nav
+  label change (see git history around 2026-07-17) — a full order of
+  magnitude tighter (`0.0001`) was considered and rejected as too aggressive,
+  since Chromium's rendering isn't perfectly bit-reproducible run-to-run even
+  with zero code changes (subpixel/GPU font rasterization jitter), which
+  would risk flaky failures on non-regressions. Revisit again if it proves
+  too loose/tight once the suite has more real-world runs under it.
 
 ## 6. Keyboard-only pass automation
 
