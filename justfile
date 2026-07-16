@@ -28,7 +28,7 @@ update-visual-baselines-local:
     @echo "Checking Playwright OS-level dependencies (only prompts for sudo if something is actually missing)..."
     @cd tests/visual-a11y && (npx playwright install-deps --dry-run chromium || npx playwright install-deps chromium)
     @echo "Updating visual regression screenshot baselines..."
-    @cd tests/visual-a11y && npx playwright test tests/visual.spec.ts --update-snapshots
+    @cd tests/visual-a11y && npx playwright test tests/visual.spec.ts --update-snapshots=all
     @echo "Done. Updated screenshots are in tests/visual-a11y/screenshots/."
     @echo "WARNING: Do not commit the updated screenshots since this is for local testing only."
 
