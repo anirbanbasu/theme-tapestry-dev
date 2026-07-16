@@ -23,8 +23,12 @@ update-visual-baselines-local:
     @zola build --base-url http://127.0.0.1:1111
     @echo "Installing visual test dependencies..."
     @cd tests/visual-a11y && npm ci
-    @echo "Installing Playwright Chromium browser and updating visual regression screenshot baselines..."
-    @cd tests/visual-a11y && npx playwright install --with-deps chromium && npx playwright test tests/visual.spec.ts --update-snapshots
+    @echo "Installing Playwright Chromium browser..."
+    @cd tests/visual-a11y && npx playwright install chromium
+    @echo "Checking Playwright OS-level dependencies (only prompts for sudo if something is actually missing)..."
+    @cd tests/visual-a11y && (npx playwright install-deps --dry-run chromium || npx playwright install-deps chromium)
+    @echo "Updating visual regression screenshot baselines..."
+    @cd tests/visual-a11y && npx playwright test tests/visual.spec.ts --update-snapshots
     @echo "Done. Updated screenshots are in tests/visual-a11y/screenshots/."
     @echo "WARNING: Do not commit the updated screenshots since this is for local testing only."
 
@@ -37,7 +41,9 @@ visual-a11y-tests-local *groups='scholarly creative natural precision collective
     @echo "Installing visual test dependencies..."
     @cd tests/visual-a11y && npm ci
     @echo "Installing Playwright Chromium browser..."
-    @cd tests/visual-a11y && npx playwright install --with-deps chromium
+    @cd tests/visual-a11y && npx playwright install chromium
+    @echo "Checking Playwright OS-level dependencies (only prompts for sudo if something is actually missing)..."
+    @cd tests/visual-a11y && (npx playwright install-deps --dry-run chromium || npx playwright install-deps chromium)
     @echo "Running accessibility, visual, and keyboard suites for style groups: {{ groups }}..."
     @bash -c 'set -uo pipefail; \
         failed=0; \
