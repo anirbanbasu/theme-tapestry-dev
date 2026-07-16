@@ -28,8 +28,8 @@ update-visual-baselines-local:
     @echo "Done. Updated screenshots are in tests/visual-a11y/screenshots/."
     @echo "WARNING: Do not commit the updated screenshots since this is for local testing only."
 
-# Run the visual/a11y CI test flow locally across all style groups
-visual-a11y-tests-local:
+# Run the visual/a11y CI test flow locally across the given style groups (defaults to all five)
+visual-a11y-tests-local *groups='scholarly creative natural precision collective':
     @echo "Running zola check..."
     @zola check
     @echo "Building site for CI-parity visual/a11y tests..."
@@ -38,10 +38,10 @@ visual-a11y-tests-local:
     @cd tests/visual-a11y && npm ci
     @echo "Installing Playwright Chromium browser..."
     @cd tests/visual-a11y && npx playwright install --with-deps chromium
-    @echo "Running accessibility, visual, and keyboard suites for all style groups..."
+    @echo "Running accessibility, visual, and keyboard suites for style groups: {{ groups }}..."
     @bash -c 'set -uo pipefail; \
         failed=0; \
-        for group in scholarly creative natural precision collective; do \
+        for group in {{ groups }}; do \
             echo "== STYLE_GROUP=$group: a11y =="; \
             cd tests/visual-a11y; STYLE_GROUP="$group" npx playwright test tests/a11y.spec.ts --output="test-results/$group-a11y" || failed=1; cd ../..; \
             echo "== STYLE_GROUP=$group: visual =="; \
