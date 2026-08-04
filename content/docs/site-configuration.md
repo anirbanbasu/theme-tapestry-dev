@@ -41,6 +41,24 @@ The header renders exactly one of the following, in this priority order:
 Setting `header_logo` always takes priority — `header_title` is ignored
 entirely once a logo image is present.
 
+### `header_logo_accent_background`
+
+```toml
+[extra]
+header_logo_accent_background = true
+```
+
+Only takes effect when `header_logo` is also set. A custom logo image has no
+way to adapt to dark mode on its own — unlike `header_title` or Tapestry's
+own brand mark, which both track the page's text colour automatically, an
+arbitrary image file might use colours that are invisible (or nearly so)
+against a dark page background. When enabled (the default), the entire
+header row — logo and the theme-toggle/style-switcher controls alike — gets
+a `--colour-accent-primary` background in dark mode, giving the image a
+predictable, mode-appropriate backdrop regardless of its own colours. Set to
+`false` to opt out and let the header stay transparent in dark mode as
+before.
+
 ### `favicon` and `favicon_emoji`
 
 ```toml
@@ -393,6 +411,7 @@ the same port.
 | `favicon_emoji` | string (emoji) | unset | Emoji favicon, ignored if `favicon` is also set. |
 | `header_title` | string | `config.title` | Header text, if no `header_logo` is set. |
 | `header_logo` | path | unset | Header logo image. Takes priority over `header_title`. |
+| `header_logo_accent_background` | bool | `true` | Dark-mode accent backdrop behind the header row, only when `header_logo` is set. |
 | `katex` | bool | `false` | Site-wide KaTeX math rendering. Overridable per section/page. **Requires JS.** |
 | `layout` | `"center"` \| `"left"` \| `"full-width"` | `"center"` | Overall content-width treatment. |
 | `show_default_author` | bool | `true` | Show `config.author` on pages without their own `authors`. |
