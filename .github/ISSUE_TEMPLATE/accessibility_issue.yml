@@ -1,0 +1,67 @@
+name: Accessibility issue
+description: A WCAG AA conformance gap, keyboard-navigation problem, or other a11y regression (CONSTITUTION.md §1).
+title: "[a11y]: "
+labels: ["accessibility", "bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Tapestry must conform to WCAG 2.1 AA across every shipped template and preset style/variant (CONSTITUTION.md §1). Please give as much detail as you can so this can be verified with automated tooling and a manual keyboard-only pass.
+  - type: textarea
+    id: description
+    attributes:
+      label: What's the accessibility problem?
+      description: e.g. insufficient colour contrast, unreachable focus target, missing/incorrect ARIA semantics, broken heading order, keyboard trap.
+    validations:
+      required: true
+  - type: dropdown
+    id: wcag-area
+    attributes:
+      label: Affected area
+      multiple: true
+      options:
+        - Colour contrast
+        - Keyboard navigation / focus order
+        - Focus visibility
+        - Semantic HTML / landmarks / heading order
+        - ARIA semantics
+        - Alt text / non-text content
+        - Theme switcher
+        - Presentation style/variant switcher
+        - Nav collapse (hamburger/disclosure)
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Steps to reproduce
+      description: Include the page/URL and, if keyboard-related, the exact key sequence used.
+    validations:
+      required: true
+  - type: input
+    id: style-variant
+    attributes:
+      label: Presentation style / variant
+      description: e.g. scholarly / contemporary-research-lab. Note if reproducible across all groups/variants.
+  - type: dropdown
+    id: color-mode
+    attributes:
+      label: Colour mode
+      options:
+        - Light
+        - Dark
+        - Both
+    validations:
+      required: true
+  - type: textarea
+    id: tooling
+    attributes:
+      label: Automated tooling output
+      description: axe-core / Playwright a11y sweep output, contrast-checker results, or similar, if available.
+      render: shell
+  - type: input
+    id: assistive-tech
+    attributes:
+      label: Assistive technology / browser used (if any)
+      placeholder: e.g. NVDA + Firefox, VoiceOver + Safari, keyboard-only + Chrome

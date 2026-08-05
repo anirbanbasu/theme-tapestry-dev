@@ -1,0 +1,39 @@
+name: Feature request
+description: Suggest a new feature or enhancement for the theme.
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Before requesting new client-side interactivity, note that CONSTITUTION.md §2 permits **only** three JS features (theme switcher, KaTeX, presentation style/variant switcher) — any other JS is a constitutional conflict and will need to be flagged, not silently implemented.
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem does this solve?
+      description: What are you trying to do that the theme doesn't currently support?
+    validations:
+      required: true
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed solution
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+  - type: checkboxes
+    id: constitutional-check
+    attributes:
+      label: Constitutional constraints to consider (CONSTITUTION.md)
+      options:
+        - label: This would require new or additional JavaScript
+        - label: This would require a new font or CDN-delivered asset
+        - label: This affects the terminus compatibility contract (new/changed shortcode, config key, template block, or front-matter field)
+        - label: This affects the 12-column grid, nav collapse, or accessibility behaviour
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional context

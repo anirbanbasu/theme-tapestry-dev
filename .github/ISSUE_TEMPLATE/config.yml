@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Terminus compatibility contract
+    url: https://github.com/anirbanbasu/tapestry/blob/master/specs/terminus-compat-contract.md
+    about: Check the frozen compatibility contract before filing a terminus-parity issue.
+  - name: Constitution (non-negotiable constraints)
+    url: https://github.com/anirbanbasu/tapestry/blob/master/CONSTITUTION.md
+    about: Accessibility, JS, font, grid, nav, and design-token rules the theme must always satisfy.

@@ -1,0 +1,54 @@
+name: Presentation style / variant proposal
+description: Propose a new preset style group, a new variant within an existing group, or a change to frozen design tokens.
+title: "[style]: "
+labels: ["design", "presentation-style"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Presentation styles are capped at 5 top-level groups, each with any number of fully-specified variants (CONSTITUTION.md §7). New directions should be explored as standalone style tiles under `prototypes/style-tiles/` before being wired into the theme — see the design prototyping workflow in CLAUDE.md.
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What are you proposing?
+      options:
+        - New variant within an existing style group
+        - New top-level style group (subject to the 5-group cap)
+        - Change to an existing variant's frozen design tokens
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: group
+    attributes:
+      label: Style group
+      description: Existing group name, or proposed name for a new group.
+    validations:
+      required: true
+  - type: input
+    id: variant
+    attributes:
+      label: Variant name
+      description: Existing or proposed variant name.
+  - type: textarea
+    id: description
+    attributes:
+      label: Describe the proposal
+      description: Creative intent, typeface pairing, colour palette direction, and how it satisfies both light and dark mode.
+    validations:
+      required: true
+  - type: checkboxes
+    id: requirements
+    attributes:
+      label: This proposal accounts for (CONSTITUTION.md §7-§8)
+      options:
+        - label: WCAG AA colour contrast in both light and dark mode (§1, §8)
+        - label: Self-hosted WOFF2 fonts, latin + latin-ext (§4)
+        - label: 12-column responsive grid down to 320px, within the shared 1200px max content width (§5)
+        - label: Nav collapse below the documented breakpoint, JS-free (§6)
+        - label: A full design-tokens entry for `specs/design-tokens-<group-name>.md` (colour, spacing, type scale, breakpoints, and any decorative pattern within the §8 contrast ceiling)
+  - type: textarea
+    id: prototype
+    attributes:
+      label: Link to style tile prototype (if available)
+      description: Path under `prototypes/style-tiles/`, or attach mockups/screenshots.

@@ -1,0 +1,48 @@
+name: Terminus compatibility issue
+description: A mismatch against the frozen terminus compatibility contract, or a request to adopt/drop a terminus feature.
+title: "[compat]: "
+labels: ["terminus-compat"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Tapestry's terminus compatibility is pinned to a specific snapshot (`aa8d8b67f9ab69ae48e1405f96e152d41f03e0ed`) and tested against `specs/terminus-compat-contract.md`, not against live upstream terminus (CONSTITUTION.md §3). "Sync with the latest terminus" is a separate, deliberate task — file it as a feature request instead if that's what you mean.
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What kind of compatibility issue is this?
+      options:
+        - Tapestry diverges from a shortcode/config key/template block/front-matter field documented in the contract
+        - The contract itself is out of date or inaccurate for the pinned snapshot
+        - Request to deliberately adopt a newer terminus feature (requires re-diffing and updating the contract)
+        - Request to deliberately drop a terminus feature
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Describe the mismatch or request
+      description: Reference the specific shortcode, config key, template block, or front-matter field involved, and the relevant section of `specs/terminus-compat-contract.md` if known.
+    validations:
+      required: true
+  - type: textarea
+    id: expected-vs-actual
+    attributes:
+      label: Expected behaviour vs. actual behaviour
+    validations:
+      required: true
+  - type: checkboxes
+    id: constitutional-check
+    attributes:
+      label: Constitutional constraints to consider
+      description: Check any that may be implicated (CONSTITUTION.md).
+      options:
+        - label: This would require adding JavaScript beyond the three sanctioned exceptions (§2)
+        - label: This affects a currently-in-use shortcode/config key in `content/` or `config.toml` (the hard floor per §3)
+        - label: This is genuinely upstream terminus JS (e.g. popover auto-closer, copy-to-clipboard) that must be reimplemented without JS or dropped, not carried forward (§2)
+  - type: input
+    id: zola-version
+    attributes:
+      label: Zola version
+      description: Output of `zola --version`. The pinned version is 0.22.1.
