@@ -14,9 +14,9 @@
     "test:update-snapshots": "playwright test tests/visual.spec.ts --update-snapshots"
   },
   "devDependencies": {
-    "@axe-core/playwright": "^4.12.1",
-    "@playwright/test": "^1.61.1",
-    "@types/node": "^26.1.1",
+    "@axe-core/playwright": "^4.13.0",
+    "@playwright/test": "^1.63.0",
+    "@types/node": "^26.6.1",
     "http-server": "^14.1.1",
     "typescript": "^7.0.2"
   }
