@@ -9,16 +9,16 @@ katex = true
 
 <div style="display:flex; flex-wrap:wrap; gap:1.5rem; align-items:center; margin:1.5rem 0;">
   <div style="flex:0 0 auto;">
-  {% <light_mode_only> %}
-    <div class="colour-mode-only colour-mode-only-light" style="width:160px;height:160px;border-radius:50%;background:var(--colour-bg-primary);display:flex;align-items:center;justify-content:center;">
-      <div role="img" aria-label="Dr. B. Dachshund" style="width:160px;height:160px;border-radius:50%;background-color:var(--colour-accent-primary);-webkit-mask:url(/images/profile.svg) center/contain no-repeat;mask:url(/images/profile.svg) center/contain no-repeat;"></div>
-    </div>
-  {% </light_mode_only> %}
-  {% <dark_mode_only> %}
-    <div class="colour-mode-only colour-mode-only-dark" style="width:160px;height:160px;border-radius:50%;background:var(--colour-accent-primary);display:flex;align-items:center;justify-content:center;">
-      <div role="img" aria-label="Dr. B. Dachshund" style="width:160px;height:160px;border-radius:50%;background-color:var(--colour-bg-primary);-webkit-mask:url(/images/profile.svg) center/contain no-repeat;mask:url(/images/profile.svg) center/contain no-repeat;"></div>
-    </div>
-  {% </dark_mode_only> %}
+{% <light_mode_only> %}
+<div class="colour-mode-only colour-mode-only-light" style="width:160px;height:160px;border-radius:50%;background:var(--colour-bg-primary);display:flex;align-items:center;justify-content:center;">
+<div role="img" aria-label="Dr. B. Dachshund" style="width:160px;height:160px;border-radius:50%;background-color:var(--colour-accent-primary);-webkit-mask:url(/images/profile.svg) center/contain no-repeat;mask:url(/images/profile.svg) center/contain no-repeat;"></div>
+</div>
+{% </light_mode_only> %}
+{% <dark_mode_only> %}
+<div class="colour-mode-only colour-mode-only-dark" style="width:160px;height:160px;border-radius:50%;background:var(--colour-accent-primary);display:flex;align-items:center;justify-content:center;">
+<div role="img" aria-label="Dr. B. Dachshund" style="width:160px;height:160px;border-radius:50%;background-color:var(--colour-bg-primary);-webkit-mask:url(/images/profile.svg) center/contain no-repeat;mask:url(/images/profile.svg) center/contain no-repeat;"></div>
+</div>
+{% </dark_mode_only> %}
   </div>
   <div style="flex:1 1 320px; min-width:0;">
 
