@@ -104,13 +104,13 @@ Same behaviour as the page-level key (see
 as the `og:image` fallback for any page in this section that doesn't set its
 own.
 
-{% alert(type="note", title="copy_button is inert") %}
+{% <alert type="note" title="copy_button is inert"> %}
 
 `extra.copy_button` is a leftover terminus key with no effect under
 Tapestry — see [page-configuration.md](../page-configuration/#sidebar) for
 why.
 
-{% end %}
+{% </alert> %}
 
 ---
 

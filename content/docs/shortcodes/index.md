@@ -24,17 +24,17 @@ covered.
 Bring attention to information with these GitHub-style alert shortcodes. They
 come in five `type`s: `note`, `tip`, `info`, `warning`, and `danger`.
 
-{{ alert(type="note", text="Some **content** with _Markdown_ `syntax`. Here is [a `link`](#alert-shortcode).") }}
-{{ alert(type="tip", text="Some **content** with _Markdown_ `syntax`. Here is [a `link`](#alert-shortcode).") }}
-{{ alert(type="info", text="Some **content** with _Markdown_ `syntax`. Here is [a `link`](#alert-shortcode).") }}
-{{ alert(type="warning", text="Some **content** with _Markdown_ `syntax`. Here is [a `link`](#alert-shortcode).") }}
-{{ alert(type="danger", text="Some **content** with _Markdown_ `syntax`. Here is [a `link`](#alert-shortcode).") }}
+{{ <alert type="note" text="Some **content** with _Markdown_ `syntax`. Here is [a `link`](#alert-shortcode)." /> }}
+{{ <alert type="tip" text="Some **content** with _Markdown_ `syntax`. Here is [a `link`](#alert-shortcode)." /> }}
+{{ <alert type="info" text="Some **content** with _Markdown_ `syntax`. Here is [a `link`](#alert-shortcode)." /> }}
+{{ <alert type="warning" text="Some **content** with _Markdown_ `syntax`. Here is [a `link`](#alert-shortcode)." /> }}
+{{ <alert type="danger" text="Some **content** with _Markdown_ `syntax`. Here is [a `link`](#alert-shortcode)." /> }}
 
 You can change the `title` and `icon` of the alert. Both parameters take a
 string and default to the type of alert. `icon` can be any of the available
 alert types.
 
-{{ alert(type="note", title="Custom title and icon", icon="tip", text="Some **content** with _Markdown_ `syntax`. Here is [a `link`](#alert-shortcode).") }}
+{{ <alert type="note" title="Custom title and icon" icon="tip" text="Some **content** with _Markdown_ `syntax`. Here is [a `link`](#alert-shortcode)." /> }}
 
 ### Usage
 
@@ -42,24 +42,32 @@ You can use alerts in two ways:
 
 1. Inline with parameters:
 
+   {% raw %}
+
    ```jinja
-   {{/* alert(type="danger", icon="tip", title="An important tip", text="Stay hydrated~") */}}
+   {{ <alert type="danger" icon="tip" title="An important tip" text="Stay hydrated~" /> }}
    ```
+
+   {% endraw %}
 
 2. With a content body:
 
+   {% raw %}
+
    ```jinja
-   {%/* alert(type="danger", icon="tip", title="An important tip") */%}
+   {% <alert type="danger" icon="tip" title="An important tip"> %}
    Stay hydrated~
 
    This method is particularly useful for longer content or multiple paragraphs.
-   {%/* end */%}
+   {% </alert> %}
    ```
+
+   {% endraw %}
 
 Both methods support the same parameters (`type`, `icon`, and `title`), with the
 content either passed as the `text` parameter or as the body between tags.
 
-{% alert(type="note") %}
+{% <alert type="note"> %}
 [Zola 0.21.0](https://github.com/getzola/zola/releases/tag/v0.21.0) added
 support for GitHub-flavored Markdown alert syntax. This notation may be used in
 place of the `alert` shortcode, if desired.
@@ -75,25 +83,29 @@ recommended.
 
 See [getzola/zola#2817](https://github.com/getzola/zola/issues/2817) for more
 details.
-{% end %}
+{% </alert> %}
 
 ## Mastodon Shortcode
 
 Embed a Mastodon post into your content using the `mastodon` shortcode.
 
-{{ mastodon(url="https://hachyderm.io/@ebkalderon/114462281016082381") }}
+{{ <mastodon url="https://hachyderm.io/@ebkalderon/114462281016082381" /> }}
 
 ### Usage
 
+{% raw %}
+
 ```jinja
-{{/* mastodon(url="https://hachyderm.io/@ebkalderon/114462281016082381") */}}
+{{ <mastodon url="https://hachyderm.io/@ebkalderon/114462281016082381" /> }}
 ```
+
+{% endraw %}
 
 ## References
 
 This shortcode formats a reference section with a hanging indent like so:
 
-{% references() %}
+{% <references> %}
 
 Alderson, E. (2015). Cybersecurity and Social Justice: A Critique of Corporate
 Hegemony in a Digital World. _New York Journal of Technology, 11_ (2), 24-39.
@@ -115,26 +127,30 @@ Community College's Model United Nations. _Colorado Journal of Communication
 Studies, 19_ (2), 73-86.
 [https://doi.org/10.1093/6seaons/1movie](https://doi.org/10.1093/6seaons/1movie).
 
-{% end %}
+{% </references> %}
 
 ### Usage
 
+{% raw %}
+
 ```jinja
-{%/* references() */%}
+{% <references> %}
 
 Your references go here.
 
 Each in a new line. Markdown (links, italics...) will be rendered.
 
-{%/* end */%}
+{% </references> %}
 ```
+
+{% endraw %}
 
 ## Responsive Image Shortcode
 
 Convert a high-resolution source image into a responsive image using the
 `responsive_image` shortcode.
 
-{{ responsive_image(src="example-hi-res-image.jpg", alt="Responsive hi-res image") }}
+{{ <responsive_image page={page} config={config} src="example-hi-res-image.jpg" alt="Responsive hi-res image" /> }}
 
 By default, `responsive_image` will generate **at most** five versions of the
 source image, with the following maximum widths (measured in pixels):
@@ -151,9 +167,13 @@ the device's native screen resolution, pixel density, viewport size, etc.
 
 ### Usage
 
+{% raw %}
+
 ```jinja
-{{/* responsive_image(src="example-hi-res-image.jpg", alt="Responsive hi-res image") */}}
+{{ <responsive_image page={page} config={config} src="example-hi-res-image.jpg" alt="Responsive hi-res image" /> }}
 ```
+
+{% endraw %}
 
 The default behavior of the `responsive_image` shortcode can be overridden by
 adding the following lines to your website's `config.toml`.
@@ -176,7 +196,7 @@ Use this shortcode if you want to have a wider table, paragraph, code block...
 On desktop, it will take up the width of the article. It will have no effect on
 mobile, except for tables, which will get a horizontal scroll.
 
-{% wide_container() %}
+{% <wide_container> %}
 
 | Title             |  Year | Director             | Cinematographer       | Genre         | IMDb  | Duration     |
 |-------------------|-------|----------------------|-----------------------|---------------|-------|--------------|
@@ -184,19 +204,23 @@ mobile, except for tables, which will get a horizontal scroll.
 | The Master        | 2012  | Paul Thomas Anderson | Mihai Mălaimare Jr.   | Drama/History | 7.1   | 137 min      |
 | The Tree of Life  | 2011  | Terrence Malick      | Emmanuel Lubezki      | Drama         | 6.8   | 139 min      |
 
-{% end %}
+{% </wide_container> %}
 
 ### Usage
 
+{% raw %}
+
 ```jinja
-{%/* wide_container() */%}
+{% <wide_container> %}
 
 Place your code block, paragraph, table… here.
 
 Markdown will of course be rendered.
 
-{%/* end */%}
+{% </wide_container> %}
 ```
+
+{% endraw %}
 
 ## Presentation Palette Shortcode
 
@@ -208,13 +232,17 @@ same fallback rules the theme itself uses (see CONSTITUTION.md §7), so the
 name and swatches shown always match whichever group/variant your site is
 actually configured for.
 
-{{ presentation_palette() }}
+{{ <presentation_palette config={config} /> }}
 
 ### Usage
 
+{% raw %}
+
 ```jinja
-{{/* presentation_palette() */}}
+{{ <presentation_palette config={config} /> }}
 ```
+
+{% endraw %}
 
 ## Light Mode Only / Dark Mode Only Shortcodes
 
@@ -228,39 +256,51 @@ switcher this theme already ships): if JavaScript is disabled, each shortcode
 falls back to your system's `prefers-color-scheme` instead of showing both, or
 neither.
 
-{% light_mode_only() %}
+{% <light_mode_only> %}
 You're seeing this because the site is currently in **light** mode.
-{% end %}
+{% </light_mode_only> %}
 
-{% dark_mode_only() %}
+{% <dark_mode_only> %}
 You're seeing this because the site is currently in **dark** mode.
-{% end %}
+{% </dark_mode_only> %}
 
 ### Usage
 
+{% raw %}
+
 ```jinja
-{%/* light_mode_only() */%}
+{% <light_mode_only> %}
 
 Only shown while the site is in light mode.
 
-{%/* end */%}
+{% </light_mode_only> %}
 ```
 
+{% endraw %}
+
+{% raw %}
+
 ```jinja
-{%/* dark_mode_only() */%}
+{% <dark_mode_only> %}
 
 Only shown while the site is in dark mode.
 
-{%/* end */%}
+{% </dark_mode_only> %}
 ```
+
+{% endraw %}
 
 The body supports Markdown, and other shortcodes may be nested inside it, for
 example:
 
+{% raw %}
+
 ```jinja
-{%/* light_mode_only() */%}
+{% <light_mode_only> %}
 
-{{/* alert(type="tip", text="This tip is only shown in light mode.") */}}
+{{ <alert type="tip" text="This tip is only shown in light mode." /> }}
 
-{%/* end */%}
+{% </light_mode_only> %}
 ```
+
+{% endraw %}
