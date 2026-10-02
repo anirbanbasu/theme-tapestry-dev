@@ -89,13 +89,13 @@ alt_text = "A diagram of the proposed architecture."
   (see [section-configuration.md](../section-configuration/#social_media_image)),
   if any.
 
-{% alert(type="note", title="copy_button is inert") %}
+{% <alert type="note" title="copy_button is inert"> %}
 
 `extra.copy_button` is a leftover terminus key. Tapestry deliberately ships
 no copy-to-clipboard JavaScript (per CONSTITUTION.md §2), so setting it here
 or at the section/site level is a silent no-op.
 
-{% end %}
+{% </alert> %}
 
 ---
 

@@ -18,7 +18,7 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  ZOLA_VERSION: "0.22.1"
+  ZOLA_VERSION: "0.23.6"
 
 jobs:
   check:
@@ -42,7 +42,9 @@ jobs:
   build:
     name: zola build
     runs-on: ubuntu-latest
-    needs: check
+    # Deliberately not `needs: check`: a flaky external-link failure in
+    # `zola check` must not skip the whole visual/a11y suite. `check` still
+    # fails the run on its own.
     steps:
       - name: Harden the runner (Audit all outbound calls)
         uses: step-security/harden-runner@9af89fc71515a100421586dfdb3dc9c984fbf411 # v2.19.4

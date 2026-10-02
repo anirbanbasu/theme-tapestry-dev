@@ -9,16 +9,16 @@ katex = true
 
 <div style="display:flex; flex-wrap:wrap; gap:1.5rem; align-items:center; margin:1.5rem 0;">
   <div style="flex:0 0 auto;">
-  {% light_mode_only() %}
-    <div class="colour-mode-only colour-mode-only-light" style="width:160px;height:160px;border-radius:50%;background:var(--colour-bg-primary);display:flex;align-items:center;justify-content:center;">
-      <div role="img" aria-label="Dr. B. Dachshund" style="width:160px;height:160px;border-radius:50%;background-color:var(--colour-accent-primary);-webkit-mask:url(/images/profile.svg) center/contain no-repeat;mask:url(/images/profile.svg) center/contain no-repeat;"></div>
-    </div>
-  {% end %}
-  {% dark_mode_only() %}
-    <div class="colour-mode-only colour-mode-only-dark" style="width:160px;height:160px;border-radius:50%;background:var(--colour-accent-primary);display:flex;align-items:center;justify-content:center;">
-      <div role="img" aria-label="Dr. B. Dachshund" style="width:160px;height:160px;border-radius:50%;background-color:var(--colour-bg-primary);-webkit-mask:url(/images/profile.svg) center/contain no-repeat;mask:url(/images/profile.svg) center/contain no-repeat;"></div>
-    </div>
-  {% end %}
+{% <light_mode_only> %}
+<div class="colour-mode-only colour-mode-only-light" style="width:160px;height:160px;border-radius:50%;background:var(--colour-bg-primary);display:flex;align-items:center;justify-content:center;">
+<div role="img" aria-label="Dr. B. Dachshund" style="width:160px;height:160px;border-radius:50%;background-color:var(--colour-accent-primary);-webkit-mask:url(/images/profile.svg) center/contain no-repeat;mask:url(/images/profile.svg) center/contain no-repeat;"></div>
+</div>
+{% </light_mode_only> %}
+{% <dark_mode_only> %}
+<div class="colour-mode-only colour-mode-only-dark" style="width:160px;height:160px;border-radius:50%;background:var(--colour-accent-primary);display:flex;align-items:center;justify-content:center;">
+<div role="img" aria-label="Dr. B. Dachshund" style="width:160px;height:160px;border-radius:50%;background-color:var(--colour-bg-primary);-webkit-mask:url(/images/profile.svg) center/contain no-repeat;mask:url(/images/profile.svg) center/contain no-repeat;"></div>
+</div>
+{% </dark_mode_only> %}
   </div>
   <div style="flex:1 1 320px; min-width:0;">
 
@@ -30,7 +30,7 @@ This isn't my usual research field but I am here to give you a demo of the `tape
   <ul>
     <li>A number of presentation styles (e.g., <code>creative</code>), each with a number of variants (e.g., <code>editorial-zine</code>) replace the <code>extra.color_scheme</code> setting of the terminus theme.</li>
     <li>Each presentation style and its variants are available in both light and dark modes.</li>
-    <li>Additional shortcodes, such as for showing the colour palette.</li>
+    <li>Additional components, such as for showing the colour palette.</li>
   </ul>
   </div>
 </div>
@@ -59,4 +59,4 @@ As you may have noticed, this simple introduction shows some important features,
 
 ### Presentation style and colour palette
 
-{{ presentation_palette() }}
+{{ <presentation_palette config={config} /> }}

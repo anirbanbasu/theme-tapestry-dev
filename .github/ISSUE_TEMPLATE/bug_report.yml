@@ -50,7 +50,7 @@ body:
     id: zola-version
     attributes:
       label: Zola version
-      description: Output of `zola --version`. The pinned version is 0.22.1 (CONSTITUTION.md §3).
+      description: Output of `zola --version`. The pinned version is 0.23.6 (CONSTITUTION.md §3).
     validations:
       required: true
   - type: input

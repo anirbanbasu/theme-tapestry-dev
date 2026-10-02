@@ -113,7 +113,7 @@ names a group that doesn't exist, Tapestry falls back to `scholarly`. If
 `presentation_variant` is unset or names a variant that doesn't exist within
 the selected group, Tapestry falls back to that group's own default variant.
 
-{% alert(type="note", title="Migrating from terminus") %}
+{% <alert type="note" title="Migrating from terminus"> %}
 
 If you're migrating a site from terminus, any `extra.color_scheme` or
 `extra.color_scheme_switcher` left over in your config is inert under
@@ -121,7 +121,7 @@ Tapestry — it is never read, mapped, or migrated into an equivalent
 style/variant. Set `presentation_style`/`presentation_variant` explicitly, or
 accept the `scholarly`/`contemporary-research-lab` default.
 
-{% end %}
+{% </alert> %}
 
 | Group | Default variant | All variants |
 |---|---|---|
@@ -288,16 +288,16 @@ layout = "center"
 
 One of `"center"`, `"left"`, or `"full-width"`, applied as a `layout-*` body
 class and used to vary the `sizes` attribute the `responsive_image`
-shortcode generates.
+component generates.
 
-{% alert(type="note", title="Current visual difference") %}
+{% <alert type="note" title="Current visual difference"> %}
 
 `"center"` and `"left"` currently produce identical CSS and layout — the
 distinction exists in the config surface but isn't yet visually
 differentiated. `"full-width"` is the one value that visibly changes both the
 page's max-width behaviour and the `responsive_image` `sizes` output.
 
-{% end %}
+{% </alert> %}
 
 ---
 
@@ -328,9 +328,9 @@ fallback_width = 1280
 ```
 
 `widths` is the set of candidate image widths generated for the
-`responsive_image` shortcode's `srcset`; `fallback_width` is the size used
+`responsive_image` component's `srcset`; `fallback_width` is the size used
 for browsers that ignore `srcset`. This setting is scoped **only** to images
-inserted via that shortcode in your Markdown content — it does not affect
+inserted via that component in your Markdown content — it does not affect
 `og:image` (always generated at a fixed 1200×675), the favicon's
 apple-touch-icon (always 180×180), or `header_logo` (used at its native
 size, unresized).
@@ -418,7 +418,7 @@ the same port.
 | `fediverse_creator` | string | unset | Emits a `fediverse:creator` meta tag. |
 | `stylesheets` | array of paths | `[]` | Extra stylesheets, additive with section/page-level `stylesheets`. |
 | `[extra.content_security_policy]` | table | — | Site CSP `<meta>` tag configuration. |
-| `[extra.responsive_images]` | table | — | Width candidates for the `responsive_image` shortcode. |
+| `[extra.responsive_images]` | table | — | Width candidates for the `responsive_image` component. |
 
 ---
 
