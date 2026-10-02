@@ -25,16 +25,6 @@ taxonomies = [
 # Whether to build a search index to be used later on by a JavaScript library
 build_search_index = true
 
-# TEMPORARY — revert before merging the Tera v2 / Zola 0.23 PR (#11).
-# github.com answers bursts of link-check requests with 503s (a GitHub-side
-# outage on 2026-10-02, not a broken link — these links have checked clean
-# since July), which fails `zola check` in CI. These links point at this
-# project's own spec files; remove this section to restore checking of them.
-[link_checker]
-skip_prefixes = [
-    "https://github.com/anirbanbasu/theme-tapestry-dev/blob/",
-]
-
 [markdown]
 render_emoji = true
 external_links_class = "external"
