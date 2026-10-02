@@ -3,7 +3,7 @@ description = "A Zola theme for academic and industry researcher profile website
 tags = ["scholarly", "academic", "portfolio", "blog", "minimal", "personal", "responsive", "seo"]
 license = "MIT"
 homepage = "https://github.com/anirbanbasu/tapestry"
-min_version = "0.22.0"
+min_version = "0.23.6"
 demo = "https://ghp-tapestry.anirbanbasu.com"
 
 [author]
