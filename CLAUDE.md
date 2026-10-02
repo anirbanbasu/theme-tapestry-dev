@@ -50,3 +50,4 @@ See @CONSTITUTION.md for non-negotiable design and compatibility standards. Read
 - Re-read @CONSTITUTION.md before any decision touching accessibility, JavaScript, fonts, or terminus compatibility.
 - If a request conflicts with @CONSTITUTION.md, flag the conflict explicitly instead of silently overriding it or silently complying.
 - Keep operational instructions (this file) separate from non-negotiable constraints (CONSTITUTION.md). New non-negotiables belong in CONSTITUTION.md, not here.
+- Record amendments to CONSTITUTION.md as dated entries in `CONSTITUTION-CHANGELOG.md`. Do not `@`-import that file: the constitution must read as current state only, and the changelog is history to consult on demand.
