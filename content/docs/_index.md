@@ -26,7 +26,7 @@ Content authoring guides:
 - [Markdown syntax guide](markdown) — basic Markdown syntax and how it's
   styled.
 - [Mathematical typesetting](math-typesetting) — KaTeX math rendering.
-- [Components](shortcodes) — `alert`, `responsive_image`, `wide_container`,
+- [Components](components) — `alert`, `responsive_image`, `wide_container`,
   `mastodon`, `references`, and more.
 
 ## Design principles & internals

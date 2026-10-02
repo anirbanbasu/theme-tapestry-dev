@@ -2,6 +2,7 @@
 title = "Components"
 date = 2026-07-05
 authors = ["Anirban Basu", "Bhombol Dachshund"]
+aliases = ["docs/shortcodes"]
 
 [taxonomies]
 tags = ["docs", "authoring", "components"]
