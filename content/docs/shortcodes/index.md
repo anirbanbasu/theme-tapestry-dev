@@ -1,10 +1,10 @@
 +++
-title = "Shortcodes"
+title = "Components"
 date = 2026-07-05
 authors = ["Anirban Basu", "Bhombol Dachshund"]
 
 [taxonomies]
-tags = ["docs", "authoring", "shortcodes"]
+tags = ["docs", "authoring", "components"]
 categories = ["docs"]
 
 [extra.social_media_image]
@@ -12,29 +12,37 @@ path = "example-hi-res-image.jpg"
 alt_text = "A photograph of a winter moon setting over a snow-capped Mt. Fuji as seen from Tokyo, Japan."
 +++
 
-This theme includes some useful custom shortcodes that you can use to enhance
+This theme includes some useful custom components that you can use to enhance
 your posts. Whether you want to display a gallery of images, or format a
-professional-looking reference section, these custom shortcodes have got you
+professional-looking reference section, these custom components have got you
 covered.
+
+{% <alert type="note" title="Terminology note"> %}
+Zola 0.22.x called these **shortcodes**. Zola 0.23's Tera v2 rewrite removed
+the shortcode subsystem entirely and replaced it with a component system —
+what you see below are Tera v2 components, invoked from Markdown with the
+same {% raw %}`{{ <name ... /> }}` / `{% <name> %}...{% </name> %}`{% endraw %}
+syntax. The name changed; the authoring experience didn't.
+{% </alert> %}
 
 <!-- more -->
 
-## Alert Shortcode
+## Alert Component
 
-Bring attention to information with these GitHub-style alert shortcodes. They
+Bring attention to information with these GitHub-style alert components. They
 come in five `type`s: `note`, `tip`, `info`, `warning`, and `danger`.
 
-{{ <alert type="note" text="Some **content** with _Markdown_ `syntax`. Here is [a `link`](#alert-shortcode)." /> }}
-{{ <alert type="tip" text="Some **content** with _Markdown_ `syntax`. Here is [a `link`](#alert-shortcode)." /> }}
-{{ <alert type="info" text="Some **content** with _Markdown_ `syntax`. Here is [a `link`](#alert-shortcode)." /> }}
-{{ <alert type="warning" text="Some **content** with _Markdown_ `syntax`. Here is [a `link`](#alert-shortcode)." /> }}
-{{ <alert type="danger" text="Some **content** with _Markdown_ `syntax`. Here is [a `link`](#alert-shortcode)." /> }}
+{{ <alert type="note" text="Some **content** with _Markdown_ `syntax`. Here is [a `link`](#alert-component)." /> }}
+{{ <alert type="tip" text="Some **content** with _Markdown_ `syntax`. Here is [a `link`](#alert-component)." /> }}
+{{ <alert type="info" text="Some **content** with _Markdown_ `syntax`. Here is [a `link`](#alert-component)." /> }}
+{{ <alert type="warning" text="Some **content** with _Markdown_ `syntax`. Here is [a `link`](#alert-component)." /> }}
+{{ <alert type="danger" text="Some **content** with _Markdown_ `syntax`. Here is [a `link`](#alert-component)." /> }}
 
 You can change the `title` and `icon` of the alert. Both parameters take a
 string and default to the type of alert. `icon` can be any of the available
 alert types.
 
-{{ <alert type="note" title="Custom title and icon" icon="tip" text="Some **content** with _Markdown_ `syntax`. Here is [a `link`](#alert-shortcode)." /> }}
+{{ <alert type="note" title="Custom title and icon" icon="tip" text="Some **content** with _Markdown_ `syntax`. Here is [a `link`](#alert-component)." /> }}
 
 ### Usage
 
@@ -70,7 +78,7 @@ content either passed as the `text` parameter or as the body between tags.
 {% <alert type="note"> %}
 [Zola 0.21.0](https://github.com/getzola/zola/releases/tag/v0.21.0) added
 support for GitHub-flavored Markdown alert syntax. This notation may be used in
-place of the `alert` shortcode, if desired.
+place of the `alert` component, if desired.
 
 ```markdown
 > [!NOTE]
@@ -78,16 +86,16 @@ place of the `alert` shortcode, if desired.
 ```
 
 However, the quality of the generated HTML is quite poor compared to the `alert`
-shortcode, both semantics-wise and accessibility-wise, so its use is not
+component, both semantics-wise and accessibility-wise, so its use is not
 recommended.
 
 See [getzola/zola#2817](https://github.com/getzola/zola/issues/2817) for more
 details.
 {% </alert> %}
 
-## Mastodon Shortcode
+## Mastodon Component
 
-Embed a Mastodon post into your content using the `mastodon` shortcode.
+Embed a Mastodon post into your content using the `mastodon` component.
 
 {{ <mastodon url="https://hachyderm.io/@ebkalderon/114462281016082381" /> }}
 
@@ -103,7 +111,7 @@ Embed a Mastodon post into your content using the `mastodon` shortcode.
 
 ## References
 
-This shortcode formats a reference section with a hanging indent like so:
+This component formats a reference section with a hanging indent like so:
 
 {% <references> %}
 
@@ -145,10 +153,10 @@ Each in a new line. Markdown (links, italics...) will be rendered.
 
 {% endraw %}
 
-## Responsive Image Shortcode
+## Responsive Image Component
 
 Convert a high-resolution source image into a responsive image using the
-`responsive_image` shortcode.
+`responsive_image` component.
 
 {{ <responsive_image page={page} config={config} src="example-hi-res-image.jpg" alt="Responsive hi-res image" /> }}
 
@@ -175,7 +183,7 @@ the device's native screen resolution, pixel density, viewport size, etc.
 
 {% endraw %}
 
-The default behavior of the `responsive_image` shortcode can be overridden by
+The default behavior of the `responsive_image` component can be overridden by
 adding the following lines to your website's `config.toml`.
 
 ```toml
@@ -186,13 +194,13 @@ fallback_width = 1280
 
 Responsive images are lazy-loaded by default to improve performance for
 below-the-fold content ([see MDN docs]). This behavior can be overridden on a
-case-by-case basis by passing `lazy=false` to the `responsive_image` shortcode.
+case-by-case basis by passing `lazy=false` to the `responsive_image` component.
 
 [see MDN docs]: https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/img#loading
 
-## Wide Container Shortcode
+## Wide Container Component
 
-Use this shortcode if you want to have a wider table, paragraph, code block...
+Use this component if you want to have a wider table, paragraph, code block...
 On desktop, it will take up the width of the article. It will have no effect on
 mobile, except for tables, which will get a horizontal scroll.
 
@@ -222,11 +230,11 @@ Markdown will of course be rendered.
 
 {% endraw %}
 
-## Presentation Palette Shortcode
+## Presentation Palette Component
 
 Display the site's currently active presentation style and variant, along
 with a light/dark colour-palette swatch grid, using the `presentation_palette`
-shortcode. It takes no parameters — it reads `extra.presentation_style` and
+component. It takes no parameters — it reads `extra.presentation_style` and
 `extra.presentation_variant` directly from your site's `config.toml`, with the
 same fallback rules the theme itself uses (see CONSTITUTION.md §7), so the
 name and swatches shown always match whichever group/variant your site is
@@ -244,15 +252,15 @@ actually configured for.
 
 {% endraw %}
 
-## Light Mode Only / Dark Mode Only Shortcodes
+## Light Mode Only / Dark Mode Only Components
 
 Show content only while the site is in light mode, or only while it's in dark
-mode, using the `light_mode_only` and `dark_mode_only` shortcodes. Neither
+mode, using the `light_mode_only` and `dark_mode_only` components. Neither
 takes any parameters — just wrap the content you want to restrict as the
-shortcode's body.
+component's body.
 
 Visibility is done with pure CSS (no extra JavaScript beyond the theme
-switcher this theme already ships): if JavaScript is disabled, each shortcode
+switcher this theme already ships): if JavaScript is disabled, each component
 falls back to your system's `prefers-color-scheme` instead of showing both, or
 neither.
 
@@ -290,7 +298,7 @@ Only shown while the site is in dark mode.
 
 {% endraw %}
 
-The body supports Markdown, and other shortcodes may be nested inside it, for
+The body supports Markdown, and other components may be nested inside it, for
 example:
 
 {% raw %}

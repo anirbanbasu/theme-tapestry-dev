@@ -30,7 +30,7 @@ This isn't my usual research field but I am here to give you a demo of the `tape
   <ul>
     <li>A number of presentation styles (e.g., <code>creative</code>), each with a number of variants (e.g., <code>editorial-zine</code>) replace the <code>extra.color_scheme</code> setting of the terminus theme.</li>
     <li>Each presentation style and its variants are available in both light and dark modes.</li>
-    <li>Additional shortcodes, such as for showing the colour palette.</li>
+    <li>Additional components, such as for showing the colour palette.</li>
   </ul>
   </div>
 </div>

@@ -288,7 +288,7 @@ layout = "center"
 
 One of `"center"`, `"left"`, or `"full-width"`, applied as a `layout-*` body
 class and used to vary the `sizes` attribute the `responsive_image`
-shortcode generates.
+component generates.
 
 {% <alert type="note" title="Current visual difference"> %}
 
@@ -328,9 +328,9 @@ fallback_width = 1280
 ```
 
 `widths` is the set of candidate image widths generated for the
-`responsive_image` shortcode's `srcset`; `fallback_width` is the size used
+`responsive_image` component's `srcset`; `fallback_width` is the size used
 for browsers that ignore `srcset`. This setting is scoped **only** to images
-inserted via that shortcode in your Markdown content — it does not affect
+inserted via that component in your Markdown content — it does not affect
 `og:image` (always generated at a fixed 1200×675), the favicon's
 apple-touch-icon (always 180×180), or `header_logo` (used at its native
 size, unresized).
@@ -418,7 +418,7 @@ the same port.
 | `fediverse_creator` | string | unset | Emits a `fediverse:creator` meta tag. |
 | `stylesheets` | array of paths | `[]` | Extra stylesheets, additive with section/page-level `stylesheets`. |
 | `[extra.content_security_policy]` | table | — | Site CSP `<meta>` tag configuration. |
-| `[extra.responsive_images]` | table | — | Width candidates for the `responsive_image` shortcode. |
+| `[extra.responsive_images]` | table | — | Width candidates for the `responsive_image` component. |
 
 ---
 

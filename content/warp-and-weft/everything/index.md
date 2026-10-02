@@ -1,6 +1,6 @@
 +++
 title = "Everything"
-description = "One page exercising every markdown construct, shortcode, and KaTeX math that Tapestry supports."
+description = "One page exercising every markdown construct, component, and KaTeX math that Tapestry supports."
 date = 2026-07-11
 
 [taxonomies]
@@ -11,7 +11,7 @@ katex = true
 +++
 
 This page exists solely as a fixture for Tapestry's automated test suite. It
-exercises every markdown construct and custom shortcode the theme supports, so
+exercises every markdown construct and custom component the theme supports, so
 a single visual/accessibility pass over this one page (per style/variant/mode)
 covers the single-article template's feature surface without depending on the
 site's real demo content.
@@ -70,7 +70,7 @@ code`. Here is [a link](#headings) and here is an autolink: <https://example.com
 > [!CAUTION]
 > Some **content** with _Markdown_ `syntax`.
 
-## Alert shortcode
+## Alert component
 
 {{ <alert type="note" text="Some **content** with _Markdown_ `syntax`." /> }}
 {{ <alert type="tip" text="Some **content** with _Markdown_ `syntax`." /> }}
@@ -78,11 +78,11 @@ code`. Here is [a link](#headings) and here is an autolink: <https://example.com
 {{ <alert type="warning" text="Some **content** with _Markdown_ `syntax`." /> }}
 {{ <alert type="danger" text="Some **content** with _Markdown_ `syntax`." /> }}
 
-## Mastodon shortcode
+## Mastodon component
 
 {{ <mastodon url="https://hachyderm.io/@ebkalderon/114462281016082381" /> }}
 
-## References shortcode
+## References component
 
 {% <references> %}
 
@@ -92,11 +92,11 @@ Braccini, L., Serafini, A., & Bose, S. (2026). _Mass-Independent Gravitationally
 
 {% </references> %}
 
-## Responsive image shortcode
+## Responsive image component
 
 {{ <responsive_image page={page} config={config} src="example-hi-res-image.jpg" alt="Responsive hi-res image" caption="A winter morning moon, about to set, aligned perfectly with Mt. Fuji in Japan." /> }}
 
-## Wide container shortcode
+## Wide container component
 
 {% <wide_container> %}
 
@@ -110,11 +110,11 @@ _* IMDb ratings as of 2026-07-11._
 
 {% </wide_container> %}
 
-## Presentation palette shortcode
+## Presentation palette component
 
 {{ <presentation_palette config={config} /> }}
 
-## Light mode only / dark mode only shortcodes
+## Light mode only / dark mode only components
 
 {% <light_mode_only> %}
 You're seeing this because the site is currently in **light** mode.
