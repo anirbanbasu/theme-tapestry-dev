@@ -10,8 +10,7 @@ contract.
 - Extracted by reading `theme.toml`, `config.toml`, `templates/`, `content/`
   and `README.md` at the pinned commit, checked out read-only into
   `themes/terminus/` (see [CLAUDE.md](../CLAUDE.md)).
-- **Tapestry's own Zola pin is `0.23.6`** (CONSTITUTION.md §3, bumped from
-  `0.22.1` per issue #7's Tera v2 migration). Tera v2 removed the shortcode
+- **Tapestry's own Zola pin is `0.23.6`** (CONSTITUTION.md §3). Tera v2 removed the shortcode
   subsystem entirely and replaced macros with a "hygienic" component system —
   §1 below describes terminus's shortcode contract in terms of the parameters
   and rendered output each one contracts to, which are unaffected by the
