@@ -10,6 +10,15 @@ contract.
 - Extracted by reading `theme.toml`, `config.toml`, `templates/`, `content/`
   and `README.md` at the pinned commit, checked out read-only into
   `themes/terminus/` (see [CLAUDE.md](../CLAUDE.md)).
+- **Tapestry's own Zola pin is `0.23.6`** (CONSTITUTION.md §3). Tera v2 removed the shortcode
+  subsystem entirely and replaced macros with a "hygienic" component system —
+  §1 below describes terminus's shortcode contract in terms of the parameters
+  and rendered output each one contracts to, which are unaffected by the
+  syntax change; only the *invocation syntax* on Tapestry's side moved from
+  `{% name(args) %}`/`{{ name(args) }}` to `{% <name attr="x"> %}...{%
+  </name> %}`/`{{ <name attr="x" /> }}`. This is an internal implementation
+  detail of how Tapestry fulfills the contract, not a change to the contract
+  itself.
 
 Changes to this contract are deliberate and explicit only — see
 CONSTITUTION.md §3 for the amendment process. This repo's actual live usage
@@ -19,6 +28,15 @@ non-negotiable regardless of what this contract says.
 ---
 
 ## 1. Shortcodes
+
+Parameter/behaviour contract below, as originally extracted from terminus's
+own shortcode implementations. On Tapestry's side (Zola 0.23.6 / Tera v2)
+these are implemented as Tera v2 components under
+`themes/tapestry/templates/shortcodes/` and invoked from content with the
+new `{% <name attr="x"> %}...{% </name> %}` / `{{ <name attr="x" /> }}`
+syntax rather than Tera v1's `{% name(args) %}`/`{{ name(args) }}` — see the
+Zola/Tera v2 pin note above. The parameter names, defaults, and rendered
+output described in this table are unchanged.
 
 | Shortcode | Parameters | Notes |
 |---|---|---|

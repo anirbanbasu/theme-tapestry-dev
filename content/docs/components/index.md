@@ -1,10 +1,11 @@
 +++
-title = "Shortcodes"
+title = "Components"
 date = 2026-07-05
 authors = ["Anirban Basu", "Bhombol Dachshund"]
+aliases = ["docs/shortcodes"]
 
 [taxonomies]
-tags = ["docs", "authoring", "shortcodes"]
+tags = ["docs", "authoring", "components"]
 categories = ["docs"]
 
 [extra.social_media_image]
@@ -12,29 +13,37 @@ path = "example-hi-res-image.jpg"
 alt_text = "A photograph of a winter moon setting over a snow-capped Mt. Fuji as seen from Tokyo, Japan."
 +++
 
-This theme includes some useful custom shortcodes that you can use to enhance
+This theme includes some useful custom components that you can use to enhance
 your posts. Whether you want to display a gallery of images, or format a
-professional-looking reference section, these custom shortcodes have got you
+professional-looking reference section, these custom components have got you
 covered.
+
+{% <alert type="note" title="Terminology note"> %}
+Zola 0.22.x called these **shortcodes**. Zola 0.23's Tera v2 rewrite removed
+the shortcode subsystem entirely and replaced it with a component system —
+what you see below are Tera v2 components, invoked from Markdown with the
+same {% raw %}`{{ <name ... /> }}` / `{% <name> %}...{% </name> %}`{% endraw %}
+syntax. Although the name changed, the authoring experience did not.
+{% </alert> %}
 
 <!-- more -->
 
-## Alert Shortcode
+## Alert Component
 
-Bring attention to information with these GitHub-style alert shortcodes. They
-come in five `type`s: `note`, `tip`, `info`, `warning`, and `danger`.
+Bring attention to information with these GitHub-style alert components. They
+come in five types: `note`, `tip`, `info`, `warning`, and `danger`.
 
-{{ alert(type="note", text="Some **content** with _Markdown_ `syntax`. Here is [a `link`](#alert-shortcode).") }}
-{{ alert(type="tip", text="Some **content** with _Markdown_ `syntax`. Here is [a `link`](#alert-shortcode).") }}
-{{ alert(type="info", text="Some **content** with _Markdown_ `syntax`. Here is [a `link`](#alert-shortcode).") }}
-{{ alert(type="warning", text="Some **content** with _Markdown_ `syntax`. Here is [a `link`](#alert-shortcode).") }}
-{{ alert(type="danger", text="Some **content** with _Markdown_ `syntax`. Here is [a `link`](#alert-shortcode).") }}
+{{ <alert type="note" text="Some **content** with _Markdown_ `syntax`. Here is [a `link`](#alert-component)." /> }}
+{{ <alert type="tip" text="Some **content** with _Markdown_ `syntax`. Here is [a `link`](#alert-component)." /> }}
+{{ <alert type="info" text="Some **content** with _Markdown_ `syntax`. Here is [a `link`](#alert-component)." /> }}
+{{ <alert type="warning" text="Some **content** with _Markdown_ `syntax`. Here is [a `link`](#alert-component)." /> }}
+{{ <alert type="danger" text="Some **content** with _Markdown_ `syntax`. Here is [a `link`](#alert-component)." /> }}
 
 You can change the `title` and `icon` of the alert. Both parameters take a
 string and default to the type of alert. `icon` can be any of the available
 alert types.
 
-{{ alert(type="note", title="Custom title and icon", icon="tip", text="Some **content** with _Markdown_ `syntax`. Here is [a `link`](#alert-shortcode).") }}
+{{ <alert type="note" title="Custom title and icon" icon="tip" text="Some **content** with _Markdown_ `syntax`. Here is [a `link`](#alert-component)." /> }}
 
 ### Usage
 
@@ -42,27 +51,35 @@ You can use alerts in two ways:
 
 1. Inline with parameters:
 
+   {% raw %}
+
    ```jinja
-   {{/* alert(type="danger", icon="tip", title="An important tip", text="Stay hydrated~") */}}
+   {{ <alert type="danger" icon="tip" title="An important tip" text="Stay hydrated~" /> }}
    ```
+
+   {% endraw %}
 
 2. With a content body:
 
+   {% raw %}
+
    ```jinja
-   {%/* alert(type="danger", icon="tip", title="An important tip") */%}
+   {% <alert type="danger" icon="tip" title="An important tip"> %}
    Stay hydrated~
 
    This method is particularly useful for longer content or multiple paragraphs.
-   {%/* end */%}
+   {% </alert> %}
    ```
+
+   {% endraw %}
 
 Both methods support the same parameters (`type`, `icon`, and `title`), with the
 content either passed as the `text` parameter or as the body between tags.
 
-{% alert(type="note") %}
+{% <alert type="note"> %}
 [Zola 0.21.0](https://github.com/getzola/zola/releases/tag/v0.21.0) added
 support for GitHub-flavored Markdown alert syntax. This notation may be used in
-place of the `alert` shortcode, if desired.
+place of the `alert` component, if desired.
 
 ```markdown
 > [!NOTE]
@@ -70,30 +87,34 @@ place of the `alert` shortcode, if desired.
 ```
 
 However, the quality of the generated HTML is quite poor compared to the `alert`
-shortcode, both semantics-wise and accessibility-wise, so its use is not
+component, both semantics-wise and accessibility-wise, so its use is not
 recommended.
 
 See [getzola/zola#2817](https://github.com/getzola/zola/issues/2817) for more
 details.
-{% end %}
+{% </alert> %}
 
-## Mastodon Shortcode
+## Mastodon Component
 
-Embed a Mastodon post into your content using the `mastodon` shortcode.
+Embed a Mastodon post into your content using the `mastodon` component.
 
-{{ mastodon(url="https://hachyderm.io/@ebkalderon/114462281016082381") }}
+{{ <mastodon url="https://hachyderm.io/@ebkalderon/114462281016082381" /> }}
 
 ### Usage
 
+{% raw %}
+
 ```jinja
-{{/* mastodon(url="https://hachyderm.io/@ebkalderon/114462281016082381") */}}
+{{ <mastodon url="https://hachyderm.io/@ebkalderon/114462281016082381" /> }}
 ```
+
+{% endraw %}
 
 ## References
 
-This shortcode formats a reference section with a hanging indent like so:
+This component formats a reference section with a hanging indent like so:
 
-{% references() %}
+{% <references> %}
 
 Alderson, E. (2015). Cybersecurity and Social Justice: A Critique of Corporate
 Hegemony in a Digital World. _New York Journal of Technology, 11_ (2), 24-39.
@@ -115,26 +136,30 @@ Community College's Model United Nations. _Colorado Journal of Communication
 Studies, 19_ (2), 73-86.
 [https://doi.org/10.1093/6seaons/1movie](https://doi.org/10.1093/6seaons/1movie).
 
-{% end %}
+{% </references> %}
 
 ### Usage
 
+{% raw %}
+
 ```jinja
-{%/* references() */%}
+{% <references> %}
 
 Your references go here.
 
 Each in a new line. Markdown (links, italics...) will be rendered.
 
-{%/* end */%}
+{% </references> %}
 ```
 
-## Responsive Image Shortcode
+{% endraw %}
+
+## Responsive Image Component
 
 Convert a high-resolution source image into a responsive image using the
-`responsive_image` shortcode.
+`responsive_image` component.
 
-{{ responsive_image(src="example-hi-res-image.jpg", alt="Responsive hi-res image") }}
+{{ <responsive_image page={page} config={config} src="example-hi-res-image.jpg" alt="Responsive hi-res image" /> }}
 
 By default, `responsive_image` will generate **at most** five versions of the
 source image, with the following maximum widths (measured in pixels):
@@ -151,11 +176,15 @@ the device's native screen resolution, pixel density, viewport size, etc.
 
 ### Usage
 
+{% raw %}
+
 ```jinja
-{{/* responsive_image(src="example-hi-res-image.jpg", alt="Responsive hi-res image") */}}
+{{ <responsive_image page={page} config={config} src="example-hi-res-image.jpg" alt="Responsive hi-res image" /> }}
 ```
 
-The default behavior of the `responsive_image` shortcode can be overridden by
+{% endraw %}
+
+The default behavior of the `responsive_image` component can be overridden by
 adding the following lines to your website's `config.toml`.
 
 ```toml
@@ -166,17 +195,17 @@ fallback_width = 1280
 
 Responsive images are lazy-loaded by default to improve performance for
 below-the-fold content ([see MDN docs]). This behavior can be overridden on a
-case-by-case basis by passing `lazy=false` to the `responsive_image` shortcode.
+case-by-case basis by passing `lazy=false` to the `responsive_image` component.
 
 [see MDN docs]: https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/img#loading
 
-## Wide Container Shortcode
+## Wide Container Component
 
-Use this shortcode if you want to have a wider table, paragraph, code block...
+Use this component if you want to have a wider table, paragraph, code block...
 On desktop, it will take up the width of the article. It will have no effect on
 mobile, except for tables, which will get a horizontal scroll.
 
-{% wide_container() %}
+{% <wide_container> %}
 
 | Title             |  Year | Director             | Cinematographer       | Genre         | IMDb  | Duration     |
 |-------------------|-------|----------------------|-----------------------|---------------|-------|--------------|
@@ -184,83 +213,103 @@ mobile, except for tables, which will get a horizontal scroll.
 | The Master        | 2012  | Paul Thomas Anderson | Mihai Mălaimare Jr.   | Drama/History | 7.1   | 137 min      |
 | The Tree of Life  | 2011  | Terrence Malick      | Emmanuel Lubezki      | Drama         | 6.8   | 139 min      |
 
-{% end %}
+{% </wide_container> %}
 
 ### Usage
 
+{% raw %}
+
 ```jinja
-{%/* wide_container() */%}
+{% <wide_container> %}
 
 Place your code block, paragraph, table… here.
 
 Markdown will of course be rendered.
 
-{%/* end */%}
+{% </wide_container> %}
 ```
 
-## Presentation Palette Shortcode
+{% endraw %}
+
+## Presentation Palette Component
 
 Display the site's currently active presentation style and variant, along
 with a light/dark colour-palette swatch grid, using the `presentation_palette`
-shortcode. It takes no parameters — it reads `extra.presentation_style` and
+component. It takes no parameters — it reads `extra.presentation_style` and
 `extra.presentation_variant` directly from your site's `config.toml`, with the
 same fallback rules the theme itself uses (see CONSTITUTION.md §7), so the
 name and swatches shown always match whichever group/variant your site is
 actually configured for.
 
-{{ presentation_palette() }}
+{{ <presentation_palette config={config} /> }}
 
 ### Usage
 
+{% raw %}
+
 ```jinja
-{{/* presentation_palette() */}}
+{{ <presentation_palette config={config} /> }}
 ```
 
-## Light Mode Only / Dark Mode Only Shortcodes
+{% endraw %}
+
+## Light Mode Only / Dark Mode Only Components
 
 Show content only while the site is in light mode, or only while it's in dark
-mode, using the `light_mode_only` and `dark_mode_only` shortcodes. Neither
+mode, using the `light_mode_only` and `dark_mode_only` components. Neither
 takes any parameters — just wrap the content you want to restrict as the
-shortcode's body.
+component's body.
 
 Visibility is done with pure CSS (no extra JavaScript beyond the theme
-switcher this theme already ships): if JavaScript is disabled, each shortcode
+switcher this theme already ships): if JavaScript is disabled, each component
 falls back to your system's `prefers-color-scheme` instead of showing both, or
 neither.
 
-{% light_mode_only() %}
+{% <light_mode_only> %}
 You're seeing this because the site is currently in **light** mode.
-{% end %}
+{% </light_mode_only> %}
 
-{% dark_mode_only() %}
+{% <dark_mode_only> %}
 You're seeing this because the site is currently in **dark** mode.
-{% end %}
+{% </dark_mode_only> %}
 
 ### Usage
 
+{% raw %}
+
 ```jinja
-{%/* light_mode_only() */%}
+{% <light_mode_only> %}
 
 Only shown while the site is in light mode.
 
-{%/* end */%}
+{% </light_mode_only> %}
 ```
 
+{% endraw %}
+
+{% raw %}
+
 ```jinja
-{%/* dark_mode_only() */%}
+{% <dark_mode_only> %}
 
 Only shown while the site is in dark mode.
 
-{%/* end */%}
+{% </dark_mode_only> %}
 ```
 
-The body supports Markdown, and other shortcodes may be nested inside it, for
+{% endraw %}
+
+The body supports Markdown, and other components may be nested inside it, for
 example:
 
+{% raw %}
+
 ```jinja
-{%/* light_mode_only() */%}
+{% <light_mode_only> %}
 
-{{/* alert(type="tip", text="This tip is only shown in light mode.") */}}
+{{ <alert type="tip" text="This tip is only shown in light mode." /> }}
 
-{%/* end */%}
+{% </light_mode_only> %}
 ```
+
+{% endraw %}

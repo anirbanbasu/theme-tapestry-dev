@@ -11,16 +11,16 @@ categories = ["about"]
 
 <div style="display:flex; flex-wrap:wrap; gap:1.5rem; align-items:center; margin:1.5rem 0;">
   <div style="flex:0 0 auto;">
-  {% light_mode_only() %}
-    <div class="colour-mode-only colour-mode-only-light" style="width:160px;height:160px;border-radius:50%;background:var(--colour-bg-primary);display:flex;align-items:center;justify-content:center;">
-      <div role="img" aria-label="Dr. B. Dachshund" style="width:160px;height:160px;border-radius:50%;background-color:var(--colour-accent-primary);-webkit-mask:url(/images/profile.svg) center/contain no-repeat;mask:url(/images/profile.svg) center/contain no-repeat;"></div>
-    </div>
-  {% end %}
-  {% dark_mode_only() %}
-    <div class="colour-mode-only colour-mode-only-dark" style="width:160px;height:160px;border-radius:50%;background:var(--colour-accent-primary);display:flex;align-items:center;justify-content:center;">
-      <div role="img" aria-label="Dr. B. Dachshund" style="width:160px;height:160px;border-radius:50%;background-color:var(--colour-bg-primary);-webkit-mask:url(/images/profile.svg) center/contain no-repeat;mask:url(/images/profile.svg) center/contain no-repeat;"></div>
-    </div>
-  {% end %}
+{% <light_mode_only> %}
+<div class="colour-mode-only colour-mode-only-light" style="width:160px;height:160px;border-radius:50%;background:var(--colour-bg-primary);display:flex;align-items:center;justify-content:center;">
+<div role="img" aria-label="Dr. B. Dachshund" style="width:160px;height:160px;border-radius:50%;background-color:var(--colour-accent-primary);-webkit-mask:url(/images/profile.svg) center/contain no-repeat;mask:url(/images/profile.svg) center/contain no-repeat;"></div>
+</div>
+{% </light_mode_only> %}
+{% <dark_mode_only> %}
+<div class="colour-mode-only colour-mode-only-dark" style="width:160px;height:160px;border-radius:50%;background:var(--colour-accent-primary);display:flex;align-items:center;justify-content:center;">
+<div role="img" aria-label="Dr. B. Dachshund" style="width:160px;height:160px;border-radius:50%;background-color:var(--colour-bg-primary);-webkit-mask:url(/images/profile.svg) center/contain no-repeat;mask:url(/images/profile.svg) center/contain no-repeat;"></div>
+</div>
+{% </dark_mode_only> %}
   </div>
   <div style="flex:1 1 75%; min-width:0;">
 
@@ -33,11 +33,11 @@ My name is **Bhombol**! I am a miniature dachshund.
 </div>
 
 
-{% alert(type="info", title="Fun facts") %}
+{% <alert type="info" title="Fun facts"> %}
 
 I have four, rather short, legs and one nose. I am usually sniffing, digging, _napping_, and **barking**!
 
-{% end %}
+{% </alert> %}
 
 ## A day in my life
 
@@ -55,11 +55,11 @@ There are many things I do in a day, but the following is a typical day in my li
 
 (I omitted some of the details, but you get the idea.)
 
-{% alert(type="info", title="A video of me") %}
+{% <alert type="info" title="A video of me"> %}
 
 Here is a [short video of me](https://www.instagram.com/p/DFfOyeayqoD/), taken by one of my human friends, showing me doing some of the things I do on a typical autumn day.
 
-{% end %}
+{% </alert> %}
 
 ## The Dr. part of my name on the main page
 
