@@ -1,14 +1,14 @@
 # CLAUDE.md
 
-Operational memory for Claude Code working on **Tapestry** — a Zola theme derived from and backward-compatible with [terminus](https://github.com/ebkalderon/terminus), built for academic and industry researcher profile websites (research output, blog, projects, and other personal activities).
+Operational memory for Claude Code working on **Tapestry** — a Zola theme derived from (and **not** backward-compatible with) [terminus](https://github.com/ebkalderon/terminus), built for academic and industry researcher profile websites (research output, blog, projects, and other personal activities).
 
-See @CONSTITUTION.md for non-negotiable design and compatibility standards. Read it before making any structural, visual, or compatibility decision — this file covers *how* to work; CONSTITUTION.md covers *what must always be true*.
+See @CONSTITUTION.md for non-negotiable design standards. Read it before making any structural, visual, or terminus-lineage decision — this file covers *how* to work; CONSTITUTION.md covers *what must always be true*.
 
 ## Project overview
 
 - Static site theme for [Zola](https://www.getzola.org/).
 - Base repo for the live site: [this repo](https://github.com/anirbanbasu/tapestry).
-- Upstream theme being extended: terminus, pinned per the compatibility section of @CONSTITUTION.md.
+- Upstream theme being extended: terminus, pinned per the terminus lineage section (§3) of @CONSTITUTION.md.
 - Working theme directory: `themes/tapestry/` (create if absent). Treat `themes/terminus/` as a read-only reference — never edit it in place.
 
 ## Build & preview commands
@@ -20,8 +20,8 @@ See @CONSTITUTION.md for non-negotiable design and compatibility standards. Read
 
 ## Verification workflow
 
-1. Build the current terminus-based site and the in-progress Tapestry version against the **same** `content/` fixtures.
-2. Diff rendered HTML for pages that exercise shortcodes/config keys listed in the compatibility contract (see @CONSTITUTION.md, §3).
+1. Build the in-progress Tapestry version against the `content/` fixtures. (A terminus site cannot be built side by side with it: terminus targets Tera v1, Tapestry targets Tera v2.)
+2. Diff rendered HTML for pages that exercise shortcodes/config keys listed in the carried-over features contract (`specs/terminus-compat-contract.md`; see @CONSTITUTION.md, §3).
 3. Before opening a PR that touches `themes/tapestry/**`, `content/warp-and-weft/**`, `tests/**`, or `config.toml`, run the automated suite locally:
    1. From the repo root: `zola build --base-url http://127.0.0.1:1111` (the fixed base URL matches `tests/visual-a11y/playwright.config.ts`'s `webServer`, which serves `public/` on `127.0.0.1:1111`).
    2. `cd tests/visual-a11y && npm ci` — first run only, or whenever `package-lock.json` changes; `node_modules/` is gitignored, so a fresh checkout has no `playwright` binary yet and bare `npm test` fails with `playwright: command not found`.
@@ -43,11 +43,11 @@ See @CONSTITUTION.md for non-negotiable design and compatibility standards. Read
 - Templates: Tera, under `themes/tapestry/templates/`.
 - Styles: mirror terminus's build pipeline (Sass/SCSS) unless @CONSTITUTION.md says otherwise. Compiled CSS is a build artifact — never hand-edit it.
 - Content fixtures used for testing/diffing: `content/`. Do not delete or restructure without checking impact on the live site.
-- Config: `config.toml`. New keys should be additive. Never repurpose an existing terminus key with different meaning without recording the change in the compatibility contract (`specs/terminus-compat-contract.md`).
+- Config: `config.toml`. New keys should be additive. Never repurpose an existing terminus key with different meaning without recording the change in the carried-over features contract (`specs/terminus-compat-contract.md`).
 
 ## What to always do
 
-- Re-read @CONSTITUTION.md before any decision touching accessibility, JavaScript, fonts, or terminus compatibility.
+- Re-read @CONSTITUTION.md before any decision touching accessibility, JavaScript, fonts, or terminus lineage (§3).
 - If a request conflicts with @CONSTITUTION.md, flag the conflict explicitly instead of silently overriding it or silently complying.
 - Keep operational instructions (this file) separate from non-negotiable constraints (CONSTITUTION.md). New non-negotiables belong in CONSTITUTION.md, not here.
 - Record amendments to CONSTITUTION.md as dated entries in `CONSTITUTION-CHANGELOG.md`. Do not `@`-import that file: the constitution must read as current state only, and the changelog is history to consult on demand.

@@ -1,4 +1,12 @@
-# Terminus compatibility contract
+# Carried-over terminus features contract
+
+> **Not a compatibility guarantee.** Tapestry is derived from terminus but is
+> not backward-compatible with it: Tera v2 removed macros and shortcodes, so
+> terminus templates, template overrides and macro imports do not run, and
+> content using terminus shortcode syntax must be rewritten. This document
+> records which terminus parameters, config keys, template blocks and
+> front-matter fields Tapestry deliberately carries over, and what each
+> renders. (Filename retained for link stability.)
 
 Frozen fixture per [CONSTITUTION.md](../CONSTITUTION.md) §3. This document is
 the source of truth Tapestry is tested against — **not** the live terminus
