@@ -23,7 +23,7 @@ Zola 0.22.x called these **shortcodes**. Zola 0.23's Tera v2 rewrite removed
 the shortcode subsystem entirely and replaced it with a component system —
 what you see below are Tera v2 components, invoked from Markdown with the
 same {% raw %}`{{ <name ... /> }}` / `{% <name> %}...{% </name> %}`{% endraw %}
-syntax. The name changed; the authoring experience didn't.
+syntax. Although the name changed, the authoring experience did not.
 {% </alert> %}
 
 <!-- more -->
@@ -31,7 +31,7 @@ syntax. The name changed; the authoring experience didn't.
 ## Alert Component
 
 Bring attention to information with these GitHub-style alert components. They
-come in five `type`s: `note`, `tip`, `info`, `warning`, and `danger`.
+come in five types: `note`, `tip`, `info`, `warning`, and `danger`.
 
 {{ <alert type="note" text="Some **content** with _Markdown_ `syntax`. Here is [a `link`](#alert-component)." /> }}
 {{ <alert type="tip" text="Some **content** with _Markdown_ `syntax`. Here is [a `link`](#alert-component)." /> }}
