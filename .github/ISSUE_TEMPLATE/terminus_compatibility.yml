@@ -1,16 +1,16 @@
-name: Terminus compatibility issue
-description: A mismatch against the frozen terminus compatibility contract, or a request to adopt/drop a terminus feature.
+name: Carried-over terminus feature issue
+description: A mismatch against the frozen carried-over terminus features contract, or a request to adopt/drop a terminus feature.
 title: "[compat]: "
 labels: ["terminus-compat"]
 body:
   - type: markdown
     attributes:
       value: |
-        Tapestry's terminus compatibility is pinned to a specific snapshot (`aa8d8b67f9ab69ae48e1405f96e152d41f03e0ed`) and tested against `specs/terminus-compat-contract.md`, not against live upstream terminus (CONSTITUTION.md §3). "Sync with the latest terminus" is a separate, deliberate task — file it as a feature request instead if that's what you mean.
+        Tapestry is derived from terminus but is **not** backward-compatible with it (Tera v2 has no macros or shortcodes). The features it carries over are pinned to a specific snapshot (`aa8d8b67f9ab69ae48e1405f96e152d41f03e0ed`) and tested against `specs/terminus-compat-contract.md`, not against live upstream terminus (CONSTITUTION.md §3). "Sync with the latest terminus" is a separate, deliberate task — file it as a feature request instead if that's what you mean.
   - type: dropdown
     id: kind
     attributes:
-      label: What kind of compatibility issue is this?
+      label: What kind of issue is this?
       options:
         - Tapestry diverges from a shortcode/config key/template block/front-matter field documented in the contract
         - The contract itself is out of date or inaccurate for the pinned snapshot

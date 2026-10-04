@@ -40,8 +40,8 @@ Try the live demo (built from this repo's `content/` and `config.toml`):
   a read-only reference. Never edited in place.
 - `content/` — content fixtures used both for testing/diffing and as the
   actual content of the live demo site.
-- `specs/` — frozen, checked-in contracts: the terminus compatibility
-  contract, per-style-group design tokens, the brand logo spec, the
+- `specs/` — frozen, checked-in contracts: the carried-over terminus
+  features contract, per-style-group design tokens, the brand logo spec, the
   presentation style switcher spec, the visual/a11y test suite spec, and
   third-party asset licenses.
 - `prototypes/` — early-stage design exploration (style tiles, logo
@@ -54,9 +54,9 @@ Try the live demo (built from this repo's `content/` and `config.toml`):
   visual regression baselines on demand.
 
 `CLAUDE.md` and `CONSTITUTION.md` are the operational and non-negotiable
-design/compatibility references for anyone working in this repo — read
+design references for anyone working in this repo — read
 `CONSTITUTION.md` before any change touching accessibility, JavaScript,
-fonts, or terminus compatibility.
+fonts, or terminus lineage.
 
 ## Quick start
 
@@ -101,7 +101,7 @@ since it can't be fully automated in CI.
 
 Contributions to the theme are welcome — see `CONSTITUTION.md` for the
 non-negotiable standards any change must meet (WCAG 2.1 AA, the no-JS
-policy and its three sanctioned exceptions, terminus compatibility
+policy and its three sanctioned exceptions, terminus lineage
 pinning, self-hosted fonts, the 12-column grid, and navigation collapse).
 
 1. Run `just install-pre-commit-hooks` once, after cloning.
@@ -115,8 +115,10 @@ pinning, self-hosted fonts, the 12-column grid, and navigation collapse).
 
 This theme uses the following components:
 
-- **Theme:** Based on [terminus](https://github.com/ebkalderon/terminus) for
-  [Zola](https://www.getzola.org/).
+- **Theme:** Derived from [terminus](https://github.com/ebkalderon/terminus)
+  (commit `aa8d8b6`) for [Zola](https://www.getzola.org/). Tapestry is not
+  backward-compatible with terminus: it targets Tera v2, which has no macros
+  or shortcodes.
 - **Fonts:** Self-hosted WOFF2 files, vendored from
   [Google Fonts](https://fonts.google.com/) as an upstream source only —
   never loaded at runtime from a CDN (see `CONSTITUTION.md` §4).

@@ -50,9 +50,10 @@ it can't drift out of sync:
   the approved mark, usage rules, and source files.
 - [Presentation style switcher spec](https://github.com/anirbanbasu/theme-tapestry-dev/blob/master/specs/presentation-style-switcher.md) —
   the accordion menu's markup and interaction rules.
-- [Terminus compatibility contract](https://github.com/anirbanbasu/theme-tapestry-dev/blob/master/specs/terminus-compat-contract.md) —
-  the frozen fixture of shortcodes/config keys Tapestry stays compatible
-  with, and where it deliberately deviates.
+- [Carried-over terminus features contract](https://github.com/anirbanbasu/theme-tapestry-dev/blob/master/specs/terminus-compat-contract.md) —
+  the frozen fixture of the terminus shortcodes/config keys Tapestry carries
+  over, and where it deliberately deviates. Tapestry is not
+  backward-compatible with terminus.
 - [Visual & accessibility test suite](https://github.com/anirbanbasu/theme-tapestry-dev/blob/master/specs/visual-a11y-test-suite.md) —
   the Playwright + axe-core suite verifying WCAG AA, keyboard navigation,
   and visual regression across every group/variant.
